@@ -2,6 +2,8 @@
 
 namespace directapi\services\ads\models;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class AdAddItem
 {
@@ -17,6 +19,21 @@ class AdAddItem
 
     /**
      * @var int
+     * @Assert\NotBlank()
      */
     public $AdGroupId;
+
+    /**
+     * @Assert\Callback()
+     * @param ExecutionContextInterface $context
+     */
+    public function isValid(ExecutionContextInterface $context)
+    {
+        if (!$this->TextAd && !$this->MobileAppAd) {
+            $context->buildViolation('Необходимо указать TextAd либо MobileAppAd')
+                ->atPath('TextAd')
+                ->atPath('MobileAppAd')
+                ->addViolation();
+        }
+    }
 }

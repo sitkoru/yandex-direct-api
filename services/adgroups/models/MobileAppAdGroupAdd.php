@@ -12,6 +12,9 @@ class MobileAppAdGroupAdd
     /**
      * @var string
      * @Assert\NotBlank()
+     * @Assert\Length(
+     *      max = 1024
+     * )
      */
     public $StoreUrl;
 
