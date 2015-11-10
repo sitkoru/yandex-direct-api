@@ -1,0 +1,18 @@
+{
+  "name": "sitkoru/yandex-direct-api",
+  "description": "Client for Yandex.Direct API v5",
+  "minimum-stability": "dev",
+  "license": "BEERWARE",
+  "authors": [
+    {
+      "name": "George Drak",
+      "email": "sonicgd@gmail.com"
+    }
+  ],
+  "require": {
+    "symfony/validator": "~2.7.6",
+    "doctrine/annotations": "~1.2.7",
+    "doctrine/cache": "~1.5.1",
+    "netresearch/jsonmapper": "~0.10.0"
+  }
+}
