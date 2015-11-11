@@ -28,6 +28,9 @@ class BidModifierAddItem
      * @var DemographicsAdjustmentAdd[]
      * @DirectApiAssert\ArrayOf(type="directapi\services\bidmodifiers\models\DemographicsAdjustmentAdd")
      * @Assert\Valid()
+     * @Assert\Count(
+     *     max="10"
+     * )
      */
     public $DemographicsAdjustments;
 
@@ -35,6 +38,9 @@ class BidModifierAddItem
      * @var RetargetingAdjustmentAdd[]
      * @DirectApiAssert\ArrayOf(type="directapi\services\bidmodifiers\models\RetargetingAdjustmentAdd")
      * @Assert\Valid()
+     * @Assert\Count(
+     *     max="100"
+     * )
      */
     public $RetargetingAdjustments;
 
