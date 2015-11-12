@@ -4,11 +4,13 @@ namespace directapi\services\campaigns\models;
 
 
 use directapi\common\enum\YesNoEnum;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class EmailSettings
 {
     /**
      * @var string
+     * @Assert\Email()
      */
     public $Email;
 
@@ -19,6 +21,10 @@ class EmailSettings
 
     /**
      * @var int
+     * @Assert\Range(
+     *     min=1,
+     *     max=50
+     * )
      */
     public $WarningBalance;
 
