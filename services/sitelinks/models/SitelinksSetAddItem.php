@@ -11,7 +11,7 @@ class SitelinksSetAddItem implements ICallbackValidation
 {
     /**
      * @var Sitelink[]
-     * @DirectApiAssert\ArrayOf(type="\directapi\services\sitelinks\modelsSitelink")
+     * @DirectApiAssert\ArrayOf(type="directapi\services\sitelinks\models\Sitelink")
      * @Assert\Count(
      *     min=1,
      *     max=4
