@@ -4,11 +4,12 @@ namespace directapi\services\ads\models;
 
 
 use directapi\components\constraints as DirectApiAssert;
+use directapi\components\interfaces\ICallbackValidation;
 use directapi\services\ads\enum\AgeLabelEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class TextAdUpdate
+class TextAdUpdate implements ICallbackValidation
 {
     /**
      * @var string

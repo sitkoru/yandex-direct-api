@@ -2,10 +2,11 @@
 
 namespace directapi\services\ads\models;
 
+use directapi\components\interfaces\ICallbackValidation;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class AdUpdateItem
+class AdUpdateItem implements ICallbackValidation
 {
     /**
      * @var int

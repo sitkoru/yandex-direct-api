@@ -3,10 +3,11 @@
 namespace directapi\services\bids\criterias;
 
 
+use directapi\components\interfaces\ICallbackValidation;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class BidsSelectionCriteria
+class BidsSelectionCriteria implements ICallbackValidation
 {
     /**
      * @var int[]

@@ -5,10 +5,11 @@ namespace directapi\services\ads\models;
 
 use directapi\common\enum\YesNoEnum;
 use directapi\components\constraints as DirectApiAssert;
+use directapi\components\interfaces\ICallbackValidation;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class TextAdAdd
+class TextAdAdd implements ICallbackValidation
 {
     /**
      * @var string
@@ -56,6 +57,7 @@ class TextAdAdd
 
     /**
      * @Assert\Callback()
+     * @param ExecutionContextInterface $context
      */
     public function isValid(ExecutionContextInterface $context)
     {

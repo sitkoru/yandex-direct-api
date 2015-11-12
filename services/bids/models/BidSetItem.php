@@ -4,10 +4,11 @@ namespace directapi\services\bids\models;
 
 use directapi\common\enum\PriorityEnum;
 use directapi\components\constraints as DirectApiAssert;
+use directapi\components\interfaces\ICallbackValidation;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class BidSetItem
+class BidSetItem implements ICallbackValidation
 {
     /**
      * @var int
