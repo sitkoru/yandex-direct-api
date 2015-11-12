@@ -28,22 +28,18 @@ class BidModifiersService extends BaseService
      */
     public function add(array $BidModifiers)
     {
-        throw new \Exception('Not implemented');
+        $params = [
+            'BidModifiers' => $BidModifiers
+        ];
+        return parent::add($params);
     }
 
     /**
-     * @param IdsCriteria $SelectionCriteria
-     *
-     * @return ActionResult[]
+     * @inheritdoc
      */
     public function delete(IdsCriteria $SelectionCriteria)
     {
-        $params = [
-            'SelectionCriteria' => $SelectionCriteria
-        ];
-        $response = $this->call('delete', $params);
-        $result = $this->mapArray($response->DeleteResults, ActionResult::class);
-        return $result;
+        return parent::delete($SelectionCriteria);
     }
 
     /**
@@ -64,7 +60,23 @@ class BidModifiersService extends BaseService
         array $RetargetingAdjustmentFieldNames = [],
         LimitOffset $Page = null
     ) {
-        throw new \Exception('Not implemented');
+        $params = [
+            'SelectionCriteria' => $SelectionCriteria,
+            'FieldNames'        => $FieldNames,
+        ];
+        if ($MobileAdjustmentFieldNames) {
+            $params['MobileAdjustmentFieldNames'] = $MobileAdjustmentFieldNames;
+        }
+        if ($DemographicsAdjustmentFieldNames) {
+            $params['DemographicsAdjustmentFieldNames'] = $DemographicsAdjustmentFieldNames;
+        }
+        if ($RetargetingAdjustmentFieldNames) {
+            $params['RetargetingAdjustmentFieldNames'] = $RetargetingAdjustmentFieldNames;
+        }
+        if ($Page) {
+            $params['Page'] = $Page;
+        }
+        return parent::doGet($params, 'BidModifiers', BidModifierGetItem::class);
     }
 
     /**
@@ -74,7 +86,11 @@ class BidModifiersService extends BaseService
      */
     public function set(array $BidModifiers)
     {
-        throw new \Exception('Not implemented');
+        $params = [
+            'BidModifiers' => $BidModifiers
+        ];
+        $result = $this->call('set', $params);
+        return $this->mapArray($result->SetResults, ActionResult::class);
     }
 
     /**
@@ -84,7 +100,11 @@ class BidModifiersService extends BaseService
      */
     public function toggle(array $BidModifierToggleItems)
     {
-        throw new \Exception('Not implemented');
+        $params = [
+            'BidModifierToggleItems' => $BidModifierToggleItems
+        ];
+        $result = $this->call('toggle', $params);
+        return $this->mapArray($result->SetResults, ToggleResult::class);
     }
 
     protected function getName()

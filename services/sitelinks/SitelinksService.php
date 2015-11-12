@@ -20,22 +20,18 @@ class SitelinksService extends BaseService
      */
     public function add(array $SitelinksSets)
     {
-        throw new \Exception('Not implemented');
+        $params = [
+            'SitelinksSets' => $SitelinksSets
+        ];
+        return parent::add($params);
     }
 
     /**
-     * @param IdsCriteria $SelectionCriteria
-     *
-     * @return ActionResult[]
+     * @inheritdoc
      */
     public function delete(IdsCriteria $SelectionCriteria)
     {
-        $params = [
-            'SelectionCriteria' => $SelectionCriteria
-        ];
-        $response = $this->call('delete', $params);
-        $result = $this->mapArray($response->DeleteResults, ActionResult::class);
-        return $result;
+        return parent::delete($SelectionCriteria);
     }
 
     /**
@@ -47,7 +43,15 @@ class SitelinksService extends BaseService
      */
     public function get(IdsCriteria $SelectionCriteria, array $FieldNames, LimitOffset $Page)
     {
-        throw new \Exception('Not implemented');
+        $params = [
+            'SelectionCriteria' => $SelectionCriteria,
+            'FieldNames'        => $FieldNames
+        ];
+        if ($Page) {
+            $params['Page'] = $Page;
+        }
+
+        return parent::doGet($params, 'SitelinksSets', SitelinksSetGetItem::class);
     }
 
     protected function getName()

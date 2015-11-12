@@ -3,6 +3,7 @@
 namespace directapi\services\bids;
 
 
+use directapi\common\results\ActionResult;
 use directapi\services\BaseService;
 use directapi\services\bids\criterias\BidsSelectionCriteria;
 use directapi\services\bids\enum\BidFieldEnum;
@@ -21,7 +22,11 @@ class BidsService extends BaseService
      */
     public function get(BidsSelectionCriteria $SelectionCriteria, array $FieldNames)
     {
-        throw new \Exception('Not implemented');
+        $params = [
+            'SelectionCriteria' => $SelectionCriteria,
+            'FieldNames'        => $FieldNames
+        ];
+        return $this->doGet($params, 'Bids', BidGetItem::class);
     }
 
     /**
@@ -31,7 +36,11 @@ class BidsService extends BaseService
      */
     public function set(array $Bids)
     {
-        throw new \Exception('Not implemented');
+        $params = [
+            'Bids' => $Bids
+        ];
+        $result = $this->call('set', $params);
+        return $this->mapArray($result->SetResults, ActionResult::class);
     }
 
     /**
@@ -41,7 +50,11 @@ class BidsService extends BaseService
      */
     public function setAuto(array $Bids)
     {
-        throw new \Exception('Not implemented');
+        $params = [
+            'Bids' => $Bids
+        ];
+        $result = $this->call('setAuto', $params);
+        return $this->mapArray($result->SetAutoResults, BidActionResult::class);
     }
 
     protected function getName()

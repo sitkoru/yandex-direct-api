@@ -18,7 +18,11 @@ class ChangesService extends BaseService
      */
     public function checkDictionaries($Timestamp)
     {
-        throw new \Exception('Not implemented');
+        $params = [
+            'Timestamp' => $Timestamp
+        ];
+        $result = $this->call('checkDictionaries', $params);
+        return $this->map($result, CheckDictionariesResponse::class);
     }
 
     /**
@@ -28,7 +32,11 @@ class ChangesService extends BaseService
      */
     public function checkCampaigns($Timestamp)
     {
-        throw new \Exception('Not implemented');
+        $params = [
+            'Timestamp' => $Timestamp
+        ];
+        $result = $this->call('checkCampaigns', $params);
+        return $this->map($result, CheckCampaignsResponse::class);
     }
 
     /**
@@ -37,12 +45,31 @@ class ChangesService extends BaseService
      * @param int[]            $AdIds
      * @param FieldNamesEnum[] $FieldNames
      * @param string           $Timestamp
-     *
      * @return CheckResponse
+     * @throws \Exception
      */
-    public function check(array $CampaignIds, array  $AdGroupIds, array  $AdIds, array  $FieldNames, $Timestamp)
-    {
-        throw new \Exception('Not implemented');
+    public function check(
+        array $CampaignIds = [],
+        array  $AdGroupIds = [],
+        array  $AdIds = [],
+        array  $FieldNames,
+        $Timestamp
+    ) {
+        $params = [
+        ];
+        if ($CampaignIds) {
+            $params['CampaignIds'] = $CampaignIds;
+        } elseif ($AdGroupIds) {
+            $params['AdGroupIds'] = $AdGroupIds;
+        } elseif ($AdIds) {
+            $params['AdIds'] = $AdIds;
+        } else {
+            throw new \Exception('Должен быть указан один из параметров - CampaignIds, AdGroupIds, AdIds');
+        }
+        $params['FieldNames'] = $FieldNames;
+        $params['Timestamp'] = $Timestamp;
+        $result = $this->call('check', $params);
+        return $this->map($result, CheckResponse::class);
     }
 
     protected function getName()

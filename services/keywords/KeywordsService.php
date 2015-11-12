@@ -22,22 +22,18 @@ class KeywordsService extends BaseService
      */
     public function add(array $Keywords)
     {
-        throw new \Exception('Not implemented');
+        $params = [
+            'Keywords' => $Keywords
+        ];
+        return parent::add($params);
     }
 
     /**
-     * @param IdsCriteria $SelectionCriteria
-     *
-     * @return ActionResult[]
+     * @inheritdoc
      */
     public function delete(IdsCriteria $SelectionCriteria)
     {
-        $params = [
-            'SelectionCriteria' => $SelectionCriteria
-        ];
-        $response = $this->call('delete', $params);
-        $result = $this->mapArray($response->DeleteResults, ActionResult::class);
-        return $result;
+        return parent::delete($SelectionCriteria);
     }
 
     /**
@@ -49,37 +45,31 @@ class KeywordsService extends BaseService
      */
     public function get(KeywordsSelectionCriteria $SelectionCriteria, array $FieldNames, LimitOffset $Page = null)
     {
-        throw new \Exception('Not implemented');
+        $params = [
+            'SelectionCriteria' => $SelectionCriteria,
+            'FieldNames'        => $FieldNames
+        ];
+        if ($Page) {
+            $params['Page'] = $Page;
+        }
+
+        return parent::doGet($params, 'Keywords', KeywordGetItem::class);
     }
 
     /**
-     * @param IdsCriteria $SelectionCriteria
-     *
-     * @return ActionResult[]
+     * @inheritdoc
      */
     public function resume(IdsCriteria $SelectionCriteria)
     {
-        $params = [
-            'SelectionCriteria' => $SelectionCriteria
-        ];
-        $response = $this->call('resume', $params);
-        $result = $this->mapArray($response->ResumeResults, ActionResult::class);
-        return $result;
+        return parent::resume($SelectionCriteria);
     }
 
     /**
-     * @param IdsCriteria $SelectionCriteria
-     *
-     * @return ActionResult[]
+     * @inheritdoc
      */
     public function suspend(IdsCriteria $SelectionCriteria)
     {
-        $params = [
-            'SelectionCriteria' => $SelectionCriteria
-        ];
-        $response = $this->call('suspend', $params);
-        $result = $this->mapArray($response->SuspendResults, ActionResult::class);
-        return $result;
+        return parent::suspend($SelectionCriteria);
     }
 
     /**
@@ -89,7 +79,10 @@ class KeywordsService extends BaseService
      */
     public function update(array $Keywords)
     {
-        throw new \Exception('Not implemented');
+        $params = [
+            'Keywords' => $Keywords
+        ];
+        return parent::update($params);
     }
 
     protected function getName()

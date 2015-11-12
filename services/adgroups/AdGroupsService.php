@@ -26,25 +26,15 @@ class AdGroupsService extends BaseService
         $params = [
             'AdGroups' => $AdGroups
         ];
-        $response = $this->call('add', $params);
-        $result = $this->mapArray($response->AddResults, ActionResult::class);
-        return $result;
+        return parent::add($params);
     }
 
     /**
-     * @param IdsCriteria $SelectionCriteria
-     * @throws \Exception
-     *
-     * @return ActionResult[]
+     * @inheritdoc
      */
     public function delete(IdsCriteria $SelectionCriteria)
     {
-        $params = [
-            'SelectionCriteria' => $SelectionCriteria
-        ];
-        $response = $this->call('delete', $params);
-        $result = $this->mapArray($response->DeleteResults, ActionResult::class);
-        return $result;
+        return parent::delete($SelectionCriteria);
     }
 
     /**
@@ -73,9 +63,7 @@ class AdGroupsService extends BaseService
         if ($Page) {
             $params['Page'] = $Page;
         }
-        $response = $this->call('get', $params);
-        $items = $this->mapArray($response->Campaigns, AdGroupGetItem::class);
-        return $items;
+        return parent::doGet($params, 'AdGroups', AdGroupGetItem::class);
     }
 
     /**
@@ -89,9 +77,7 @@ class AdGroupsService extends BaseService
         $params = [
             'AdGroups' => $AdGroups
         ];
-        $response = $this->call('update', $params);
-        $result = $this->mapArray($response->UpdateResults, ActionResult::class);
-        return $result;
+        return parent::update($params);
     }
 
     protected function getName()

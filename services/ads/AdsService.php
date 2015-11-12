@@ -19,37 +19,26 @@ class AdsService extends BaseService
      */
     public function add(array $Ads)
     {
-        throw new \Exception('Not implemented');
+        $params = [
+            'Ads' => $Ads
+        ];
+        return parent::add($params);
     }
 
     /**
-     * @param IdsCriteria $SelectionCriteria
-     *
-     * @return ActionResult[]
+     * @inheritdoc
      */
     public function archive(IdsCriteria $SelectionCriteria)
     {
-        $params = [
-            'SelectionCriteria' => $SelectionCriteria
-        ];
-        $response = $this->call('archive', $params);
-        $result = $this->mapArray($response->ArchiveResults, ActionResult::class);
-        return $result;
+        return parent::archive($SelectionCriteria);
     }
 
     /**
-     * @param IdsCriteria $SelectionCriteria
-     *
-     * @return ActionResult[]
+     * @inheritdoc
      */
     public function delete(IdsCriteria $SelectionCriteria)
     {
-        $params = [
-            'SelectionCriteria' => $SelectionCriteria
-        ];
-        $response = $this->call('delete', $params);
-        $result = $this->mapArray($response->DeleteResults, ActionResult::class);
-        return $result;
+        return parent::delete($SelectionCriteria);
     }
 
     /**
@@ -59,7 +48,10 @@ class AdsService extends BaseService
      */
     public function get(AdsSelectionCriteria $SelectionCriteria)
     {
-        throw new \Exception('Not implemented');
+        $params = [
+            'SelectionCriteria' => $SelectionCriteria
+        ];
+        return parent::doGet($params, 'Ads', AdGetItem::class);
     }
 
     /**
@@ -78,48 +70,27 @@ class AdsService extends BaseService
     }
 
     /**
-     * @param IdsCriteria $SelectionCriteria
-     *
-     * @return ActionResult[]
+     * @inheritdoc
      */
     public function resume(IdsCriteria $SelectionCriteria)
     {
-        $params = [
-            'SelectionCriteria' => $SelectionCriteria
-        ];
-        $response = $this->call('resume', $params);
-        $result = $this->mapArray($response->ResumeResults, ActionResult::class);
-        return $result;
+        return parent::resume($SelectionCriteria);
     }
 
     /**
-     * @param IdsCriteria $SelectionCriteria
-     *
-     * @return ActionResult[]
+     * @inheritdoc
      */
     public function suspend(IdsCriteria $SelectionCriteria)
     {
-        $params = [
-            'SelectionCriteria' => $SelectionCriteria
-        ];
-        $response = $this->call('suspend', $params);
-        $result = $this->mapArray($response->SuspendResults, ActionResult::class);
-        return $result;
+        return parent::suspend($SelectionCriteria);
     }
 
     /**
-     * @param IdsCriteria $SelectionCriteria
-     *
-     * @return ActionResult[]
+     * @inheritdoc
      */
     public function unarchive(IdsCriteria $SelectionCriteria)
     {
-        $params = [
-            'SelectionCriteria' => $SelectionCriteria
-        ];
-        $response = $this->call('unarchive', $params);
-        $result = $this->mapArray($response->UnarchiveResults, ActionResult::class);
-        return $result;
+        return parent::unarchive($SelectionCriteria);
     }
 
     /**
@@ -129,7 +100,10 @@ class AdsService extends BaseService
      */
     public function update(array $Ads)
     {
-        throw new \Exception('Not implemented');
+        $params = [
+            'Ads' => $Ads
+        ];
+        return parent::update($params);
     }
 
     protected function getName()
