@@ -19,11 +19,16 @@ class AdGroupsService extends BaseService
      * @param AdGroupAddItem[] $AdGroups
      * @throws \Exception
      *
-     * return ActionResult[]
+     * @return ActionResult[]
      */
     public function add(array $AdGroups)
     {
-        throw new \Exception('Not implemented');
+        $params = [
+            'AdGroups' => $AdGroups
+        ];
+        $response = $this->call('add', $params);
+        $result = $this->mapArray($response->AddResults, ActionResult::class);
+        return $result;
     }
 
     /**
@@ -57,7 +62,20 @@ class AdGroupsService extends BaseService
         array $MobileAppAdGroupFieldNames = [],
         LimitOffset $Page = null
     ) {
-        throw new \Exception('Not implemented');
+        $params = [
+            'SelectionCriteria' => $SelectionCriteria,
+            'FieldNames'        => $FieldNames,
+        ];
+        if ($MobileAppAdGroupFieldNames) {
+            $params['MobileAppAdGroupFieldNames'] = $MobileAppAdGroupFieldNames;
+        }
+
+        if ($Page) {
+            $params['Page'] = $Page;
+        }
+        $response = $this->call('get', $params);
+        $items = $this->mapArray($response->Campaigns, AdGroupGetItem::class);
+        return $items;
     }
 
     /**
@@ -68,7 +86,12 @@ class AdGroupsService extends BaseService
      */
     public function update(array $AdGroups)
     {
-        throw new \Exception('Not implemented');
+        $params = [
+            'AdGroups' => $AdGroups
+        ];
+        $response = $this->call('update', $params);
+        $result = $this->mapArray($response->UpdateResults, ActionResult::class);
+        return $result;
     }
 
     protected function getName()
