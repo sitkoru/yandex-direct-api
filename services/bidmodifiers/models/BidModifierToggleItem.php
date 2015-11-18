@@ -6,11 +6,12 @@ namespace directapi\services\bidmodifiers\models;
 use directapi\common\enum\YesNoEnum;
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
+use directapi\components\Model;
 use directapi\services\bidmodifiers\enum\BidModifierTypeEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class BidModifierToggleItem implements ICallbackValidation
+class BidModifierToggleItem extends Model implements ICallbackValidation
 {
     /**
      * @var int

@@ -3,11 +3,12 @@
 namespace directapi\services\ads\models;
 
 use directapi\components\constraints as DirectApiAssert;
+use directapi\components\Model;
 use directapi\services\ads\enum\AgeLabelEnum;
 use directapi\services\ads\enum\MobileAppAdActionEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class MobileAppAdUpdate
+class MobileAppAdUpdate extends Model
 {
     /**
      * @var string

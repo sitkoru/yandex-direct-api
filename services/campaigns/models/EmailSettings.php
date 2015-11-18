@@ -4,9 +4,10 @@ namespace directapi\services\campaigns\models;
 
 
 use directapi\common\enum\YesNoEnum;
+use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class EmailSettings
+class EmailSettings extends Model
 {
     /**
      * @var string

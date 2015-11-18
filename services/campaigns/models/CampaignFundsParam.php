@@ -3,7 +3,9 @@
 namespace directapi\services\campaigns\models;
 
 
-class CampaignFundsParam
+use directapi\components\Model;
+
+class CampaignFundsParam extends Model
 {
     /**
      * @var int

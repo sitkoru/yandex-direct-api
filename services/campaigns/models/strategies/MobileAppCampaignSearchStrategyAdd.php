@@ -4,11 +4,12 @@ namespace directapi\services\campaigns\models\strategies;
 
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
+use directapi\components\Model;
 use directapi\services\campaigns\enum\MobileAppCampaignSearchStrategyTypeEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class MobileAppCampaignSearchStrategyAdd implements ICallbackValidation
+class MobileAppCampaignSearchStrategyAdd extends Model implements ICallbackValidation
 {
     /**
      * @var MobileAppCampaignSearchStrategyTypeEnum

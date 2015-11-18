@@ -7,11 +7,12 @@ use directapi\common\enum\StateEnum;
 use directapi\common\enum\StatusEnum;
 use directapi\common\enum\YesNoEnum;
 use directapi\components\constraints as DirectApiAssert;
+use directapi\components\Model;
 use directapi\services\ads\enum\AdStatusEnum;
 use directapi\services\ads\enum\AdTypeEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class AdsSelectionCriteria
+class AdsSelectionCriteria extends Model
 {
     /**
      * @var int[]

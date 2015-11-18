@@ -3,7 +3,9 @@
 namespace directapi\services\bids\models;
 
 
-class AuctionBidItem
+use directapi\components\Model;
+
+class AuctionBidItem extends Model
 {
     /**
      * @var string Позиция показа: Pmn, где

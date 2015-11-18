@@ -3,8 +3,9 @@
 namespace directapi\common\models;
 
 use directapi\common\enum\ModerationStatusEnum;
+use directapi\components\Model;
 
-class ExtensionModeration
+class ExtensionModeration extends Model
 {
     /**
      * @var ModerationStatusEnum

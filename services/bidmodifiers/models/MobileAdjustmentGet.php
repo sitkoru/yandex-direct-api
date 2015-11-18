@@ -3,7 +3,9 @@
 namespace directapi\services\bidmodifiers\models;
 
 
-class MobileAdjustmentGet
+use directapi\components\Model;
+
+class MobileAdjustmentGet extends Model
 {
     /**
      * @var int

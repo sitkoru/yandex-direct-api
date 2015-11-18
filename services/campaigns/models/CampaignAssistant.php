@@ -2,7 +2,9 @@
 
 namespace directapi\services\campaigns\models;
 
-class CampaignAssistant
+use directapi\components\Model;
+
+class CampaignAssistant extends Model
 {
     /**
      * @var string

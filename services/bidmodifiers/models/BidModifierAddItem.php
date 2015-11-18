@@ -4,10 +4,11 @@ namespace directapi\services\bidmodifiers\models;
 
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
+use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class BidModifierAddItem implements ICallbackValidation
+class BidModifierAddItem extends Model implements ICallbackValidation
 {
     /**
      * @var int

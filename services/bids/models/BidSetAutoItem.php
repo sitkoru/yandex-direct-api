@@ -4,13 +4,14 @@ namespace directapi\services\bids\models;
 
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
+use directapi\components\Model;
 use directapi\services\bids\enum\CalculateByEnum;
 use directapi\services\bids\enum\PositionEnum;
 use directapi\services\bids\enum\ScopeEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class BidSetAutoItem implements ICallbackValidation
+class BidSetAutoItem extends Model implements ICallbackValidation
 {
     /**
      * @var int

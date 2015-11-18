@@ -4,8 +4,9 @@ namespace directapi\services\bidmodifiers\models;
 
 
 use directapi\common\enum\YesNoEnum;
+use directapi\components\Model;
 
-class RetargetingAdjustmentGet
+class RetargetingAdjustmentGet extends Model
 {
     /**
      * @var int

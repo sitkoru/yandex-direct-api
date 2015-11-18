@@ -5,10 +5,11 @@ namespace directapi\services\campaigns\models;
 
 use directapi\common\enum\YesNoEnum;
 use directapi\components\constraints as DirectApiAssert;
+use directapi\components\Model;
 use directapi\services\campaigns\enum\MobileAppCampaignSettingsEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class MobileAppCampaignSetting
+class MobileAppCampaignSetting extends Model
 {
     /**
      * @var MobileAppCampaignSettingsEnum

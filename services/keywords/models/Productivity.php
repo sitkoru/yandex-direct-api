@@ -3,7 +3,9 @@
 namespace directapi\keywords\models;
 
 
-class Productivity
+use directapi\components\Model;
+
+class Productivity extends Model
 {
     /**
      * @var float

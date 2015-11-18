@@ -3,8 +3,9 @@
 namespace directapi\services\bids\models;
 
 use directapi\common\results\ExceptionNotification;
+use directapi\components\Model;
 
-class BidActionResult
+class BidActionResult extends Model
 {
     /**
      * @var ExceptionNotification

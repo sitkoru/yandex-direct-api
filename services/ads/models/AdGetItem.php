@@ -5,11 +5,12 @@ namespace directapi\services\ads\models;
 
 use directapi\common\containers\ArrayOfString;
 use directapi\common\enum\StateEnum;
+use directapi\components\Model;
 use directapi\services\ads\enum\AdStatusEnum;
 use directapi\services\ads\enum\AdTypeEnum;
 use directapi\services\ads\enum\AgeLabelEnum;
 
-class AdGetItem
+class AdGetItem extends Model
 {
     /**
      * @var int

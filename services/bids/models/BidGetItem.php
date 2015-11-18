@@ -3,8 +3,9 @@
 namespace directapi\services\bids\models;
 
 use directapi\common\enum\PriorityEnum;
+use directapi\components\Model;
 
-class BidGetItem
+class BidGetItem extends Model
 {
     /**
      * @var int

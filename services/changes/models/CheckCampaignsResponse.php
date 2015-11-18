@@ -3,7 +3,9 @@
 namespace directapi\services\changes\models;
 
 
-class CheckCampaignsResponse
+use directapi\components\Model;
+
+class CheckCampaignsResponse extends Model
 {
     /**
      * @var CampaignChangesItem[]

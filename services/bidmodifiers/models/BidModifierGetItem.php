@@ -2,10 +2,11 @@
 
 namespace directapi\services\bidmodifiers\models;
 
+use directapi\components\Model;
 use directapi\services\bidmodifiers\enum\BidModifierLevelEnum;
 use directapi\services\bidmodifiers\enum\BidModifierTypeEnum;
 
-class BidModifierGetItem
+class BidModifierGetItem extends Model
 {
     /**
      * @var int

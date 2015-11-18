@@ -3,7 +3,9 @@
 namespace directapi\common\containers;
 
 
-class ArrayOfInteger
+use directapi\components\Model;
+
+class ArrayOfInteger extends Model
 {
     /**
      * @var int[]

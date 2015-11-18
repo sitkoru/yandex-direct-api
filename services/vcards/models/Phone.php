@@ -2,9 +2,10 @@
 
 namespace directapi\services\vcards\models;
 
+use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class Phone
+class Phone extends Model
 {
     /**
      * @var string

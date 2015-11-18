@@ -3,7 +3,9 @@
 namespace directapi\services\campaigns\models\strategies;
 
 
-class StrategyNetworkDefaultAdd
+use directapi\components\Model;
+
+class StrategyNetworkDefaultAdd extends Model
 {
     /**
      * @var int

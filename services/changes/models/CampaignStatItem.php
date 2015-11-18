@@ -3,7 +3,9 @@
 namespace directapi\services\changes\models;
 
 
-class CampaignStatItem
+use directapi\components\Model;
+
+class CampaignStatItem extends Model
 {
     /**
      * @var int

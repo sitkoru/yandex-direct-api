@@ -2,9 +2,10 @@
 
 namespace directapi\services\bidmodifiers\models;
 
+use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class MobileAdjustmentAdd
+class MobileAdjustmentAdd extends Model
 {
     /**
      * @var int

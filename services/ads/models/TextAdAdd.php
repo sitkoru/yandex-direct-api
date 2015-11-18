@@ -6,10 +6,11 @@ namespace directapi\services\ads\models;
 use directapi\common\enum\YesNoEnum;
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
+use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class TextAdAdd implements ICallbackValidation
+class TextAdAdd extends Model implements ICallbackValidation
 {
     /**
      * @var string

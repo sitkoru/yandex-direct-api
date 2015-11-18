@@ -3,11 +3,12 @@
 namespace directapi\services\adgroups\models;
 
 
+use directapi\components\Model;
 use directapi\services\adgroups\enum\CarrierEnum;
 use directapi\services\adgroups\enum\DeviceTypeEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class MobileAppAdGroupAdd
+class MobileAppAdGroupAdd extends Model
 {
     /**
      * @var string

@@ -2,13 +2,14 @@
 namespace directapi\services\campaigns\criterias;
 
 use directapi\components\constraints as DirectApiAssert;
+use directapi\components\Model;
 use directapi\services\campaigns\enum\CampaignStateEnum;
 use directapi\services\campaigns\enum\CampaignStatusEnum;
 use directapi\services\campaigns\enum\CampaignStatusPaymentEnum;
 use directapi\services\campaigns\enum\CampaignTypeEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class CampaignsSelectionCriteria
+class CampaignsSelectionCriteria extends Model
 {
     /**
      * @var int[]

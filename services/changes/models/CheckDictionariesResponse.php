@@ -4,8 +4,9 @@ namespace directapi\services\changes\models;
 
 
 use directapi\common\enum\YesNoEnum;
+use directapi\components\Model;
 
-class CheckDictionariesResponse
+class CheckDictionariesResponse extends Model
 {
     /**
      * @var YesNoEnum

@@ -4,10 +4,11 @@ namespace directapi\services\sitelinks\models;
 
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
+use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class SitelinksSetAddItem implements ICallbackValidation
+class SitelinksSetAddItem extends Model implements ICallbackValidation
 {
     /**
      * @var Sitelink[]

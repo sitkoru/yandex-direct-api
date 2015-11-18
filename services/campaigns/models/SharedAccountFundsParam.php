@@ -2,7 +2,9 @@
 
 namespace directapi\services\campaigns\models;
 
-class SharedAccountFundsParam
+use directapi\components\Model;
+
+class SharedAccountFundsParam extends Model
 {
     /**
      * @var int

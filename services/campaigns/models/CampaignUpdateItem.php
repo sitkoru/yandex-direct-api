@@ -5,9 +5,10 @@ namespace directapi\services\campaigns\models;
 
 use directapi\common\containers\ArrayOfString;
 use directapi\components\constraints as DirectApiAssert;
+use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class CampaignUpdateItem
+class CampaignUpdateItem extends Model
 {
     /**
      * @var int

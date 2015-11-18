@@ -6,8 +6,9 @@ namespace directapi\keywords\models;
 use directapi\common\enum\PriorityEnum;
 use directapi\common\enum\StateEnum;
 use directapi\common\enum\StatusEnum;
+use directapi\components\Model;
 
-class KeywordGetItem
+class KeywordGetItem extends Model
 {
     /**
      * @var int

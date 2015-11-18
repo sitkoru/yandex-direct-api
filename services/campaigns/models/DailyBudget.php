@@ -4,10 +4,11 @@ namespace directapi\services\campaigns\models;
 
 
 use directapi\components\constraints as DirectApiAssert;
+use directapi\components\Model;
 use directapi\services\campaigns\enum\DailyBudgetModeEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class DailyBudget
+class DailyBudget extends Model
 {
     /**
      * @var int

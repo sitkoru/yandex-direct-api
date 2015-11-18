@@ -3,7 +3,9 @@
 namespace directapi\common\criterias;
 
 
-class LimitOffset
+use directapi\components\Model;
+
+class LimitOffset extends Model
 {
     /**
      * @var int

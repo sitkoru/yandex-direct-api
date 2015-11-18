@@ -3,7 +3,9 @@
 namespace directapi\services\changes\models;
 
 
-class CheckResponseIds
+use directapi\components\Model;
+
+class CheckResponseIds extends Model
 {
     /**
      * @var int[]

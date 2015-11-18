@@ -4,9 +4,10 @@ namespace directapi\services\campaigns\models;
 
 
 use directapi\components\constraints as DirectApiAssert;
+use directapi\components\Model;
 use directapi\services\campaigns\enum\SmsEventsEnum;
 
-class SmsSettings
+class SmsSettings extends Model
 {
     /**
      * @var SmsEventsEnum[]

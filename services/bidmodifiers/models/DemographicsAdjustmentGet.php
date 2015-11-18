@@ -3,10 +3,11 @@
 namespace directapi\services\bidmodifiers\models;
 
 use directapi\common\enum\YesNoEnum;
+use directapi\components\Model;
 use directapi\services\ads\enum\AgeRangeEnum;
 use directapi\services\bidmodifiers\enum\GenderEnum;
 
-class DemographicsAdjustmentGet
+class DemographicsAdjustmentGet extends Model
 {
     /**
      * @var GenderEnum

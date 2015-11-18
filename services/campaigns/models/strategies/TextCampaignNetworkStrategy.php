@@ -4,11 +4,12 @@ namespace directapi\services\campaigns\models\strategies;
 
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
+use directapi\components\Model;
 use directapi\services\campaigns\enum\TextCampaignNetworkStrategyTypeEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class TextCampaignNetworkStrategy implements ICallbackValidation
+class TextCampaignNetworkStrategy extends Model implements ICallbackValidation
 {
     /**
      * @var TextCampaignNetworkStrategyTypeEnum

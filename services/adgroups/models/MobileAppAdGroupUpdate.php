@@ -3,10 +3,11 @@
 namespace directapi\services\adgroups\models;
 
 
+use directapi\components\Model;
 use directapi\services\adgroups\enum\CarrierEnum;
 use directapi\services\adgroups\enum\DeviceTypeEnum;
 
-class MobileAppAdGroupUpdate
+class MobileAppAdGroupUpdate extends Model
 {
     /**
      * @var DeviceTypeEnum[]

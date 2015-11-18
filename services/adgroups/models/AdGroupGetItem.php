@@ -4,10 +4,11 @@ namespace directapi\services\adgroups\models;
 
 
 use directapi\common\containers\ArrayOfString;
+use directapi\components\Model;
 use directapi\services\adgroups\enum\AdGroupTypesEnum;
 use directapi\services\ads\models\AdGroupStatusEnum;
 
-class AdGroupGetItem
+class AdGroupGetItem extends Model
 {
     /**
      * @var int

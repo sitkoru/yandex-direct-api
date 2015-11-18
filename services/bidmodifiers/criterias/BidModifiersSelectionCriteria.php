@@ -5,12 +5,13 @@ namespace directapi\services\bidmodifiers\criterias;
 
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
+use directapi\components\Model;
 use directapi\services\bidmodifiers\enum\BidModifierLevelEnum;
 use directapi\services\bidmodifiers\enum\BidModifierTypeEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class BidModifiersSelectionCriteria implements ICallbackValidation
+class BidModifiersSelectionCriteria extends Model implements ICallbackValidation
 {
     /**
      * @var int[]

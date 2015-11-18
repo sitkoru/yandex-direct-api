@@ -4,11 +4,12 @@ namespace directapi\services\campaigns\models;
 
 
 use directapi\components\constraints as DirectApiAssert;
+use directapi\components\Model;
 use directapi\services\campaigns\models\strategies\MobileAppCampaignNetworkStrategyAdd;
 use directapi\services\campaigns\models\strategies\MobileAppCampaignSearchStrategyAdd;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class MobileAppCampaignStrategyAdd
+class MobileAppCampaignStrategyAdd extends Model
 {
     /**
      * @var MobileAppCampaignSearchStrategyAdd

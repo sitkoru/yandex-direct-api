@@ -4,9 +4,10 @@ namespace directapi\keywords\models;
 
 use directapi\common\enum\PriorityEnum;
 use directapi\components\constraints as DirectApiAssert;
+use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class KeywordAddItem
+class KeywordAddItem extends Model
 {
     /**
      * @var int

@@ -5,10 +5,11 @@ namespace directapi\services\campaigns\models;
 use directapi\common\enum\YesNoEnum;
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
+use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class TimeTargetingOnPublicHolidays implements ICallbackValidation
+class TimeTargetingOnPublicHolidays extends Model implements ICallbackValidation
 {
     /**
      * @var YesNoEnum

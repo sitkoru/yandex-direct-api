@@ -3,12 +3,13 @@
 namespace directapi\services\bidmodifiers\models;
 
 use directapi\components\interfaces\ICallbackValidation;
+use directapi\components\Model;
 use directapi\services\ads\enum\AgeRangeEnum;
 use directapi\services\bidmodifiers\enum\GenderEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class DemographicsAdjustmentAdd implements ICallbackValidation
+class DemographicsAdjustmentAdd extends Model implements ICallbackValidation
 {
     /**
      * @var GenderEnum

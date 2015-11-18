@@ -5,12 +5,13 @@ namespace directapi\services\campaigns\models;
 
 use directapi\common\containers\ArrayOfString;
 use directapi\common\enum\CurrencyEnum;
+use directapi\components\Model;
 use directapi\services\campaigns\enum\CampaignStateEnum;
 use directapi\services\campaigns\enum\CampaignStatusEnum;
 use directapi\services\campaigns\enum\CampaignStatusPaymentEnum;
 use directapi\services\campaigns\enum\CampaignTypeEnum;
 
-class CampaignGetItem
+class CampaignGetItem extends Model
 {
     /**
      * @var int

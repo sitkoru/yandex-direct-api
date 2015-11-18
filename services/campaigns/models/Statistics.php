@@ -2,7 +2,9 @@
 
 namespace directapi\services\campaigns\models;
 
-class Statistics
+use directapi\components\Model;
+
+class Statistics extends Model
 {
     /**
      * @var int

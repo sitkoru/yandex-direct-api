@@ -3,7 +3,9 @@
 namespace directapi\services\bids\models;
 
 
-class ContextCoverage
+use directapi\components\Model;
+
+class ContextCoverage extends Model
 {
     /**
      * @var ContextCoverageItem[]

@@ -1,9 +1,10 @@
 <?php
 namespace directapi\services\campaigns\models;
 
+use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class Notification
+class Notification extends Model
 {
     /**
      * @var SmsSettings

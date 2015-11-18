@@ -6,12 +6,13 @@ namespace directapi\services\adgroups\criterias;
 use directapi\common\enum\StatusEnum;
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
+use directapi\components\Model;
 use directapi\services\adgroups\enum\AdGroupTypesEnum;
 use directapi\services\ads\models\AdGroupStatusEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class AdGroupsSelectionCriteria implements ICallbackValidation
+class AdGroupsSelectionCriteria extends Model implements ICallbackValidation
 {
     /**
      * @var int[]

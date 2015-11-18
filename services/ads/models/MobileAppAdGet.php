@@ -2,9 +2,10 @@
 
 namespace directapi\services\ads\models;
 
+use directapi\components\Model;
 use directapi\services\ads\enum\MobileAppAdActionEnum;
 
-class MobileAppAdGet
+class MobileAppAdGet extends Model
 {
     /**
      * @var string

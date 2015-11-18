@@ -5,10 +5,11 @@ namespace directapi\services\campaigns\models;
 
 use directapi\common\containers\ArrayOfString;
 use directapi\components\interfaces\ICallbackValidation;
+use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
-class CampaignAddItem implements ICallbackValidation
+class CampaignAddItem extends Model implements ICallbackValidation
 {
     /**
      * @var string

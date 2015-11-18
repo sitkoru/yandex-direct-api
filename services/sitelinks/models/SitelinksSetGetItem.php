@@ -2,7 +2,9 @@
 
 namespace directapi\services\sitelinks\models;
 
-class SitelinksSetGetItem
+use directapi\components\Model;
+
+class SitelinksSetGetItem extends Model
 {
     /**
      * @var int

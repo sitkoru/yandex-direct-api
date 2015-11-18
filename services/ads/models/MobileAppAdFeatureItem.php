@@ -4,10 +4,11 @@ namespace directapi\services\ads\models;
 
 use directapi\common\enum\YesNoEnum;
 use directapi\components\constraints as DirectApiAssert;
+use directapi\components\Model;
 use directapi\services\ads\enum\MobileAppFeatureEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class MobileAppAdFeatureItem
+class MobileAppAdFeatureItem extends Model
 {
     /**
      * @var MobileAppFeatureEnum

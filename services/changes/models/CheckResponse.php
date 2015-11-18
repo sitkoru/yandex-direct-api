@@ -3,7 +3,9 @@
 namespace directapi\services\changes\models;
 
 
-class CheckResponse
+use directapi\components\Model;
+
+class CheckResponse extends Model
 {
     /**
      * @var CheckResponseModified[]

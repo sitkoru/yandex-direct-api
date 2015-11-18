@@ -5,8 +5,9 @@ namespace directapi\services\ads\models;
 
 use directapi\common\enum\YesNoEnum;
 use directapi\common\models\ExtensionModeration;
+use directapi\components\Model;
 
-class TextAdGet
+class TextAdGet extends Model
 {
     /**
      * @var string
