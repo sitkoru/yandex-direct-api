@@ -22,7 +22,7 @@ class AdsService extends BaseService
         $params = [
             'Ads' => $Ads
         ];
-        return parent::add($params);
+        return parent::doAdd($params);
     }
 
     /**
@@ -103,7 +103,7 @@ class AdsService extends BaseService
         $params = [
             'Ads' => $Ads
         ];
-        return parent::update($params);
+        return parent::doUpdate($params);
     }
 
     protected function getName()

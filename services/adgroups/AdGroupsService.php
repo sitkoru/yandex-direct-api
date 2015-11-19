@@ -26,7 +26,7 @@ class AdGroupsService extends BaseService
         $params = [
             'AdGroups' => $AdGroups
         ];
-        return parent::add($params);
+        return parent::doAdd($params);
     }
 
     /**
@@ -77,7 +77,7 @@ class AdGroupsService extends BaseService
         $params = [
             'AdGroups' => $AdGroups
         ];
-        return parent::update($params);
+        return parent::doUpdate($params);
     }
 
     protected function getName()

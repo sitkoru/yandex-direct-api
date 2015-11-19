@@ -25,7 +25,7 @@ class KeywordsService extends BaseService
         $params = [
             'Keywords' => $Keywords
         ];
-        return parent::add($params);
+        return parent::doAdd($params);
     }
 
     /**
@@ -82,7 +82,7 @@ class KeywordsService extends BaseService
         $params = [
             'Keywords' => $Keywords
         ];
-        return parent::update($params);
+        return parent::doUpdate($params);
     }
 
     protected function getName()

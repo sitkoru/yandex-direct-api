@@ -28,7 +28,7 @@ class CampaignsService extends BaseService
         $params = [
             'Campaigns' => $Campaigns
         ];
-        return parent::add($params);
+        return parent::doAdd($params);
     }
 
     /**
@@ -113,7 +113,7 @@ class CampaignsService extends BaseService
         $params = [
             'Campaigns' => $Campaigns
         ];
-        return parent::update($params);
+        return parent::doUpdate($params);
     }
 
     protected function getName()

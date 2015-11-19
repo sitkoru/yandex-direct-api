@@ -23,7 +23,7 @@ class SitelinksService extends BaseService
         $params = [
             'SitelinksSets' => $SitelinksSets
         ];
-        return parent::add($params);
+        return parent::doAdd($params);
     }
 
     /**

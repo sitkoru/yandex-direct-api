@@ -31,7 +31,7 @@ class BidModifiersService extends BaseService
         $params = [
             'BidModifiers' => $BidModifiers
         ];
-        return parent::add($params);
+        return parent::doAdd($params);
     }
 
     /**

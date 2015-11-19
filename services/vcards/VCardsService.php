@@ -23,7 +23,7 @@ class VCardsService extends BaseService
         $params = [
             'VCards' => $VCards
         ];
-        return parent::add($params);
+        return parent::doAdd($params);
     }
 
     /**

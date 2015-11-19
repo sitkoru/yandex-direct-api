@@ -30,7 +30,7 @@ abstract class BaseService
      * @param array $params
      * @return ActionResult[]
      */
-    protected function add($params)
+    protected function doAdd($params)
     {
         $response = $this->call('add', $params);
         $result = $this->mapArray($response->AddResults, ActionResult::class);
@@ -54,7 +54,7 @@ abstract class BaseService
      * @param array $params
      * @return ActionResult[]
      */
-    protected function update($params)
+    protected function doUpdate($params)
     {
         $response = $this->call('update', $params);
         $result = $this->mapArray($response->UpdateResults, ActionResult::class);
