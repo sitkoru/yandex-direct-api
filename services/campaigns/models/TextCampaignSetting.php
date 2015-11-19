@@ -5,11 +5,10 @@ namespace directapi\services\campaigns\models;
 
 use directapi\common\enum\YesNoEnum;
 use directapi\components\constraints as DirectApiAssert;
-use directapi\components\Model;
 use directapi\services\campaigns\enum\TextCampaignSettingsEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class TextCampaignSetting extends Model
+class TextCampaignSetting
 {
     /**
      * @var TextCampaignSettingsEnum
@@ -24,4 +23,10 @@ class TextCampaignSetting extends Model
      * @DirectApiAssert\IsEnum(type="directapi\common\enum\YesNoEnum")
      */
     public $Value;
+
+    public function __construct($option = null, $value = null)
+    {
+        $this->Option = $option;
+        $this->Value = $value;
+    }
 }

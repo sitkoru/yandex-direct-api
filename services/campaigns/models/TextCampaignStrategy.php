@@ -3,12 +3,11 @@
 namespace directapi\services\campaigns\models;
 
 use directapi\components\constraints as DirectApiAssert;
-use directapi\components\Model;
 use directapi\services\campaigns\models\strategies\TextCampaignNetworkStrategy;
 use directapi\services\campaigns\models\strategies\TextCampaignSearchStrategy;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class TextCampaignStrategy extends Model
+class TextCampaignStrategy
 {
     /**
      * @var TextCampaignSearchStrategy
@@ -25,4 +24,10 @@ class TextCampaignStrategy extends Model
      * @Assert\Type(type="directapi\services\campaigns\models\strategies\TextCampaignNetworkStrategy")
      */
     public $Network;
+
+    public function __construct($search = null, $network = null)
+    {
+        $this->Search = $search;
+        $this->Network = $network;
+    }
 }

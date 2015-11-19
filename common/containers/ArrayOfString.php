@@ -2,14 +2,18 @@
 
 namespace directapi\common\containers;
 
-use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class ArrayOfString extends Model
+class ArrayOfString
 {
     /**
      * @var string[]
      * @Assert\NotBlank()
      */
     public $Items;
+
+    public function __construct(array $items = [])
+    {
+        $this->Items = $items;
+    }
 }

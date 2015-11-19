@@ -3,12 +3,15 @@
 namespace directapi\common\containers;
 
 
-use directapi\components\Model;
-
-class ArrayOfInteger extends Model
+class ArrayOfInteger
 {
     /**
      * @var int[]
      */
     public $Items;
+
+    public function __construct(array $items = [])
+    {
+        $this->Items = $items;
+    }
 }
