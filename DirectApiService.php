@@ -24,6 +24,10 @@ class DirectApiService
     private $clientLogin;
     private $apiUrl = 'https://api.direct.yandex.com/json/v5/';
 
+    public $units = 0;
+    public $lastCallCost = 0;
+    public $unitsLimit = 0;
+
     /**
      * @var AdGroupsService
      */
@@ -194,6 +198,7 @@ class DirectApiService
             $errors = [];
             $this->validate($params, $errors);
             if ($errors) {
+                print_r($params);
                 throw new RequestValidationException($errors);
             }
             $request['params'] = $params;
@@ -205,6 +210,16 @@ class DirectApiService
         $response = curl_exec($curl);
         //var_dump($response);
 
+        $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
+        $header = substr($response, 0, $header_size);
+
+        $regex = '/Units: (\d+)\/(\d+)\/(\d+)/';
+        if (preg_match($regex, $header, $matches)) {
+            list($text, $cost, $last, $limit) = $matches;
+            $this->units = $last;
+            $this->lastCallCost = $cost;
+            $this->unitsLimit = $limit;
+        }
         $data = json_decode($response);
         if (isset($data->error)) {
             throw new DirectApiException($data->error->error_string . ' ' . $data->error->error_detail,
@@ -239,7 +254,7 @@ class DirectApiService
                 if ($result) {
                     foreach ($result as $error) {
                         if (!isset($errors[$key])) {
-                            $errors[$key];
+                            $errors[$key] = [];
                         }
                         /**
                          * @var ConstraintViolation $error
@@ -274,6 +289,7 @@ class DirectApiService
             curl_setopt($this->ch, CURLOPT_FOLLOWLOCATION, true);
             curl_setopt($this->ch, CURLOPT_POST, 1);
             //curl_setopt($this->ch, CURLINFO_HEADER_OUT, 1);
+            curl_setopt($this->ch, CURLOPT_HEADER, 1);
 
             curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, 0);
             curl_setopt($this->ch, CURLOPT_TIMEOUT, 1200); //max to 20 minutes
