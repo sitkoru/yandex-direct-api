@@ -136,7 +136,7 @@ abstract class BaseService
     {
         $cost = 0;
         $name = static::getName();
-        if (array_key_exists($name, self::$unitsCostTable)) {
+        if ($objectsCount > 0 && array_key_exists($name, self::$unitsCostTable)) {
             $servicesCost = self::$unitsCostTable[$name];
             if (array_key_exists($method, $servicesCost)) {
                 list($callCost, $objectCost) = $servicesCost[$method];
