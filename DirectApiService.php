@@ -210,9 +210,11 @@ class DirectApiService
         $response = curl_exec($curl);
         //var_dump($response);
 
+
         $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
         $header = substr($response, 0, $header_size);
-
+        $body = substr($response, $header_size);
+        $data = json_decode($body);
         $regex = '/Units: (\d+)\/(\d+)\/(\d+)/';
         if (preg_match($regex, $header, $matches)) {
             list($text, $cost, $last, $limit) = $matches;
@@ -220,11 +222,15 @@ class DirectApiService
             $this->lastCallCost = $cost;
             $this->unitsLimit = $limit;
         }
-        $data = json_decode($response);
+
         if (isset($data->error)) {
             throw new DirectApiException($data->error->error_string . ' ' . $data->error->error_detail,
                 $data->error->error_code,
                 $data->error->error_detail);
+        }
+        if (!is_object($data)) {
+            var_dump($response, $data, $request);
+            die();
         }
         return $data->result;
     }
@@ -290,6 +296,7 @@ class DirectApiService
             curl_setopt($this->ch, CURLOPT_POST, 1);
             //curl_setopt($this->ch, CURLINFO_HEADER_OUT, 1);
             curl_setopt($this->ch, CURLOPT_HEADER, 1);
+            //curl_setopt($this->ch, CURLOPT_VERBOSE, 1);
 
             curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, 0);
             curl_setopt($this->ch, CURLOPT_TIMEOUT, 1200); //max to 20 minutes
