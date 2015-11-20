@@ -1,6 +1,6 @@
 <?php
 
-namespace directapi\keywords\models;
+namespace directapi\services\keywords\models;
 
 
 use directapi\components\Model;
