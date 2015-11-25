@@ -166,7 +166,6 @@ abstract class BaseService
     protected function call($method, $params)
     {
         $result = $this->service->call(static::getName(), $method, $params);
-        var_dump($result);
         return $result;
     }
 
@@ -178,7 +177,6 @@ abstract class BaseService
     {
         $response = $this->call('add', $params);
         $result = $this->mapArray($response->AddResults, ActionResult::class);
-        var_dump($result);
         return $result;
     }
 

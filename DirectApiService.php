@@ -197,7 +197,6 @@ class DirectApiService
             $errors = [];
             $this->validate($params, $errors);
             if ($errors) {
-                print_r($params);
                 throw new RequestValidationException($errors);
             }
             $request['params'] = $params;
@@ -207,8 +206,6 @@ class DirectApiService
         $request = preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', $request);
         curl_setopt($curl, CURLOPT_POSTFIELDS, $request);
         $response = curl_exec($curl);
-        //var_dump($response);
-
 
         $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
         $header = substr($response, 0, $header_size);
