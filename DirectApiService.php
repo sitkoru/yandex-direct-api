@@ -225,8 +225,7 @@ class DirectApiService
 
         if (isset($data->error)) {
             throw new DirectApiException($data->error->error_string . ' ' . $data->error->error_detail,
-                $data->error->error_code,
-                $data->error->error_detail);
+                $data->error->error_code);
         }
         if (!is_object($data)) {
             var_dump($response, $data, $request);
@@ -256,6 +255,9 @@ class DirectApiService
     {
         if (is_array($params) || is_object($params)) {
             foreach ($params as $key => $value) {
+                if (!is_array($value) && !is_object($value)) {
+                    continue;
+                }
                 $result = $this->getValidator()->validate($value, null, true);
                 if ($result) {
                     foreach ($result as $error) {
