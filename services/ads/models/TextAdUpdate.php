@@ -6,7 +6,6 @@ namespace directapi\services\ads\models;
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
-use directapi\services\ads\enum\AgeLabelEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
@@ -37,7 +36,7 @@ class TextAdUpdate extends Model implements ICallbackValidation
     public $Href;
 
     /**
-     * @var AgeLabelEnum
+     * @var \directapi\services\ads\enum\AgeLabelEnum
      * @DirectApiAssert\IsEnum(type="directapi\services\ads\enum\AgeLabelEnum")
      */
     public $AgeLabel;

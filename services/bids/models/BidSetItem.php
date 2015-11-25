@@ -2,7 +2,6 @@
 
 namespace directapi\services\bids\models;
 
-use directapi\common\enum\PriorityEnum;
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
@@ -37,7 +36,7 @@ class BidSetItem extends Model implements ICallbackValidation
     public $ContextBid;
 
     /**
-     * @var PriorityEnum
+     * @var \directapi\common\enum\PriorityEnum
      * @DirectApiAssert\IsEnum(type="directapi\common\enum\PriorityEnum")
      */
     public $StrategyPriority;

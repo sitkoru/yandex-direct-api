@@ -3,7 +3,6 @@
 namespace directapi\services\campaigns\models;
 
 
-use directapi\common\enum\YesNoEnum;
 use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -30,12 +29,12 @@ class EmailSettings extends Model
     public $WarningBalance;
 
     /**
-     * @var YesNoEnum
+     * @var \directapi\common\enum\YesNoEnum
      */
     public $SendAccountNews;
 
     /**
-     * @var YesNoEnum
+     * @var \directapi\common\enum\YesNoEnum
      */
     public $SendWarnings;
 }

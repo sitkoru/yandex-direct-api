@@ -3,10 +3,7 @@
 namespace directapi\services\adgroups\models;
 
 
-use directapi\common\containers\ArrayOfString;
 use directapi\components\Model;
-use directapi\services\adgroups\enum\AdGroupTypesEnum;
-use directapi\services\ads\models\AdGroupStatusEnum;
 
 class AdGroupGetItem extends Model
 {
@@ -31,17 +28,17 @@ class AdGroupGetItem extends Model
     public $RegionIds;
 
     /**
-     * @var ArrayOfString
+     * @var \directapi\common\containers\ArrayOfString
      */
     public $NegativeKeywords;
 
     /**
-     * @var AdGroupStatusEnum
+     * @var \directapi\services\ads\models\AdGroupStatusEnum
      */
     public $Status;
 
     /**
-     * @var AdGroupTypesEnum
+     * @var \directapi\services\adgroups\enum\AdGroupTypesEnum
      */
     public $Type;
 

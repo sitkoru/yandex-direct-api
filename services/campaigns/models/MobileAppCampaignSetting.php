@@ -3,23 +3,21 @@
 namespace directapi\services\campaigns\models;
 
 
-use directapi\common\enum\YesNoEnum;
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\Model;
-use directapi\services\campaigns\enum\MobileAppCampaignSettingsEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class MobileAppCampaignSetting extends Model
 {
     /**
-     * @var MobileAppCampaignSettingsEnum
+     * @var \directapi\services\campaigns\enum\MobileAppCampaignSettingsEnum
      * @Assert\NotBlank()
      * @DirectApiAssert\IsEnum(type="directapi\services\campaigns\enum\MobileAppCampaignSettingsEnum")
      */
     public $Option;
 
     /**
-     * @var YesNoEnum
+     * @var \directapi\common\enum\YesNoEnum
      * @Assert\NotBlank()
      * @DirectApiAssert\IsEnum(type="directapi\common\enum\YesNoEnum")
      */

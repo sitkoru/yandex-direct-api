@@ -3,7 +3,6 @@
 namespace directapi\services\ads\models;
 
 
-use directapi\common\enum\YesNoEnum;
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
@@ -31,7 +30,7 @@ class TextAdAdd extends Model implements ICallbackValidation
     public $Text;
 
     /**
-     * @var YesNoEnum
+     * @var \directapi\common\enum\YesNoEnum
      * @DirectApiAssert\IsEnum(type="directapi\common\enum\YesNoEnum")
      */
     public $Mobile;

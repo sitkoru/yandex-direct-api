@@ -5,7 +5,6 @@ namespace directapi\services\campaigns\models;
 
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\Model;
-use directapi\services\campaigns\enum\DailyBudgetModeEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class DailyBudget extends Model
@@ -17,7 +16,7 @@ class DailyBudget extends Model
     public $Amount;
 
     /**
-     * @var DailyBudgetModeEnum
+     * @var \directapi\services\campaigns\enum\DailyBudgetModeEnum
      * @Assert\NotBlank()
      * @DirectApiAssert\IsEnum(type="directapi\services\campaigns\enum\DailyBudgetModeEnum")
      */

@@ -2,7 +2,6 @@
 
 namespace directapi\services\campaigns\models;
 
-use directapi\common\containers\ArrayOfInteger;
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -17,7 +16,7 @@ class TextCampaignItem extends Model
     public $Settings;
 
     /**
-     * @var ArrayOfInteger
+     * @var \directapi\common\containers\ArrayOfInteger
      * @Assert\Type(type="directapi\common\containers\ArrayOfInteger")
      */
     public $CounterIds;

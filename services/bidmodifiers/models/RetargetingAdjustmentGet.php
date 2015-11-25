@@ -2,8 +2,6 @@
 
 namespace directapi\services\bidmodifiers\models;
 
-
-use directapi\common\enum\YesNoEnum;
 use directapi\components\Model;
 
 class RetargetingAdjustmentGet extends Model
@@ -19,12 +17,12 @@ class RetargetingAdjustmentGet extends Model
     public $BidModifier;
 
     /**
-     * @var YesNoEnum
+     * @var \directapi\common\enum\YesNoEnum
      */
     public $Accessible;
 
     /**
-     * @var YesNoEnum
+     * @var \directapi\common\enum\YesNoEnum
      */
     public $Enabled;
 }

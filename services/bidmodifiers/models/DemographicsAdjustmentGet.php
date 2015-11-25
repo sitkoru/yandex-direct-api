@@ -2,20 +2,17 @@
 
 namespace directapi\services\bidmodifiers\models;
 
-use directapi\common\enum\YesNoEnum;
 use directapi\components\Model;
-use directapi\services\ads\enum\AgeRangeEnum;
-use directapi\services\bidmodifiers\enum\GenderEnum;
 
 class DemographicsAdjustmentGet extends Model
 {
     /**
-     * @var GenderEnum
+     * @var \directapi\common\enum\YesNoEnum
      */
     public $Gender;
 
     /**
-     * @var AgeRangeEnum
+     * @var \directapi\services\ads\enum\AgeRangeEnum
      */
     public $Age;
 
@@ -25,7 +22,7 @@ class DemographicsAdjustmentGet extends Model
     public $BidModifier;
 
     /**
-     * @var YesNoEnum
+     * @var \directapi\services\bidmodifiers\enum\GenderEnum
      */
     public $Enabled;
 }

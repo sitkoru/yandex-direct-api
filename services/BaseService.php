@@ -154,7 +154,7 @@ abstract class BaseService
     }
 
     /**
-     * @var DirectApiService
+     * @var \directapi\DirectApiService
      */
     private $service;
 

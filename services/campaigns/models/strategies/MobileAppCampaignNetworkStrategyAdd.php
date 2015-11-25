@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 class MobileAppCampaignNetworkStrategyAdd extends Model implements ICallbackValidation
 {
     /**
-     * @var MobileAppCampaignNetworkStrategyTypeEnum
+     * @var \directapi\services\campaigns\enum\MobileAppCampaignNetworkStrategyTypeEnum
      * @Assert\NotBlank()
      * @DirectApiAssert\IsEnum(type="directapi\services\campaigns\enum\MobileAppCampaignNetworkStrategyTypeEnum")
      */

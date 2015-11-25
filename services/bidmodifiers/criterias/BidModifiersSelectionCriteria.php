@@ -6,8 +6,6 @@ namespace directapi\services\bidmodifiers\criterias;
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
-use directapi\services\bidmodifiers\enum\BidModifierLevelEnum;
-use directapi\services\bidmodifiers\enum\BidModifierTypeEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
@@ -41,14 +39,14 @@ class BidModifiersSelectionCriteria extends Model implements ICallbackValidation
     public $Ids;
 
     /**
-     * @var BidModifierTypeEnum[]
+     * @var \directapi\services\bidmodifiers\enum\BidModifierTypeEnum[]
      * @DirectApiAssert\ArrayOf(type="directapi\services\bidmodifiers\enum\BidModifierTypeEnum")
      * @Assert\Valid()
      */
     public $Types;
 
     /**
-     * @var BidModifierLevelEnum[]
+     * @var \directapi\services\bidmodifiers\enum\BidModifierLevelEnum[]
      * @Assert\NotBlank()
      * @DirectApiAssert\ArrayOf(type="directapi\services\bidmodifiers\enum\BidModifierLevelEnum")
      * @Assert\Valid()

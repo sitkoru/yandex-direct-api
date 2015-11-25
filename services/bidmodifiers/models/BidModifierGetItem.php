@@ -3,8 +3,6 @@
 namespace directapi\services\bidmodifiers\models;
 
 use directapi\components\Model;
-use directapi\services\bidmodifiers\enum\BidModifierLevelEnum;
-use directapi\services\bidmodifiers\enum\BidModifierTypeEnum;
 
 class BidModifierGetItem extends Model
 {
@@ -24,12 +22,12 @@ class BidModifierGetItem extends Model
     public $Id;
 
     /**
-     * @var BidModifierLevelEnum
+     * @var \directapi\services\bidmodifiers\enum\BidModifierLevelEnum
      */
     public $Level;
 
     /**
-     * @var BidModifierTypeEnum
+     * @var \directapi\services\bidmodifiers\enum\BidModifierTypeEnum
      */
     public $Type;
 

@@ -3,18 +3,17 @@
 namespace directapi\services\changes\models;
 
 
-use directapi\common\enum\YesNoEnum;
 use directapi\components\Model;
 
 class CheckDictionariesResponse extends Model
 {
     /**
-     * @var YesNoEnum
+     * @var \directapi\common\enum\YesNoEnum
      */
     public $TimeZonesChanged;
 
     /**
-     * @var YesNoEnum
+     * @var \directapi\common\enum\YesNoEnum
      */
     public $RegionsChanged;
 

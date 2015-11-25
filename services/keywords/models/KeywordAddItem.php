@@ -2,7 +2,6 @@
 
 namespace directapi\services\keywords\models;
 
-use directapi\common\enum\PriorityEnum;
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -35,7 +34,7 @@ class KeywordAddItem extends Model
     public $ContextBid;
 
     /**
-     * @var PriorityEnum
+     * @var \directapi\common\enum\PriorityEnum
      * @DirectApiAssert\IsEnum(type="directapi\common\enum\PriorityEnum")
      */
     public $StrategyPriority;

@@ -3,11 +3,9 @@
 namespace directapi\services\bidmodifiers\models;
 
 
-use directapi\common\enum\YesNoEnum;
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
-use directapi\services\bidmodifiers\enum\BidModifierTypeEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
@@ -24,14 +22,14 @@ class BidModifierToggleItem extends Model implements ICallbackValidation
     public $AdGroupId;
 
     /**
-     * @var BidModifierTypeEnum
+     * @var \directapi\services\bidmodifiers\enum\BidModifierTypeEnum
      * @Assert\NotBlank()
      * @DirectApiAssert\IsEnum(type="directapi\services\bidmodifiers\enum\BidModifierTypeEnum")
      */
     public $Type;
 
     /**
-     * @var YesNoEnum
+     * @var \directapi\common\enum\YesNoEnum
      * @Assert\NotBlank()
      * @DirectApiAssert\IsEnum(type="directapi\common\enum\YesNoEnum")
      */

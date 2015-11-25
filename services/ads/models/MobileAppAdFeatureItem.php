@@ -2,23 +2,21 @@
 
 namespace directapi\services\ads\models;
 
-use directapi\common\enum\YesNoEnum;
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\Model;
-use directapi\services\ads\enum\MobileAppFeatureEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class MobileAppAdFeatureItem extends Model
 {
     /**
-     * @var MobileAppFeatureEnum
+     * @var \directapi\services\ads\enum\MobileAppFeatureEnum
      * @Assert\NotBlank()
      * @DirectApiAssert\IsEnum(type="directapi\services\ads\enum\MobileAppFeatureEnum")
      */
     public $Feature;
 
     /**
-     * @var YesNoEnum
+     * @var \directapi\common\enum\YesNoEnum
      * @Assert\NotBlank()
      * @DirectApiAssert\IsEnum(type="directapi\common\enum\YesNoEnum")
      */

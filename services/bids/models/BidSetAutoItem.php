@@ -5,9 +5,6 @@ namespace directapi\services\bids\models;
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
-use directapi\services\bids\enum\CalculateByEnum;
-use directapi\services\bids\enum\PositionEnum;
-use directapi\services\bids\enum\ScopeEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
@@ -29,7 +26,7 @@ class BidSetAutoItem extends Model implements ICallbackValidation
     public $KeywordId;
 
     /**
-     * @var ScopeEnum[]
+     * @var \directapi\services\bids\enum\ScopeEnum[]
      * @Assert\NotBlank()
      * @DirectApiAssert\ArrayOf(type="directapi\services\bids\enum\ScopeEnum")
      */
@@ -41,7 +38,7 @@ class BidSetAutoItem extends Model implements ICallbackValidation
     public $MaxBid;
 
     /**
-     * @var PositionEnum
+     * @var \directapi\services\bids\enum\PositionEnum
      * @DirectApiAssert\IsEnum(type="directapi\services\bids\enum\PositionEnum")
      */
     public $Position;
@@ -56,7 +53,7 @@ class BidSetAutoItem extends Model implements ICallbackValidation
     public $IncreasePercent;
 
     /**
-     * @var CalculateByEnum
+     * @var \directapi\services\bids\enum\CalculateByEnum
      * @DirectApiAssert\IsEnum(type="directapi\services\bids\enum\CalculateByEnum")
      */
     public $CalculateBy;

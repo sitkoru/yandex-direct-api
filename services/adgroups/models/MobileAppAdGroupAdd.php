@@ -4,8 +4,6 @@ namespace directapi\services\adgroups\models;
 
 
 use directapi\components\Model;
-use directapi\services\adgroups\enum\CarrierEnum;
-use directapi\services\adgroups\enum\DeviceTypeEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class MobileAppAdGroupAdd extends Model
@@ -20,14 +18,14 @@ class MobileAppAdGroupAdd extends Model
     public $StoreUrl;
 
     /**
-     * @var DeviceTypeEnum[]
+     * @var \directapi\services\adgroups\enum\DeviceTypeEnum[]
      * @Assert\NotBlank()
      * @Assert\Valid()
      */
     public $TargetDeviceType;
 
     /**
-     * @var CarrierEnum
+     * @var \directapi\services\adgroups\enum\CarrierEnum
      * @Assert\NotBlank()
      */
     public $TargetCarrier;

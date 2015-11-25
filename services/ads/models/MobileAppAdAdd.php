@@ -5,8 +5,6 @@ namespace directapi\services\ads\models;
 
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\Model;
-use directapi\services\ads\enum\AgeLabelEnum;
-use directapi\services\ads\enum\MobileAppAdActionEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class MobileAppAdAdd extends Model
@@ -44,13 +42,13 @@ class MobileAppAdAdd extends Model
     public $Features;
 
     /**
-     * @var AgeLabelEnum
+     * @var \directapi\services\ads\enum\AgeLabelEnum
      * @DirectApiAssert\IsEnum(type="directapi\services\ads\enum\AgeLabelEnum")
      */
     public $AgeLabel;
 
     /**
-     * @var MobileAppAdActionEnum
+     * @var \directapi\services\ads\enum\MobileAppAdActionEnum
      * @Assert\NotBlank()
      * @DirectApiAssert\IsEnum(type="directapi\services\ads\enum\MobileAppAdActionEnum")
      */

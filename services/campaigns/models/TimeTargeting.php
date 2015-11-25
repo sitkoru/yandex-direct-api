@@ -2,8 +2,6 @@
 namespace directapi\services\campaigns\models;
 
 
-use directapi\common\containers\ArrayOfString;
-use directapi\common\enum\YesNoEnum;
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -11,13 +9,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 class TimeTargeting extends Model
 {
     /**
-     * @var ArrayOfString
+     * @var \directapi\common\containers\ArrayOfString
      * @Assert\Valid()
      */
     public $Schedule;
 
     /**
-     * @var YesNoEnum
+     * @var \directapi\common\enum\YesNoEnum
      * @Assert\NotBlank()
      * @DirectApiAssert\IsEnum(type="directapi\common\enum\YesNoEnum")
      */

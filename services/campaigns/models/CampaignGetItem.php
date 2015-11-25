@@ -2,14 +2,7 @@
 
 namespace directapi\services\campaigns\models;
 
-
-use directapi\common\containers\ArrayOfString;
-use directapi\common\enum\CurrencyEnum;
 use directapi\components\Model;
-use directapi\services\campaigns\enum\CampaignStateEnum;
-use directapi\services\campaigns\enum\CampaignStatusEnum;
-use directapi\services\campaigns\enum\CampaignStatusPaymentEnum;
-use directapi\services\campaigns\enum\CampaignTypeEnum;
 
 class CampaignGetItem extends Model
 {
@@ -49,17 +42,17 @@ class CampaignGetItem extends Model
     public $TimeZone;
 
     /**
-     * @var ArrayOfString
+     * @var \directapi\common\containers\ArrayOfString
      */
     public $NegativeKeywords;
 
     /**
-     * @var ArrayOfString
+     * @var \directapi\common\containers\ArrayOfString
      */
     public $BlockedIps;
 
     /**
-     * @var ArrayOfString
+     * @var \directapi\common\containers\ArrayOfString
      */
     public $ExcludedSites;
 
@@ -74,22 +67,22 @@ class CampaignGetItem extends Model
     public $Notification;
 
     /**
-     * @var CampaignTypeEnum
+     * @var \directapi\services\campaigns\enum\CampaignTypeEnum
      */
     public $Type;
 
     /**
-     * @var CampaignStatusEnum
+     * @var \directapi\services\campaigns\enum\CampaignStatusEnum
      */
     public $Status;
 
     /**
-     * @var CampaignStateEnum
+     * @var \directapi\services\campaigns\enum\CampaignStateEnum
      */
     public $State;
 
     /**
-     * @var CampaignStatusPaymentEnum
+     * @var \directapi\services\campaigns\enum\CampaignStatusPaymentEnum
      */
     public $StatusPayment;
 
@@ -109,7 +102,7 @@ class CampaignGetItem extends Model
     public $Statistics;
 
     /**
-     * @var CurrencyEnum
+     * @var \directapi\common\enum\CurrencyEnum
      */
     public $Currency;
 

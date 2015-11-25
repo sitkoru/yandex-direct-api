@@ -2,7 +2,6 @@
 
 namespace directapi;
 
-
 use directapi\exceptions\DirectApiException;
 use directapi\exceptions\RequestValidationException;
 use directapi\services\adgroups\AdGroupsService;
@@ -217,7 +216,7 @@ class DirectApiService
         $data = json_decode($body);
         $regex = '/Units: (\d+)\/(\d+)\/(\d+)/';
         if (preg_match($regex, $header, $matches)) {
-            list($text, $cost, $last, $limit) = $matches;
+            list(, $cost, $last, $limit) = $matches;
             $this->units = $last;
             $this->lastCallCost = $cost;
             $this->unitsLimit = $limit;

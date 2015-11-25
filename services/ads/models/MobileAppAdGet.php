@@ -3,7 +3,6 @@
 namespace directapi\services\ads\models;
 
 use directapi\components\Model;
-use directapi\services\ads\enum\MobileAppAdActionEnum;
 
 class MobileAppAdGet extends Model
 {
@@ -28,7 +27,7 @@ class MobileAppAdGet extends Model
     public $TrackingUrl;
 
     /**
-     * @var MobileAppAdActionEnum
+     * @var \directapi\services\ads\enum\MobileAppAdActionEnum
      */
     public $Action;
 }

@@ -3,12 +3,9 @@
 namespace directapi\services\adgroups\criterias;
 
 
-use directapi\common\enum\StatusEnum;
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
-use directapi\services\adgroups\enum\AdGroupTypesEnum;
-use directapi\services\ads\models\AdGroupStatusEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
@@ -25,19 +22,19 @@ class AdGroupsSelectionCriteria extends Model implements ICallbackValidation
     public $Ids;
 
     /**
-     * @var AdGroupTypesEnum[]
+     * @var \directapi\services\adgroups\enum\AdGroupTypesEnum[]
      * @DirectApiAssert\ArrayOf(type="directapi\services\adgroups\enum\AdGroupTypesEnum")
      */
     public $Types;
 
     /**
-     * @var AdGroupStatusEnum[]
+     * @var \directapi\services\ads\models\AdGroupStatusEnum[]
      * @DirectApiAssert\ArrayOf(type="directapi\services\adgroups\enum\AdGroupStatusEnum")
      */
     public $Statuses;
 
     /**
-     * @var StatusEnum[]
+     * @var \directapi\common\enum\StatusEnum[]
      * @DirectApiAssert\ArrayOf(type="directapi\common\enum\StatusEnum")
      */
     public $AppIconStatuses;

@@ -3,7 +3,6 @@
 namespace directapi\services\changes\models;
 
 use directapi\components\Model;
-use directapi\services\chanes\enum\CampaignChangesInEnum;
 
 class CampaignChangesItem extends Model
 {
@@ -13,7 +12,7 @@ class CampaignChangesItem extends Model
     public $CampaignId;
 
     /**
-     * @var CampaignChangesInEnum[]
+     * @var \directapi\services\chanes\enum\CampaignChangesInEnum[]
      */
     public $ChangesIn;
 }

@@ -3,14 +3,12 @@
 namespace directapi\services\campaigns\models;
 
 use directapi\components\constraints as DirectApiAssert;
-use directapi\services\campaigns\models\strategies\TextCampaignNetworkStrategy;
-use directapi\services\campaigns\models\strategies\TextCampaignSearchStrategy;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class TextCampaignStrategy
 {
     /**
-     * @var TextCampaignSearchStrategy
+     * @var \directapi\services\campaigns\models\strategies\TextCampaignSearchStrategy
      * @Assert\NotBlank()
      * @Assert\Valid()
      * @Assert\Type(type="directapi\services\campaigns\models\strategies\TextCampaignSearchStrategy")
@@ -18,7 +16,7 @@ class TextCampaignStrategy
     public $Search;
 
     /**
-     * @var TextCampaignNetworkStrategy
+     * @var \directapi\services\campaigns\models\strategies\TextCampaignNetworkStrategy
      * @Assert\NotBlank()
      * @Assert\Valid()
      * @Assert\Type(type="directapi\services\campaigns\models\strategies\TextCampaignNetworkStrategy")

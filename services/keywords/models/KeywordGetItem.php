@@ -2,10 +2,6 @@
 
 namespace directapi\services\keywords\models;
 
-
-use directapi\common\enum\PriorityEnum;
-use directapi\common\enum\StateEnum;
-use directapi\common\enum\StatusEnum;
 use directapi\components\Model;
 
 class KeywordGetItem extends Model
@@ -51,17 +47,17 @@ class KeywordGetItem extends Model
     public $ContextBid;
 
     /**
-     * @var PriorityEnum
+     * @var \directapi\common\enum\PriorityEnum
      */
     public $StrategyPriority;
 
     /**
-     * @var StatusEnum
+     * @var \directapi\common\enum\StatusEnum
      */
     public $Status;
 
     /**
-     * @var StateEnum
+     * @var \directapi\common\enum\StateEnum
      */
     public $State;
 

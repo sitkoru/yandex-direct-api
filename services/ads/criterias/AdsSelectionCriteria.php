@@ -3,13 +3,8 @@
 namespace directapi\services\ads\criterias;
 
 
-use directapi\common\enum\StateEnum;
-use directapi\common\enum\StatusEnum;
-use directapi\common\enum\YesNoEnum;
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\Model;
-use directapi\services\ads\enum\AdStatusEnum;
-use directapi\services\ads\enum\AdTypeEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class AdsSelectionCriteria extends Model
@@ -40,25 +35,25 @@ class AdsSelectionCriteria extends Model
     public $CampaignIds;
 
     /**
-     * @var YesNoEnum
+     * @var \directapi\common\enum\YesNoEnum
      * @DirectApiAssert\IsEnum(type="directapi\common\enum\YesNoEnum")
      */
     public $Mobile;
 
     /**
-     * @var AdTypeEnum[]
+     * @var \directapi\services\ads\enum\AdTypeEnum[]
      * @DirectApiAssert\ArrayOf(type="directapi\services\ads\enum\AdTypeEnum")
      */
     public $Types;
 
     /**
-     * @var StateEnum
+     * @var \directapi\common\enum\StateEnum
      * @DirectApiAssert\IsEnum(type="directapi\common\enum\StateEnum")
      */
     public $States;
 
     /**
-     * @var AdStatusEnum[]
+     * @var \directapi\services\ads\enum\AdStatusEnum[]
      * @DirectApiAssert\ArrayOf(type="directapi\services\ads\enum\AdStatusEnum")
      */
     public $Statuses;
@@ -73,7 +68,7 @@ class AdsSelectionCriteria extends Model
     public $VCardIds;
 
     /**
-     * @var StatusEnum[]
+     * @var \directapi\common\enum\StatusEnum[]
      * @DirectApiAssert\ArrayOf(type="directapi\common\enum\StatusEnum")
      */
     public $VCardModerationStatuses;
@@ -97,13 +92,13 @@ class AdsSelectionCriteria extends Model
     public $AdImageHashes;
 
     /**
-     * @var StatusEnum[]
+     * @var \directapi\common\enum\StatusEnum[]
      * @DirectApiAssert\ArrayOf(type="directapi\common\enum\StatusEnum")
      */
     public $SitelinksModerationStatuses;
 
     /**
-     * @var StatusEnum[]
+     * @var \directapi\common\enum\StatusEnum[]
      * @DirectApiAssert\ArrayOf(type="directapi\common\enum\StatusEnum")
      */
     public $AdImageModerationStatuses;

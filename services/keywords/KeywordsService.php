@@ -6,12 +6,12 @@ namespace directapi\services\keywords;
 use directapi\common\criterias\IdsCriteria;
 use directapi\common\criterias\LimitOffset;
 use directapi\common\results\ActionResult;
-use directapi\services\keywords\models\KeywordAddItem;
-use directapi\services\keywords\models\KeywordGetItem;
-use directapi\services\keywords\models\KeywordUpdateItem;
 use directapi\services\BaseService;
 use directapi\services\keywords\criterias\KeywordsSelectionCriteria;
 use directapi\services\keywords\enum\KeywordFieldEnum;
+use directapi\services\keywords\models\KeywordAddItem;
+use directapi\services\keywords\models\KeywordGetItem;
+use directapi\services\keywords\models\KeywordUpdateItem;
 
 class KeywordsService extends BaseService
 {

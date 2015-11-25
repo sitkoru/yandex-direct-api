@@ -2,12 +2,7 @@
 
 namespace directapi\services\adgroups\models;
 
-use directapi\common\models\ExtensionModeration;
 use directapi\components\Model;
-use directapi\services\adgroups\enum\AppAvailabilityStatusEnum;
-use directapi\services\adgroups\enum\CarrierEnum;
-use directapi\services\adgroups\enum\DeviceTypeEnum;
-use directapi\services\adgroups\enum\MobileOperatingSystemTypeEnum;
 
 class MobileAppAdGroupGet extends Model
 {
@@ -17,12 +12,12 @@ class MobileAppAdGroupGet extends Model
     public $StoreUrl;
 
     /**
-     * @var DeviceTypeEnum[]
+     * @var \directapi\services\adgroups\enum\DeviceTypeEnum[]
      */
     public $TargetDeviceType;
 
     /**
-     * @var CarrierEnum
+     * @var \directapi\services\adgroups\enum\CarrierEnum
      */
     public $TargetCarrier;
 
@@ -32,17 +27,17 @@ class MobileAppAdGroupGet extends Model
     public $TargetOperatingSystemVersion;
 
     /**
-     * @var ExtensionModeration
+     * @var \directapi\common\models\ExtensionModeration
      */
     public $AppIconModeration;
 
     /**
-     * @var MobileOperatingSystemTypeEnum
+     * @var \directapi\services\adgroups\enum\MobileOperatingSystemTypeEnum
      */
     public $AppOperatingSystemType;
 
     /**
-     * @var AppAvailabilityStatusEnum
+     * @var \directapi\services\adgroups\enum\AppAvailabilityStatusEnum
      */
     public $AppAvailabilityStatus;
 }

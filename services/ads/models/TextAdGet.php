@@ -3,8 +3,6 @@
 namespace directapi\services\ads\models;
 
 
-use directapi\common\enum\YesNoEnum;
-use directapi\common\models\ExtensionModeration;
 use directapi\components\Model;
 
 class TextAdGet extends Model
@@ -30,7 +28,7 @@ class TextAdGet extends Model
     public $DisplayDomain;
 
     /**
-     * @var YesNoEnum
+     * @var \directapi\common\enum\YesNoEnum
      */
     public $Mobile;
 
@@ -50,17 +48,17 @@ class TextAdGet extends Model
     public $AdImageHash;
 
     /**
-     * @var ExtensionModeration
+     * @var \directapi\common\models\ExtensionModeration
      */
     public $VCardModeration;
 
     /**
-     * @var ExtensionModeration
+     * @var \directapi\common\models\ExtensionModeration
      */
     public $SitelinksModeration;
 
     /**
-     * @var ExtensionModeration
+     * @var \directapi\common\models\ExtensionModeration
      */
     public $AdImageModeration;
 

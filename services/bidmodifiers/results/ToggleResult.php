@@ -2,10 +2,6 @@
 
 namespace directapi\services\bidmodifiers\results;
 
-
-use directapi\common\enum\YesNoEnum;
-use directapi\services\bidmodifiers\enum\BidModifierTypeEnum;
-
 class ToggleResult
 {
     /**
@@ -19,12 +15,12 @@ class ToggleResult
     public $AdGroupId;
 
     /**
-     * @var BidModifierTypeEnum
+     * @var \directapi\services\bidmodifiers\enum\BidModifierTypeEnum
      */
     public $Type;
 
     /**
-     * @var YesNoEnum
+     * @var \directapi\common\enum\YesNoEnum
      */
     public $Enabled;
 }

@@ -2,7 +2,6 @@
 
 namespace directapi\services\bids\models;
 
-use directapi\common\enum\PriorityEnum;
 use directapi\components\Model;
 
 class BidGetItem extends Model
@@ -33,7 +32,7 @@ class BidGetItem extends Model
     public $ContextBid;
 
     /**
-     * @var PriorityEnum
+     * @var \directapi\common\enum\PriorityEnum
      */
     public $StrategyPriority;
 

@@ -3,12 +3,7 @@
 namespace directapi\services\ads\models;
 
 
-use directapi\common\containers\ArrayOfString;
-use directapi\common\enum\StateEnum;
 use directapi\components\Model;
-use directapi\services\ads\enum\AdStatusEnum;
-use directapi\services\ads\enum\AdTypeEnum;
-use directapi\services\ads\enum\AgeLabelEnum;
 
 class AdGetItem extends Model
 {
@@ -28,7 +23,7 @@ class AdGetItem extends Model
     public $AdGroupId;
 
     /**
-     * @var AdStatusEnum
+     * @var \directapi\common\enum\StateEnum
      */
     public $Status;
 
@@ -38,22 +33,22 @@ class AdGetItem extends Model
     public $StatusClarification;
 
     /**
-     * @var StateEnum
+     * @var \directapi\common\enum\StateEnum
      */
     public $State;
 
     /**
-     * @var ArrayOfString
+     * @var \directapi\common\containers\ArrayOfString
      */
     public $AdCategories;
 
     /**
-     * @var AgeLabelEnum
+     * @var \directapi\services\ads\enum\AgeLabelEnum
      */
     public $AgeLabel;
 
     /**
-     * @var AdTypeEnum
+     * @var \directapi\services\ads\enum\AdTypeEnum
      */
     public $Type;
 

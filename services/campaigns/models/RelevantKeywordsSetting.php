@@ -5,7 +5,6 @@ namespace directapi\services\campaigns\models;
 
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\Model;
-use directapi\services\campaigns\enum\RelevantKeywordsModeEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class RelevantKeywordsSetting extends Model
@@ -17,7 +16,7 @@ class RelevantKeywordsSetting extends Model
     public $BudgetPercent;
 
     /**
-     * @var RelevantKeywordsModeEnum
+     * @var \directapi\services\campaigns\enum\RelevantKeywordsModeEnum
      * @Assert\NotBlank()
      * @DirectApiAssert\IsEnum(type="directapi\services\campaigns\enum\RelevantKeywordsModeEnum")
      */

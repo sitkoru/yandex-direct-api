@@ -2,7 +2,6 @@
 
 namespace directapi\services\adgroups\models;
 
-use directapi\common\containers\ArrayOfString;
 use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -30,7 +29,7 @@ class AdGroupUpdateItem extends Model
     public $RegionIds;
 
     /**
-     * @var ArrayOfString
+     * @var \directapi\common\containers\ArrayOfString
      * @Assert\Valid()
      */
     public $NegativeKeywords;

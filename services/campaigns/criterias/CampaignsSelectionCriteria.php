@@ -3,10 +3,6 @@ namespace directapi\services\campaigns\criterias;
 
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\Model;
-use directapi\services\campaigns\enum\CampaignStateEnum;
-use directapi\services\campaigns\enum\CampaignStatusEnum;
-use directapi\services\campaigns\enum\CampaignStatusPaymentEnum;
-use directapi\services\campaigns\enum\CampaignTypeEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class CampaignsSelectionCriteria extends Model
@@ -20,25 +16,25 @@ class CampaignsSelectionCriteria extends Model
     public $Ids;
 
     /**
-     * @var CampaignTypeEnum[]
+     * @var \directapi\services\campaigns\enum\CampaignTypeEnum[]
      * @DirectApiAssert\ArrayOf(type="directapi\services\campaigns\enum\CampaignTypeEnum")
      */
     public $Types;
 
     /**
-     * @var CampaignStateEnum[]
+     * @var \directapi\services\campaigns\enum\CampaignStateEnum[]
      * @DirectApiAssert\ArrayOf(type="directapi\services\campaigns\enum\CampaignStateEnum")
      */
     public $States;
 
     /**
-     * @var CampaignStatusEnum[]
+     * @var \directapi\services\campaigns\enum\CampaignStatusEnum[]
      * @DirectApiAssert\ArrayOf(type="directapi\services\campaigns\enum\CampaignStatusEnum")
      */
     public $Statuses;
 
     /**
-     * @var CampaignStatusPaymentEnum[]
+     * @var \directapi\services\campaigns\enum\CampaignStatusPaymentEnum[]
      * @DirectApiAssert\ArrayOf(type="directapi\services\campaigns\enum\CampaignStatusPaymentEnum")
      */
     public $StatusesPayment;
