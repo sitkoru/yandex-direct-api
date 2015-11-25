@@ -14,5 +14,10 @@
     "doctrine/annotations": "~1.2.7",
     "doctrine/cache": "~1.5.1",
     "netresearch/jsonmapper": "~0.10.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "directapi\\": ""
+    }
   }
 }
