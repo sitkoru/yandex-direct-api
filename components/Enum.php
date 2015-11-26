@@ -4,9 +4,10 @@ namespace directapi\components;
 
 
 use directapi\exceptions\EnumException;
+use JsonSerializable;
 use ReflectionClass;
 
-abstract class Enum
+abstract class Enum implements JsonSerializable
 {
     private $current_val;
 
@@ -48,5 +49,10 @@ abstract class Enum
             }
         }
         return true;
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->current_val;
     }
 }
