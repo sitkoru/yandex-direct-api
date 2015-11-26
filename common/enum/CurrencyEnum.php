@@ -7,6 +7,8 @@ use directapi\components\Enum;
 
 class CurrencyEnum extends Enum
 {
+    public static $prefix = 'CURRENCY';
+
     const CURRENCY_RUB = 'RUB';
     const CURRENCY_CHF = 'CHF';
     const CURRENCY_EUR = 'EUR';

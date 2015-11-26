@@ -10,9 +10,15 @@ abstract class Enum
 {
     private $current_val;
 
+    public static $prefix;
+
     final public function __construct($type)
     {
         $class_name = get_class($this);
+
+        if (static::$prefix) {
+            $type = static::$prefix . '_' . $type;
+        }
 
         $type = strtoupper($type);
         if (constant("{$class_name}::{$type}") === null) {
