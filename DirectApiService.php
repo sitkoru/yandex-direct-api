@@ -220,7 +220,7 @@ class DirectApiService
         }
 
         if (isset($data->error)) {
-            throw new DirectApiException($data->error->error_string . ' ' . $data->error->error_detail,
+            throw new DirectApiException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $serviceName . ', ' . $method . ')',
                 $data->error->error_code);
         }
         if (!is_object($data)) {
