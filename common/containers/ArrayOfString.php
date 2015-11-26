@@ -14,6 +14,6 @@ class ArrayOfString
 
     public function __construct(array $items = [])
     {
-        $this->Items = $items;
+        $this->Items = array_values($items);
     }
 }
