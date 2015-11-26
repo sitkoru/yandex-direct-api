@@ -7,11 +7,11 @@ use directapi\components\Enum;
 
 class CurrencyEnum extends Enum
 {
-    const RUB = 'RUB';
-    const CHF = 'CHF';
-    const EUR = 'EUR';
-    const KZT = 'KZT';
-    const TRY = 'TRY';
-    const UAH = 'UAH';
-    const USD = 'USD';
+    const CURRENCY_RUB = 'RUB';
+    const CURRENCY_CHF = 'CHF';
+    const CURRENCY_EUR = 'EUR';
+    const CURRENCY_KZT = 'KZT';
+    const CURRENCY_TRY = 'TRY';
+    const CURRENCY_UAH = 'UAH';
+    const CURRENCY_USD = 'USD';
 }
