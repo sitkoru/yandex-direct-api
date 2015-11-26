@@ -117,5 +117,14 @@ class CampaignAddItem extends Model implements ICallbackValidation
                 ->atPath('MobileAppCampaignItem')
                 ->addViolation();
         }
+        if ($this->StartDate) {
+            $dateTime = new \DateTime($this->StartDate);
+            $todayTime = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
+            if ($dateTime->getTimestamp() < $todayTime) {
+                $context->buildViolation('Дата старта кампании не может быть меньше текущей даты')
+                    ->atPath('StartDate')
+                    ->addViolation();
+            }
+        }
     }
 }
