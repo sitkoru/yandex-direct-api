@@ -188,8 +188,6 @@ class DirectApiService
      */
     public function call($serviceName, $method, array $params = [])
     {
-        $curl = $this->getCurl();
-        curl_setopt($curl, CURLOPT_URL, $this->apiUrl . $serviceName);
         $request = [
             'method' => $method,
         ];
@@ -202,31 +200,7 @@ class DirectApiService
             $request['params'] = $params;
         }
 
-        $request = json_encode($request, JSON_UNESCAPED_UNICODE);
-        $request = preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', $request);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $request);
-        $response = curl_exec($curl);
-
-        $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
-        $header = substr($response, 0, $header_size);
-        $body = substr($response, $header_size);
-        $data = json_decode($body);
-        $regex = '/Units: (\d+)\/(\d+)\/(\d+)/';
-        if (preg_match($regex, $header, $matches)) {
-            list(, $cost, $last, $limit) = $matches;
-            $this->units = $last;
-            $this->lastCallCost = $cost;
-            $this->unitsLimit = $limit;
-        }
-
-        if (isset($data->error)) {
-            throw new DirectApiException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $serviceName . ', ' . $method . ')',
-                $data->error->error_code);
-        }
-        if (!is_object($data)) {
-            var_dump($response, $data, $request);
-            die();
-        }
+        $data = $this->getResponse($serviceName, $method, $request);
         return $data->result;
     }
 
@@ -317,5 +291,49 @@ class DirectApiService
         }
 
         return $this->mapper;
+    }
+
+    /**
+     * @param $serviceName
+     * @param $method
+     * @param $request
+     * @return object
+     * @throws \directapi\exceptions\DirectApiException
+     */
+    public function getResponse($serviceName, $method, $request)
+    {
+        $curl = $this->getCurl();
+        curl_setopt($curl, CURLOPT_URL, $this->apiUrl . $serviceName);
+        $request = json_encode($request, JSON_UNESCAPED_UNICODE);
+        $request = preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', $request);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $request);
+        $response = curl_exec($curl);
+
+        $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
+        $header = substr($response, 0, $header_size);
+        $body = substr($response, $header_size);
+        $data = json_decode($body);
+        $regex = '/Units: (\d+)\/(\d+)\/(\d+)/';
+        if (preg_match($regex, $header, $matches)) {
+            list(, $cost, $last, $limit) = $matches;
+            $this->units = $last;
+            $this->lastCallCost = $cost;
+            $this->unitsLimit = $limit;
+        }
+
+        if (isset($data->error)) {
+            if ($data->error->error_code == 506) //concurrent limit
+            {
+                usleep(100);
+                return $this->getResponse($serviceName, $method, $request);
+            }
+            throw new DirectApiException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $serviceName . ', ' . $method . ')',
+                $data->error->error_code);
+        }
+        if (!is_object($data)) {
+            var_dump($response, $data, $request);
+            die();
+        }
+        return $data;
     }
 }
