@@ -16,4 +16,5 @@ class CurrencyEnum extends Enum
     const CURRENCY_TRY = 'TRY';
     const CURRENCY_UAH = 'UAH';
     const CURRENCY_USD = 'USD';
+    const CURRENCY_YND_FIXED = 'YND_FIXED';
 }
