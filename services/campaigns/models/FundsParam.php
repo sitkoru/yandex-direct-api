@@ -13,7 +13,7 @@ class FundsParam extends Model
     public $Mode;
 
     /**
-     * @var \directapi\services\campaigns\enum\CampaignFundsEnum
+     * @var \directapi\services\campaigns\models\CampaignFundsParam
      */
     public $CampaignFunds;
 
