@@ -26,30 +26,30 @@ class TextCampaignNetworkStrategy extends Model implements ICallbackValidation
     public $NetworkDefault;
 
     /**
-     * @var StrategyNetworkDefaultAdd
-     * @Assert\Valid()
-     * @Assert\Type(type="directapi\services\campaigns\models\strategies\StrategyNetworkDefaultAdd")
-     */
-    public $WbMaximumClicks;
-
-    /**
      * @var StrategyMaximumClicksAdd
      * @Assert\Valid()
      * @Assert\Type(type="directapi\services\campaigns\models\strategies\StrategyMaximumClicksAdd")
      */
-    public $WbMaximumConversionRate;
+    public $WbMaximumClicks;
 
     /**
      * @var StrategyMaximumConversionRateAdd
      * @Assert\Valid()
      * @Assert\Type(type="directapi\services\campaigns\models\strategies\StrategyMaximumConversionRateAdd")
      */
-    public $AverageCpc;
+    public $WbMaximumConversionRate;
 
     /**
      * @var StrategyAverageCpcAdd
      * @Assert\Valid()
      * @Assert\Type(type="directapi\services\campaigns\models\strategies\StrategyAverageCpcAdd")
+     */
+    public $AverageCpc;
+
+    /**
+     * @var StrategyAverageCpaAdd
+     * @Assert\Valid()
+     * @Assert\Type(type="directapi\services\campaigns\models\strategies\StrategyAverageCpaAdd")
      */
     public $AverageCpa;
 
