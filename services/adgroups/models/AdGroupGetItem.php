@@ -33,7 +33,7 @@ class AdGroupGetItem extends Model
     public $NegativeKeywords;
 
     /**
-     * @var \directapi\services\ads\models\AdGroupStatusEnum
+     * @var \directapi\services\adgroups\enum\AdGroupStatusEnum
      */
     public $Status;
 

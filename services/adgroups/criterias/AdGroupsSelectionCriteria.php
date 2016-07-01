@@ -28,7 +28,7 @@ class AdGroupsSelectionCriteria extends Model implements ICallbackValidation
     public $Types;
 
     /**
-     * @var \directapi\services\ads\models\AdGroupStatusEnum[]
+     * @var \directapi\services\adgroups\enum\AdGroupStatusEnum[]
      * @DirectApiAssert\ArrayOf(type="directapi\services\adgroups\enum\AdGroupStatusEnum")
      */
     public $Statuses;

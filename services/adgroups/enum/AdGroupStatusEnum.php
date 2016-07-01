@@ -1,6 +1,6 @@
 <?php
 
-namespace directapi\services\ads\models;
+namespace directapi\services\adgroups\enum;
 
 
 use directapi\components\Enum;

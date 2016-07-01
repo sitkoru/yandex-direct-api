@@ -331,8 +331,8 @@ class DirectApiService
                 $data->error->error_code);
         }
         if (!is_object($data)) {
-            var_dump($response, $data, $request);
-            die();
+            throw new DirectApiException('Ошибка при получении данных компании (' . $serviceName . ', ' . $method . ')' . var_export($request,
+                    true));
         }
         return $data;
     }
