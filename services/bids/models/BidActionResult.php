@@ -7,12 +7,12 @@ use directapi\components\Model;
 class BidActionResult extends Model
 {
     /**
-     * @var \directapi\common\results\ExceptionNotification
+     * @var \directapi\common\results\ExceptionNotification[]
      */
     public $Warnings;
 
     /**
-     * @var \directapi\common\results\ExceptionNotification
+     * @var \directapi\common\results\ExceptionNotification[]
      */
     public $Errors;
 
