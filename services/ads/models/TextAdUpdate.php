@@ -13,9 +13,6 @@ class TextAdUpdate extends Model implements ICallbackValidation
 {
     /**
      * @var string
-     * @Assert\Length(
-     *     max="33"
-     * )
      */
     public $Title;
 
@@ -62,6 +59,21 @@ class TextAdUpdate extends Model implements ICallbackValidation
      */
     public function isValid(ExecutionContextInterface $context)
     {
+        if (stripos($this->Title, '#') !== false) {
+            if (mb_strlen($this->Title) > 35) {
+                $context->buildViolation('Заголовок объявления слишком велик')
+                    ->atPath('Title')
+                    ->addViolation();
+            }
+        } else {
+            if (mb_strlen($this->Title) > 33) {
+                $context->buildViolation('Заголовок объявления слишком велик')
+                    ->atPath('Title')
+                    ->addViolation();
+            }
+        }
+
+
         if (!$this->Href && $this->SitelinkSetId) {
             $context->buildViolation('Нельзя указать SitelinkSetId при пустом Href')
                 ->atPath('SitelinkSetId')
