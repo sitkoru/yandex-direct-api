@@ -4,6 +4,6 @@ namespace directapi\services\sitelinks\enum;
 
 class SitelinksSetFieldEnum
 {
-    const Id = 'Id';
-    const Sitelinks = 'Sitelinks';
+    const ID = 'Id';
+    const SITE_LINKS = 'Sitelinks';
 }

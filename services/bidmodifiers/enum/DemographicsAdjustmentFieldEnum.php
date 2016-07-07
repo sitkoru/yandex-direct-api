@@ -6,8 +6,8 @@ use directapi\components\Enum;
 
 class DemographicsAdjustmentFieldEnum extends Enum
 {
-    const Gender = 'Gender';
-    const Age = 'Age';
-    const BidModifier = 'BidModifier';
-    const Enabled = 'Enabled';
+    const GENDER = 'Gender';
+    const AGE = 'Age';
+    const BID_MODIFIER = 'BidModifier';
+    const ENABLED = 'Enabled';
 }

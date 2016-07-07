@@ -5,22 +5,22 @@ namespace directapi\services\vcards\enum;
 
 class VCardFieldEnum
 {
-    const Id = 'Id';
-    const Country = 'Country';
-    const City = 'City';
-    const Street = 'Street';
-    const House = 'House';
-    const Building = 'Building';
-    const Apartment = 'Apartment';
-    const CompanyName = 'CompanyName';
-    const ExtraMessage = 'ExtraMessage';
-    const ContactPerson = 'ContactPerson';
-    const ContactEmail = 'ContactEmail';
-    const MetroStationId = 'MetroStationId';
-    const CampaignId = 'CampaignId';
-    const Ogrn = 'Ogrn';
-    const WorkTime = 'WorkTime';
-    const InstantMessenger = 'InstantMessenger';
-    const Phone = 'Phone';
-    const PointOnMap = 'PointOnMap';
+    const ID = 'Id';
+    const COUNTRY = 'Country';
+    const CITY = 'City';
+    const STREET = 'Street';
+    const HOUSE = 'House';
+    const BUILDING = 'Building';
+    const APARTMENT = 'Apartment';
+    const COMPANY_NAME = 'CompanyName';
+    const EXTRA_MESSAGE = 'ExtraMessage';
+    const CONTACT_PERSON = 'ContactPerson';
+    const CONTACT_EMAIL = 'ContactEmail';
+    const METRO_STATION_ID = 'MetroStationId';
+    const CAMPAIGN_ID = 'CampaignId';
+    const OGRN = 'Ogrn';
+    const WORK_TIME = 'WorkTime';
+    const INSTANT_MESSENGER = 'InstantMessenger';
+    const PHONE = 'Phone';
+    const POINT_ON_MAP = 'PointOnMap';
 }

@@ -7,6 +7,6 @@ use directapi\components\Enum;
 
 class MobileAppCampaignFieldEnum extends Enum
 {
-    const Settings = 'Settings';
-    const BiddingStrategy = 'BiddingStrategy';
+    const SETTINGS = 'Settings';
+    const BIDDING_STRATEGY = 'BiddingStrategy';
 }

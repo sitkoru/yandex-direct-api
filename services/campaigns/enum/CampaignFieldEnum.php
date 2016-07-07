@@ -7,26 +7,26 @@ use directapi\components\Enum;
 
 class CampaignFieldEnum extends Enum
 {
-    const BlockedIps = 'BlockedIps';
-    const ExcludedSites = 'ExcludedSites';
-    const Currency = 'Currency';
-    const DailyBudget = 'DailyBudget';
-    const Notification = 'Notification';
-    const EndDate = 'EndDate';
-    const Funds = 'Funds';
-    const ClientInfo = 'ClientInfo';
-    const Id = 'Id';
-    const Name = 'Name';
-    const NegativeKeywords = 'NegativeKeywords';
-    const RepresentedBy = 'RepresentedBy';
-    const StartDate = 'StartDate';
-    const Statistics = 'Statistics';
-    const State = 'State';
-    const Status = 'Status';
-    const StatusPayment = 'StatusPayment';
-    const StatusClarification = 'StatusClarification';
-    const SourceId = 'SourceId';
-    const TimeTargeting = 'TimeTargeting';
-    const TimeZone = 'TimeZone';
-    const Type = 'Type';
+    const BLOCKED_IPS = 'BlockedIps';
+    const EXCLUDED_SITES = 'ExcludedSites';
+    const CURRENCY = 'Currency';
+    const DAILY_BUDGET = 'DailyBudget';
+    const NOTIFICATION = 'Notification';
+    const END_DATE = 'EndDate';
+    const FUNDS = 'Funds';
+    const CLIENT_INFO = 'ClientInfo';
+    const ID = 'Id';
+    const NAME = 'Name';
+    const NEGATIVE_KEYWORDS = 'NegativeKeywords';
+    const REPRESENTED_BY = 'RepresentedBy';
+    const START_DATE = 'StartDate';
+    const STATISTICS = 'Statistics';
+    const STATE = 'State';
+    const STATUS = 'Status';
+    const STATUS_PAYMENT = 'StatusPayment';
+    const STATUS_CLARIFICATION = 'StatusClarification';
+    const SOURCE_ID = 'SourceId';
+    const TIME_TARGETING = 'TimeTargeting';
+    const TIME_ZONE = 'TimeZone';
+    const TYPE = 'Type';
 }

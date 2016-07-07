@@ -5,8 +5,8 @@ namespace directapi\services\changes\enum;
 
 class FieldNamesEnum
 {
-    const CampaignIds = 'CampaignIds';
-    const CampaignsStat = 'CampaignsStat';
-    const AdGroupIds = 'AdGroupIds';
-    const AdIds = 'AdIds';
+    const CAMPAIGN_IDS = 'CampaignIds';
+    const CAMPAIGNS_STAT = 'CampaignsStat';
+    const AD_GROUP_IDS = 'AdGroupIds';
+    const AD_IDS = 'AdIds';
 }

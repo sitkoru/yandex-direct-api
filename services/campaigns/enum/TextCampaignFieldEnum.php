@@ -6,8 +6,8 @@ use directapi\components\Enum;
 
 class TextCampaignFieldEnum extends Enum
 {
-    const CounterIds = 'CounterIds';
-    const RelevantKeywords = 'RelevantKeywords';
-    const Settings = 'Settings';
-    const BiddingStrategy = 'BiddingStrategy';
+    const COUNTER_IDS = 'CounterIds';
+    const RELEVANT_KEYWORDS = 'RelevantKeywords';
+    const SETTINGS = 'Settings';
+    const BIDDING_STRATEGY = 'BiddingStrategy';
 }

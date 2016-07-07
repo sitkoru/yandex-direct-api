@@ -7,8 +7,8 @@ use directapi\components\Enum;
 
 class RetargetingAdjustmentFieldEnum extends Enum
 {
-    const RetargetingConditionId = 'RetargetingConditionId';
-    const BidModifier = 'BidModifier';
-    const Accessible = 'Accessible';
-    const Enabled = 'Enabled';
+    const RETARGETING_CONDITION_ID = 'RetargetingConditionId';
+    const BID_MODIFIER = 'BidModifier';
+    const ACCESSIBLE = 'Accessible';
+    const ENABLED = 'Enabled';
 }

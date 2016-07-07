@@ -7,11 +7,11 @@ use directapi\components\Enum;
 
 class AdGroupFieldEnum extends Enum
 {
-    const Id = 'Id';
-    const CampaignId = 'CampaignId';
-    const Status = 'Status';
-    const Name = 'Name';
-    const RegionIds = 'RegionIds';
-    const NegativeKeywords = 'NegativeKeywords';
-    const Type = 'Type';
+    const ID = 'Id';
+    const CAMPAIGN_ID = 'CampaignId';
+    const STATUS = 'Status';
+    const NAME = 'Name';
+    const REGION_IDS = 'RegionIds';
+    const NEGATIVE_KEYWORDS = 'NegativeKeywords';
+    const TYPE = 'Type';
 }
