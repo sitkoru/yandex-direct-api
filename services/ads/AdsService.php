@@ -3,8 +3,13 @@
 namespace directapi\services\ads;
 
 use directapi\common\criterias\IdsCriteria;
+use directapi\common\criterias\LimitOffset;
 use directapi\common\results\ActionResult;
 use directapi\services\ads\criterias\AdsSelectionCriteria;
+use directapi\services\ads\enum\AdFieldEnum;
+use directapi\services\ads\enum\DynamicTextAdFieldEnum;
+use directapi\services\ads\enum\MobileAppAdFieldEnum;
+use directapi\services\ads\enum\TextAdFieldEnum;
 use directapi\services\ads\models\AdAddItem;
 use directapi\services\ads\models\AdGetItem;
 use directapi\services\ads\models\AdUpdateItem;
@@ -42,15 +47,44 @@ class AdsService extends BaseService
     }
 
     /**
-     * @param AdsSelectionCriteria $SelectionCriteria
+     * @param AdsSelectionCriteria     $SelectionCriteria
      *
-     * @return AdGetItem[]
+     * @param AdFieldEnum[]            $FieldNames
+     * @param TextAdFieldEnum[]        $TextAdFieldNames
+     * @param MobileAppAdFieldEnum[]   $MobileAppAdFieldNames
+     * @param DynamicTextAdFieldEnum[] $DynamicTextAdFieldNames
+     * @param LimitOffset              $Page
+     * @return models\AdGetItem[]
      */
-    public function get(AdsSelectionCriteria $SelectionCriteria)
-    {
+    public function get(
+        AdsSelectionCriteria $SelectionCriteria,
+        array $FieldNames,
+        array $TextAdFieldNames = [],
+        array $MobileAppAdFieldNames = [],
+        array $DynamicTextAdFieldNames = [],
+        LimitOffset $Page = null
+    ) {
         $params = [
-            'SelectionCriteria' => $SelectionCriteria
+            'SelectionCriteria' => $SelectionCriteria,
+            'FieldNames'        => $FieldNames
         ];
+
+        if ($TextAdFieldNames) {
+            $params['TextAdFieldNames'] = $TextAdFieldNames;
+        }
+
+        if ($MobileAppAdFieldNames) {
+            $params['MobileAppAdFieldNames'] = $MobileAppAdFieldNames;
+        }
+
+        if ($DynamicTextAdFieldNames) {
+            $params['DynamicTextAdFieldNames'] = $DynamicTextAdFieldNames;
+        }
+
+        if ($Page) {
+            $params['Page'] = $Page;
+        }
+
         return parent::doGet($params, 'Ads', AdGetItem::class);
     }
 
