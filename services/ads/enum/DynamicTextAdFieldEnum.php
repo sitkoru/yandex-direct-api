@@ -6,10 +6,10 @@ use directapi\components\Enum;
 
 class DynamicTextAdFieldEnum extends Enum
 {
-    const Text = 'Text';
-    const VCardId = 'VCardId';
-    const SitelinkSetId = 'SitelinkSetId';
-    const VCardModeration = 'VCardModeration';
-    const SitelinksModeration = 'SitelinksModeration';
-    const AdExtensions = 'AdExtensions';
+    const TEXT = 'Text';
+    const VCARD_ID = 'VCardId';
+    const SITE_LINK_SET_ID = 'SitelinkSetId';
+    const VCARD_MODERATION = 'VCardModeration';
+    const SITE_LINKS_MODERATION = 'SitelinksModeration';
+    const AD_EXTENSIONS = 'AdExtensions';
 }
