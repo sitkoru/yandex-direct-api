@@ -48,7 +48,7 @@ class AdsSelectionCriteria extends Model
 
     /**
      * @var \directapi\common\enum\StateEnum[]
-     * @DirectApiAssert\IsEnum(type="directapi\common\enum\StateEnum")
+     * @DirectApiAssert\ArrayOf(type="directapi\common\enum\StateEnum")
      */
     public $States;
 
