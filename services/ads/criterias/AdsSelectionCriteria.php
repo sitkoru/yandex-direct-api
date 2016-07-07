@@ -42,19 +42,19 @@ class AdsSelectionCriteria extends Model
 
     /**
      * @var \directapi\services\ads\enum\AdTypeEnum[]
-     * @DirectApiAssert\ArrayOf(type="directapi\services\ads\enum\AdTypeEnum")
+     * @DirectApiAssert\ArrayOfEnum(type="directapi\services\ads\enum\AdTypeEnum")
      */
     public $Types;
 
     /**
      * @var \directapi\common\enum\StateEnum[]
-     * @DirectApiAssert\ArrayOf(type="directapi\common\enum\StateEnum")
+     * @DirectApiAssert\ArrayOfEnum(type="directapi\common\enum\StateEnum")
      */
     public $States;
 
     /**
      * @var \directapi\services\ads\enum\AdStatusEnum[]
-     * @DirectApiAssert\ArrayOf(type="directapi\services\ads\enum\AdStatusEnum")
+     * @DirectApiAssert\ArrayOfEnum(type="directapi\services\ads\enum\AdStatusEnum")
      */
     public $Statuses;
 
@@ -69,7 +69,7 @@ class AdsSelectionCriteria extends Model
 
     /**
      * @var \directapi\common\enum\StatusEnum[]
-     * @DirectApiAssert\ArrayOf(type="directapi\common\enum\StatusEnum")
+     * @DirectApiAssert\ArrayOfEnum(type="directapi\common\enum\StatusEnum")
      */
     public $VCardModerationStatuses;
 
@@ -93,13 +93,13 @@ class AdsSelectionCriteria extends Model
 
     /**
      * @var \directapi\common\enum\StatusEnum[]
-     * @DirectApiAssert\ArrayOf(type="directapi\common\enum\StatusEnum")
+     * @DirectApiAssert\ArrayOfEnum(type="directapi\common\enum\StatusEnum")
      */
     public $SitelinksModerationStatuses;
 
     /**
      * @var \directapi\common\enum\StatusEnum[]
-     * @DirectApiAssert\ArrayOf(type="directapi\common\enum\StatusEnum")
+     * @DirectApiAssert\ArrayOfEnum(type="directapi\common\enum\StatusEnum")
      */
     public $AdImageModerationStatuses;
 }

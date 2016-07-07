@@ -38,13 +38,13 @@ class KeywordsSelectionCriteria extends Model
 
     /**
      * @var \directapi\common\enum\StateEnum[]
-     * @DirectApiAssert\ArrayOf(type="directapi\common\enum\StateEnum")
+     * @DirectApiAssert\ArrayOfEnum(type="directapi\common\enum\StateEnum")
      */
     public $States;
 
     /**
      * @var \directapi\common\enum\StatusEnum[]
-     * @DirectApiAssert\ArrayOf(type="directapi\common\enum\StatusEnum")
+     * @DirectApiAssert\ArrayOfEnum(type="directapi\common\enum\StatusEnum")
      */
     public $Statuses;
 }
