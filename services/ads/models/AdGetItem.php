@@ -23,7 +23,7 @@ class AdGetItem extends Model
     public $AdGroupId;
 
     /**
-     * @var \directapi\common\enum\StateEnum
+     * @var \directapi\services\ads\enum\AdStatusEnum
      */
     public $Status;
 
