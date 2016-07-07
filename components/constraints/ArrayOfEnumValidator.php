@@ -30,7 +30,7 @@ class ArrayOfEnumValidator extends ConstraintValidator
 
                 $badValues = [];
                 foreach ($array as $i => $v) {
-                    if ($type->check([$v])) {
+                    if (!call_user_func($type . '::check', [$v])) {
                         $badValues[] = $i . " => " . $v;
                     }
                 }
