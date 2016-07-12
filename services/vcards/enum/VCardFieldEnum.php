@@ -3,7 +3,9 @@
 namespace directapi\services\vcards\enum;
 
 
-class VCardFieldEnum
+use directapi\components\Enum;
+
+class VCardFieldEnum extends Enum
 {
     const ID = 'Id';
     const COUNTRY = 'Country';
