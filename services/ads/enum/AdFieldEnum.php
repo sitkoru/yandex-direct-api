@@ -15,7 +15,4 @@ class AdFieldEnum extends Enum
     const AD_CATEGORIES = 'AdCategories';
     const AGE_LABEL = 'AgeLabel';
     const TYPE = 'Type';
-    const TEXT_AD = 'TextAd';
-    const MOBILE_APP_AD = 'MobileAppAd';
-    const LIMITED_BY = 'LimitedBy';
 }
