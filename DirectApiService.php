@@ -2,6 +2,7 @@
 
 namespace directapi;
 
+use directapi\components\interfaces\IQueryLogger;
 use directapi\exceptions\DirectApiException;
 use directapi\exceptions\RequestValidationException;
 use directapi\services\adgroups\AdGroupsService;
@@ -72,11 +73,17 @@ class DirectApiService
      */
     private $vcardsService;
 
-    public function __construct($login, $token, $clientLogin)
+    /**
+     * @var IQueryLogger
+     */
+    private $logger;
+
+    public function __construct($login, $token, $clientLogin, IQueryLogger $logger = null)
     {
         $this->token = $token;
         $this->login = $login;
         $this->clientLogin = $clientLogin;
+        $this->logger = $logger;
     }
 
     /**
@@ -302,6 +309,7 @@ class DirectApiService
      */
     public function getResponse($serviceName, $method, $request)
     {
+        $this->lastCallCost = null;
         $curl = $this->getCurl();
         curl_setopt($curl, CURLOPT_URL, $this->apiUrl . $serviceName);
         $request = json_encode($request, JSON_UNESCAPED_UNICODE);
@@ -327,12 +335,17 @@ class DirectApiService
                 usleep(100);
                 return $this->getResponse($serviceName, $method, $request);
             }
+            $this->logger->logError($serviceName, $method, $request);
             throw new DirectApiException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $serviceName . ', ' . $method . ')',
                 $data->error->error_code);
         }
         if (!is_object($data)) {
-            throw new DirectApiException('Ошибка при получении данных компании (' . $serviceName . ', ' . $method . ')' . var_export($request,
+            $this->logger->logError($serviceName, $method, $request);
+            throw new DirectApiException('Ошибка при получении данных кампании (' . $serviceName . ', ' . $method . ')' . var_export($request,
                     true));
+        }
+        if ($this->logger) {
+            $this->logger->logSuccess($serviceName, $method, $request, $this->lastCallCost);
         }
         return $data;
     }
