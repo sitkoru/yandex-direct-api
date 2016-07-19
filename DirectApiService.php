@@ -335,12 +335,16 @@ class DirectApiService
                 usleep(100);
                 return $this->getResponse($serviceName, $method, $request);
             }
-            $this->logger->logError($serviceName, $method, $request);
+            if ($this->logger) {
+                $this->logger->logError($serviceName, $method, $request);
+            }
             throw new DirectApiException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $serviceName . ', ' . $method . ')',
                 $data->error->error_code);
         }
         if (!is_object($data)) {
-            $this->logger->logError($serviceName, $method, $request);
+            if ($this->logger) {
+                $this->logger->logError($serviceName, $method, $request);
+            }
             throw new DirectApiException('Ошибка при получении данных кампании (' . $serviceName . ', ' . $method . ')' . var_export($request,
                     true));
         }
