@@ -45,14 +45,9 @@ class AdGroupsSelectionCriteria extends Model implements ICallbackValidation
      */
     public function isValid(ExecutionContextInterface $context)
     {
-        if (!($this->Ids == [] && count($this->CampaignIds) > 0)) {
-            $context->buildViolation('CampaignIds должны быть указаны, если Ids пусты')
+        if ($this->Ids == [] && $this->CampaignIds == []) {
+            $context->buildViolation('Должны быть указаны CampaignIds или Ids')
                 ->atPath('CampaignIds')
-                ->addViolation();
-        }
-        if (!($this->CampaignIds == [] && count($this->Ids) > 0)) {
-            $context->buildViolation('Ids должны быть указаны, если CampaignIds пусты')
-                ->atPath('Ids')
                 ->addViolation();
         }
     }

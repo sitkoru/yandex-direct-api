@@ -12,7 +12,7 @@ class SitelinksSetGetItem extends Model
     public $Id;
 
     /**
-     * @var Sitelink
+     * @var Sitelink[]
      */
     public $Sitelinks;
 }

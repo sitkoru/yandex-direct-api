@@ -41,7 +41,7 @@ class SitelinksService extends BaseService
      *
      * @return SitelinksSetGetItem[]
      */
-    public function get(IdsCriteria $SelectionCriteria, array $FieldNames, LimitOffset $Page)
+    public function get(IdsCriteria $SelectionCriteria, array $FieldNames, LimitOffset $Page = null)
     {
         $params = [
             'SelectionCriteria' => $SelectionCriteria,
