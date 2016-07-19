@@ -7,5 +7,5 @@ interface IQueryLogger
 {
     public function logSuccess($service, $method, $params, $price);
 
-    public function logError($service, $method, $params);
+    public function logError($service, $method, $params, $price);
 }
