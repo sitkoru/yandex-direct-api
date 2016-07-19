@@ -333,10 +333,15 @@ class DirectApiService
             if ($data->error->error_code == 506) //concurrent limit
             {
                 usleep(100);
+                if ($this->logger) {
+                    $this->logger->logError($serviceName, $method, $request, 20);
+                }
                 return $this->getResponse($serviceName, $method, $request);
             }
             if ($this->logger) {
-                $this->logger->logError($serviceName, $method, $request, $this->lastCallCost);
+                $this->logger->logError($serviceName, $method, $request,
+                    $this->lastCallCost > 0 ? $this->lastCallCost
+                        : 20);
             }
             throw new DirectApiException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $serviceName . ', ' . $method . ')',
                 $data->error->error_code);
