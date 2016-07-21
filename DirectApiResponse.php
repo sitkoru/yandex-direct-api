@@ -54,6 +54,8 @@ class DirectApiResponse
             $this->units = $last;
             $this->lastCallCost = $cost;
             $this->unitsLimit = $limit;
+        } else {
+            $this->lastCallCost = 20;
         }
     }
 
