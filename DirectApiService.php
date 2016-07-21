@@ -195,20 +195,22 @@ class DirectApiService
      */
     public function call($serviceName, $method, array $params = [])
     {
-        $request = [
-            'method' => $method,
-        ];
+        $request = new DirectApiRequest();
+        $request->service = $serviceName;
+        $request->method = $method;
+
         if ($params) {
             $errors = [];
             $this->validate($params, $errors);
             if ($errors) {
                 throw new RequestValidationException($errors);
             }
-            $request['params'] = $params;
+            $request->params = $params;
         }
 
-        $data = $this->getResponse($serviceName, $method, $request);
-        return $data->result;
+
+        $data = $this->getResponse($request);
+        return $data->getData()->result;
     }
 
     private $validator;
@@ -301,61 +303,60 @@ class DirectApiService
     }
 
     /**
-     * @param $serviceName
-     * @param $method
-     * @param $request
-     * @return object
-     * @throws \directapi\exceptions\DirectApiException
+     * @param DirectApiRequest $request
+     * @return DirectApiResponse
+     * @throws DirectApiException
      */
-    public function getResponse($serviceName, $method, $request)
+    public function getResponse(DirectApiRequest $request)
     {
         $this->lastCallCost = null;
         $curl = $this->getCurl();
-        curl_setopt($curl, CURLOPT_URL, $this->apiUrl . $serviceName);
-        $request = json_encode($request, JSON_UNESCAPED_UNICODE);
-        $request = preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', $request);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $request);
-        $response = curl_exec($curl);
+        curl_setopt($curl, CURLOPT_URL, $this->apiUrl . $request->service);
+        $payload = json_encode($request->getPayload(), JSON_UNESCAPED_UNICODE);
+        $payload = preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', $payload);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
+        $curlResponse = curl_exec($curl);
+
+        $response = new DirectApiResponse();
 
         $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
-        $header = substr($response, 0, $header_size);
-        $body = substr($response, $header_size);
-        $data = json_decode($body);
-        $regex = '/Units: (\d+)\/(\d+)\/(\d+)/';
-        if (preg_match($regex, $header, $matches)) {
-            list(, $cost, $last, $limit) = $matches;
-            $this->units = $last;
-            $this->lastCallCost = $cost;
-            $this->unitsLimit = $limit;
-        }
+        $response->setHeaders(substr($curlResponse, 0, $header_size));
+        $response->body = substr($curlResponse, $header_size);
+        $data = $response->getData();
+
+        $this->units = $response->units;
+        $this->lastCallCost = $response->lastCallCost;
+        $this->unitsLimit = $response->unitsLimit;
+
 
         if (isset($data->error)) {
+            $response->isSuccess = false;
             if ($data->error->error_code == 506) //concurrent limit
             {
                 usleep(100);
-                if ($this->logger) {
-                    $this->logger->logError($serviceName, $method, $request, 20);
-                }
-                return $this->getResponse($serviceName, $method, $request);
+                $this->logRequest($request, $response);
+                return $this->getResponse($request);
             }
             if ($this->logger) {
-                $this->logger->logError($serviceName, $method, $request,
-                    $this->lastCallCost > 0 ? $this->lastCallCost
-                        : 20);
+                $this->logRequest($request, $response);
             }
-            throw new DirectApiException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $serviceName . ', ' . $method . ')',
+            throw new DirectApiException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
                 $data->error->error_code);
         }
+        $response->isSuccess = true;
         if (!is_object($data)) {
-            if ($this->logger) {
-                $this->logger->logError($serviceName, $method, $request, $this->lastCallCost);
-            }
-            throw new DirectApiException('Ошибка при получении данных кампании (' . $serviceName . ', ' . $method . ')' . var_export($request,
+            $this->logRequest($request, $response);
+            throw new DirectApiException('Ошибка при получении данных кампании (' . $request->service . ', ' . $request->method . ')' . var_export($request->params,
                     true));
         }
+        $this->logRequest($request, $response);
+        return $response;
+    }
+
+    public function logRequest(DirectApiRequest $request, DirectApiResponse $response)
+    {
         if ($this->logger) {
-            $this->logger->logSuccess($serviceName, $method, $request, $this->lastCallCost);
+            $this->logger->logRequest($request, $response);
         }
-        return $data;
     }
 }
