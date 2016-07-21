@@ -2,10 +2,10 @@
 
 namespace directapi\components\interfaces;
 
+use directapi\DirectApiRequest;
+use directapi\DirectApiResponse;
 
 interface IQueryLogger
 {
-    public function logSuccess($service, $method, $params, $price);
-
-    public function logError($service, $method, $params, $price);
+    public function logRequest(DirectApiRequest $request, DirectApiResponse $response);
 }
