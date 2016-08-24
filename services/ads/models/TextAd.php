@@ -2,7 +2,7 @@
 
 namespace directapi\services\ads\models;
 
-
+use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
