@@ -12,7 +12,7 @@
   "require": {
     "symfony/validator": "~2.7.6",
     "doctrine/annotations": "~1.2.7",
-    "doctrine/cache": "~1.5.1",
+    "doctrine/cache": "~1.6.0",
     "netresearch/jsonmapper": "~0.10.0"
   },
   "autoload": {
