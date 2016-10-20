@@ -4,7 +4,7 @@ namespace directapi;
 
 use directapi\components\interfaces\IQueryLogger;
 use directapi\exceptions\DirectApiException;
-use directapi\exceptions\DirectNotEnoughUnitsException;
+use directapi\exceptions\DirectApiNotEnoughUnitsException;
 use directapi\exceptions\RequestValidationException;
 use directapi\services\adgroups\AdGroupsService;
 use directapi\services\ads\AdsService;
@@ -342,7 +342,7 @@ class DirectApiService
                 $this->logRequest($request, $response);
             }
             if ($data->error->error_code == 152){
-                throw new DirectNotEnoughUnitsException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
+                throw new DirectApiNotEnoughUnitsException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
                     $data->error->error_code);
             }
             throw new DirectApiException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',

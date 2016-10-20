@@ -3,7 +3,7 @@
 namespace directapi\exceptions;
 
 
-class DirectNotEnoughUnitsException extends \Exception
+class DirectApiNotEnoughUnitsException extends \Exception
 {
     public $error_detail;
 
