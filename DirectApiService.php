@@ -341,7 +341,7 @@ class DirectApiService
             if ($this->logger) {
                 $this->logRequest($request, $response);
             }
-            if ($data->error->error_string == "Недостаточно баллов"){
+            if ($data->error->error_code == 152){
                 throw new DirectNotEnoughUnitsException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
                     $data->error->error_code);
             }
