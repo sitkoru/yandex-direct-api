@@ -4,6 +4,7 @@ namespace directapi;
 
 use directapi\components\interfaces\IQueryLogger;
 use directapi\exceptions\DirectApiException;
+use directapi\exceptions\DirectNotEnoughUnitsException;
 use directapi\exceptions\RequestValidationException;
 use directapi\services\adgroups\AdGroupsService;
 use directapi\services\ads\AdsService;
@@ -339,6 +340,10 @@ class DirectApiService
             }
             if ($this->logger) {
                 $this->logRequest($request, $response);
+            }
+            if ($data->error->error_string == "Недостаточно баллов"){
+                throw new DirectNotEnoughUnitsException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
+                    $data->error->error_code);
             }
             throw new DirectApiException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
                 $data->error->error_code);
