@@ -298,6 +298,7 @@ class DirectApiService
     {
         if (!$this->mapper) {
             $this->mapper = new \JsonMapper();
+            $this->mapper->bStrictNullTypes = false;
         }
 
         return $this->mapper;
