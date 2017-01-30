@@ -21,7 +21,6 @@ use Symfony\Component\Validator\Validation;
 class DirectApiService
 {
     private $token;
-    private $login;
     private $clientLogin;
     private $apiUrl = 'https://api.direct.yandex.com/json/v5/';
 
@@ -79,10 +78,9 @@ class DirectApiService
      */
     private $logger;
 
-    public function __construct($login, $token, $clientLogin, IQueryLogger $logger = null)
+    public function __construct($token, $clientLogin, IQueryLogger $logger = null)
     {
         $this->token = $token;
-        $this->login = $login;
         $this->clientLogin = $clientLogin;
         $this->logger = $logger;
     }
