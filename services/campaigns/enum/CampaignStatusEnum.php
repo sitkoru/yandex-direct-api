@@ -2,13 +2,10 @@
 
 namespace directapi\services\campaigns\enum;
 
-use directapi\components\Enum;
+use directapi\common\enum\StatusEnum;
 
-class CampaignStatusEnum extends Enum
+class CampaignStatusEnum extends StatusEnum
 {
     const DRAFT = 'DRAFT';
-    const MODERATION = 'MODERATION';
-    const ACCEPTED = 'ACCEPTED';
-    const REJECTED = 'REJECTED';
     const UNKNOWN = 'UNKNOWN';
 }
