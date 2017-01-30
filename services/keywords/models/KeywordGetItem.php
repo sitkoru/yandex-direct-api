@@ -52,7 +52,7 @@ class KeywordGetItem extends Model
     public $StrategyPriority;
 
     /**
-     * @var \directapi\common\enum\StatusEnum
+     * @var \directapi\services\keywords\enum\KeywordStatusEnum
      */
     public $Status;
 
