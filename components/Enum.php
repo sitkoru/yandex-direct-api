@@ -51,6 +51,11 @@ abstract class Enum implements JsonSerializable
         return true;
     }
 
+    final public function compare($value)
+    {
+        return $value === $this->current_val;
+    }
+
     public function jsonSerialize()
     {
         return $this->current_val;
