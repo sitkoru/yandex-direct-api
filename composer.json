@@ -1,7 +1,7 @@
 {
   "name": "sitkoru/yandex-direct-api",
   "description": "Client for Yandex.Direct API v5",
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "license": "BEERWARE",
   "authors": [
     {
