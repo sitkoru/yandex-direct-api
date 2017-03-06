@@ -8,17 +8,17 @@ use directapi\components\Model;
 class CheckResponse extends Model
 {
     /**
-     * @var CheckResponseModified[]
+     * @var CheckResponseModified
      */
     public $Modified;
 
     /**
-     * @var CheckResponseIds[]
+     * @var CheckResponseIds
      */
     public $NotFound;
 
     /**
-     * @var CheckResponseIds[]
+     * @var CheckResponseIds
      */
     public $Unprocessed;
 
