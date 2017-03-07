@@ -111,4 +111,9 @@ class BidModifiersService extends BaseService
     {
         return 'bidmodifiers';
     }
+
+    public function toUpdateEntities(array $entities)
+    {
+        throw new \ErrorException('Not implemented');
+    }
 }

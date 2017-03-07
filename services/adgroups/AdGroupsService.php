@@ -84,4 +84,14 @@ class AdGroupsService extends BaseService
     {
         return 'adgroups';
     }
+
+    /**
+     * @param AdGroupGetItem[] $entities
+     * @return AdGroupUpdateItem[]
+     */
+    public function toUpdateEntities(array $entities)
+    {
+        return $this->convertClass($entities, AdGroupUpdateItem::class);
+
+    }
 }

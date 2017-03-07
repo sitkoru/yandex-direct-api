@@ -99,8 +99,7 @@ class AdsService extends BaseService
             'SelectionCriteria' => $SelectionCriteria
         ];
         $response = $this->call('moderate', $params);
-        $result = $this->mapArray($response->ModerateResults, ActionResult::class);
-        return $result;
+        return $this->mapArray($response->ModerateResults, ActionResult::class);
     }
 
     /**
@@ -143,5 +142,15 @@ class AdsService extends BaseService
     protected function getName()
     {
         return 'ads';
+    }
+
+    /**
+     * @param AdGetItem[] $entities
+     * @return AdUpdateItem[]
+     */
+    public function toUpdateEntities(array $entities)
+    {
+        return $this->convertClass($entities, AdUpdateItem::class);
+
     }
 }

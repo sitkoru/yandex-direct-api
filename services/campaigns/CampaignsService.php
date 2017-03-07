@@ -120,4 +120,14 @@ class CampaignsService extends BaseService
     {
         return 'campaigns';
     }
+
+    /**
+     * @param CampaignGetItem[] $entities
+     * @return CampaignUpdateItem[]
+     */
+    public function toUpdateEntities(array $entities)
+    {
+        return $this->convertClass($entities, CampaignUpdateItem::class);
+
+    }
 }

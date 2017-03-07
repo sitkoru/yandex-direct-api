@@ -61,4 +61,9 @@ class BidsService extends BaseService
     {
         return 'bids';
     }
+
+    public function toUpdateEntities(array $entities)
+    {
+        throw new \ErrorException('Not implemented');
+    }
 }

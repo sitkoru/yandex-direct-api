@@ -89,4 +89,14 @@ class KeywordsService extends BaseService
     {
         return 'keywords';
     }
+
+    /**
+     * @param KeywordGetItem[] $entities
+     * @return KeywordUpdateItem[]
+     */
+    public function toUpdateEntities(array $entities)
+    {
+        return $this->convertClass($entities, KeywordUpdateItem::class);
+
+    }
 }

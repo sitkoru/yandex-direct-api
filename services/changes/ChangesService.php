@@ -76,4 +76,9 @@ class ChangesService extends BaseService
     {
         return 'changes';
     }
+
+    public function toUpdateEntities(array $entities)
+    {
+        throw new \ErrorException('Not implemented');
+    }
 }

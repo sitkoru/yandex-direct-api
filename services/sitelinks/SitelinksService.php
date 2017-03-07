@@ -58,4 +58,10 @@ class SitelinksService extends BaseService
     {
         return 'sitelinks';
     }
+
+    public function toUpdateEntities(array $entities)
+    {
+        throw new \ErrorException('Not implemented');
+
+    }
 }

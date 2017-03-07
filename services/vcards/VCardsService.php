@@ -58,4 +58,9 @@ class VCardsService extends BaseService
     {
         return 'vcards';
     }
+
+    public function toUpdateEntities(array $entities)
+    {
+        throw new \ErrorException('Not implemented');
+    }
 }

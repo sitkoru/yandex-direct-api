@@ -165,8 +165,7 @@ abstract class BaseService
 
     protected function call($method, $params)
     {
-        $result = $this->service->call(static::getName(), $method, $params);
-        return $result;
+        return $this->service->call(static::getName(), $method, $params);
     }
 
     /**
@@ -176,8 +175,7 @@ abstract class BaseService
     protected function doAdd($params)
     {
         $response = $this->call('add', $params);
-        $result = $this->mapArray($response->AddResults, ActionResult::class);
-        return $result;
+        return $this->mapArray($response->AddResults, ActionResult::class);
     }
 
     /**
@@ -190,8 +188,7 @@ abstract class BaseService
     {
         $response = $this->call('get', $params);
         if (property_exists($response, $paramName)) {
-            $items = $this->mapArray($response->$paramName, $class);
-            return $items;
+            return $this->mapArray($response->$paramName, $class);
         } else {
             return [];
         }
@@ -204,8 +201,7 @@ abstract class BaseService
     protected function doUpdate($params)
     {
         $response = $this->call('update', $params);
-        $result = $this->mapArray($response->UpdateResults, ActionResult::class);
-        return $result;
+        return $this->mapArray($response->UpdateResults, ActionResult::class);
     }
 
     /**
@@ -219,8 +215,7 @@ abstract class BaseService
             'SelectionCriteria' => $SelectionCriteria
         ];
         $response = $this->call('delete', $params);
-        $result = $this->mapArray($response->DeleteResults, ActionResult::class);
-        return $result;
+        return $this->mapArray($response->DeleteResults, ActionResult::class);
     }
 
     /**
@@ -234,8 +229,7 @@ abstract class BaseService
             'SelectionCriteria' => $SelectionCriteria
         ];
         $response = $this->call('suspend', $params);
-        $result = $this->mapArray($response->SuspendResults, ActionResult::class);
-        return $result;
+        return $this->mapArray($response->SuspendResults, ActionResult::class);
     }
 
     /**
@@ -249,8 +243,7 @@ abstract class BaseService
             'SelectionCriteria' => $SelectionCriteria
         ];
         $response = $this->call('resume', $params);
-        $result = $this->mapArray($response->ResumeResults, ActionResult::class);
-        return $result;
+        return $this->mapArray($response->ResumeResults, ActionResult::class);
     }
 
     /**
@@ -264,8 +257,7 @@ abstract class BaseService
             'SelectionCriteria' => $SelectionCriteria
         ];
         $response = $this->call('archive', $params);
-        $result = $this->mapArray($response->ArchiveResults, ActionResult::class);
-        return $result;
+        return $this->mapArray($response->ArchiveResults, ActionResult::class);
     }
 
     /**
@@ -279,8 +271,7 @@ abstract class BaseService
             'SelectionCriteria' => $SelectionCriteria
         ];
         $response = $this->call('unarchive', $params);
-        $result = $this->mapArray($response->UnarchiveResults, ActionResult::class);
-        return $result;
+        return $this->mapArray($response->UnarchiveResults, ActionResult::class);
     }
 
     /**
@@ -302,5 +293,16 @@ abstract class BaseService
     protected function mapArray($data, $class)
     {
         return $this->service->getMapper()->mapArray($data, [], $class);
+    }
+
+    abstract public function toUpdateEntities(array $entities);
+
+    protected function convertClass(array $entities, $class)
+    {
+        $converted = [];
+        foreach ($entities as $entity) {
+            $converted[] = $this->service->getMapper()->map(json_decode(json_encode($entity)), new $class);
+        }
+        return $converted;
     }
 }
