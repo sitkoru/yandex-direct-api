@@ -3,6 +3,7 @@
 namespace directapi\services;
 
 use directapi\common\criterias\IdsCriteria;
+use directapi\common\models\GetResponse;
 use directapi\common\results\ActionResult;
 use directapi\DirectApiService;
 
@@ -186,12 +187,18 @@ abstract class BaseService
      */
     protected function doGet(array $params, $paramName, $class)
     {
-        $response = $this->call('get', $params);
-        if (property_exists($response, $paramName)) {
-            return $this->mapArray($response->$paramName, $class);
-        } else {
-            return [];
+        $result = [];
+        while ($response = $this->call('get', $params)) {
+            if (property_exists($response, $paramName) && $response->$paramName) {
+                $result = array_merge($result, $this->mapArray($response->$paramName, $class));
+            }
+            if (property_exists($response, 'limitedBy')) {
+                $params['Offset'] = $response->limitedBy;
+            } else {
+                break;
+            }
         }
+        return $result;
     }
 
     /**
