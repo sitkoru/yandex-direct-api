@@ -157,7 +157,7 @@ abstract class BaseService
     /**
      * @var \directapi\DirectApiService
      */
-    private $service;
+    protected $service;
 
     public function __construct(DirectApiService $service)
     {

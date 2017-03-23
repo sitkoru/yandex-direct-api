@@ -13,6 +13,7 @@ use directapi\services\bids\BidsService;
 use directapi\services\campaigns\CampaignsService;
 use directapi\services\changes\ChangesService;
 use directapi\services\keywords\KeywordsService;
+use directapi\services\reports\ReportsService;
 use directapi\services\sitelinks\SitelinksService;
 use directapi\services\vcards\VCardsService;
 use GuzzleHttp\Client;
@@ -76,6 +77,11 @@ class DirectApiService
      * @var VCardsService
      */
     private $vcardsService;
+
+    /**
+     * @var ReportsService
+     */
+    private $reportsService;
 
     /**
      * @var IQueryLogger
@@ -187,6 +193,18 @@ class DirectApiService
             $this->vcardsService = new VCardsService($this);
         }
         return $this->vcardsService;
+    }
+
+
+    /**
+     * @return ReportsService
+     */
+    public function getReportsService()
+    {
+        if (!$this->reportsService) {
+            $this->reportsService = new ReportsService($this);
+        }
+        return $this->reportsService;
     }
 
     /**
