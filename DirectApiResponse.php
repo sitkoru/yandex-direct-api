@@ -6,7 +6,7 @@ namespace directapi;
 class DirectApiResponse
 {
     /**
-     * @var string
+     * @var string[]
      */
     public $headers;
 
@@ -44,12 +44,13 @@ class DirectApiResponse
     {
         $this->headers = $headers;
         $this->parseUnitsHeader();
+        die();
     }
 
     private function parseUnitsHeader()
     {
-        $regex = '/Units: (\d+)\/(\d+)\/(\d+)/';
-        if (preg_match($regex, $this->headers, $matches)) {
+        $regex = '/(\d+)\/(\d+)\/(\d+)/';
+        if (preg_match($regex, $this->headers['Units'][0], $matches)) {
             list(, $cost, $last, $limit) = $matches;
             $this->units = $last;
             $this->lastCallCost = $cost;
