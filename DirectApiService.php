@@ -15,6 +15,10 @@ use directapi\services\changes\ChangesService;
 use directapi\services\keywords\KeywordsService;
 use directapi\services\sitelinks\SitelinksService;
 use directapi\services\vcards\VCardsService;
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Uri;
+use Psr\Http\Message\RequestInterface;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validation;
 
@@ -190,6 +194,10 @@ class DirectApiService
      * @param string $method
      * @param array  $params
      * @return mixed
+     * @throws \RuntimeException
+     * @throws \InvalidArgumentException
+     * @throws \directapi\exceptions\RequestValidationException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
      * @throws DirectApiException
      */
     public function call($serviceName, $method, array $params = [])
@@ -215,7 +223,7 @@ class DirectApiService
     private $validator;
 
     /**
-     * @return \Symfony\Component\Validator\ValidatorInterface
+     * @return \Symfony\Component\Validator\Validator\ValidatorInterface
      */
     private function getValidator()
     {
@@ -252,36 +260,44 @@ class DirectApiService
         }
     }
 
-    private $ch;
+    private $client;
+
+    private function getClient()
+    {
+        if (!$this->client) {
+            $this->client = new Client();
+        }
+        return $this->client;
+    }
+
+    private $request;
 
     /**
-     * @return resource
+     * @param        $url
+     * @param string $method
+     * @return RequestInterface
      */
-    private function getCurl()
+    public function getRequest($url, $method = 'POST')
     {
-        if (!$this->ch) {
-            $this->ch = curl_init();
-            curl_setopt(
-                $this->ch,
-                CURLOPT_HTTPHEADER,
-                [
-                    'Content-Type: application/json; charset=utf-8',
-                    'Authorization: Bearer ' . $this->token,
-                    'Client-Login: ' . $this->clientLogin,
-                    'Accept-Language: ru',
-                ]
-            );
-            curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($this->ch, CURLOPT_FOLLOWLOCATION, true);
-            curl_setopt($this->ch, CURLOPT_POST, 1);
-            //curl_setopt($this->ch, CURLINFO_HEADER_OUT, 1);
-            curl_setopt($this->ch, CURLOPT_HEADER, 1);
-            //curl_setopt($this->ch, CURLOPT_VERBOSE, 1);
-
-            curl_setopt($this->ch, CURLOPT_SSL_VERIFYPEER, 0);
-            curl_setopt($this->ch, CURLOPT_TIMEOUT, 1200); //max to 20 minutes
+        if (!$this->request) {
+            $this->request = new Request('', '', [
+                'Content-Type'    => 'application/json; charset=utf-8',
+                'Authorization'   => 'Bearer ' . $this->token,
+                'Client-Login'    => $this->clientLogin,
+                'Accept-Language' => 'ru',
+            ]);
         }
-        return $this->ch;
+        $request = clone $this->request;
+        return $request->withMethod($method)->withUri(new Uri($url));
+    }
+
+    /**
+     * @param RequestInterface $request
+     * @return \Psr\Http\Message\ResponseInterface
+     */
+    public function doRequest(RequestInterface $request)
+    {
+        return $this->getClient()->send($request);
     }
 
     /**
@@ -305,23 +321,25 @@ class DirectApiService
     /**
      * @param DirectApiRequest $request
      * @return DirectApiResponse
+     * @throws \RuntimeException
+     * @throws \InvalidArgumentException
      * @throws DirectApiException
+     * @throws DirectApiNotEnoughUnitsException
      */
     public function getResponse(DirectApiRequest $request)
     {
         $this->lastCallCost = null;
-        $curl = $this->getCurl();
-        curl_setopt($curl, CURLOPT_URL, $this->apiUrl . $request->service);
+        $httpRequest = $this->getRequest($this->apiUrl . $request->service);
+
         $payload = json_encode($request->getPayload(), JSON_UNESCAPED_UNICODE);
         $payload = preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', $payload);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
-        $curlResponse = curl_exec($curl);
+
+        $httpResponse = $this->doRequest($httpRequest->withBody(\GuzzleHttp\Psr7\stream_for($payload)));
 
         $response = new DirectApiResponse();
 
-        $header_size = curl_getinfo($curl, CURLINFO_HEADER_SIZE);
-        $response->setHeaders(substr($curlResponse, 0, $header_size));
-        $response->body = substr($curlResponse, $header_size);
+        $response->setHeaders($httpResponse->getHeaders());
+        $response->body = $httpResponse->getBody()->getContents();
         $data = $response->getData();
 
         $this->units = $response->units;
@@ -331,7 +349,7 @@ class DirectApiService
 
         if (isset($data->error)) {
             $response->isSuccess = false;
-            if ($data->error->error_code == 506) //concurrent limit
+            if ($data->error->error_code === 506) //concurrent limit
             {
                 usleep(100);
                 $this->logRequest($request, $response);
@@ -340,7 +358,7 @@ class DirectApiService
             if ($this->logger) {
                 $this->logRequest($request, $response);
             }
-            if ($data->error->error_code == 152){
+            if ($data->error->error_code === 152) {
                 throw new DirectApiNotEnoughUnitsException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
                     $data->error->error_code);
             }
