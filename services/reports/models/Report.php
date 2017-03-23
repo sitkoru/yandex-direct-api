@@ -28,5 +28,18 @@ class Report
     /**
      * @var ReportRow[] Данные
      */
-    public $rows;
+    public $rows = [];
+
+    public function __construct($reportName, $dateFrom, $dateTo, $fieldNames)
+    {
+        $this->reportName = $reportName;
+        $this->dateFrom = $dateFrom;
+        $this->dateTo = $dateTo;
+        $this->fieldNames = $fieldNames;
+    }
+
+    public function addRow(ReportRow $row)
+    {
+        $this->rows[] = $row;
+    }
 }
