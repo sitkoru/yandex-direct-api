@@ -24,4 +24,9 @@ class ReportSelectionCriteria
      * @var ReportFilterItem[] Критерии отбора строк
      */
     public $filters = [];
+
+    public function addFilter(ReportFilterItem $filter)
+    {
+        $this->filters[] = $filter;
+    }
 }
