@@ -19,7 +19,7 @@ class ReportDefinition
     /**
      * @var ReportFieldsEnum[] Имена полей (столбцов), которые будут присутствовать в отчете.
      */
-    public $fieldNames;
+    public $fieldNames = [];
 
     /**
      * @var ReportPage Ограничение на количество строк в отчете. Если не задано, используется ограничение 1 000 000.
@@ -29,7 +29,7 @@ class ReportDefinition
     /**
      * @var ReportOrderBy[]
      */
-    public $order;
+    public $order = [];
 
     /**
      * @var string Название отчета. Выводится в первой строке отчета.
@@ -68,14 +68,14 @@ class ReportDefinition
 
     /**
      * ReportDefinition constructor.
-     * @param ReportSelectionCriteria $selectionCriteria
-     * @param array                   $fieldNames
-     * @param string                  $reportName
-     * @param ReportTypesEnum         $reportType
-     * @param ReportDateRangeTypeEnum $dateRangeType
-     * @param ReportFormatsEnum       $format
-     * @param YesNoEnum               $includeVAT
-     * @param YesNoEnum               $includeDiscount
+     * @param ReportSelectionCriteria        $selectionCriteria
+     * @param array                          $fieldNames
+     * @param string                         $reportName
+     * @param ReportTypesEnum|string         $reportType
+     * @param ReportDateRangeTypeEnum|string $dateRangeType
+     * @param ReportFormatsEnum|string       $format
+     * @param YesNoEnum|string               $includeVAT
+     * @param YesNoEnum|string               $includeDiscount
      */
     public function __construct(
         ReportSelectionCriteria $selectionCriteria,

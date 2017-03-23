@@ -23,5 +23,5 @@ class ReportSelectionCriteria
     /**
      * @var ReportFilterItem[] Критерии отбора строк
      */
-    public $filters;
+    public $filters = [];
 }
