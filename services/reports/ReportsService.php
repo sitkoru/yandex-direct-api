@@ -95,7 +95,7 @@ class ReportsService extends BaseService
         if ($reportDefinition->selectionCriteria->dateTo) {
             $writer->writeElement('DateTo', $reportDefinition->selectionCriteria->dateTo);
         }
-        foreach ($reportDefinition->selectionCriteria->filters as $filter) {
+        foreach ($reportDefinition->selectionCriteria->getFilters() as $filter) {
             $writer->startElement('Filter');
             $writer->writeElement('Field', $filter->field);
             $writer->writeElement('Operator', $filter->operator);
@@ -109,12 +109,12 @@ class ReportsService extends BaseService
         foreach ($reportDefinition->fieldNames as $fieldName) {
             $writer->writeElement('FieldNames', $fieldName);
         }
-        if ($reportDefinition->page) {
+        if ($reportDefinition->getPage()) {
             $writer->startElement('Page');
-            $writer->writeElement('Limit', $reportDefinition->page->limit);
+            $writer->writeElement('Limit', $reportDefinition->getPage()->limit);
             $writer->endElement();
         }
-        foreach ($reportDefinition->order as $orderBy) {
+        foreach ($reportDefinition->getOrderBy() as $orderBy) {
             $writer->startElement('OrderBy');
             $writer->writeElement('Field', $orderBy->field);
             if ($orderBy->sortOrder) {

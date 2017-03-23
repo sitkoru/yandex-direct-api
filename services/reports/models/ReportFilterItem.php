@@ -29,9 +29,9 @@ class ReportFilterItem
 
     /**
      * ReportFilterItem constructor.
-     * @param ReportFilterFieldsEnum    $field
-     * @param ReportFilterOperatorsEnum $operator
-     * @param string[]                  $values
+     * @param ReportFilterFieldsEnum|string    $field
+     * @param ReportFilterOperatorsEnum|string $operator
+     * @param string[]                         $values
      */
     public function __construct($field, $operator, array $values)
     {

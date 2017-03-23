@@ -24,12 +24,12 @@ class ReportDefinition
     /**
      * @var ReportPage Ограничение на количество строк в отчете. Если не задано, используется ограничение 1 000 000.
      */
-    public $page;
+    private $page;
 
     /**
      * @var ReportOrderBy[]
      */
-    public $order = [];
+    private $order = [];
 
     /**
      * @var string Название отчета. Выводится в первой строке отчета.
@@ -95,5 +95,31 @@ class ReportDefinition
         $this->format = $format;
         $this->includeVAT = $includeVAT;
         $this->includeDiscount = $includeDiscount;
+    }
+
+    public function addOrderBy(ReportOrderBy $orderBy)
+    {
+        $this->order[] = $orderBy;
+    }
+
+    /**
+     * @return ReportOrderBy[]
+     */
+    public function getOrderBy()
+    {
+        return $this->order;
+    }
+
+    public function setPage(ReportPage $page)
+    {
+        $this->page = $page;
+    }
+
+    /**
+     * @return ReportPage
+     */
+    public function getPage()
+    {
+        return $this->page;
     }
 }
