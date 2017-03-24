@@ -156,7 +156,7 @@ class ReportOrderByFieldsEnum extends Enum
     /**
      * Дата, за которую приведена статистика, в формате YYYY-MM-DD.
      */
-    const Date = 'Date';
+    const DATE = 'Date';
 
     /**
      * Тип устройства, на котором было показано объявление: DESKTOP, MOBILE или TABLET.
@@ -266,7 +266,7 @@ class ReportOrderByFieldsEnum extends Enum
     /**
      * Название региона таргетинга.
      */
-    const TargetingLocationName = 'TargetingLocationName';
+    const TARGETING_LOCATION_NAME = 'TargetingLocationName';
 
     /**
      * Дата начала недели (понедельник), в формате YYYY-MM-DD.

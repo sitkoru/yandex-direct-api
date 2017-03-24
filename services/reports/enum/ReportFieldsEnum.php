@@ -291,7 +291,7 @@ class ReportFieldsEnum extends Enum
     /**
      * Название региона таргетинга.
      */
-    const TargetingLocationName = 'TargetingLocationName';
+    const TARGETING_LOCATION_NAME = 'TargetingLocationName';
 
     /**
      * Дата начала недели (понедельник), в формате YYYY-MM-DD.
