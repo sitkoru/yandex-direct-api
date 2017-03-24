@@ -181,7 +181,7 @@ class ReportFieldsEnum extends Enum
     /**
      * Дата, за которую приведена статистика, в формате YYYY-MM-DD.
      */
-    const Date = 'Date';
+    const DATE = 'Date';
 
     /**
      * Тип устройства, на котором было показано объявление: DESKTOP, MOBILE или TABLET.
