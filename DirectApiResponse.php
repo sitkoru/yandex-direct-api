@@ -44,7 +44,6 @@ class DirectApiResponse
     {
         $this->headers = $headers;
         $this->parseUnitsHeader();
-        die();
     }
 
     private function parseUnitsHeader()
