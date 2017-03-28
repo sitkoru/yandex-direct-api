@@ -18,7 +18,6 @@ use directapi\services\sitelinks\SitelinksService;
 use directapi\services\vcards\VCardsService;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Uri;
 use Psr\Http\Message\RequestInterface;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validation;
@@ -278,17 +277,10 @@ class DirectApiService
         }
     }
 
-    private $client;
-
     private function getClient()
     {
-        if (!$this->client) {
-            $this->client = new Client();
-        }
-        return $this->client;
+        return new Client();
     }
-
-    private $request;
 
     /**
      * @param        $url
@@ -297,16 +289,13 @@ class DirectApiService
      */
     public function getRequest($url, $method = 'POST')
     {
-        if (!$this->request) {
-            $this->request = new Request('', '', [
-                'Content-Type'    => 'application/json; charset=utf-8',
-                'Authorization'   => 'Bearer ' . $this->token,
-                'Client-Login'    => $this->clientLogin,
-                'Accept-Language' => 'ru',
-            ]);
-        }
-        $request = clone $this->request;
-        return $request->withMethod($method)->withUri(new Uri($url));
+        $request = new Request($method, $url, [
+            'Content-Type'    => 'application/json; charset=utf-8',
+            'Authorization'   => 'Bearer ' . $this->token,
+            'Client-Login'    => $this->clientLogin,
+            'Accept-Language' => 'ru',
+        ]);
+        return $request;
     }
 
     /**
