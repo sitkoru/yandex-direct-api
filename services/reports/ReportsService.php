@@ -27,10 +27,16 @@ class ReportsService extends BaseService
     {
         $bodyRows = explode(PHP_EOL, $body);
         $firstRow = trim(array_shift($bodyRows), '"');
-        preg_match('/(.*)\s\(([0-9\-]+) - ([0-9\-]+)\)/', $firstRow, $matches);
         $secondRow = array_shift($bodyRows);
+        preg_match('/(.*)\s\(([0-9\-]+) - ([0-9\-]+)\)/', $firstRow, $matches);
+        $reportName = 'n/a';
+        $dateStart = 'n/a';
+        $dateEnd = 'n/a';
+        if ($matches) {
+            list($reportName, $dateStart, $dateEnd) = $matches;
+        }
         $names = explode("\t", trim($secondRow, '"'));
-        $report = new Report($matches[1], $matches[2], $matches[3], $names);
+        $report = new Report($reportName, $dateStart, $dateEnd, $names);
         $mapper = $this->service->getMapper();
         foreach ($bodyRows as $rowLine) {
 
