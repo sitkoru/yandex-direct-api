@@ -49,7 +49,7 @@ class DirectApiResponse
     private function parseUnitsHeader()
     {
         $regex = '/(\d+)\/(\d+)\/(\d+)/';
-        if (preg_match($regex, $this->headers['Units'][0], $matches)) {
+        if (array_key_exists('Units', $this->headers) && preg_match($regex, $this->headers['Units'][0], $matches)) {
             list(, $cost, $last, $limit) = $matches;
             $this->units = $last;
             $this->lastCallCost = $cost;
