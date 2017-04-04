@@ -24,6 +24,9 @@ use Symfony\Component\Validator\Validation;
 
 class DirectApiService
 {
+    const ERROR_CODE_CONCURRENT_LIMIT = 506;
+    const ERROR_CODE_NOT_ENOUGH_UNITS = 152;
+
     private $token;
     private $clientLogin;
     private $apiUrl = 'https://api.direct.yandex.com/json/v5/';
@@ -356,7 +359,7 @@ class DirectApiService
 
         if (isset($data->error)) {
             $response->isSuccess = false;
-            if ($data->error->error_code === 506) //concurrent limit
+            if ((int)$data->error->error_code === self::ERROR_CODE_CONCURRENT_LIMIT) //concurrent limit
             {
                 usleep(100);
                 $this->logRequest($request, $response);
@@ -365,7 +368,7 @@ class DirectApiService
             if ($this->logger) {
                 $this->logRequest($request, $response);
             }
-            if ($data->error->error_code === 152) {
+            if ((int)$data->error->error_code === self::ERROR_CODE_NOT_ENOUGH_UNITS) {
                 throw new DirectApiNotEnoughUnitsException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
                     $data->error->error_code);
             }
