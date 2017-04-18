@@ -3,7 +3,7 @@
 use directapi\common\containers\Base64Binary;
 use directapi\components\Model;
 
-class AdImagesAddItem extends Model
+class AdImageAddItem extends Model
 {
     /**
      * @var base64Binary
