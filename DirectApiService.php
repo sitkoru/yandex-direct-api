@@ -2,12 +2,12 @@
 
 namespace directapi;
 
-use AdImagesService;
 use directapi\components\interfaces\IQueryLogger;
 use directapi\exceptions\DirectApiException;
 use directapi\exceptions\DirectApiNotEnoughUnitsException;
 use directapi\exceptions\RequestValidationException;
 use directapi\services\adgroups\AdGroupsService;
+use directapi\services\adimages\AdImagesService;
 use directapi\services\ads\AdsService;
 use directapi\services\bidmodifiers\BidModifiersService;
 use directapi\services\bids\BidsService;
