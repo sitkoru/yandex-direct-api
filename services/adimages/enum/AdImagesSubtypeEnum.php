@@ -1,5 +1,7 @@
 <?php
 
+namespace directapi\services\adimages\enum;
+
 use directapi\components\Enum;
 
 class AdImagesSubtypeEnum extends Enum

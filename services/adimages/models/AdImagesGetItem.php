@@ -1,4 +1,7 @@
 <?php
+
+namespace directapi\services\adimages\models;
+
 use directapi\common\enum\YesNoEnum;
 use directapi\components\Model;
 

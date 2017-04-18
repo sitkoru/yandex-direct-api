@@ -1,8 +1,10 @@
 <?php
 
-use directapi\common\criterias\IdsCriteria;
+namespace directapi\services\adimages\criterias;
 
-class AdImagesIdsCriteria extends IdsCriteria
+use directapi\components\interfaces\ICriteria;
+
+class AdImagesIdsCriteria implements ICriteria
 {
     /**
      * @var string[]

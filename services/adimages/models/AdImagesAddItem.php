@@ -1,5 +1,7 @@
 <?php
 
+namespace directapi\services\adimages\models;
+
 use directapi\common\containers\Base64Binary;
 use directapi\components\Model;
 

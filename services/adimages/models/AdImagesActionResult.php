@@ -1,5 +1,7 @@
 <?php
 
+namespace directapi\services\adimages\models;
+
 use directapi\common\results\ExceptionNotification;
 use directapi\components\Model;
 

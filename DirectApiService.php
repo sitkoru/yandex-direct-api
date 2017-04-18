@@ -2,6 +2,7 @@
 
 namespace directapi;
 
+use AdImagesService;
 use directapi\components\interfaces\IQueryLogger;
 use directapi\exceptions\DirectApiException;
 use directapi\exceptions\DirectApiNotEnoughUnitsException;
@@ -39,6 +40,11 @@ class DirectApiService
      * @var AdGroupsService
      */
     private $adGroupsService;
+
+    /**
+     * @var AdImagesService
+     */
+    private $adImagesService;
 
     /**
      * @var AdsService
@@ -106,6 +112,17 @@ class DirectApiService
             $this->adGroupsService = new AdGroupsService($this);
         }
         return $this->adGroupsService;
+    }
+
+    /**
+     * @return AdImagesService
+     */
+    public function getAdItemsService()
+    {
+        if (!$this->adImagesService) {
+            $this->adImagesService = new AdImagesService($this);
+        }
+        return $this->adImagesService;
     }
 
     /**
