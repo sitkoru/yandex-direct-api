@@ -7,7 +7,7 @@ use directapi\services\BaseService;
 class AdImageService extends BaseService
 {
     /**
-     * @param AdImageAddItem[] $AdImages
+     * @param AdImagesAddItem[] $AdImages
      * @throws \Exception
      *
      * @return ActionResult[]
@@ -20,20 +20,20 @@ class AdImageService extends BaseService
         return parent::doAdd($params);
     }
 
-    public function delete(AdImageIdsCriteria $SelectionCriteria)
+    public function delete(AdImagesIdsCriteria $SelectionCriteria)
     {
         return parent::delete($SelectionCriteria);
     }
 
     /**
-     * @param AdImageSelectionCriteria $SelectionCriteria
-     * @param AdImageFieldEnum[]       $FieldNames
-     * @param LimitOffset              $Page
+     * @param AdImagesSelectionCriteria $SelectionCriteria
+     * @param AdImagesFieldEnum[]       $FieldNames
+     * @param LimitOffset               $Page
      *
-     * @return AdImageGetItem[]
+     * @return AdImagesGetItem[]
      */
 
-    public function get(AdImageSelectionCriteria $SelectionCriteria, array $FieldNames, LimitOffset $Page = null)
+    public function get(AdImagesSelectionCriteria $SelectionCriteria, array $FieldNames, LimitOffset $Page = null)
     {
         $params = [
             'SelectionCriteria' => $SelectionCriteria,
@@ -43,7 +43,7 @@ class AdImageService extends BaseService
             $params['Page'] = $Page;
         }
 
-        return parent::doGet($params, 'IdImage', AdImageGetItem::class);
+        return parent::doGet($params, 'IdImage', AdImagesGetItem::class);
     }
 
     protected function getName()

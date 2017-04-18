@@ -2,7 +2,7 @@
 use directapi\common\enum\YesNoEnum;
 use directapi\components\Model;
 
-class AdImageGetItem extends Model
+class AdImagesGetItem extends Model
 {
     /**
      * @var string
@@ -23,12 +23,12 @@ class AdImageGetItem extends Model
     public $Associated;
 
     /**
-     * @var AdImageTypeEnum
+     * @var AdImagesTypeEnum
      */
     public $Type;
 
     /**
-     * @var AdImageSubtypeEnum
+     * @var AdImagesSubtypeEnum
      */
     public $Subtype;
 

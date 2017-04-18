@@ -2,7 +2,7 @@
 
 use directapi\components\Enum;
 
-class AdImageFieldEnum extends Enum
+class AdImagesFieldEnum extends Enum
 {
     const AD_IMAGE_HASH = 'AdImageHash';
     const ORIGINAL_URL = 'OriginalUrl';

@@ -2,7 +2,7 @@
 
 use directapi\common\criterias\IdsCriteria;
 
-class AdImageIdsCriteria extends IdsCriteria
+class AdImagesIdsCriteria extends IdsCriteria
 {
     /**
      * @var string[]

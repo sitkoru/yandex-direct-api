@@ -2,7 +2,7 @@
 
 use directapi\common\enum\YesNoEnum;
 
-class AdImageSelectionCriteria
+class AdImagesSelectionCriteria
 {
     /**
      * @var string[]

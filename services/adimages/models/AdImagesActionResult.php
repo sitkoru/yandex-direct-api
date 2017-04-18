@@ -3,7 +3,7 @@
 use directapi\common\results\ExceptionNotification;
 use directapi\components\Model;
 
-class AdImageActionResult extends Model
+class AdImagesActionResult extends Model
 {
     /**
      * @var string
