@@ -4,6 +4,8 @@ namespace directapi\services\adimages\models;
 
 use directapi\common\enum\YesNoEnum;
 use directapi\components\Model;
+use directapi\services\adimages\enum\AdImagesSubtypeEnum;
+use directapi\services\adimages\enum\AdImagesTypeEnum;
 
 class AdImagesGetItem extends Model
 {
