@@ -55,7 +55,7 @@ class AdImagesService extends BaseService
 
     protected function getName()
     {
-        return 'adimage';
+        return 'adimages';
     }
 
     public function toUpdateEntities(array $entities)

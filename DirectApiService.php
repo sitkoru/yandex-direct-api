@@ -117,7 +117,7 @@ class DirectApiService
     /**
      * @return AdImagesService
      */
-    public function getAdItemsService()
+    public function getAdImagesService()
     {
         if (!$this->adImagesService) {
             $this->adImagesService = new AdImagesService($this);

@@ -10,10 +10,14 @@ class Base64Binary
      */
     public $base64Image;
 
-    public function __construct($img)
+    /**
+     * Base64Binary constructor.
+     * @param string $imgPath
+     */
+    public function __construct($imgPath )
     {
-        $imageSize = getimagesize($img);
-        $imageData = base64_encode(file_get_contents($img));
+        $imageSize = getimagesize($imgPath);
+        $imageData = base64_encode(file_get_contents($imgPath));
         $imageSrc = "data:{$imageSize['mime']};base64,{$imageData}";
         $this->base64Image = $imageSrc;
     }

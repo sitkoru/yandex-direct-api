@@ -8,7 +8,7 @@ use directapi\components\Model;
 class AdImagesAddItem extends Model
 {
     /**
-     * @var base64Binary
+     * @var Base64Binary
      * @Assert\NotBlank()
      */
     public $ImageData;
