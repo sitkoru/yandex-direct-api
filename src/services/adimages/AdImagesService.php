@@ -31,11 +31,16 @@ class AdImagesService extends BaseService
 
     /**
      * @param AdImageIdsCriteria | ICriteria $SelectionCriteria
-     * @return ActionResult[]
+     * @return AdImageActionResult[]
      */
     public function delete(AdImageIdsCriteria $SelectionCriteria)
     {
-        return parent::delete($SelectionCriteria);
+        $params = [
+            'SelectionCriteria' => $SelectionCriteria
+        ];
+
+        $response = $this->call('delete', $params);
+        return $this->mapArray($response->DeleteResults, AdImageActionResult::class);
     }
 
     /**

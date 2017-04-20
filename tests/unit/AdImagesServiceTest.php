@@ -47,20 +47,23 @@ class AdImagesServiceTest extends TestCase
         }
     }
 
-    public function  testDelete(){
+    public function testDelete()
+    {
         $deleteImage = new AdImageIdsCriteria();
         $deleteImage->AdImageHashes = ['Xd_nIX2Pi4z8hUW7vkEptA'];
         $deleteResult = $this->adImagesService->delete($deleteImage);
 
-        var_dump($deleteResult->AdImageHash);
         $this->assertNotEmpty($deleteResult);
 
         foreach ($deleteResult as $actionResult) {
-
+            $this->assertEmpty($actionResult->Errors, 'Action result has errors: ' . json_encode($actionResult->Errors));
+            $this->assertEmpty($actionResult->Warnings, 'Action result has warnings: ' . json_encode($actionResult->Warnings));
+            $this->assertNotEmpty($actionResult->AdImageHash);
         }
     }
 
-    public function testAddIm($name,$path){
+    public function testAddIm($name, $path)
+    {
         $adImage = new AdImageAddItem();
         $adImage->Name = $name;
         $adImage->ImageData = new Base64Binary(__DIR__ . $path);
@@ -71,7 +74,6 @@ class AdImagesServiceTest extends TestCase
         foreach ($result as $actionResult) {
             $this->assertEmpty($actionResult->Errors, 'Action result has errors: ' . json_encode($actionResult->Errors));
             $this->assertEmpty($actionResult->Warnings, 'Action result has warnings: ' . json_encode($actionResult->Warnings));
-
             $this->assertNotEmpty($actionResult->AdImageHash);
         }
 
@@ -80,7 +82,7 @@ class AdImagesServiceTest extends TestCase
 
     public function testAdd()
     {
-        $this->testAddIm('Test','/../data/test.jpg');
+        $this->testAddIm('Test', '/../data/test.jpg');
     }
 
     public function testAddImageToAdd()
@@ -96,7 +98,7 @@ class AdImagesServiceTest extends TestCase
         /*$this->assertEmpty($ad->TextAd->AdImageHash, $ad->TextAd->AdImageHash);*/
 
         $imageCriteria = new AdImageSelectionCriteria();
-        $imageCriteria->AdImageHashes = [$this->testAddIm('Test','/../data/test.jpg')];
+        $imageCriteria->AdImageHashes = [$this->testAddIm('Test', '/../data/test.jpg')];
         $images = $this->adImagesService->get($imageCriteria, AdImageFieldEnum::getValues());
 
         $this->assertNotEmpty($images);
@@ -105,7 +107,7 @@ class AdImagesServiceTest extends TestCase
          */
         $image = reset($images);
 
-       /* $this->assertEquals(YesNoEnum::NO, $image->Associated);*/
+        /* $this->assertEquals(YesNoEnum::NO, $image->Associated);*/
 
         $ad->TextAd->AdImageHash = $image->AdImageHash;
         $adToUpdate = $this->adsService->toUpdateEntities([$ad]);
