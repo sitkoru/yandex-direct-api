@@ -2,7 +2,9 @@
 
 namespace directapi\common\containers;
 
-class Base64Binary
+use Symfony\Component\Validator\Constraints as Assert;
+
+class Base64Binary implements \JsonSerializable
 {
     /**
      * @var string[]
@@ -16,10 +18,22 @@ class Base64Binary
      */
     public function __construct($imgPath)
     {
-        $imageSize = getimagesize($imgPath);
+        if (!is_file($imgPath)) {
+            throw new \ErrorException("File doesn't exists: {$imgPath}");
+        }
         $imageData = base64_encode(file_get_contents($imgPath));
-        $imageSrc = "data:{$imageSize['mime']};base64,{$imageData}";
-        $this->base64Image = $imageSrc;
+        $this->base64Image = $imageData;
     }
 
+    /**
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    function jsonSerialize()
+    {
+        return $this->base64Image;
+    }
 }

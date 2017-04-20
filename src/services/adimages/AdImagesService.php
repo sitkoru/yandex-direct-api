@@ -5,57 +5,59 @@ namespace directapi\services\adimages;
 use directapi\common\criterias\LimitOffset;
 use directapi\common\results\ActionResult;
 use directapi\components\interfaces\ICriteria;
-use directapi\services\adimages\criterias\AdImagesIdsCriteria;
-use directapi\services\adimages\criterias\AdImagesSelectionCriteria;
-use directapi\services\adimages\enum\AdImagesFieldEnum;
-use directapi\services\adimages\models\AdImagesAddItem;
-use directapi\services\adimages\models\AdImagesGetItem;
+use directapi\services\adimages\criterias\AdImageIdsCriteria;
+use directapi\services\adimages\criterias\AdImageSelectionCriteria;
+use directapi\services\adimages\enum\AdImageFieldEnum;
+use directapi\services\adimages\models\AdImageActionResult;
+use directapi\services\adimages\models\AdImageAddItem;
+use directapi\services\adimages\models\AdImageGetItem;
 use directapi\services\BaseService;
 
 class AdImagesService extends BaseService
 {
     /**
-     * @param AdImagesAddItem[] $AdImages
+     * @param AdImageAddItem[] $AdImages
      * @throws \Exception
      *
-     * @return ActionResult[]
+     * @return AdImageActionResult[]
      */
     public function add(array $AdImages)
     {
         $params = [
-            'AdGroups' => $AdImages
+            'AdImages' => $AdImages
         ];
-        return parent::doAdd($params);
+        return parent::doAdd($params, AdImageActionResult::class);
     }
 
     /**
-     * @param AdImagesIdsCriteria | ICriteria $SelectionCriteria
+     * @param AdImageIdsCriteria | ICriteria $SelectionCriteria
      * @return ActionResult[]
      */
-    public function delete(AdImagesIdsCriteria $SelectionCriteria)
+    public function delete(AdImageIdsCriteria $SelectionCriteria)
     {
         return parent::delete($SelectionCriteria);
     }
 
     /**
-     * @param AdImagesSelectionCriteria $SelectionCriteria
-     * @param AdImagesFieldEnum[]       $FieldNames
-     * @param LimitOffset               $Page
+     * @param AdImageSelectionCriteria $SelectionCriteria
+     * @param AdImageFieldEnum[]       $FieldNames
+     * @param LimitOffset              $Page
      *
-     * @return AdImagesGetItem[]
+     * @return AdImageGetItem[]
      */
-
-    public function get(AdImagesSelectionCriteria $SelectionCriteria, array $FieldNames, LimitOffset $Page = null)
+    public function get(AdImageSelectionCriteria $SelectionCriteria = null, array $FieldNames, LimitOffset $Page = null)
     {
         $params = [
-            'SelectionCriteria' => $SelectionCriteria,
-            'FieldNames'        => $FieldNames
+            'FieldNames' => $FieldNames
         ];
+        if ($SelectionCriteria) {
+            $params['SelectionCriteria'] = $SelectionCriteria;
+        }
         if ($Page) {
             $params['Page'] = $Page;
         }
 
-        return parent::doGet($params, 'IdImage', AdImagesGetItem::class);
+        return parent::doGet($params, 'AdImages', AdImageGetItem::class);
     }
 
     protected function getName()

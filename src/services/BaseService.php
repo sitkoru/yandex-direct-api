@@ -170,13 +170,14 @@ abstract class BaseService
     }
 
     /**
-     * @param array $params
+     * @param array  $params
+     * @param string $resultClass
      * @return ActionResult[]
      */
-    protected function doAdd($params)
+    protected function doAdd($params, $resultClass = ActionResult::class)
     {
         $response = $this->call('add', $params);
-        return $this->mapArray($response->AddResults, ActionResult::class);
+        return $this->mapArray($response->AddResults, $resultClass);
     }
 
     /**

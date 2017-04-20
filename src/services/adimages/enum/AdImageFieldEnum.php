@@ -4,7 +4,7 @@ namespace directapi\services\adimages\enum;
 
 use directapi\components\Enum;
 
-class AdImagesFieldEnum extends Enum
+class AdImageFieldEnum extends Enum
 {
     const AD_IMAGE_HASH = 'AdImageHash';
     const ORIGINAL_URL = 'OriginalUrl';

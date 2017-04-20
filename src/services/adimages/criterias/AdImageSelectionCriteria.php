@@ -4,7 +4,7 @@ namespace directapi\services\adimages\criterias;
 
 use directapi\common\enum\YesNoEnum;
 
-class AdImagesSelectionCriteria
+class AdImageSelectionCriteria
 {
     /**
      * @var string[]

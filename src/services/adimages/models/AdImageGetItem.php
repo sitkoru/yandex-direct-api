@@ -2,12 +2,9 @@
 
 namespace directapi\services\adimages\models;
 
-use directapi\common\enum\YesNoEnum;
 use directapi\components\Model;
-use directapi\services\adimages\enum\AdImagesSubtypeEnum;
-use directapi\services\adimages\enum\AdImagesTypeEnum;
 
-class AdImagesGetItem extends Model
+class AdImageGetItem extends Model
 {
     /**
      * @var string
@@ -23,17 +20,17 @@ class AdImagesGetItem extends Model
     public $Name;
 
     /**
-     * @var YesNoEnum
+     * @var \directapi\common\enum\YesNoEnum
      */
     public $Associated;
 
     /**
-     * @var AdImagesTypeEnum
+     * @var \directapi\services\adimages\enum\AdImageTypeEnum
      */
     public $Type;
 
     /**
-     * @var AdImagesSubtypeEnum
+     * @var \directapi\services\adimages\enum\AdImageSubtypeEnum
      */
     public $Subtype;
 

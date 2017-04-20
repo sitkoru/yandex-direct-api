@@ -2,14 +2,14 @@
 
 namespace directapi\services\adimages\models;
 
-use directapi\common\containers\Base64Binary;
 use directapi\components\Model;
+use Symfony\Component\Validator\Constraints as Assert;
 
-class AdImagesAddItem extends Model
+class AdImageAddItem extends Model
 {
     /**
-     * @var Base64Binary
-     * @Assert\NotBlank()
+     * @var \directapi\common\containers\Base64Binary
+     * @Assert\NotNull()
      */
     public $ImageData;
 

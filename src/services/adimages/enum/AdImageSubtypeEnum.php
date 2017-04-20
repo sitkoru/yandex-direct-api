@@ -4,7 +4,7 @@ namespace directapi\services\adimages\enum;
 
 use directapi\components\Enum;
 
-class AdImagesSubtypeEnum extends Enum
+class AdImageSubtypeEnum extends Enum
 {
     const IMG_240_400 = 'IMG_240_400';
     const IMG_300_250 = 'IMG_300_250';

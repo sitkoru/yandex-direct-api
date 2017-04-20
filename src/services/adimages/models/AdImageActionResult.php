@@ -2,10 +2,9 @@
 
 namespace directapi\services\adimages\models;
 
-use directapi\common\results\ExceptionNotification;
 use directapi\components\Model;
 
-class AdImagesActionResult extends Model
+class AdImageActionResult extends Model
 {
     /**
      * @var string
@@ -13,12 +12,12 @@ class AdImagesActionResult extends Model
     public $AdImageHash;
 
     /**
-     * @var ExceptionNotification[]
+     * @var \directapi\common\results\ExceptionNotification[]
      */
     public $Warnings;
 
     /**
-     * @var ExceptionNotification[]
+     * @var \directapi\common\results\ExceptionNotification[]
      */
     public $Errors;
 }
