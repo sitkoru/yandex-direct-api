@@ -6,6 +6,7 @@ namespace directapi\tests\unit;
 use directapi\common\containers\Base64Binary;
 use directapi\common\enum\YesNoEnum;
 use directapi\DirectApiService;
+use directapi\services\adimages\AdImagesService;
 use directapi\services\adimages\criterias\AdImageIdsCriteria;
 use directapi\services\adimages\criterias\AdImageSelectionCriteria;
 use directapi\services\adimages\enum\AdImageFieldEnum;
@@ -50,8 +51,13 @@ class AdImagesServiceTest extends TestCase
         $deleteImage = new AdImageIdsCriteria();
         $deleteImage->AdImageHashes = ['Xd_nIX2Pi4z8hUW7vkEptA'];
         $deleteResult = $this->adImagesService->delete($deleteImage);
+
+        var_dump($deleteResult->AdImageHash);
         $this->assertNotEmpty($deleteResult);
 
+        foreach ($deleteResult as $actionResult) {
+
+        }
     }
 
     public function testAddIm($name,$path){
@@ -90,7 +96,6 @@ class AdImagesServiceTest extends TestCase
         /*$this->assertEmpty($ad->TextAd->AdImageHash, $ad->TextAd->AdImageHash);*/
 
         $imageCriteria = new AdImageSelectionCriteria();
-        /*$imageCriteria->AdImageHashes = [YDAdImageHash];*/
         $imageCriteria->AdImageHashes = [$this->testAddIm('Test','/../data/test.jpg')];
         $images = $this->adImagesService->get($imageCriteria, AdImageFieldEnum::getValues());
 

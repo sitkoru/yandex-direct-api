@@ -6,6 +6,7 @@ use directapi\common\criterias\IdsCriteria;
 use directapi\common\results\ActionResult;
 use directapi\components\interfaces\ICriteria;
 use directapi\DirectApiService;
+use directapi\services\adimages\criterias\AdImageIdsCriteria;
 
 abstract class BaseService
 {
@@ -213,7 +214,7 @@ abstract class BaseService
     }
 
     /**
-     * @param ICriteria $SelectionCriteria
+     * @param AdImageIdsCriteria | ICriteria $SelectionCriteria
      *
      * @return ActionResult[]
      */
