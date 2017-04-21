@@ -25,7 +25,6 @@ class AdGroupsServiceTest extends TestCase
 
     public function testAdd()
     {
-
         $adGroup = new AdGroupAddItem();
         $adGroup->Name = 'Test';
         $adGroup->CampaignId = CAMPAIGH_ID;
