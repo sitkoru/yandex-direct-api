@@ -2,10 +2,10 @@
 
 namespace directapi\common\criterias;
 
-use directapi\components\Model;
+use directapi\components\interfaces\ICriteria;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class IdsCriteria extends Model
+class IdsCriteria implements ICriteria
 {
     /**
      * @var int[]

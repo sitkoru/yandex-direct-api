@@ -7,6 +7,7 @@ use directapi\exceptions\DirectApiException;
 use directapi\exceptions\DirectApiNotEnoughUnitsException;
 use directapi\exceptions\RequestValidationException;
 use directapi\services\adgroups\AdGroupsService;
+use directapi\services\adimages\AdImagesService;
 use directapi\services\ads\AdsService;
 use directapi\services\bidmodifiers\BidModifiersService;
 use directapi\services\bids\BidsService;
@@ -39,6 +40,11 @@ class DirectApiService
      * @var AdGroupsService
      */
     private $adGroupsService;
+
+    /**
+     * @var AdImagesService
+     */
+    private $adImagesService;
 
     /**
      * @var AdsService
@@ -106,6 +112,17 @@ class DirectApiService
             $this->adGroupsService = new AdGroupsService($this);
         }
         return $this->adGroupsService;
+    }
+
+    /**
+     * @return AdImagesService
+     */
+    public function getAdImagesService()
+    {
+        if (!$this->adImagesService) {
+            $this->adImagesService = new AdImagesService($this);
+        }
+        return $this->adImagesService;
     }
 
     /**
