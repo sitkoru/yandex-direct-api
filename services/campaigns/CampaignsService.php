@@ -44,7 +44,7 @@ class CampaignsService extends BaseService
      */
     public function delete(IdsCriteria $SelectionCriteria)
     {
-        return parent::archive($SelectionCriteria);
+        return parent::delete($SelectionCriteria);
     }
 
     /**
