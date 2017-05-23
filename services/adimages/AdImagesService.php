@@ -5,6 +5,7 @@ namespace directapi\services\adimages;
 use directapi\common\criterias\LimitOffset;
 use directapi\common\results\ActionResult;
 use directapi\components\interfaces\ICriteria;
+use directapi\services\adimages\criterias\AdImagesIdsCriteria;
 use directapi\services\BaseService;
 
 class AdImagesService extends BaseService
@@ -27,7 +28,7 @@ class AdImagesService extends BaseService
      * @param AdImagesIdsCriteria | ICriteria $SelectionCriteria
      * @return ActionResult[]
      */
-    public function delete(AdImagesIdsCriteria $SelectionCriteria)
+    public function delete($SelectionCriteria)
     {
         return parent::delete($SelectionCriteria);
     }
