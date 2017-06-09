@@ -13,6 +13,7 @@ use directapi\services\bidmodifiers\BidModifiersService;
 use directapi\services\bids\BidsService;
 use directapi\services\campaigns\CampaignsService;
 use directapi\services\changes\ChangesService;
+use directapi\services\clients\ClientsService;
 use directapi\services\keywords\KeywordsService;
 use directapi\services\reports\ReportsService;
 use directapi\services\sitelinks\SitelinksService;
@@ -85,6 +86,11 @@ class DirectApiService
      * @var VCardsService
      */
     private $vcardsService;
+
+    /**
+     * @var ClientsService
+     */
+    private $clientsService;
 
     /**
      * @var ReportsService
@@ -212,6 +218,17 @@ class DirectApiService
             $this->vcardsService = new VCardsService($this);
         }
         return $this->vcardsService;
+    }
+
+    /**
+     * @return ClientsService
+     */
+    public function getClientsService()
+    {
+        if (!$this->clientsService) {
+            $this->clientsService = new ClientsService($this);
+        }
+        return $this->clientsService;
     }
 
 
