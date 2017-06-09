@@ -4,7 +4,6 @@ namespace directapi\services\clients\models;
 
 
 use directapi\components\Model;
-use directapi\services\clients\enum\RoleEnum;
 
 class Representative extends Model
 {
@@ -19,7 +18,7 @@ class Representative extends Model
     public $Email;
 
     /**
-     * @var RoleEnum
+     * @var \directapi\services\clients\enum\RoleEnum
      */
     public $Role;
 }

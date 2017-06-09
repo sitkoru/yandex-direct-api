@@ -3,17 +3,15 @@
 namespace directapi\services\clients\models;
 
 
-use directapi\common\enum\YesNoEnum;
-
 class ClientSettingItemGet
 {
     /**
-     * @var OptionEnum
+     * @var \directapi\services\clients\enum\OptionEnum
      */
     public $Option;
 
     /**
-     * @var YesNoEnum
+     * @var \directapi\common\enum\YesNoEnum
      */
     public $Value;
 }

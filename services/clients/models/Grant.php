@@ -3,18 +3,17 @@
 namespace directapi\services\clients\models;
 
 
-use directapi\common\enum\YesNoEnum;
 use directapi\components\Model;
 
 class Grant extends Model
 {
     /**
-     * @var PrivilegeEnum
+     * @var \directapi\services\clients\enum\PrivilegeEnum
      */
     public $Privilege;
 
     /**
-     * @var YesNoEnum
+     * @var \directapi\components\Model
      */
     public $Value;
 

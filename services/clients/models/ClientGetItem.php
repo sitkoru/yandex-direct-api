@@ -3,10 +3,7 @@
 namespace directapi\services\clients\models;
 
 
-use directapi\common\enum\CurrencyEnum;
-use directapi\common\enum\YesNoEnum;
 use directapi\components\Model;
-use directapi\services\campaigns\models\Notification;
 
 class ClientGetItem extends Model
 {
@@ -16,7 +13,7 @@ class ClientGetItem extends Model
     public $AccountQuality;
 
     /**
-     * @var YesNoEnum
+     * @var \directapi\common\enum\YesNoEnum
      */
     public $Archived;
 
@@ -36,7 +33,7 @@ class ClientGetItem extends Model
     public $CountryId;
 
     /**
-     * @var CurrencyEnum
+     * @var \directapi\common\enum\CurrencyEnum
      */
     public $Currency;
 
@@ -56,7 +53,7 @@ class ClientGetItem extends Model
     public $Login;
 
     /**
-     * @var Notification
+     * @var \directapi\services\campaigns\models\Notification
      */
     public $Notification;
 
