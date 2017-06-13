@@ -9,6 +9,7 @@ use directapi\exceptions\RequestValidationException;
 use directapi\services\adgroups\AdGroupsService;
 use directapi\services\adimages\AdImagesService;
 use directapi\services\ads\AdsService;
+use directapi\services\agencyclients\AgencyClientsService;
 use directapi\services\bidmodifiers\BidModifiersService;
 use directapi\services\bids\BidsService;
 use directapi\services\campaigns\CampaignsService;
@@ -91,6 +92,11 @@ class DirectApiService
      * @var ClientsService
      */
     private $clientsService;
+
+    /**
+     * @var AgencyClientsService
+     */
+    private $agencyClientsService;
 
     /**
      * @var ReportsService
@@ -229,6 +235,17 @@ class DirectApiService
             $this->clientsService = new ClientsService($this);
         }
         return $this->clientsService;
+    }
+
+    /**
+     * @return AgencyClientsService
+     */
+    public function getAgencyClientsService()
+    {
+        if (!$this->agencyClientsService) {
+            $this->agencyClientsService = new AgencyClientsService($this);
+        }
+        return $this->agencyClientsService;
     }
 
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace directapi\services\clients\enum;
+namespace directapi\common\enum\clients;
 
 
 use directapi\components\Enum;

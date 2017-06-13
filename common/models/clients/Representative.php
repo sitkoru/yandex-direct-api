@@ -1,6 +1,6 @@
 <?php
 
-namespace directapi\services\clients\models;
+namespace directapi\common\models\clients;
 
 
 use directapi\components\Model;
@@ -18,7 +18,7 @@ class Representative extends Model
     public $Email;
 
     /**
-     * @var \directapi\services\clients\enum\RoleEnum
+     * @var \directapi\common\enum\clients\RoleEnum
      */
     public $Role;
 }

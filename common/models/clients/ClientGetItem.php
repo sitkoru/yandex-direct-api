@@ -1,6 +1,6 @@
 <?php
 
-namespace directapi\services\clients\models;
+namespace directapi\common\models\clients;
 
 
 use directapi\components\Model;

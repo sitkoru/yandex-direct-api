@@ -1,6 +1,6 @@
 <?php
 
-namespace directapi\services\clients\models;
+namespace directapi\common\models\clients;
 
 
 use directapi\components\Model;
@@ -8,7 +8,7 @@ use directapi\components\Model;
 class ClientRestrictionItem extends Model
 {
     /**
-     * @var \directapi\services\clients\enum\ElementEnum
+     * @var \directapi\common\enum\clients\ElementEnum
      */
     public $Element;
 

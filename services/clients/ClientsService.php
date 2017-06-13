@@ -3,9 +3,9 @@
 namespace directapi\services\clients;
 
 
+use directapi\common\enum\clients\ClientFieldEnum;
+use directapi\common\models\clients\ClientGetItem;
 use directapi\services\BaseService;
-use directapi\services\clients\enum\ClientFieldEnum;
-use directapi\services\clients\models\ClientGetItem;
 
 class ClientsService extends BaseService
 {
