@@ -396,7 +396,7 @@ class DirectApiService
     public function getResponse(DirectApiRequest $request)
     {
         $this->lastCallCost = null;
-        $httpRequest = $this->getRequest($this->apiUrl . $request->service, $request->sendClientLogin);
+        $httpRequest = $this->getRequest($this->apiUrl . $request->service, 'POST', $request->sendClientLogin);
 
         $payload = json_encode($request->getPayload(), JSON_UNESCAPED_UNICODE);
         $payload = preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', $payload);
