@@ -264,18 +264,16 @@ class DirectApiService
      * @param string $serviceName
      * @param string $method
      * @param array  $params
+     * @param bool   $sendClientLogin
      * @return mixed
-     * @throws \RuntimeException
-     * @throws \InvalidArgumentException
-     * @throws \directapi\exceptions\RequestValidationException
-     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
-     * @throws DirectApiException
+     * @throws RequestValidationException
      */
-    public function call($serviceName, $method, array $params = [])
+    public function call($serviceName, $method, array $params = [], $sendClientLogin = true)
     {
         $request = new DirectApiRequest();
         $request->service = $serviceName;
         $request->method = $method;
+        $request->sendClientLogin = $sendClientLogin;
 
         if ($params) {
             $errors = [];
@@ -339,17 +337,25 @@ class DirectApiService
     /**
      * @param        $url
      * @param string $method
+     * @param bool   $sendClientLogin
      * @return RequestInterface
      */
-    public function getRequest($url, $method = 'POST')
+    public function getRequest($url, $method = 'POST', $sendClientLogin = true)
     {
-        $request = new Request($method, $url, [
+        return new Request($method, $url, $this->getRequestHeaders($sendClientLogin));
+    }
+
+    private function getRequestHeaders($sendClientLogin)
+    {
+        $headers = [
             'Content-Type'    => 'application/json; charset=utf-8',
             'Authorization'   => 'Bearer ' . $this->token,
-            'Client-Login'    => $this->clientLogin,
             'Accept-Language' => 'ru',
-        ]);
-        return $request;
+        ];
+        if ($this->clientLogin && $sendClientLogin) {
+            $headers['Client-Login'] = $this->clientLogin;
+        }
+        return $headers;
     }
 
     /**
@@ -390,7 +396,7 @@ class DirectApiService
     public function getResponse(DirectApiRequest $request)
     {
         $this->lastCallCost = null;
-        $httpRequest = $this->getRequest($this->apiUrl . $request->service);
+        $httpRequest = $this->getRequest($this->apiUrl . $request->service, $request->sendClientLogin);
 
         $payload = json_encode($request->getPayload(), JSON_UNESCAPED_UNICODE);
         $payload = preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', $payload);
