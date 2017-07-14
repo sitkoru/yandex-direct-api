@@ -3,6 +3,7 @@
 namespace directapi;
 
 use directapi\components\interfaces\IQueryLogger;
+use directapi\exceptions\DirectAccountNotExistException;
 use directapi\exceptions\DirectApiException;
 use directapi\exceptions\DirectApiNotEnoughUnitsException;
 use directapi\exceptions\RequestValidationException;
@@ -29,6 +30,7 @@ class DirectApiService
 {
     const ERROR_CODE_CONCURRENT_LIMIT = 506;
     const ERROR_CODE_NOT_ENOUGH_UNITS = 152;
+    const ERROR_CODE_NOT_EXIST_DIRECT_ACCOUNT = 513;
 
     private $token;
     private $clientLogin;
@@ -388,6 +390,7 @@ class DirectApiService
     /**
      * @param DirectApiRequest $request
      * @return DirectApiResponse
+     * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \RuntimeException
      * @throws \InvalidArgumentException
      * @throws DirectApiException
@@ -424,6 +427,10 @@ class DirectApiService
             }
             if ($this->logger) {
                 $this->logRequest($request, $response);
+            }
+            if ((int)$data->error->error_code === self::ERROR_CODE_NOT_EXIST_DIRECT_ACCOUNT){
+                throw new DirectAccountNotExistException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
+                    $data->error->error_code);
             }
             if ((int)$data->error->error_code === self::ERROR_CODE_NOT_ENOUGH_UNITS) {
                 throw new DirectApiNotEnoughUnitsException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
