@@ -31,7 +31,7 @@ abstract class Enum implements JsonSerializable
 
     final public function __toString()
     {
-        return $this->current_val;
+        return (string)$this->current_val;
     }
 
     final public static function getValues()
