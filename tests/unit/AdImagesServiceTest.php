@@ -50,7 +50,9 @@ class AdImagesServiceTest extends TestCase
     public function testDelete()
     {
         $deleteImage = new AdImageIdsCriteria();
-        $deleteImage->AdImageHashes = ['Xd_nIX2Pi4z8hUW7vkEptA'];
+        //сначало загрузим картинку для теста. а затем будем удалять
+        $imageHash = $this->testAddIm();
+        $deleteImage->AdImageHashes = [$imageHash];
         $deleteResult = $this->adImagesService->delete($deleteImage);
 
         $this->assertNotEmpty($deleteResult);
@@ -62,7 +64,7 @@ class AdImagesServiceTest extends TestCase
         }
     }
 
-    public function testAddIm($name, $path)
+    public function testAddIm($name = 'test', $path = '/../data/test.jpg')
     {
         $adImage = new AdImageAddItem();
         $adImage->Name = $name;
@@ -78,10 +80,5 @@ class AdImagesServiceTest extends TestCase
         }
 
         return $actionResult->AdImageHash;
-    }
-
-    public function testAdd()
-    {
-        $this->testAddIm('Test', '/../data/test.jpg');
     }
 }

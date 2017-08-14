@@ -205,26 +205,27 @@ abstract class BaseService
 
     /**
      * @param array $params
+     * @param string $resultClass
      * @return ActionResult[]
      */
-    protected function doUpdate($params)
+    protected function doUpdate($params, $resultClass = ActionResult::class)
     {
         $response = $this->call('update', $params);
-        return $this->mapArray($response->UpdateResults, ActionResult::class);
+        return $this->mapArray($response->UpdateResults, $resultClass);
     }
 
     /**
      * @param AdImageIdsCriteria | ICriteria $SelectionCriteria
-     *
+     * @param string $resultClass
      * @return ActionResult[]
      */
-    protected function delete($SelectionCriteria)
+    protected function delete($SelectionCriteria, $resultClass = ActionResult::class)
     {
         $params = [
             'SelectionCriteria' => $SelectionCriteria
         ];
         $response = $this->call('delete', $params);
-        return $this->mapArray($response->DeleteResults, ActionResult::class);
+        return $this->mapArray($response->DeleteResults, $resultClass);
     }
 
     /**
