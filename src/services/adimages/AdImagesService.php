@@ -26,6 +26,11 @@ class AdImagesService extends BaseService
         return parent::doAdd($params);
     }
 
+    public function delete($SelectionCriteria, $resultClass = ActionResult::class)
+    {
+        return parent::delete($SelectionCriteria, $resultClass);
+    }
+
     /**
      * @param AdImageSelectionCriteria $SelectionCriteria
      * @param AdImageFieldEnum[]       $FieldNames
