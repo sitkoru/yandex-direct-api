@@ -315,7 +315,7 @@ class DirectApiService
                 if (!is_array($value) && !is_object($value)) {
                     continue;
                 }
-                $result = $this->getValidator()->validate($value, null, null);
+                $result = $this->getValidator()->validate($value, null, true);
                 if ($result) {
                     foreach ($result as $error) {
                         if (!isset($errors[$key])) {
@@ -403,7 +403,6 @@ class DirectApiService
 
         $payload = json_encode($request->getPayload(), JSON_UNESCAPED_UNICODE);
         $payload = preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', $payload);
-        $payload = preg_replace('/"null"/', 'null', $payload);
 
         $httpResponse = $this->doRequest($httpRequest->withBody(\GuzzleHttp\Psr7\stream_for($payload)));
 

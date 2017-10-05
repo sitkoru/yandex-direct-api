@@ -29,6 +29,7 @@ abstract class TextAd extends Model implements ICallbackValidation
      *     min=1,
      *     max="1024"
      * )
+     * @Assert\Url()
      */
     public $Href;
 

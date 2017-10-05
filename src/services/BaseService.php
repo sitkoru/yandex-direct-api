@@ -6,7 +6,6 @@ use directapi\common\criterias\IdsCriteria;
 use directapi\common\results\ActionResult;
 use directapi\components\interfaces\ICriteria;
 use directapi\DirectApiService;
-use directapi\services\adimages\criterias\AdImageIdsCriteria;
 
 abstract class BaseService
 {
@@ -173,14 +172,13 @@ abstract class BaseService
     }
 
     /**
-     * @param array  $params
-     * @param string $resultClass
+     * @param array $params
      * @return ActionResult[]
      */
-    protected function doAdd($params, $resultClass = ActionResult::class)
+    protected function doAdd($params)
     {
         $response = $this->call('add', $params);
-        return $this->mapArray($response->AddResults, $resultClass);
+        return $this->mapArray($response->AddResults, ActionResult::class);
     }
 
     /**
@@ -207,27 +205,26 @@ abstract class BaseService
 
     /**
      * @param array $params
-     * @param string $resultClass
      * @return ActionResult[]
      */
-    protected function doUpdate($params, $resultClass = ActionResult::class)
+    protected function doUpdate($params)
     {
         $response = $this->call('update', $params);
-        return $this->mapArray($response->UpdateResults, $resultClass);
+        return $this->mapArray($response->UpdateResults, ActionResult::class);
     }
 
     /**
-     * @param AdImageIdsCriteria | ICriteria $SelectionCriteria
-     * @param string $resultClass
+     * @param ICriteria $SelectionCriteria
+     *
      * @return ActionResult[]
      */
-    protected function delete($SelectionCriteria, $resultClass = ActionResult::class)
+    protected function delete($SelectionCriteria)
     {
         $params = [
             'SelectionCriteria' => $SelectionCriteria
         ];
         $response = $this->call('delete', $params);
-        return $this->mapArray($response->DeleteResults, $resultClass);
+        return $this->mapArray($response->DeleteResults, ActionResult::class);
     }
 
     /**
