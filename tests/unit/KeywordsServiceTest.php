@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 
 namespace directapi\tests\unit;
 
@@ -50,14 +50,22 @@ class KeywordsServiceTest extends TestCase
         var_dump($response);
     }
 
-    //Âîçîáíîâëÿåò ïîêàçû ïî ðàíåå îñòàíîâëåííûì êëþ÷åâûì ôðàçàì.
+    //Ð’Ð¾Ð·Ð¾Ð±Ð½Ð¾Ð²Ð»ÑÐµÑ‚ Ð¿Ð¾ÐºÐ°Ð·Ñ‹ Ð¿Ð¾ Ñ€Ð°Ð½ÐµÐµ Ð¾ÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½Ð½Ñ‹Ð¼ ÐºÐ»ÑŽÑ‡ÐµÐ²Ñ‹Ð¼ Ñ„Ñ€Ð°Ð·Ð°Ð¼.
     public function testResume(){
-
+        $SelectionCriteria = new IdsCriteria();
+        $SelectionCriteria->Ids = [YDUpdateKeywordId];
+        $response = $this->KeywordsService->resume($SelectionCriteria);
+        $this->assertNotEmpty($response);
+        var_dump($response);
     }
 
-    //Îñòàíàâëèâàåò ïîêàçû ïî êëþ÷åâûì ôðàçàì.
+    //ÐžÑÑ‚Ð°Ð½Ð°Ð²Ð»Ð¸Ð²Ð°ÐµÑ‚ Ð¿Ð¾ÐºÐ°Ð·Ñ‹ Ð¿Ð¾ ÐºÐ»ÑŽÑ‡ÐµÐ²Ñ‹Ð¼ Ñ„Ñ€Ð°Ð·Ð°Ð¼.
     public function testSuspend(){
-
+        $SelectionCriteria = new IdsCriteria();
+        $SelectionCriteria->Ids = [YDUpdateKeywordId];
+        $response = $this->KeywordsService->suspend($SelectionCriteria);
+        $this->assertNotEmpty($response);
+        var_dump($response);
     }
 
     public function testUpdate(){

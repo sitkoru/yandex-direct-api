@@ -3,8 +3,13 @@
 namespace directapi\tests\unit;
 
 use directapi\DirectApiService;
+use directapi\services\bidmodifiers\BidModifiersService;
+use directapi\services\bidmodifiers\models\BidModifierAddItem;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @property BidModifiersService BidModifiersService
+ */
 class BidModifiersServiceTest extends TestCase
 {
     public function __construct($name = null, array $data = [], $dataName = '')
@@ -15,7 +20,16 @@ class BidModifiersServiceTest extends TestCase
     }
 
     public function add(){
+        $bitModifiers = new BidModifierAddItem();
+        $bitModifiers->CampaignId = GROUPId;
 
+        $result = $this->BidModifiersService->add([$bitModifiers]);
+
+        $this->assertNotEmpty($result);
+
+        foreach ($result as $actionResult) {
+            var_dump($actionResult->Ids);
+        }
     }
 
     public function delete(){
