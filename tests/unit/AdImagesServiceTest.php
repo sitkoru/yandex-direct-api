@@ -78,7 +78,5 @@ class AdImagesServiceTest extends TestCase
             $this->assertEmpty($actionResult->Warnings, 'Action result has warnings: ' . json_encode($actionResult->Warnings));
             $this->assertNotEmpty($actionResult->AdImageHash);
         }
-
-        return $actionResult->AdImageHash;
     }
 }

@@ -6,6 +6,7 @@ use directapi\common\criterias\LimitOffset;
 use directapi\common\results\ActionResult;
 use directapi\services\adimages\criterias\AdImageSelectionCriteria;
 use directapi\services\adimages\enum\AdImageFieldEnum;
+use directapi\services\adimages\models\AdImageActionResult;
 use directapi\services\adimages\models\AdImageAddItem;
 use directapi\services\adimages\models\AdImageGetItem;
 use directapi\services\BaseService;
@@ -16,14 +17,14 @@ class AdImagesService extends BaseService
      * @param AdImageAddItem[] $AdImages
      * @throws \Exception
      *
-     * @return ActionResult[]
+     * @return AdImageActionResult[]
      */
     public function add(array $AdImages)
     {
         $params = [
             'AdGroups' => $AdImages
         ];
-        return parent::doAdd($params);
+        return parent::doAdd($params, AdImageActionResult::class);
     }
 
     public function delete($SelectionCriteria, $resultClass = ActionResult::class)
@@ -33,8 +34,8 @@ class AdImagesService extends BaseService
 
     /**
      * @param AdImageSelectionCriteria $SelectionCriteria
-     * @param AdImageFieldEnum[]       $FieldNames
-     * @param LimitOffset               $Page
+     * @param AdImageFieldEnum[] $FieldNames
+     * @param LimitOffset $Page
      *
      * @return AdImageGetItem[]
      */
