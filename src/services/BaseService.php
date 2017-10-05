@@ -12,6 +12,8 @@ abstract class BaseService
 {
     abstract protected function getName();
 
+    protected $sendClientLogin = true;
+
     private static $unitsCostTable = [
         'adgroups'     => [
             'add'    => [20, 20],
@@ -167,7 +169,7 @@ abstract class BaseService
 
     protected function call($method, $params)
     {
-        return $this->service->call(static::getName(), $method, $params);
+        return $this->service->call(static::getName(), $method, $params, $this->sendClientLogin);
     }
 
     /**

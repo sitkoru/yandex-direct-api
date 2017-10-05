@@ -8,4 +8,5 @@ class AdTypeEnum extends Enum
 {
     const TEXT_AD = 'TEXT_AD';
     const MOBILE_APP_AD = 'MOBILE_APP_AD';
+    const DYNAMIC_TEXT_AD = 'DYNAMIC_TEXT_AD';
 }

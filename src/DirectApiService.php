@@ -3,16 +3,19 @@
 namespace directapi;
 
 use directapi\components\interfaces\IQueryLogger;
+use directapi\exceptions\DirectAccountNotExistException;
 use directapi\exceptions\DirectApiException;
 use directapi\exceptions\DirectApiNotEnoughUnitsException;
 use directapi\exceptions\RequestValidationException;
 use directapi\services\adgroups\AdGroupsService;
 use directapi\services\adimages\AdImagesService;
 use directapi\services\ads\AdsService;
+use directapi\services\agencyclients\AgencyClientsService;
 use directapi\services\bidmodifiers\BidModifiersService;
 use directapi\services\bids\BidsService;
 use directapi\services\campaigns\CampaignsService;
 use directapi\services\changes\ChangesService;
+use directapi\services\clients\ClientsService;
 use directapi\services\keywords\KeywordsService;
 use directapi\services\reports\ReportsService;
 use directapi\services\sitelinks\SitelinksService;
@@ -27,6 +30,7 @@ class DirectApiService
 {
     const ERROR_CODE_CONCURRENT_LIMIT = 506;
     const ERROR_CODE_NOT_ENOUGH_UNITS = 152;
+    const ERROR_CODE_NOT_EXIST_DIRECT_ACCOUNT = 513;
 
     private $token;
     private $clientLogin;
@@ -85,6 +89,16 @@ class DirectApiService
      * @var VCardsService
      */
     private $vcardsService;
+
+    /**
+     * @var ClientsService
+     */
+    private $clientsService;
+
+    /**
+     * @var AgencyClientsService
+     */
+    private $agencyClientsService;
 
     /**
      * @var ReportsService
@@ -214,6 +228,28 @@ class DirectApiService
         return $this->vcardsService;
     }
 
+    /**
+     * @return ClientsService
+     */
+    public function getClientsService()
+    {
+        if (!$this->clientsService) {
+            $this->clientsService = new ClientsService($this);
+        }
+        return $this->clientsService;
+    }
+
+    /**
+     * @return AgencyClientsService
+     */
+    public function getAgencyClientsService()
+    {
+        if (!$this->agencyClientsService) {
+            $this->agencyClientsService = new AgencyClientsService($this);
+        }
+        return $this->agencyClientsService;
+    }
+
 
     /**
      * @return ReportsService
@@ -230,18 +266,16 @@ class DirectApiService
      * @param string $serviceName
      * @param string $method
      * @param array  $params
+     * @param bool   $sendClientLogin
      * @return mixed
-     * @throws \RuntimeException
-     * @throws \InvalidArgumentException
-     * @throws \directapi\exceptions\RequestValidationException
-     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
-     * @throws DirectApiException
+     * @throws RequestValidationException
      */
-    public function call($serviceName, $method, array $params = [])
+    public function call($serviceName, $method, array $params = [], $sendClientLogin = true)
     {
         $request = new DirectApiRequest();
         $request->service = $serviceName;
         $request->method = $method;
+        $request->sendClientLogin = $sendClientLogin;
 
         if ($params) {
             $errors = [];
@@ -305,17 +339,25 @@ class DirectApiService
     /**
      * @param        $url
      * @param string $method
+     * @param bool   $sendClientLogin
      * @return RequestInterface
      */
-    public function getRequest($url, $method = 'POST')
+    public function getRequest($url, $method = 'POST', $sendClientLogin = true)
     {
-        $request = new Request($method, $url, [
+        return new Request($method, $url, $this->getRequestHeaders($sendClientLogin));
+    }
+
+    private function getRequestHeaders($sendClientLogin)
+    {
+        $headers = [
             'Content-Type'    => 'application/json; charset=utf-8',
             'Authorization'   => 'Bearer ' . $this->token,
-            'Client-Login'    => $this->clientLogin,
             'Accept-Language' => 'ru',
-        ]);
-        return $request;
+        ];
+        if ($this->clientLogin && $sendClientLogin) {
+            $headers['Client-Login'] = $this->clientLogin;
+        }
+        return $headers;
     }
 
     /**
@@ -348,6 +390,7 @@ class DirectApiService
     /**
      * @param DirectApiRequest $request
      * @return DirectApiResponse
+     * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \RuntimeException
      * @throws \InvalidArgumentException
      * @throws DirectApiException
@@ -356,7 +399,7 @@ class DirectApiService
     public function getResponse(DirectApiRequest $request)
     {
         $this->lastCallCost = null;
-        $httpRequest = $this->getRequest($this->apiUrl . $request->service);
+        $httpRequest = $this->getRequest($this->apiUrl . $request->service, 'POST', $request->sendClientLogin);
 
         $payload = json_encode($request->getPayload(), JSON_UNESCAPED_UNICODE);
         $payload = preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', $payload);
@@ -385,6 +428,10 @@ class DirectApiService
             }
             if ($this->logger) {
                 $this->logRequest($request, $response);
+            }
+            if ((int)$data->error->error_code === self::ERROR_CODE_NOT_EXIST_DIRECT_ACCOUNT){
+                throw new DirectAccountNotExistException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
+                    $data->error->error_code);
             }
             if ((int)$data->error->error_code === self::ERROR_CODE_NOT_ENOUGH_UNITS) {
                 throw new DirectApiNotEnoughUnitsException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',

@@ -19,6 +19,8 @@ class DirectApiRequest
      */
     public $params;
 
+    public $sendClientLogin = true;
+
     public function getPayload()
     {
         $payload = [

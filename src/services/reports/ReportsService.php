@@ -182,11 +182,11 @@ class ReportsService extends BaseService
             $code = $result->getStatusCode();
             if ($code === 201 || $code === 202) {
                 //wait
-                $retryIn = (int)$result->getHeader('retryIn')[0];
+                $header = $result->getHeader('retryIn');
+                $retryIn = $header ? (int)$header[0] : 5;
                 if ($retryIn > 0) {
                     sleep($retryIn);
                 }
-
             } elseif ($code !== 200) {
                 throw new ReportUnknownResponseCodeException($code);
             }

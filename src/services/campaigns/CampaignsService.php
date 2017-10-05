@@ -10,6 +10,7 @@ use directapi\services\campaigns\criterias\CampaignsSelectionCriteria;
 use directapi\services\campaigns\enum\CampaignFieldEnum;
 use directapi\services\campaigns\enum\MobileAppCampaignFieldEnum;
 use directapi\services\campaigns\enum\TextCampaignFieldEnum;
+use directapi\services\campaigns\enum\TextCampaignSettingsEnum;
 use directapi\services\campaigns\models\CampaignAddItem;
 use directapi\services\campaigns\models\CampaignGetItem;
 use directapi\services\campaigns\models\CampaignUpdateItem;
@@ -42,9 +43,9 @@ class CampaignsService extends BaseService
     /**
      * @inheritdoc
      */
-    public function delete(IdsCriteria $SelectionCriteria)
+    public function delete($SelectionCriteria)
     {
-        return parent::archive($SelectionCriteria);
+        return parent::delete($SelectionCriteria);
     }
 
     /**
@@ -127,7 +128,20 @@ class CampaignsService extends BaseService
      */
     public function toUpdateEntities(array $entities)
     {
-        return $this->convertClass($entities, CampaignUpdateItem::class);
-
+        /**
+         * @var CampaignUpdateItem[] $converted
+         */
+        $converted = $this->convertClass($entities, CampaignUpdateItem::class);
+        foreach ($converted as &$campaign) {
+            if ($campaign->TextCampaign && $campaign->TextCampaign->Settings) {
+                foreach ($campaign->TextCampaign->Settings as $i => $setting) {
+                    if (TextCampaignSettingsEnum::isGetOnly($setting->Option)) {
+                        unset($campaign->TextCampaign->Settings[$i]);
+                    }
+                }
+                $campaign->TextCampaign->Settings = array_values($campaign->TextCampaign->Settings);
+            }
+        }
+        return $converted;
     }
 }
