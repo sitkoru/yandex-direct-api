@@ -4,19 +4,12 @@ namespace directapi\tests\unit;
 
 
 use directapi\common\containers\Base64Binary;
-use directapi\common\enum\YesNoEnum;
 use directapi\DirectApiService;
-use directapi\services\adimages\AdImagesService;
 use directapi\services\adimages\criterias\AdImageIdsCriteria;
-use directapi\services\adimages\criterias\AdImageSelectionCriteria;
 use directapi\services\adimages\enum\AdImageFieldEnum;
+use directapi\services\adimages\models\AdImageActionResult;
 use directapi\services\adimages\models\AdImageAddItem;
 use directapi\services\adimages\models\AdImageGetItem;
-use directapi\services\ads\criterias\AdsSelectionCriteria;
-use directapi\services\ads\enum\AdFieldEnum;
-use directapi\services\ads\enum\DynamicTextAdFieldEnum;
-use directapi\services\ads\enum\MobileAppAdFieldEnum;
-use directapi\services\ads\enum\TextAdFieldEnum;
 use PHPUnit\Framework\TestCase;
 
 class AdImagesServiceTest extends TestCase
@@ -72,7 +65,7 @@ class AdImagesServiceTest extends TestCase
         $result = $this->adImagesService->add([$adImage]);
 
         $this->assertNotEmpty($result);
-
+        /** @var AdImageActionResult[] $result */
         foreach ($result as $actionResult) {
             $this->assertEmpty($actionResult->Errors, 'Action result has errors: ' . json_encode($actionResult->Errors));
             $this->assertEmpty($actionResult->Warnings, 'Action result has warnings: ' . json_encode($actionResult->Warnings));

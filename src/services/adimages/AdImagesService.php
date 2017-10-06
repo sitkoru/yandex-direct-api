@@ -6,6 +6,11 @@ use directapi\common\criterias\LimitOffset;
 use directapi\common\results\ActionResult;
 use directapi\components\interfaces\ICriteria;
 use directapi\services\adimages\criterias\AdImagesIdsCriteria;
+use directapi\services\adimages\criterias\AdImagesSelectionCriteria;
+use directapi\services\adimages\enum\AdImagesFieldEnum;
+use directapi\services\adimages\models\AdImageActionResult;
+use directapi\services\adimages\models\AdImagesAddItem;
+use directapi\services\adimages\models\AdImagesGetItem;
 use directapi\services\BaseService;
 
 class AdImagesService extends BaseService
@@ -14,14 +19,14 @@ class AdImagesService extends BaseService
      * @param AdImagesAddItem[] $AdImages
      * @throws \Exception
      *
-     * @return ActionResult[]
+     * @return AdImageActionResult[]
      */
     public function add(array $AdImages)
     {
         $params = [
-            'AdGroups' => $AdImages
+            'AdImages' => $AdImages
         ];
-        return parent::doAdd($params);
+        return $this->doAdd($params, AdImageActionResult::class);
     }
 
     /**
@@ -41,7 +46,7 @@ class AdImagesService extends BaseService
      * @return AdImagesGetItem[]
      */
 
-    public function get(AdImagesSelectionCriteria $SelectionCriteria, array $FieldNames, LimitOffset $Page = null)
+    public function get(AdImagesSelectionCriteria $SelectionCriteria = null, array $FieldNames, LimitOffset $Page = null)
     {
         $params = [
             'SelectionCriteria' => $SelectionCriteria,
