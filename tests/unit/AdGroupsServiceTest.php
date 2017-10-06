@@ -41,9 +41,8 @@ class AdGroupsServiceTest extends TestCase
     {
         $deleteGroup = new IdsCriteria();
         $deleteGroup->Ids = [GROUPId];
-
-        $deleteResult = $this->adGroupsService->delete($deleteGroup);
-        $this->assertNotEmpty($deleteResult);
+        $deleteResult = $this->adGroupsService->doDelete($deleteGroup);
+        $this->assertEmpty($deleteResult);
 
         var_dump($deleteResult);
     }

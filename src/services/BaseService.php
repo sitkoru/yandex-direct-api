@@ -216,16 +216,16 @@ abstract class BaseService
 
     /**
      * @param ICriteria $SelectionCriteria
-     *
+     * @param string $class
      * @return ActionResult[]
      */
-    protected function delete($SelectionCriteria)
+    protected function doDelete($SelectionCriteria, $class = ActionResult::class)
     {
         $params = [
             'SelectionCriteria' => $SelectionCriteria
         ];
         $response = $this->call('delete', $params);
-        return $this->mapArray($response->DeleteResults, ActionResult::class);
+        return $this->mapArray($response->DeleteResults, $class);
     }
 
     /**

@@ -36,7 +36,7 @@ class KeywordsServiceTest extends TestCase
     public function testDelete(){
         $deleteKeyword = new IdsCriteria();
         $deleteKeyword->Ids = [YDUpdateKeywordId];
-        $deleteResult = $this->KeywordsService->delete($deleteKeyword);
+        $deleteResult = $this->KeywordsService->doDelete($deleteKeyword);
         $this->assertNotEmpty($deleteResult);
 
         var_dump($deleteResult);
@@ -46,7 +46,7 @@ class KeywordsServiceTest extends TestCase
         $SelectionCriteria = new KeywordsSelectionCriteria;
         $SelectionCriteria->Ids = [YDUpdateKeywordId];
         $response = $this->KeywordsService->get($SelectionCriteria,KeywordFieldEnum::getValues());
-        $this->assertNotEmpty($response);
+        $this->assertEmpty($response);
         var_dump($response);
     }
 

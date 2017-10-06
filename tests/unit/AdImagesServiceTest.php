@@ -6,6 +6,7 @@ namespace directapi\tests\unit;
 use directapi\common\containers\Base64Binary;
 use directapi\DirectApiService;
 use directapi\services\adimages\criterias\AdImageIdsCriteria;
+use directapi\services\adimages\criterias\AdImagesSelectionCriteria;
 use directapi\services\adimages\enum\AdImageFieldEnum;
 use directapi\services\adimages\models\AdImageActionResult;
 use directapi\services\adimages\models\AdImageAddItem;
@@ -30,13 +31,16 @@ class AdImagesServiceTest extends TestCase
 
     public function testGet()
     {
-        $response = $this->adImagesService->get(null, AdImageFieldEnum::getValues());
+        $selectionCriteria = new AdImagesSelectionCriteria();
+        $selectionCriteria->AdImageHashes = [YDAdImageHash];
+        $response = $this->adImagesService->get($selectionCriteria, AdImageFieldEnum::getValues());
 
-        $this->assertNotEmpty($response);
+        if (isset($response)) {
+            foreach ($response as $adImage) {
+                $this->assertInstanceOf(AdImageGetItem::class, $adImage);
+                $this->assertNotEmpty($adImage->AdImageHash);
+            }
 
-        foreach ($response as $adImage) {
-            $this->assertInstanceOf(AdImageGetItem::class, $adImage);
-            $this->assertNotEmpty($adImage->AdImageHash);
         }
     }
 
@@ -46,11 +50,11 @@ class AdImagesServiceTest extends TestCase
         //сначало загрузим картинку для теста. а затем будем удалять
         $adImage = new AdImageAddItem();
         $adImage->Name = 'testDelete';
-        $adImage->ImageData = new Base64Binary(__DIR__ . '/../data/test.jpg');
+        $adImage->ImageData = new Base64Binary(__DIR__ . '/../data/test_delete.jpg');
         $result = $this->adImagesService->add([$adImage]);
 
         $deleteImage->AdImageHashes = [$result[0]->AdImageHash];
-        $deleteResult = $this->adImagesService->delete($deleteImage);
+        $deleteResult = $this->adImagesService->doDelete($deleteImage);
 
         $this->assertNotEmpty($deleteResult);
 
@@ -71,10 +75,12 @@ class AdImagesServiceTest extends TestCase
 
         $this->assertNotEmpty($result);
         /** @var AdImageActionResult[] $result */
-        foreach ($result as $actionResult) {
-            $this->assertEmpty($actionResult->Errors, 'Action result has errors: ' . json_encode($actionResult->Errors));
-            $this->assertEmpty($actionResult->Warnings, 'Action result has warnings: ' . json_encode($actionResult->Warnings));
-            $this->assertNotEmpty($actionResult->AdImageHash);
+        if(isset($result)){
+            foreach ($result as $actionResult) {
+                $this->assertEmpty($actionResult->Errors, 'Action result has errors: ' . json_encode($actionResult->Errors));
+                $this->assertEmpty($actionResult->Warnings, 'Action result has warnings: ' . json_encode($actionResult->Warnings));
+                $this->assertNotEmpty($actionResult->AdImageHash);
+            }
         }
     }
 }

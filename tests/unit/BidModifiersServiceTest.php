@@ -19,7 +19,7 @@ class BidModifiersServiceTest extends TestCase
         $this->BidModifiersService = $directApiService->getBidModifiersService();
     }
 
-    public function add(){
+    public function testAdd(){
         $bitModifiers = new BidModifierAddItem();
         $bitModifiers->CampaignId = GROUPId;
 
@@ -28,23 +28,23 @@ class BidModifiersServiceTest extends TestCase
         $this->assertNotEmpty($result);
 
         foreach ($result as $actionResult) {
-            var_dump($actionResult->Ids);
+            var_dump($actionResult->Errors);
         }
     }
 
-    public function delete(){
+    public function testDelete(){
 
     }
 
-    public function get(){
+    public function testGet(){
 
     }
 
-    public function set(){
+    public function testSet(){
 
     }
 
-    public function toggle(){
+    public function testToggle(){
 
     }
 }

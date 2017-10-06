@@ -41,9 +41,9 @@ class AdsService extends BaseService
     /**
      * @inheritdoc
      */
-    public function delete($SelectionCriteria)
+    public function doDelete($SelectionCriteria, $class = AdsService::class)
     {
-        return parent::delete($SelectionCriteria);
+        return parent::doDelete($SelectionCriteria, $class);
     }
 
     /**

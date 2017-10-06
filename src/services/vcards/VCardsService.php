@@ -29,9 +29,9 @@ class VCardsService extends BaseService
     /**
      * @inheritdoc
      */
-    public function delete($SelectionCriteria)
+    public function doDelete($SelectionCriteria)
     {
-        return parent::delete($SelectionCriteria);
+        return parent::doDelete($SelectionCriteria);
     }
 
     /**
