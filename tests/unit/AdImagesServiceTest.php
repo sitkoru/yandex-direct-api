@@ -44,12 +44,17 @@ class AdImagesServiceTest extends TestCase
     {
         $deleteImage = new AdImageIdsCriteria();
         //сначало загрузим картинку для теста. а затем будем удалять
-        $imageHash = $this->testAddIm();
-        $deleteImage->AdImageHashes = [$imageHash];
+        $adImage = new AdImageAddItem();
+        $adImage->Name = 'testDelete';
+        $adImage->ImageData = new Base64Binary(__DIR__ . '/../data/test.jpg');
+        $result = $this->adImagesService->add([$adImage]);
+
+        $deleteImage->AdImageHashes = [$result[0]->AdImageHash];
         $deleteResult = $this->adImagesService->delete($deleteImage);
 
         $this->assertNotEmpty($deleteResult);
 
+        /** @var AdImageActionResult[] $deleteResult */
         foreach ($deleteResult as $actionResult) {
             $this->assertEmpty($actionResult->Errors, 'Action result has errors: ' . json_encode($actionResult->Errors));
             $this->assertEmpty($actionResult->Warnings, 'Action result has warnings: ' . json_encode($actionResult->Warnings));
