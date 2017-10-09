@@ -6,7 +6,7 @@ namespace directapi\tests\unit;
 use directapi\common\containers\Base64Binary;
 use directapi\DirectApiService;
 use directapi\services\adimages\criterias\AdImageIdsCriteria;
-use directapi\services\adimages\criterias\AdImagesSelectionCriteria;
+use directapi\services\adimages\criterias\AdImageSelectionCriteria;
 use directapi\services\adimages\enum\AdImageFieldEnum;
 use directapi\services\adimages\models\AdImageActionResult;
 use directapi\services\adimages\models\AdImageAddItem;
@@ -31,7 +31,7 @@ class AdImagesServiceTest extends TestCase
 
     public function testGet()
     {
-        $selectionCriteria = new AdImagesSelectionCriteria();
+        $selectionCriteria = new AdImageSelectionCriteria();
         $selectionCriteria->AdImageHashes = [YDAdImageHash];
         $response = $this->adImagesService->get($selectionCriteria, AdImageFieldEnum::getValues());
 
