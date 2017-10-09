@@ -33,9 +33,9 @@ class AdImagesService extends BaseService
      * @param AdImagesIdsCriteria | ICriteria $SelectionCriteria
      * @return AdImageActionResult[]
      */
-    public function doDelete($SelectionCriteria, $class = AdImageActionResult::class)
+    public function delete($SelectionCriteria)
     {
-        return parent::doDelete($SelectionCriteria, $class);
+        return parent::doDelete($SelectionCriteria, AdImageActionResult::class);
     }
 
     /**

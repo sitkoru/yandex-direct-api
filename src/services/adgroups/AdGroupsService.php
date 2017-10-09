@@ -32,9 +32,9 @@ class AdGroupsService extends BaseService
     /**
      * @inheritdoc
      */
-    public function doDelete($SelectionCriteria, $class = ActionResult::class)
+    public function delete($SelectionCriteria)
     {
-        return parent::doDelete($SelectionCriteria, $class);
+        return parent::doDelete($SelectionCriteria);
     }
 
     /**
