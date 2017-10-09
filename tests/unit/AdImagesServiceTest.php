@@ -54,7 +54,7 @@ class AdImagesServiceTest extends TestCase
         $result = $this->adImagesService->add([$adImage]);
 
         $deleteImage->AdImageHashes = [$result[0]->AdImageHash];
-        $deleteResult = $this->adImagesService->doDelete($deleteImage);
+        $deleteResult = $this->adImagesService->delete($deleteImage);
 
         $this->assertNotEmpty($deleteResult);
 
