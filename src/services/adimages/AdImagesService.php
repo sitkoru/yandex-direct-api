@@ -3,20 +3,19 @@
 namespace directapi\services\adimages;
 
 use directapi\common\criterias\LimitOffset;
-use directapi\common\results\ActionResult;
 use directapi\components\interfaces\ICriteria;
 use directapi\services\adimages\criterias\AdImagesIdsCriteria;
 use directapi\services\adimages\criterias\AdImagesSelectionCriteria;
 use directapi\services\adimages\enum\AdImagesFieldEnum;
 use directapi\services\adimages\models\AdImageActionResult;
-use directapi\services\adimages\models\AdImagesAddItem;
-use directapi\services\adimages\models\AdImagesGetItem;
+use directapi\services\adimages\models\AdImageAddItem;
+use directapi\services\adimages\models\AdImageGetItem;
 use directapi\services\BaseService;
 
 class AdImagesService extends BaseService
 {
     /**
-     * @param AdImagesAddItem[] $AdImages
+     * @param AdImageAddItem[] $AdImages
      * @throws \Exception
      *
      * @return AdImageActionResult[]
@@ -43,7 +42,7 @@ class AdImagesService extends BaseService
      * @param AdImagesFieldEnum[]       $FieldNames
      * @param LimitOffset               $Page
      *
-     * @return AdImagesGetItem[]
+     * @return AdImageGetItem[]
      */
 
     public function get(AdImagesSelectionCriteria $SelectionCriteria = null, array $FieldNames, LimitOffset $Page = null)
@@ -56,7 +55,7 @@ class AdImagesService extends BaseService
             $params['Page'] = $Page;
         }
 
-        return parent::doGet($params, 'IdImage', AdImagesGetItem::class);
+        return parent::doGet($params, 'IdImage', AdImageGetItem::class);
     }
 
     protected function getName()
