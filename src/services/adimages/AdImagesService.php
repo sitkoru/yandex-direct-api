@@ -4,8 +4,8 @@ namespace directapi\services\adimages;
 
 use directapi\common\criterias\LimitOffset;
 use directapi\components\interfaces\ICriteria;
-use directapi\services\adimages\criterias\AdImagesIdsCriteria;
-use directapi\services\adimages\criterias\AdImagesSelectionCriteria;
+use directapi\services\adimages\criterias\AdImageIdsCriteria;
+use directapi\services\adimages\criterias\AdImageSelectionCriteria;
 use directapi\services\adimages\enum\AdImagesFieldEnum;
 use directapi\services\adimages\models\AdImageActionResult;
 use directapi\services\adimages\models\AdImageAddItem;
@@ -29,7 +29,7 @@ class AdImagesService extends BaseService
     }
 
     /**
-     * @param AdImagesIdsCriteria | ICriteria $SelectionCriteria
+     * @param AdImageIdsCriteria | ICriteria $SelectionCriteria
      * @return AdImageActionResult[]
      */
     public function delete($SelectionCriteria)
@@ -38,14 +38,14 @@ class AdImagesService extends BaseService
     }
 
     /**
-     * @param AdImagesSelectionCriteria $SelectionCriteria
+     * @param AdImageSelectionCriteria $SelectionCriteria
      * @param AdImagesFieldEnum[]       $FieldNames
      * @param LimitOffset               $Page
      *
      * @return AdImageGetItem[]
      */
 
-    public function get(AdImagesSelectionCriteria $SelectionCriteria = null, array $FieldNames, LimitOffset $Page = null)
+    public function get(AdImageSelectionCriteria $SelectionCriteria = null, array $FieldNames, LimitOffset $Page = null)
     {
         $params = [
             'SelectionCriteria' => $SelectionCriteria,
