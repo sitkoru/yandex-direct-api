@@ -29,7 +29,7 @@ class SitelinksService extends BaseService
     /**
      * @inheritdoc
      */
-    public function doDelete($SelectionCriteria)
+    public function delete($SelectionCriteria)
     {
         return parent::doDelete($SelectionCriteria);
     }
