@@ -21,4 +21,9 @@ class MobileAppAdFeatureGetItem extends Model
      * @var \directapi\common\enum\YesNoUnknownEnum
      */
     public $IsAvailable;
+
+    public function getDescription()
+    {
+        return "Дополнение {$this->Feature}";
+    }
 }

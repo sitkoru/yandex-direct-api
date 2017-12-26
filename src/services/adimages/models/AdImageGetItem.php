@@ -43,4 +43,9 @@ class AdImageGetItem extends Model
      * @var string
      */
     public $PreviewUrl;
+
+    public function getDescription()
+    {
+        return $this->Name;
+    }
 }

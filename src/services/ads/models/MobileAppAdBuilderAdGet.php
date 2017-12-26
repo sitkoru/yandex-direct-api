@@ -16,4 +16,9 @@ class MobileAppAdBuilderAdGet extends Model
      * @var string
      */
     public $TrackingUrl;
+
+    public function getDescription()
+    {
+        return $this->Creative->getDescription();
+    }
 }

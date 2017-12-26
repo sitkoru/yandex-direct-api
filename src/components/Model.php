@@ -18,4 +18,12 @@ class Model
             }
         }
     }
+
+    /**
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return null;
+    }
 }

@@ -65,4 +65,9 @@ class KeywordGetItem extends Model
      * @var Productivity
      */
     public $Productivity;
+
+    public function getDescription()
+    {
+        return $this->Keyword;
+    }
 }

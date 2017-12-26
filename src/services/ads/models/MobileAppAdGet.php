@@ -40,4 +40,9 @@ class MobileAppAdGet extends Model
      * @var \directapi\common\models\ExtensionModeration
      */
     public $AdImageModeration;
+
+    public function getDescription()
+    {
+        return $this->Title;
+    }
 }

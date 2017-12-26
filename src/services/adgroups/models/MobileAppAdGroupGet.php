@@ -40,4 +40,9 @@ class MobileAppAdGroupGet extends Model
      * @var \directapi\services\adgroups\enum\AppAvailabilityStatusEnum
      */
     public $AppAvailabilityStatus;
+
+    public function getDescription()
+    {
+        return $this->StoreUrl;
+    }
 }

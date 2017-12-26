@@ -97,4 +97,42 @@ class AdGetItem extends Model
      * @var int
      */
     public $LimitedBy;
+
+    public function getDescription()
+    {
+        if($this->TextAd)
+        {
+            return $this->TextAd->getDescription();
+        }
+
+        if($this->MobileAppAd)
+        {
+            return $this->MobileAppAd->getDescription();
+        }
+
+        if($this->DynamicTextAd)
+        {
+            return $this->DynamicTextAd->getDescription();
+        }
+
+        if($this->TextImageAd)
+        {
+            return $this->TextImageAd->getDescription();
+        }
+
+        if($this->MobileAppImageAd)
+        {
+            return $this->MobileAppImageAd->getDescription();
+        }
+
+        if($this->TextAdBuilderAd)
+        {
+            return $this->TextAdBuilderAd->getDescription();
+        }
+
+        if($this->MobileAppAdBuilderAd)
+        {
+            return $this->MobileAppAdBuilderAd->getDescription();
+        }
+    }
 }

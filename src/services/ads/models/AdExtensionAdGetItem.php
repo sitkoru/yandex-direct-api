@@ -16,4 +16,9 @@ class AdExtensionAdGetItem extends Model
      * @var \directapi\services\adextensions\enum\AdExtensionTypeEnum
      */
     public $Type;
+
+    public function getDescription()
+    {
+        return "Расширение {$this->AdExtensionId}";
+    }
 }

@@ -15,4 +15,9 @@ class TextAdBuilderAdGet extends Model
      * @var string
      */
     public $Href;
+
+    public function getDescription()
+    {
+        return $this->Creative->getDescription();
+    }
 }

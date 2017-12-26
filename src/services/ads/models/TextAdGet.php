@@ -88,4 +88,9 @@ class TextAdGet extends Model
      */
     public $VideoExtension;
 
+    public function getDescription()
+    {
+        return $this->Title;
+    }
+
 }

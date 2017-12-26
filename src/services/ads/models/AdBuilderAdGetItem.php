@@ -21,4 +21,9 @@ class AdBuilderAdGetItem extends Model
      * @var string
      */
     public $PreviewUrl;
+
+    public function getDescription()
+    {
+        return "Граф. объявление на основе креатива {$this->CreativeId}";
+    }
 }
