@@ -20,5 +20,5 @@ class TextAdFieldEnum extends Enum
     const SITE_LINKS_MODERATION = 'SitelinksModeration';
     const AD_IMAGE_MODERATION = 'AdImageModeration';
     const AD_EXTENSIONS = 'AdExtensions';
-    CONST VIDEO_EXTENSION = 'VIDEOEXTENSION';
+    CONST VIDEO_EXTENSION = 'VideoExtension';
 }

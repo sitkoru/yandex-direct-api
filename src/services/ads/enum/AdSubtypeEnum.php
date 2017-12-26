@@ -8,5 +8,5 @@ use directapi\components\Enum;
 class AdSubtypeEnum extends Enum
 {
     const NONE = 'NONE';
-    const IMAGE_AD = 'IMAGE_AD';
+    const TEXT_IMAGE_AD = 'TEXT_IMAGE_AD';
 }
