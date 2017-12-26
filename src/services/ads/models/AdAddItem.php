@@ -5,6 +5,7 @@ namespace directapi\services\ads\models;
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class AdAddItem extends Model implements ICallbackValidation
 {

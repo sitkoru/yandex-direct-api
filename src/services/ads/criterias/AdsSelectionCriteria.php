@@ -4,6 +4,8 @@ namespace directapi\services\ads\criterias;
 
 
 use directapi\components\Model;
+use directapi\components\constraints as DirectApiAssert;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class AdsSelectionCriteria extends Model
 {

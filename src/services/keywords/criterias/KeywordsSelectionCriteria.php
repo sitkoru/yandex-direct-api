@@ -3,8 +3,8 @@
 namespace directapi\services\keywords\criterias;
 
 
-use directapi\components\constraints as DirectApiAssert;
 use directapi\components\Model;
+use directapi\components\constraints as DirectApiAssert;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class KeywordsSelectionCriteria extends Model

@@ -6,6 +6,8 @@ use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
 use directapi\services\adextensions\models\VideoExtensionAddItem;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use directapi\components\constraints as DirectApiAssert;
+use Symfony\Component\Validator\Constraints as Assert;
 
 abstract class TextAd extends Model implements ICallbackValidation
 {
