@@ -7,6 +7,7 @@ use directapi\exceptions\DirectAccountNotExistException;
 use directapi\exceptions\DirectApiException;
 use directapi\exceptions\DirectApiNotEnoughUnitsException;
 use directapi\exceptions\RequestValidationException;
+use directapi\services\adextensions\AdExtensionsService;
 use directapi\services\adgroups\AdGroupsService;
 use directapi\services\adimages\AdImagesService;
 use directapi\services\ads\AdsService;
@@ -104,6 +105,11 @@ class DirectApiService
      * @var ReportsService
      */
     private $reportsService;
+
+    /**
+     * @var AdExtensionsService
+     */
+    private $adExtensionsService;
 
     /**
      * @var IQueryLogger
@@ -260,6 +266,17 @@ class DirectApiService
             $this->reportsService = new ReportsService($this);
         }
         return $this->reportsService;
+    }
+
+    /**
+     * @return AdExtensionsService
+     */
+    public function getAdExtensionsService()
+    {
+        if (!$this->adExtensionsService) {
+            $this->adExtensionsService = new AdExtensionsService($this);
+        }
+        return $this->adExtensionsService;
     }
 
     /**
@@ -428,7 +445,7 @@ class DirectApiService
             if ($this->logger) {
                 $this->logRequest($request, $response);
             }
-            if ((int)$data->error->error_code === self::ERROR_CODE_NOT_EXIST_DIRECT_ACCOUNT){
+            if ((int)$data->error->error_code === self::ERROR_CODE_NOT_EXIST_DIRECT_ACCOUNT) {
                 throw new DirectAccountNotExistException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
                     $data->error->error_code);
             }
