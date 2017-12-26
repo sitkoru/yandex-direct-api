@@ -4,7 +4,6 @@ namespace directapi\services\ads\models;
 
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class AdAddItem extends Model implements ICallbackValidation
@@ -18,6 +17,31 @@ class AdAddItem extends Model implements ICallbackValidation
      * @var MobileAppAdAdd
      */
     public $MobileAppAd;
+
+    /**
+     * @var DynamicTextAdAdd
+     */
+    public $DynamicTextAd;
+
+    /**
+     * @var TextImageAdAdd
+     */
+    public $TextImageAd;
+
+    /**
+     * @var MobileAppImageAdAdd
+     */
+    public $MobileAppImageAd;
+
+    /**
+     * @var TextAdBuilderAdAdd
+     */
+    public $TextAdBuilderAd;
+
+    /**
+     * @var MobileAppAdBuilderAdAdd
+     */
+    public $MobileAppAdBuilderAd;
 
     /**
      * @var int

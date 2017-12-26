@@ -28,6 +28,37 @@ class AdUpdateItem extends Model implements ICallbackValidation
     public $MobileAppAd;
 
     /**
+     * @var DynamicTextAdUpdate
+     * @Assert\Valid()
+     */
+    public $DynamicTextAd;
+
+    /**
+     * @var TextImageAdUpdate
+     * @Assert\Valid()
+     */
+    public $TextImageAd;
+
+    /**
+     * @var MobileAppImageAdUpdate
+     * @Assert\Valid()
+     */
+    public $MobileAppImageAd;
+
+
+    /**
+     * @var TextAdBuilderAdUpdate
+     * @Assert\Valid()
+     */
+    public $TextAdBuilderAd;
+
+    /**
+     * @var MobileAppAdBuilderAdUpdate
+     * @Assert\Valid()
+     */
+    public $MobileAppAdBuilderAd;
+
+    /**
      * @Assert\Callback()
      * @param ExecutionContextInterface $context
      */

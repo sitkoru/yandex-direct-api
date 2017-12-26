@@ -30,4 +30,14 @@ class MobileAppAdGet extends Model
      * @var \directapi\services\ads\enum\MobileAppAdActionEnum
      */
     public $Action;
+
+    /**
+     * @var string
+     */
+    public $AdImageHash;
+
+    /**
+     * @var \directapi\common\models\ExtensionModeration
+     */
+    public $AdImageModeration;
 }

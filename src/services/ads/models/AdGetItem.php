@@ -53,6 +53,11 @@ class AdGetItem extends Model
     public $Type;
 
     /**
+     * @var \directapi\services\ads\enum\AdSubtypeEnum
+     */
+    public $Subtype;
+
+    /**
      * @var TextAdGet
      */
     public $TextAd;
@@ -61,6 +66,32 @@ class AdGetItem extends Model
      * @var MobileAppAdGet
      */
     public $MobileAppAd;
+
+    /**
+     * @var DynamicTextAdGet
+     */
+    public $DynamicTextAd;
+
+    /**
+     * @var TextImageAdGet
+     */
+    public $TextImageAd;
+
+    /**
+     * @var MobileAppImageAdGet
+     */
+    public $MobileAppImageAd;
+
+    /**
+     * @var TextAdBuilderAdGet
+     */
+    public $TextAdBuilderAd;
+
+    /**
+     * @var MobileAppAdBuilderAdGet
+     */
+    public $MobileAppAdBuilderAd;
+
 
     /**
      * @var int

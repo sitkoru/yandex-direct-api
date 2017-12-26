@@ -12,4 +12,6 @@ class DynamicTextAdFieldEnum extends Enum
     const VCARD_MODERATION = 'VCardModeration';
     const SITE_LINKS_MODERATION = 'SitelinksModeration';
     const AD_EXTENSIONS = 'AdExtensions';
+    const AD_IMAGE_HASH = 'AdImageHash';
+    const AD_IMAGE_MODERATION = 'AdImageModeration';
 }

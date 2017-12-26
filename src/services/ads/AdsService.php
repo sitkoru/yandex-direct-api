@@ -8,8 +8,12 @@ use directapi\common\results\ActionResult;
 use directapi\services\ads\criterias\AdsSelectionCriteria;
 use directapi\services\ads\enum\AdFieldEnum;
 use directapi\services\ads\enum\DynamicTextAdFieldEnum;
+use directapi\services\ads\enum\MobileAppAdBuilderAdFieldEnum;
 use directapi\services\ads\enum\MobileAppAdFieldEnum;
+use directapi\services\ads\enum\MobileAppImageAdFieldEnum;
+use directapi\services\ads\enum\TextAdBuilderAdFieldEnum;
 use directapi\services\ads\enum\TextAdFieldEnum;
+use directapi\services\ads\enum\TextImageAdFieldEnum;
 use directapi\services\ads\models\AdAddItem;
 use directapi\services\ads\models\AdGetItem;
 use directapi\services\ads\models\AdUpdateItem;
@@ -47,13 +51,17 @@ class AdsService extends BaseService
     }
 
     /**
-     * @param AdsSelectionCriteria     $SelectionCriteria
+     * @param AdsSelectionCriteria            $SelectionCriteria
      *
-     * @param AdFieldEnum[]            $FieldNames
-     * @param TextAdFieldEnum[]        $TextAdFieldNames
-     * @param MobileAppAdFieldEnum[]   $MobileAppAdFieldNames
-     * @param DynamicTextAdFieldEnum[] $DynamicTextAdFieldNames
-     * @param LimitOffset              $Page
+     * @param AdFieldEnum[]                   $FieldNames
+     * @param TextAdFieldEnum[]               $TextAdFieldNames
+     * @param MobileAppAdFieldEnum[]          $MobileAppAdFieldNames
+     * @param DynamicTextAdFieldEnum[]        $DynamicTextAdFieldNames
+     * @param TextImageAdFieldEnum[]          $TextImageAdFieldNames
+     * @param MobileAppImageAdFieldEnum[]     $MobileAppImageAdFieldNames
+     * @param TextAdBuilderAdFieldEnum[]      $TextAdBuilderAdFieldNames
+     * @param MobileAppAdBuilderAdFieldEnum[] $MobileAppAdBuilderAdFieldNames
+     * @param LimitOffset                     $Page
      * @return models\AdGetItem[]
      */
     public function get(
@@ -62,6 +70,10 @@ class AdsService extends BaseService
         array $TextAdFieldNames = [],
         array $MobileAppAdFieldNames = [],
         array $DynamicTextAdFieldNames = [],
+        array $TextImageAdFieldNames = [],
+        array $MobileAppImageAdFieldNames = [],
+        array $TextAdBuilderAdFieldNames = [],
+        array $MobileAppAdBuilderAdFieldNames = [],
         LimitOffset $Page = null
     ) {
         $params = [
@@ -79,6 +91,22 @@ class AdsService extends BaseService
 
         if ($DynamicTextAdFieldNames) {
             $params['DynamicTextAdFieldNames'] = $DynamicTextAdFieldNames;
+        }
+
+        if ($TextImageAdFieldNames) {
+            $params['TextImageAdFieldNames'] = $TextImageAdFieldNames;
+        }
+
+        if ($MobileAppImageAdFieldNames) {
+            $params['MobileAppImageAdFieldNames'] = $MobileAppImageAdFieldNames;
+        }
+
+        if ($TextAdBuilderAdFieldNames) {
+            $params['TextAdBuilderAdFieldNames'] = $TextAdBuilderAdFieldNames;
+        }
+
+        if ($MobileAppAdBuilderAdFieldNames) {
+            $params['MobileAppAdBuilderAdFieldNames'] = $MobileAppAdBuilderAdFieldNames;
         }
 
         if ($Page) {

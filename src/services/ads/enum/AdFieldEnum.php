@@ -15,4 +15,5 @@ class AdFieldEnum extends Enum
     const AD_CATEGORIES = 'AdCategories';
     const AGE_LABEL = 'AgeLabel';
     const TYPE = 'Type';
+    const SUBTYPE = 'Subtype';
 }

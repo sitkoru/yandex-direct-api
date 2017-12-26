@@ -11,4 +11,6 @@ class MobileAppAdFieldEnum extends Enum
     const FEATURES = 'Features';
     const TRACKIN_GURL = 'TrackingUrl';
     const ACTION = 'Action';
+    const AD_IMAGE_HASH = 'AdImageHash';
+    const AD_IMAGE_MODERATION = 'AdImageModeration';
 }

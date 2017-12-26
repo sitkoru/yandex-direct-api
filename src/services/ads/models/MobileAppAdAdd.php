@@ -53,4 +53,9 @@ class MobileAppAdAdd extends Model
      * @DirectApiAssert\IsEnum(type="directapi\services\ads\enum\MobileAppAdActionEnum")
      */
     public $Action;
+
+    /**
+     * @var string
+     */
+    public $AdImageHash;
 }

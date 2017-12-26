@@ -2,10 +2,9 @@
 
 namespace directapi\services\ads\models;
 
-use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
-use Symfony\Component\Validator\Constraints as Assert;
+use directapi\services\adextensions\models\VideoExtensionAddItem;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 abstract class TextAd extends Model implements ICallbackValidation
@@ -14,6 +13,11 @@ abstract class TextAd extends Model implements ICallbackValidation
      * @var string
      */
     public $Title;
+
+    /**
+     * @var string
+     */
+    public $Title2;
 
     /**
      * @var string
@@ -53,6 +57,21 @@ abstract class TextAd extends Model implements ICallbackValidation
      * @var int
      */
     public $SitelinkSetId;
+
+    /**
+     * @var string
+     */
+    public $DisplayUrlPath;
+
+    /**
+     * @var VideoExtensionAddItem
+     */
+    public $VideoExtension;
+
+    /**
+     * @var int[]
+     */
+    public $AdExtensionIds;
 
     /**
      * @Assert\Callback()

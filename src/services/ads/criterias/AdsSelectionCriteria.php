@@ -3,9 +3,7 @@
 namespace directapi\services\ads\criterias;
 
 
-use directapi\components\constraints as DirectApiAssert;
 use directapi\components\Model;
-use Symfony\Component\Validator\Constraints as Assert;
 
 class AdsSelectionCriteria extends Model
 {
@@ -33,6 +31,15 @@ class AdsSelectionCriteria extends Model
      * )
      */
     public $CampaignIds;
+
+    /**
+     * @var int[]
+     * @Assert\Count(
+     *      max = "50",
+     *      min = "1",
+     * )
+     */
+    public $AdExtensionIds;
 
     /**
      * @var \directapi\common\enum\YesNoEnum
