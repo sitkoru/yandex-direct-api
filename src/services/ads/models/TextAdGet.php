@@ -79,7 +79,7 @@ class TextAdGet extends Model
     public $AdImageModeration;
 
     /**
-     * @var AdExtensionAdGetItem
+     * @var AdExtensionAdGetItem[]
      */
     public $AdExtensions;
 
