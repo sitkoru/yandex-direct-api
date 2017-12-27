@@ -19,6 +19,7 @@ use directapi\services\changes\ChangesService;
 use directapi\services\clients\ClientsService;
 use directapi\services\keywords\KeywordsService;
 use directapi\services\reports\ReportsService;
+use directapi\services\retargetinglists\RetargetingListsService;
 use directapi\services\sitelinks\SitelinksService;
 use directapi\services\vcards\VCardsService;
 use GuzzleHttp\Client;
@@ -110,6 +111,11 @@ class DirectApiService
      * @var AdExtensionsService
      */
     private $adExtensionsService;
+
+    /**
+     * @var RetargetingListsService
+     */
+    private $retargetingListsService;
 
     /**
      * @var IQueryLogger
@@ -277,6 +283,17 @@ class DirectApiService
             $this->adExtensionsService = new AdExtensionsService($this);
         }
         return $this->adExtensionsService;
+    }
+
+    /**
+     * @return RetargetingListsService
+     */
+    public function getRetargetingListsService()
+    {
+        if (!$this->retargetingListsService) {
+            $this->retargetingListsService = new RetargetingListsService($this);
+        }
+        return $this->retargetingListsService;
     }
 
     /**
