@@ -12,6 +12,7 @@ use directapi\services\adgroups\AdGroupsService;
 use directapi\services\adimages\AdImagesService;
 use directapi\services\ads\AdsService;
 use directapi\services\agencyclients\AgencyClientsService;
+use directapi\services\audiencetargets\AudienceTargetsService;
 use directapi\services\bidmodifiers\BidModifiersService;
 use directapi\services\bids\BidsService;
 use directapi\services\campaigns\CampaignsService;
@@ -116,6 +117,11 @@ class DirectApiService
      * @var RetargetingListsService
      */
     private $retargetingListsService;
+
+    /**
+     * @var AudienceTargetsService
+     */
+    private $audienceTargetsService;
 
     /**
      * @var IQueryLogger
@@ -294,6 +300,17 @@ class DirectApiService
             $this->retargetingListsService = new RetargetingListsService($this);
         }
         return $this->retargetingListsService;
+    }
+
+    /**
+     * @return AudienceTargetsService
+     */
+    public function getAudienceTargetsService()
+    {
+        if (!$this->audienceTargetsService) {
+            $this->audienceTargetsService = new AudienceTargetsService($this);
+        }
+        return $this->audienceTargetsService;
     }
 
     /**
