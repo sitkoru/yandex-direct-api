@@ -28,7 +28,7 @@ class RetargetingListGetItem extends Model
     public $IsAvailable;
 
     /**
-     * @var RetargetingListRuleItem
+     * @var RetargetingListRuleItem[]
      */
     public $Rules;
 
