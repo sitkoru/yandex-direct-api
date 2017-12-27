@@ -36,4 +36,9 @@ class RetargetingListGetItem extends Model
      * @var \directapi\services\retargetinglists\enum\RetargetingListRuleOperatorEnum
      */
     public $Scope;
+
+    public function getDescription()
+    {
+        return "RT: {$this->Name}";
+    }
 }
