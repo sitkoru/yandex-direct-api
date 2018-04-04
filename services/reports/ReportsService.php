@@ -164,22 +164,26 @@ class ReportsService extends BaseService
             try {
                 $result = $this->service->doRequest($request);
             } catch (BadResponseException $ex) {
-                $code = $ex->getCode();
-                $errorBody = $ex->getResponse()->getBody()->getContents();
-                list($requestId, $errorCode, $errorMessage, $errorDetail) = $this->parseApiError($errorBody);
+                //повторяем скачивание отчета
+                try {
+                    $result = $this->service->doRequest($request);
+                } catch (BadResponseException $ex) {
+                    $code = $ex->getCode();
+                    $errorBody = $ex->getResponse()->getBody()->getContents();
+                    list($requestId, $errorCode, $errorMessage, $errorDetail) = $this->parseApiError($errorBody);
 
-                $errorMessage .= $errorMessage.PHP_EOL.' XML:'.$payload;
-
-                switch ($code) {
-                    case 400:
-                        throw new ReportBadRequestException($requestId, $errorCode, $errorMessage, $errorDetail);
-                        break;
-                    case 500:
-                        throw new ReportServerErrorException($requestId, $errorCode, $errorMessage, $errorDetail);
-                        break;
-                    case 502:
-                        throw new ReportRequestTimeoutException($requestId, $errorCode, $errorMessage, $errorDetail);
-                        break;
+                    $errorMessage .= $errorMessage . PHP_EOL . ' XML:' . $payload;
+                    switch ($code) {
+                        case 400:
+                            throw new ReportBadRequestException($requestId, $errorCode, $errorMessage, $errorDetail);
+                            break;
+                        case 500:
+                            throw new ReportServerErrorException($requestId, $errorCode, $errorMessage, $errorDetail);
+                            break;
+                        case 502:
+                            throw new ReportRequestTimeoutException($requestId, $errorCode, $errorMessage, $errorDetail);
+                            break;
+                    }
                 }
             }
             $code = $result->getStatusCode();
