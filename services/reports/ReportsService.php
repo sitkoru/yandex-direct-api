@@ -167,6 +167,7 @@ class ReportsService extends BaseService
                 $code = $ex->getCode();
                 $errorBody = $ex->getResponse()->getBody()->getContents();
                 list($requestId, $errorCode, $errorMessage, $errorDetail) = $this->parseApiError($errorBody);
+                $errorMessage .= $errorMessage.PHP_EOL.' XML:'.$payload;
                 switch ($code) {
                     case 400:
                         throw new ReportBadRequestException($requestId, $errorCode, $errorMessage, $errorDetail);
