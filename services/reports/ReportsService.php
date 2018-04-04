@@ -165,6 +165,10 @@ class ReportsService extends BaseService
         while ($code !== 200) {
             try {
                 $result = $this->service->doRequest($request);
+                //отправка повторного запросы при пустом ответе
+                if ($result === null) {
+                    $result = $this->service->doRequest($request);
+                }
             } catch (BadResponseException $ex) {
                 $code = $ex->getCode();
                 $errorBody = $ex->getResponse()->getBody()->getContents();
