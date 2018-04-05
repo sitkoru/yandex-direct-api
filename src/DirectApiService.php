@@ -24,6 +24,8 @@ use directapi\services\retargetinglists\RetargetingListsService;
 use directapi\services\sitelinks\SitelinksService;
 use directapi\services\vcards\VCardsService;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\RequestInterface;
 use Symfony\Component\Validator\ConstraintViolation;
@@ -413,11 +415,28 @@ class DirectApiService
 
     /**
      * @param RequestInterface $request
+     * @param int              $try
+     * @param int              $maxTry
      * @return \Psr\Http\Message\ResponseInterface
+     * @throws DirectApiException
      */
-    public function doRequest(RequestInterface $request)
+    public function doRequest(RequestInterface $request, int $try = 0, int $maxTry = 5)
     {
-        return $this->getClient()->send($request);
+        try {
+            $response = $this->getClient()->send($request);
+        } catch (ConnectException $exception) {
+            $try++;
+            if ($try < $maxTry) {
+                $response = $this->doRequest($request, $try);
+            } else {
+                throw new DirectApiException('Ошибка при отправке запроса к яндексу: ' . $exception->getMessage());
+            }
+        } catch (RequestException $exception) {
+            throw new DirectApiException('Ошибка при отправке запроса к яндексу: ' . $exception->getMessage());
+        } catch (\Throwable $exception) {
+            throw new DirectApiException('Ошибка при отправке запроса к яндексу' . $exception->getMessage());
+        }
+        return $response;
     }
 
     /**
@@ -456,7 +475,6 @@ class DirectApiService
         $payload = preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', $payload);
 
         $httpResponse = $this->doRequest($httpRequest->withBody(\GuzzleHttp\Psr7\stream_for($payload)));
-
         $response = new DirectApiResponse();
 
         $response->setHeaders($httpResponse->getHeaders());
@@ -498,6 +516,7 @@ class DirectApiService
         }
         $this->logRequest($request, $response);
         return $response;
+
     }
 
     public function logRequest(DirectApiRequest $request, DirectApiResponse $response)
