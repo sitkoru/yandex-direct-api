@@ -6,6 +6,7 @@ namespace directapi\services\reports;
 use directapi\services\BaseService;
 use directapi\services\reports\enum\ReportProcessingModeEnum;
 use directapi\services\reports\exceptions\ReportBadRequestException;
+use directapi\services\reports\exceptions\ReportParserException;
 use directapi\services\reports\exceptions\ReportRequestTimeoutException;
 use directapi\services\reports\exceptions\ReportServerErrorException;
 use directapi\services\reports\exceptions\ReportUnknownResponseCodeException;
@@ -150,6 +151,7 @@ class ReportsService extends BaseService
      * @throws \directapi\services\reports\exceptions\ReportBadRequestException
      * @throws \RuntimeException
      * @throws \InvalidArgumentException
+     * @throws ReportParserException
      */
     public function getReportResponse($payload, $mode, $returnMoneyInMicros)
     {
@@ -163,20 +165,29 @@ class ReportsService extends BaseService
         while ($code !== 200) {
             try {
                 $result = $this->service->doRequest($request);
+                //отправка повторного запросы при пустом ответе
+                if ($result === null) {
+                    $result = $this->service->doRequest($request);
+                }
             } catch (BadResponseException $ex) {
                 $code = $ex->getCode();
                 $errorBody = $ex->getResponse()->getBody()->getContents();
-                list($requestId, $errorCode, $errorMessage, $errorDetail) = $this->parseApiError($errorBody);
-                switch ($code) {
-                    case 400:
-                        throw new ReportBadRequestException($requestId, $errorCode, $errorMessage, $errorDetail);
-                        break;
-                    case 500:
-                        throw new ReportServerErrorException($requestId, $errorCode, $errorMessage, $errorDetail);
-                        break;
-                    case 502:
-                        throw new ReportRequestTimeoutException($requestId, $errorCode, $errorMessage, $errorDetail);
-                        break;
+
+                try {
+                    list($requestId, $errorCode, $errorMessage, $errorDetail) = $this->parseApiError($errorBody);
+                    switch ($code) {
+                        case 400:
+                            throw new ReportBadRequestException($requestId, $errorCode, $errorMessage, $errorDetail);
+                            break;
+                        case 500:
+                            throw new ReportServerErrorException($requestId, $errorCode, $errorMessage, $errorDetail);
+                            break;
+                        case 502:
+                            throw new ReportRequestTimeoutException($requestId, $errorCode, $errorMessage, $errorDetail);
+                            break;
+                    }
+                } catch (\Throwable $e) {
+                    throw new ReportParserException(0, $code, $e->getMessage(), $errorBody);
                 }
             }
             $code = $result->getStatusCode();
