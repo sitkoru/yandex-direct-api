@@ -3,9 +3,7 @@
 namespace directapi\exceptions;
 
 
-use Exception;
-
-class DirectAccountNotExistException extends Exception
+class DirectAccountNotExistException extends DirectApiException
 {
     public $error_detail;
 
