@@ -12,7 +12,7 @@ class VideoExtensionGetItem extends Model
     public $CreativeId;
 
     /**
-     * @var \directapi\common\enum\YesNoEnum
+     * @var \directapi\common\enum\StatusEnum
      */
     public $Status;
 

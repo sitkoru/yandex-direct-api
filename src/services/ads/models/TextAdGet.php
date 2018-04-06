@@ -84,7 +84,7 @@ class TextAdGet extends Model
     public $AdExtensions;
 
     /**
-     * @var VideoExtensionGetItem
+     * @var \directapi\services\adextensions\models\VideoExtensionGetItem
      */
     public $VideoExtension;
 
