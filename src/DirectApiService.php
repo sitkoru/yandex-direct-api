@@ -429,12 +429,12 @@ class DirectApiService
             if ($try < $maxTry) {
                 $response = $this->doRequest($request, $try);
             } else {
-                throw new DirectApiException('Ошибка при отправке запроса к яндексу: ' . $exception->getMessage());
+                throw new DirectApiException('Ошибка при подключении к яндексу: ' . $exception->getMessage() . ' Code: ' . $exception->getCode());
             }
         } catch (RequestException $exception) {
-            throw new DirectApiException('Ошибка при отправке запроса к яндексу: ' . $exception->getMessage());
+            throw new DirectApiException('Ошибка при отправке запроса к яндексу: ' . $exception->getMessage() . '. Response: ' . $exception->getResponse()->getBody()->getContents() . ' Code: ' . $exception->getCode());
         } catch (\Throwable $exception) {
-            throw new DirectApiException('Ошибка при отправке запроса к яндексу' . $exception->getMessage());
+            throw new DirectApiException('Ошибка при запросе к яндексу' . $exception->getMessage() . ' Code: ' . $exception->getCode());
         }
         return $response;
     }
