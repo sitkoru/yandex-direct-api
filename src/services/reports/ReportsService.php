@@ -196,10 +196,9 @@ class ReportsService extends BaseService
             } catch (DirectApiException $ex) {
                 if ($ex->response) {
 
-                    $xmlstr = str_replace("reports:", "", $ex->response);
-                    $simpleXMLElementResponse = new SimpleXMLElement($xmlstr);
-
-                    if ( $simpleXMLElementResponse->ApiError->errorCode == "1002") {
+                    $simpleXMLElementResponse = new SimpleXMLElement($ex->response, 0, false, 'http://api.direct.yandex.com/v5/reports');
+                    $errorCode = (int)$simpleXMLElementResponse->xpath('//reports:errorCode')[0];
+                    if ($errorCode === 1002) {
                         try {
                             $result = $this->service->doRequest($request);
                             //отправка повторного запросы при пустом ответе
