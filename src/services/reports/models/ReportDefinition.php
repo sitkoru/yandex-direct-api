@@ -14,22 +14,22 @@ class ReportDefinition
     /**
      * @var ReportSelectionCriteria Критерии отбора данных для отчета
      */
-    public $selectionCriteria;
+    public $SelectionCriteria;
 
     /**
      * @var ReportFieldsEnum[] Имена полей (столбцов), которые будут присутствовать в отчете.
      */
-    public $fieldNames = [];
+    public $FieldNames = [];
 
     /**
      * @var ReportPage Ограничение на количество строк в отчете. Если не задано, используется ограничение 1 000 000.
      */
-    private $page;
+    private $Page;
 
     /**
      * @var ReportOrderBy[]
      */
-    private $order = [];
+    private $Order = [];
 
     /**
      * @var string Название отчета. Выводится в первой строке отчета.
@@ -37,34 +37,34 @@ class ReportDefinition
      * Если отчет с таким названием, но с отличающимися параметрами уже сформирован или находится в очереди,
      * выдается ошибка.
      */
-    public $reportName;
+    public $ReportName;
 
     /**
      * @var ReportTypesEnum Тип отчета
      */
-    public $reportType;
+    public $ReportType;
 
     /**
      * @var ReportDateRangeTypeEnum Период, за который формируется отчет
      */
-    public $dateRangeType;
+    public $DateRangeType;
 
     /**
      * @var ReportFormatsEnum Формат отчета. В настоящее время поддерживается только значение TSV.
      */
-    public $format;
+    public $Format;
 
     /**
      * @var YesNoEnum Включать ли НДС в денежные суммы в отчете.
      * Если рекламодатель работает в у. е. Директа, допускается только значение YES.
      */
-    public $includeVAT;
+    public $IncludeVAT;
 
     /**
      * Учитывать ли скидку для денежных сумм в отчете.
      * Если рекламодатель работает в у. е. Директа, допускается только значение NO.
      */
-    public $includeDiscount;
+    public $IncludeDiscount;
 
     /**
      * ReportDefinition constructor.
@@ -87,19 +87,19 @@ class ReportDefinition
         $includeVAT,
         $includeDiscount
     ) {
-        $this->selectionCriteria = $selectionCriteria;
-        $this->fieldNames = $fieldNames;
-        $this->reportName = $reportName;
-        $this->reportType = $reportType;
-        $this->dateRangeType = $dateRangeType;
-        $this->format = $format;
-        $this->includeVAT = $includeVAT;
-        $this->includeDiscount = $includeDiscount;
+        $this->SelectionCriteria = $selectionCriteria;
+        $this->FieldNames = $fieldNames;
+        $this->ReportName = $reportName;
+        $this->ReportType = $reportType;
+        $this->DateRangeType = $dateRangeType;
+        $this->Format = $format;
+        $this->IncludeVAT = $includeVAT;
+        $this->IncludeDiscount = $includeDiscount;
     }
 
     public function addOrderBy(ReportOrderBy $orderBy)
     {
-        $this->order[] = $orderBy;
+        $this->Order[] = $orderBy;
     }
 
     /**
@@ -107,12 +107,12 @@ class ReportDefinition
      */
     public function getOrderBy()
     {
-        return $this->order;
+        return $this->Order;
     }
 
     public function setPage(ReportPage $page)
     {
-        $this->page = $page;
+        $this->Page = $page;
     }
 
     /**
@@ -120,6 +120,6 @@ class ReportDefinition
      */
     public function getPage()
     {
-        return $this->page;
+        return $this->Page;
     }
 }
