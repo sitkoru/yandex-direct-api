@@ -186,15 +186,13 @@ class ReportsService extends BaseService
         return $this->parseReportResponse($body);
     }
 
-    private function parseApiError($xml)
+    private function parseApiError($errorString)
     {
-        $simpleXml = new SimpleXMLElement($xml);
-        $simpleXml->registerXPathNamespace('reports', 'http://api.direct.yandex.com/v5/reports');
-        $error = $simpleXml->xpath('//reports:ApiError')[0];
-        $requestId = (string)$error->xpath('//reports:requestId')[0];
-        $errorCode = (int)$error->xpath('//reports:errorCode')[0];
-        $errorMessage = (string)$error->xpath('//reports:errorMessage')[0];
-        $errorDetail = (string)$error->xpath('//reports:errorDetail')[0];
+        $errorJson= json_decode($errorString);
+        $requestId = (string)$errorJson->request_id;
+        $errorCode = (int)$errorJson->error_code;
+        $errorMessage = (string)$errorJson->error_string;
+        $errorDetail = (string)$errorJson->error_detail;
 
         return [$requestId, $errorCode, $errorMessage, $errorDetail];
     }
