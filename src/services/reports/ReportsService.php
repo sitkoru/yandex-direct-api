@@ -3,6 +3,7 @@
 namespace directapi\services\reports;
 
 
+use directapi\exceptions\DirectApiException;
 use directapi\services\BaseService;
 use directapi\services\reports\enum\ReportProcessingModeEnum;
 use directapi\services\reports\exceptions\ReportBadRequestException;
@@ -140,6 +141,29 @@ class ReportsService extends BaseService
         return $writer->outputMemory();
     }
 
+    private function badResponseExceptionAnswer($ex)
+    {
+        $code = $ex->getCode();
+        $errorBody = $ex->getResponse()->getBody()->getContents();
+
+        try {
+            list($requestId, $errorCode, $errorMessage, $errorDetail) = $this->parseApiError($errorBody);
+            switch ($code) {
+                case 400:
+                    throw new ReportBadRequestException($requestId, $errorCode, $errorMessage, $errorDetail);
+                    break;
+                case 500:
+                    throw new ReportServerErrorException($requestId, $errorCode, $errorMessage, $errorDetail);
+                    break;
+                case 502:
+                    throw new ReportRequestTimeoutException($requestId, $errorCode, $errorMessage, $errorDetail);
+                    break;
+            }
+        } catch (\Throwable $e) {
+            throw new ReportParserException(0, $code, $e->getMessage(), $errorBody);
+        }
+    }
+
     /**
      * @param string                   $payload
      * @param ReportProcessingModeEnum $mode
@@ -169,26 +193,26 @@ class ReportsService extends BaseService
                 if ($result === null) {
                     $result = $this->service->doRequest($request);
                 }
-            } catch (BadResponseException $ex) {
-                $code = $ex->getCode();
-                $errorBody = $ex->getResponse()->getBody()->getContents();
+            } catch (DirectApiException $ex) {
+                if ($ex->response) {
 
-                try {
-                    list($requestId, $errorCode, $errorMessage, $errorDetail) = $this->parseApiError($errorBody);
-                    switch ($code) {
-                        case 400:
-                            throw new ReportBadRequestException($requestId, $errorCode, $errorMessage, $errorDetail);
-                            break;
-                        case 500:
-                            throw new ReportServerErrorException($requestId, $errorCode, $errorMessage, $errorDetail);
-                            break;
-                        case 502:
-                            throw new ReportRequestTimeoutException($requestId, $errorCode, $errorMessage, $errorDetail);
-                            break;
+                    $simpleXMLElementResponse = new SimpleXMLElement($ex->response, 0, false, 'http://api.direct.yandex.com/v5/reports');
+                    $errorCode = (int)$simpleXMLElementResponse->xpath('//reports:errorCode')[0];
+                    if ($errorCode === 1002) {
+                        try {
+                            $result = $this->service->doRequest($request);
+                            //отправка повторного запросы при пустом ответе
+                            if ($result === null) {
+                                $result = $this->service->doRequest($request);
+                            }
+                        } catch (BadResponseException $ex) {
+                            $this->badResponseExceptionAnswer($ex);
+                        }
                     }
-                } catch (\Throwable $e) {
-                    throw new ReportParserException(0, $code, $e->getMessage(), $errorBody);
                 }
+
+            } catch (BadResponseException $ex) {
+                $this->badResponseExceptionAnswer($ex);
             }
             $code = $result->getStatusCode();
             if ($code === 201 || $code === 202) {
