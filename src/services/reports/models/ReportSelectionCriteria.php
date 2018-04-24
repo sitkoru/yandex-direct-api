@@ -13,21 +13,21 @@ class ReportSelectionCriteria
     /**
      * @var string Начальная дата отчетного периода, YYYY-MM-DD.
      */
-    public $dateFrom;
+    public $DateFrom;
 
     /**
      * @var string Конечная дата отчетного периода, YYYY-MM-DD.
      */
-    public $dateTo;
+    public $DateTo;
 
     /**
      * @var ReportFilterItem[] Критерии отбора строк
      */
-    private $filters = [];
+    private $Filters = [];
 
     public function addFilter(ReportFilterItem $filter)
     {
-        $this->filters[] = $filter;
+        $this->Filters[] = $filter;
     }
 
     /**
@@ -35,6 +35,6 @@ class ReportSelectionCriteria
      */
     public function getFilters()
     {
-        return $this->filters;
+        return $this->Filters;
     }
 }

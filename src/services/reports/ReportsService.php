@@ -19,7 +19,7 @@ use SimpleXMLElement;
 
 class ReportsService extends BaseService
 {
-    const REPORTS_API_URL = 'https://api.direct.yandex.com/v5/reports';
+    const REPORTS_API_URL = 'https://api.direct.yandex.com/json/v5/reports';
 
     /**
      * @param $body
@@ -86,59 +86,13 @@ class ReportsService extends BaseService
         $mode = ReportProcessingModeEnum::AUTO,
         $returnMoneyInMicros = 'false'
     ) {
-        return $this->getReportResponse($this->getRequestXml($reportDefinition), $mode, $returnMoneyInMicros);
+        return $this->getReportResponse($this->getRequesJson($reportDefinition), $mode, $returnMoneyInMicros);
     }
 
-    private function getRequestXml(ReportDefinition $reportDefinition)
+    public function  getRequesJson(ReportDefinition $reportDefinition)
     {
-        $writer = new \XMLWriter();
-        $writer->openMemory();
-        $writer->startDocument('1.0', 'UTF-8');
-        $writer->startElementNS(null, 'ReportDefinition', 'http://api.direct.yandex.com/v5/reports');
-        //start SelectionCriteria
-        $writer->startElement('SelectionCriteria');
-        if ($reportDefinition->selectionCriteria->dateFrom) {
-            $writer->writeElement('DateFrom', $reportDefinition->selectionCriteria->dateFrom);
-        }
-        if ($reportDefinition->selectionCriteria->dateTo) {
-            $writer->writeElement('DateTo', $reportDefinition->selectionCriteria->dateTo);
-        }
-        foreach ($reportDefinition->selectionCriteria->getFilters() as $filter) {
-            $writer->startElement('Filter');
-            $writer->writeElement('Field', $filter->field);
-            $writer->writeElement('Operator', $filter->operator);
-            foreach ($filter->values as $value) {
-                $writer->writeElement('Values', $value);
-            }
-            $writer->endElement();
-        }
-        $writer->endElement();
-        //end SelectionCriteria
-        foreach ($reportDefinition->fieldNames as $fieldName) {
-            $writer->writeElement('FieldNames', $fieldName);
-        }
-        if ($reportDefinition->getPage()) {
-            $writer->startElement('Page');
-            $writer->writeElement('Limit', $reportDefinition->getPage()->limit);
-            $writer->endElement();
-        }
-        foreach ($reportDefinition->getOrderBy() as $orderBy) {
-            $writer->startElement('OrderBy');
-            $writer->writeElement('Field', $orderBy->field);
-            if ($orderBy->sortOrder) {
-                $writer->writeElement('SortOrder', $orderBy->sortOrder);
-            }
-            $writer->endElement();
-        }
-        $writer->writeElement('ReportName', $reportDefinition->reportName);
-        $writer->writeElement('ReportType', $reportDefinition->reportType);
-        $writer->writeElement('DateRangeType', $reportDefinition->dateRangeType);
-        $writer->writeElement('Format', $reportDefinition->format);
-        $writer->writeElement('IncludeVAT', $reportDefinition->includeVAT);
-        $writer->writeElement('IncludeDiscount', $reportDefinition->includeDiscount);
-        $writer->endElement();
-        $writer->endDocument();
-        return $writer->outputMemory();
+        $jsonRequest = ["params"=>$reportDefinition];
+        return json_encode($jsonRequest);
     }
 
     private function badResponseExceptionAnswer($ex)
@@ -232,15 +186,13 @@ class ReportsService extends BaseService
         return $this->parseReportResponse($body);
     }
 
-    private function parseApiError($xml)
+    private function parseApiError($errorString)
     {
-        $simpleXml = new SimpleXMLElement($xml);
-        $simpleXml->registerXPathNamespace('reports', 'http://api.direct.yandex.com/v5/reports');
-        $error = $simpleXml->xpath('//reports:ApiError')[0];
-        $requestId = (string)$error->xpath('//reports:requestId')[0];
-        $errorCode = (int)$error->xpath('//reports:errorCode')[0];
-        $errorMessage = (string)$error->xpath('//reports:errorMessage')[0];
-        $errorDetail = (string)$error->xpath('//reports:errorDetail')[0];
+        $errorJson= json_decode($errorString);
+        $requestId = (string)$errorJson->request_id;
+        $errorCode = (int)$errorJson->error_code;
+        $errorMessage = (string)$errorJson->error_string;
+        $errorDetail = (string)$errorJson->error_detail;
 
         return [$requestId, $errorCode, $errorMessage, $errorDetail];
     }
