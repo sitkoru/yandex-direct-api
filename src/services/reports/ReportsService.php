@@ -89,9 +89,9 @@ class ReportsService extends BaseService
         return $this->getReportResponse($this->getRequesJson($reportDefinition), $mode, $returnMoneyInMicros);
     }
 
-    public function  getRequesJson(ReportDefinition $reportDefinition)
+    public function getRequesJson(ReportDefinition $reportDefinition)
     {
-        $jsonRequest = ["params"=>$reportDefinition];
+        $jsonRequest = ["params" => $reportDefinition];
         return json_encode($jsonRequest);
     }
 
@@ -142,26 +142,19 @@ class ReportsService extends BaseService
         $result = null;
         while ($code !== 200) {
             try {
-                $result = $this->service->doRequest($request);
-                //отправка повторного запросы при пустом ответе
-                if ($result === null) {
-                    $result = $this->service->doRequest($request);
-                }
+                $result = $this->getResult(0, $request);
             } catch (DirectApiException $ex) {
                 if ($ex->response) {
-
-                    $simpleXMLElementResponse = new SimpleXMLElement($ex->response, 0, false, 'http://api.direct.yandex.com/v5/reports');
-                    $errorCode = (int)$simpleXMLElementResponse->xpath('//reports:errorCode')[0];
-                    if ($errorCode === 1002) {
+                    $exResp = json_decode($ex->response, true);
+                    $errorCode = (int)$exResp['error']['error_code'];
+                    if ($errorCode === 500) {
                         try {
-                            $result = $this->service->doRequest($request);
-                            //отправка повторного запросы при пустом ответе
-                            if ($result === null) {
-                                $result = $this->service->doRequest($request);
-                            }
+                            $result = $this->getResult(0, $request);
                         } catch (BadResponseException $ex) {
                             $this->badResponseExceptionAnswer($ex);
                         }
+                    } else {
+                        $this->badResponseExceptionAnswer($ex);
                     }
                 }
 
@@ -186,9 +179,28 @@ class ReportsService extends BaseService
         return $this->parseReportResponse($body);
     }
 
+    /**
+     * @param $attemptNumber
+     * @param $request
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws DirectApiException
+     */
+    private function getResult($attemptNumber, $request)
+    {
+        while ($attemptNumber < 100) {
+            $result = $this->service->doRequest($request);
+            if ($result === null) {
+                sleep(1);
+                $this->getResult($attemptNumber + 1, $request);
+            }
+            return $result;
+        }
+        throw new DirectApiException('Не удалось получить отчёт после 100 попыток');
+    }
+
     private function parseApiError($errorString)
     {
-        $errorJson= json_decode($errorString);
+        $errorJson = json_decode($errorString);
         $requestId = (string)$errorJson->request_id;
         $errorCode = (int)$errorJson->error_code;
         $errorMessage = (string)$errorJson->error_string;
