@@ -432,7 +432,13 @@ class DirectApiService
                 throw new DirectApiException('Ошибка при подключении к яндексу: ' . $exception->getMessage() . ' Code: ' . $exception->getCode());
             }
         } catch (RequestException $exception) {
-            throw new DirectApiException('Ошибка при отправке запроса к яндексу: ' . $exception->getMessage() . '. Response: ' . $exception->getResponse()->getBody()->getContents() . ' Code: ' . $exception->getCode(), 0, null, $exception->getResponse()->getBody()->getContents());
+            $response = $exception->getResponse();
+            if ($response) {
+                $response = $response->getBody()->getContents();
+            } else {
+                $response = "";
+            }
+            throw new DirectApiException('Ошибка при отправке запроса к яндексу: ' . $exception->getMessage() . '. Response: ' . $response . ' Code: ' . $exception->getCode(), 0, null, $exception->getResponse()->getBody()->getContents());
         } catch (\Throwable $exception) {
             throw new DirectApiException('Ошибка при запросе к яндексу' . $exception->getMessage() . ' Code: ' . $exception->getCode());
         }
