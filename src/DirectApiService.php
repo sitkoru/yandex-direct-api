@@ -438,7 +438,7 @@ class DirectApiService
             } else {
                 $response = "";
             }
-            throw new DirectApiException('Ошибка при отправке запроса к яндексу: ' . $exception->getMessage() . '. Response: ' . $response . ' Code: ' . $exception->getCode(), 0, null, $exception->getResponse()->getBody()->getContents());
+            throw new DirectApiException('Ошибка при отправке запроса к яндексу: ' . $exception->getMessage() . '. Response: ' . $response . ' Code: ' . $exception->getCode(), 0, null, $response);
         } catch (\Throwable $exception) {
             throw new DirectApiException('Ошибка при запросе к яндексу' . $exception->getMessage() . ' Code: ' . $exception->getCode());
         }

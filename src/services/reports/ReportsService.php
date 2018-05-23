@@ -156,8 +156,9 @@ class ReportsService extends BaseService
                     } else {
                         $this->badResponseExceptionAnswer($ex);
                     }
+                } else {
+                    $this->badResponseExceptionAnswer($ex);
                 }
-
             } catch (BadResponseException $ex) {
                 $this->badResponseExceptionAnswer($ex);
             }
