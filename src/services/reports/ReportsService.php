@@ -154,10 +154,10 @@ class ReportsService extends BaseService
                             $this->badResponseExceptionAnswer($ex);
                         }
                     } else {
-                        $this->badResponseExceptionAnswer($ex);
+                        throw new DirectApiException($ex->getMessage(), $ex->getCode());
                     }
                 } else {
-                    $this->badResponseExceptionAnswer($ex);
+                    throw new DirectApiException($ex->getMessage(), $ex->getCode());
                 }
             } catch (BadResponseException $ex) {
                 $this->badResponseExceptionAnswer($ex);
