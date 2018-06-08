@@ -3,6 +3,7 @@
 namespace directapi\services\bids;
 
 
+use directapi\common\criterias\LimitOffset;
 use directapi\common\results\ActionResult;
 use directapi\services\BaseService;
 use directapi\services\keywordbids\criterias\KeywordBidsSelectionCriteria;
@@ -10,36 +11,49 @@ use directapi\services\keywordbids\enum\KeywordBidFieldEnum;
 use directapi\services\keywordbids\models\KeywordBidActionResult;
 use directapi\services\keywordbids\models\KeywordBidGetItem;
 use directapi\services\keywordbids\models\KeywordBidSetAutoItem;
+use directapi\services\keywordbids\models\KeywordBidSetItem;
 
 class KeywordBidsService extends BaseService
 {
     /**
      * @param KeywordBidsSelectionCriteria $SelectionCriteria
-     * @param KeywordBidFieldEnum[]               $FieldNames
+     * @param KeywordBidFieldEnum[]        $FieldNames
      *
+     * @param string[]                     $SearchFieldNames
+     * @param string[]                     $NetworkFieldNames
+     * @param LimitOffset                  $Page
      * @return KeywordBidGetItem[]
      */
-    public function get(KeywordBidsSelectionCriteria $SelectionCriteria, array $FieldNames)
+    public function get(KeywordBidsSelectionCriteria $SelectionCriteria, array $FieldNames, array $SearchFieldNames = [], array $NetworkFieldNames = [], LimitOffset $Page = null)
     {
         $params = [
             'SelectionCriteria' => $SelectionCriteria,
             'FieldNames'        => $FieldNames
         ];
+        if ($SearchFieldNames) {
+            $params['SearchFieldNames'] = $Page;
+        }
+        if ($NetworkFieldNames) {
+            $params['NetworkFieldNames'] = $Page;
+        }
+        if ($Page) {
+            $params['Page'] = $Page;
+        }
         return $this->doGet($params, 'KeywordBids', KeywordBidGetItem::class);
     }
 
     /**
-     * @param KeywordBidGetItem[] $Bids
+     * @param KeywordBidSetItem[] $Bids
      *
      * @return KeywordBidActionResult[]
      */
     public function set(array $Bids)
     {
         $params = [
-            'Bids' => $Bids
+            'KeywordBids' => $Bids
         ];
         $result = $this->call('set', $params);
-        return $this->mapArray($result->SetResults, ActionResult::class);
+        return $this->mapArray($result->SetResults, KeywordBidActionResult::class);
     }
 
     /**
@@ -50,7 +64,7 @@ class KeywordBidsService extends BaseService
     public function setAuto(array $Bids)
     {
         $params = [
-            'Bids' => $Bids
+            'KeywordBids' => $Bids
         ];
         $result = $this->call('setAuto', $params);
         return $this->mapArray($result->SetAutoResults, KeywordBidActionResult::class);
@@ -58,7 +72,7 @@ class KeywordBidsService extends BaseService
 
     protected function getName()
     {
-        return 'bids';
+        return 'keywordbids';
     }
 
     /**

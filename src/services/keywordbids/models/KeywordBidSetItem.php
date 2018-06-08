@@ -28,16 +28,15 @@ class KeywordBidSetItem extends Model implements ICallbackValidation
     /**
      * @var int
      */
-    public $Bid;
+    public $SearchBid;
 
     /**
      * @var int
      */
-    public $ContextBid;
+    public $NetworkBid;
 
     /**
      * @var \directapi\common\enum\PriorityEnum
-     * @DirectApiAssert\IsEnum(type="directapi\common\enum\PriorityEnum")
      */
     public $StrategyPriority;
 
@@ -54,10 +53,10 @@ class KeywordBidSetItem extends Model implements ICallbackValidation
                 ->atPath('KeywordId')
                 ->addViolation();
         }
-        if (!$this->Bid && !$this->ContextBid && !$this->StrategyPriority) {
-            $context->buildViolation('Должно быть указано одно из следующих значений: Bid, ContextBid, StrategyPriority')
-                ->atPath('Bid')
-                ->atPath('ContextBid')
+        if (!$this->SearchBid && !$this->NetworkBid && !$this->StrategyPriority) {
+            $context->buildViolation('Должно быть указано одно из следующих значений: SearchBid, NetworkBid, StrategyPriority')
+                ->atPath('SearchBid')
+                ->atPath('NetworkBid')
                 ->atPath('StrategyPriority')
                 ->addViolation();
         }

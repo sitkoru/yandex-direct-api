@@ -2,7 +2,9 @@
 
 namespace directapi\services\keywordbids\models;
 
+use directapi\common\enum\PriorityEnum;
 use directapi\components\Model;
+use directapi\services\keywordbids\enum\ServingStatusEnum;
 
 class KeywordBidGetItem extends Model
 {
@@ -22,47 +24,23 @@ class KeywordBidGetItem extends Model
     public $KeywordId;
 
     /**
-     * @var int
+     * @var ServingStatusEnum
      */
-    public $Bid;
+    public $ServingStatus;
 
     /**
-     * @var int
-     */
-    public $ContextBid;
-
-    /**
-     * @var \directapi\common\enum\PriorityEnum
+     * @var PriorityEnum
      */
     public $StrategyPriority;
 
     /**
-     * @var int[]
+     * @var SearchItem
      */
-    public $CompetitorsBids;
+    public $Search;
 
     /**
-     * @var SearchPrices[]
+     * @var NetworkItem
+     * @Assert\Valid()
      */
-    public $SearchPrices;
-
-    /**
-     * @var ContextCoverage
-     */
-    public $ContextCoverage;
-
-    /**
-     * @var int
-     */
-    public $MinSearchPrice;
-
-    /**
-     * @var int
-     */
-    public $CurrentSearchPrice;
-
-    /**
-     * @var AuctionKeywordBidItem
-     */
-    public $AuctionBids;
+    public $Network;
 }

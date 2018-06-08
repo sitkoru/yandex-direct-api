@@ -8,11 +8,9 @@ use directapi\components\Model;
 class AuctionKeywordBidItem extends Model
 {
     /**
-     * @var string Позиция показа: Pmn, где
-     * m — номер блока (1 — спецразмещение, 2 — блок гарантированных показов);
-     * n — номер позиции в рамках блока.
+     * @var int Объем трафика.
      */
-    public $Position;
+    public $TrafficVolume;
 
     /**
      * @var int Минимальная ставка за указанную позицию.
