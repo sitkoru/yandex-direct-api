@@ -15,6 +15,7 @@ use directapi\services\agencyclients\AgencyClientsService;
 use directapi\services\audiencetargets\AudienceTargetsService;
 use directapi\services\bidmodifiers\BidModifiersService;
 use directapi\services\bids\BidsService;
+use directapi\services\bids\KeywordBidsService;
 use directapi\services\campaigns\CampaignsService;
 use directapi\services\changes\ChangesService;
 use directapi\services\clients\ClientsService;
@@ -69,6 +70,11 @@ class DirectApiService
      * @var BidsService
      */
     private $bidsService;
+
+    /**
+     * @var KeywordBidsService
+     */
+    private $keywordBidsService;
 
     /**
      * @var CampaignsService
@@ -190,6 +196,17 @@ class DirectApiService
             $this->bidsService = new BidsService($this);
         }
         return $this->bidsService;
+    }
+
+    /**
+     * @return KeywordBidsService
+     */
+    public function getKeywordBidsService()
+    {
+        if (!$this->keywordBidsService) {
+            $this->keywordBidsService = new KeywordBidsService($this);
+        }
+        return $this->keywordBidsService;
     }
 
     /**
