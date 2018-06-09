@@ -5,6 +5,7 @@ namespace directapi\services\keywordbids\models;
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class KeywordBidSetAutoItem extends Model implements ICallbackValidation
 {
@@ -22,11 +23,6 @@ class KeywordBidSetAutoItem extends Model implements ICallbackValidation
      * @var int
      */
     public $KeywordId;
-
-    /**
-     * @var int
-     */
-    public $MaxBid;
 
     /**
      * @var BiddingRuleItem

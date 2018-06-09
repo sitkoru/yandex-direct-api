@@ -1,10 +1,9 @@
 <?php
 
-namespace directapi\services\bids;
+namespace directapi\services\keywordbids;
 
 
 use directapi\common\criterias\LimitOffset;
-use directapi\common\results\ActionResult;
 use directapi\services\BaseService;
 use directapi\services\keywordbids\criterias\KeywordBidsSelectionCriteria;
 use directapi\services\keywordbids\enum\KeywordBidFieldEnum;

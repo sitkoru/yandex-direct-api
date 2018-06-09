@@ -4,6 +4,7 @@ namespace directapi\services\keywordbids\models;
 
 
 use directapi\components\Model;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class NetworkByCoverage extends Model
 {
@@ -24,4 +25,9 @@ class NetworkByCoverage extends Model
      * )
      */
     public $IncreasePercent;
+
+    /**
+     * @var int Ограничение на ставку, умноженное на 1 000 000. Целое число.
+     */
+    public $BidCeiling;
 }

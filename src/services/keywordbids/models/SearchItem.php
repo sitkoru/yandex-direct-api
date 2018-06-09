@@ -2,6 +2,8 @@
 
 namespace directapi\services\keywordbids\models;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 class SearchItem
 {
     /**
