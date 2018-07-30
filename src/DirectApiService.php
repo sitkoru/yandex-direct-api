@@ -29,6 +29,7 @@ use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\RequestInterface;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validation;
 
@@ -132,15 +133,15 @@ class DirectApiService
     private $audienceTargetsService;
 
     /**
-     * @var IQueryLogger
+     * @var DirectApiLogger
      */
-    private $logger;
+    public $logger;
 
-    public function __construct($token, $clientLogin, IQueryLogger $logger = null)
+    public function __construct($token, $clientLogin, ?IQueryLogger $queryLogger = null, ?LoggerInterface $logger = null)
     {
         $this->token = $token;
         $this->clientLogin = $clientLogin;
-        $this->logger = $logger;
+        $this->logger = new DirectApiLogger($queryLogger, $logger);
     }
 
     /**
@@ -514,12 +515,10 @@ class DirectApiService
             if ((int)$data->error->error_code === self::ERROR_CODE_CONCURRENT_LIMIT) //concurrent limit
             {
                 usleep(100);
-                $this->logRequest($request, $response);
+                $this->logger->logRequest($request, $response);
                 return $this->getResponse($request);
             }
-            if ($this->logger) {
-                $this->logRequest($request, $response);
-            }
+            $this->logger->logRequest($request, $response);
             if ((int)$data->error->error_code === self::ERROR_CODE_NOT_EXIST_DIRECT_ACCOUNT) {
                 throw new DirectAccountNotExistException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
                     $data->error->error_code);
@@ -533,19 +532,12 @@ class DirectApiService
         }
         $response->isSuccess = true;
         if (!is_object($data)) {
-            $this->logRequest($request, $response);
+            $this->logger->logRequest($request, $response);
             throw new DirectApiException('Ошибка при получении данных кампании (' . $request->service . ', ' . $request->method . ')' . var_export($request->params,
                     true));
         }
-        $this->logRequest($request, $response);
+        $this->logger->logRequest($request, $response);
         return $response;
 
-    }
-
-    public function logRequest(DirectApiRequest $request, DirectApiResponse $response)
-    {
-        if ($this->logger) {
-            $this->logger->logRequest($request, $response);
-        }
     }
 }

@@ -15,7 +15,6 @@ use directapi\services\reports\models\Report;
 use directapi\services\reports\models\ReportDefinition;
 use directapi\services\reports\models\ReportRow;
 use GuzzleHttp\Exception\BadResponseException;
-use SimpleXMLElement;
 
 class ReportsService extends BaseService
 {
@@ -149,11 +148,13 @@ class ReportsService extends BaseService
                     $errorCode = (int)$exResp['error']['error_code'];
                     if ($errorCode === 500) {
                         try {
+                            $this->service->logger->debug('Error 500. Retry');
                             $result = $this->getResult(0, $request);
                         } catch (BadResponseException $ex) {
                             $this->badResponseExceptionAnswer($ex);
                         }
                     } else {
+                        $this->service->logger->debug('Error ' . $errorCode . '. Retry');
                         throw new DirectApiException($ex->getMessage(), $ex->getCode());
                     }
                 } else {
@@ -167,6 +168,7 @@ class ReportsService extends BaseService
                 //wait
                 $header = $result->getHeader('retryIn');
                 $retryIn = $header ? (int)$header[0] : 5;
+                $this->service->logger->debug("Response: {$code}. Retry in: {$retryIn}");
                 if ($retryIn > 0) {
                     sleep($retryIn);
                 }
@@ -174,9 +176,9 @@ class ReportsService extends BaseService
                 throw new ReportUnknownResponseCodeException($code);
             }
         }
-
+        
+        $this->service->logger->debug('Report done. Parse');
         $body = $result->getBody()->getContents();
-
         return $this->parseReportResponse($body);
     }
 
