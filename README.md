@@ -1,6 +1,6 @@
 # PHP-обёртка над API Яндекс.Директ v5
 
-Набор классов для удобной работы с API Яндекс.Директ. 
+Набор классов для удобной работы с [API Яндекс.Директ](https://tech.yandex.ru/direct/doc/dg/concepts/about-docpage/). 
 
 ## Установка
 
@@ -10,7 +10,9 @@ composer require sitkoru/yandex-direct-api
 
 ## Использование
 
-1. Необходимо инициировать аннотации. Замените
+### Подготовка
+
+Необходимо инициировать аннотации. Замените
 
 ```php
 require __DIR__ . '/vendor/autoload.php';
@@ -23,7 +25,9 @@ $loader = require __DIR__ . '/vendor/autoload.php';
 AnnotationRegistry::registerLoader([$loader, 'loadClass']);
 ```
 
-2. Можно начинать делать вызовы. Например, получим список активный кампаний аккаунта
+### Первый вызов
+
+Для примера, получим список активных кампаний аккаунта 
 
 ```php
 $directApiService = new DirectApiService("ваш токен", "ваш логин");
