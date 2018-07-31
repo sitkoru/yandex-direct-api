@@ -230,7 +230,7 @@ abstract class BaseService
     {
         $result = [[]];
         while ($response = $this->call('get', $params)) {
-            if ($response->$paramName && $response->$paramName) {
+            if (property_exists($response, $paramName) && $response->$paramName !== null) {
                 $result[] = $this->mapArray($response->$paramName, $class);
             }
             if (property_exists($response, 'limitedBy')) {

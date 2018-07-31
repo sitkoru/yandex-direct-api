@@ -146,7 +146,7 @@ class DirectApiService
 
     public function __construct(
         string $token,
-        string $clientLogin,
+        ?string $clientLogin = null,
         ?IQueryLogger $queryLogger = null,
         ?LoggerInterface $logger = null
     ) {
