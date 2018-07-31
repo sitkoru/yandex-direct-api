@@ -10,6 +10,12 @@ use Symfony\Component\Validator\Constraint;
  */
 class IsEnum extends Constraint
 {
+    /**
+     * @var string
+     */
     public $message = 'Должно быть значением из {{ type }}. Текущее значение: {{ value }}';
+    /**
+     * @var string
+     */
     public $type;
 }

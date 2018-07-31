@@ -66,7 +66,7 @@ class KeywordGetItem extends Model
      */
     public $Productivity;
 
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->Keyword;
     }

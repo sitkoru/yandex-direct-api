@@ -41,7 +41,7 @@ class MobileAppAdGet extends Model
      */
     public $AdImageModeration;
 
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->Title;
     }

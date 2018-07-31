@@ -3,7 +3,6 @@
 namespace directapi\services\ads\models;
 
 use directapi\components\Model;
-use directapi\services\adextensions\models\VideoExtensionGetItem;
 
 class TextAdGet extends Model
 {
@@ -88,7 +87,7 @@ class TextAdGet extends Model
      */
     public $VideoExtension;
 
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->Title;
     }

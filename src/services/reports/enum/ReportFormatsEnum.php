@@ -10,5 +10,5 @@ class ReportFormatsEnum extends Enum
     /**
      * TSV
      */
-    const TSV = 'TSV';
+    public const TSV = 'TSV';
 }

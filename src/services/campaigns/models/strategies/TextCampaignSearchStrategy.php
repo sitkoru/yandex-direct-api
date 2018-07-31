@@ -64,36 +64,36 @@ class TextCampaignSearchStrategy extends Model implements ICallbackValidation
      * @Assert\Callback()
      * @param ExecutionContextInterface $context
      */
-    public function isValid(ExecutionContextInterface $context)
+    public function isValid(ExecutionContextInterface $context): void
     {
-        if ($this->BiddingStrategyType == TextCampaignSearchStrategyTypeEnum::WB_MAXIMUM_CLICKS && !$this->WbMaximumClicks) {
-            $context->buildViolation("Свойство WbMaximumClicks должно быть указано, если BiddingStrategyType=WB_MAXIMUM_CLICKS")
-                ->atPath("WbMaximumClicks")->addViolation();
+        if ($this->BiddingStrategyType === TextCampaignSearchStrategyTypeEnum::WB_MAXIMUM_CLICKS && !$this->WbMaximumClicks) {
+            $context->buildViolation('Свойство WbMaximumClicks должно быть указано, если BiddingStrategyType=WB_MAXIMUM_CLICKS')
+                ->atPath('WbMaximumClicks')->addViolation();
         }
 
-        if ($this->BiddingStrategyType == TextCampaignSearchStrategyTypeEnum::WB_MAXIMUM_CONVERSION_RATE && !$this->WbMaximumConversionRate) {
-            $context->buildViolation("Свойство WbMaximumConversionRate должно быть указано, если BiddingStrategyType=WB_MAXIMUM_CONVERSION_RATE")
-                ->atPath("WbMaximumConversionRate")->addViolation();
+        if ($this->BiddingStrategyType === TextCampaignSearchStrategyTypeEnum::WB_MAXIMUM_CONVERSION_RATE && !$this->WbMaximumConversionRate) {
+            $context->buildViolation('Свойство WbMaximumConversionRate должно быть указано, если BiddingStrategyType=WB_MAXIMUM_CONVERSION_RATE')
+                ->atPath('WbMaximumConversionRate')->addViolation();
         }
 
-        if ($this->BiddingStrategyType == TextCampaignSearchStrategyTypeEnum::AVERAGE_CPC && !$this->AverageCpc) {
-            $context->buildViolation("Свойство AverageCpc должно быть указано, если BiddingStrategyType=AVERAGE_CPC")
-                ->atPath("AverageCpc")->addViolation();
+        if ($this->BiddingStrategyType === TextCampaignSearchStrategyTypeEnum::AVERAGE_CPC && !$this->AverageCpc) {
+            $context->buildViolation('Свойство AverageCpc должно быть указано, если BiddingStrategyType=AVERAGE_CPC')
+                ->atPath('AverageCpc')->addViolation();
         }
 
-        if ($this->BiddingStrategyType == TextCampaignSearchStrategyTypeEnum::AVERAGE_CPA && !$this->AverageCpa) {
-            $context->buildViolation("Свойство AverageCpc должно быть указано, если BiddingStrategyType=AVERAGE_CPA")
-                ->atPath("AverageCpa")->addViolation();
+        if ($this->BiddingStrategyType === TextCampaignSearchStrategyTypeEnum::AVERAGE_CPA && !$this->AverageCpa) {
+            $context->buildViolation('Свойство AverageCpc должно быть указано, если BiddingStrategyType=AVERAGE_CPA')
+                ->atPath('AverageCpa')->addViolation();
         }
 
-        if ($this->BiddingStrategyType == TextCampaignSearchStrategyTypeEnum::AVERAGE_ROI && !$this->AverageRoi) {
-            $context->buildViolation("Свойство AverageRoi должно быть указано, если BiddingStrategyType=AVERAGE_ROI")
-                ->atPath("AverageRoi")->addViolation();
+        if ($this->BiddingStrategyType === TextCampaignSearchStrategyTypeEnum::AVERAGE_ROI && !$this->AverageRoi) {
+            $context->buildViolation('Свойство AverageRoi должно быть указано, если BiddingStrategyType=AVERAGE_ROI')
+                ->atPath('AverageRoi')->addViolation();
         }
 
-        if ($this->BiddingStrategyType == TextCampaignSearchStrategyTypeEnum::WEEKLY_CLICK_PACKAGE && !$this->WeeklyClickPackage) {
-            $context->buildViolation("Свойство WeeklyClickPackage должно быть указано, если BiddingStrategyType=WEEKLY_CLICK_PACKAGE")
-                ->atPath("WeeklyClickPackage")->addViolation();
+        if ($this->BiddingStrategyType === TextCampaignSearchStrategyTypeEnum::WEEKLY_CLICK_PACKAGE && !$this->WeeklyClickPackage) {
+            $context->buildViolation('Свойство WeeklyClickPackage должно быть указано, если BiddingStrategyType=WEEKLY_CLICK_PACKAGE')
+                ->atPath('WeeklyClickPackage')->addViolation();
         }
 
     }

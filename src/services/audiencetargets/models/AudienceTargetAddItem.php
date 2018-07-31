@@ -25,7 +25,7 @@ class AudienceTargetAddItem extends Model
     public $InterestId;
 
     /**
-     * @var
+     * @var int
      */
     public $ContextBid;
 

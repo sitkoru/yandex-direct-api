@@ -6,9 +6,14 @@ use directapi\exceptions\UnknownPropertyException;
 
 class Model
 {
-    public function __construct($config = [])
+    /**
+     * Model constructor.
+     * @param array $config
+     * @throws UnknownPropertyException
+     */
+    public function __construct(array $config = [])
     {
-        if (!empty($config)) {
+        if (\count($config) > 0) {
             foreach ($config as $name => $value) {
                 if (property_exists(static::class, $name)) {
                     $this->$name = $value;
@@ -22,7 +27,7 @@ class Model
     /**
      * @return string|null
      */
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return null;
     }

@@ -10,6 +10,13 @@ use Symfony\Component\Validator\Constraint;
  */
 class ContainsEnum extends Constraint
 {
+    /**
+     * @var string
+     */
     public $message = 'Должно содержать значения из {{ type }}. Неверные элементы: {{ value }}';
+
+    /**
+     * @var string
+     */
     public $type;
 }

@@ -7,10 +7,10 @@ use directapi\components\Enum;
 
 class RetargetingListFieldEnum extends Enum
 {
-    const ID = 'Id';
-    const NAME = 'Name';
-    const DESCRIPTION = 'Description';
-    const RULES = 'Rules';
-    const IS_AVAILABLE = 'IsAvailable';
-    const SCOPE = 'Scope';
+    public const ID = 'Id';
+    public const NAME = 'Name';
+    public const DESCRIPTION = 'Description';
+    public const RULES = 'Rules';
+    public const IS_AVAILABLE = 'IsAvailable';
+    public const SCOPE = 'Scope';
 }

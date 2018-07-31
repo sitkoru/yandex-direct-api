@@ -6,6 +6,6 @@ use directapi\components\Enum;
 
 class YesNoEnum extends Enum
 {
-    const YES = 'YES';
-    const NO = 'NO';
+    public const YES = 'YES';
+    public const NO = 'NO';
 }

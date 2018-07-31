@@ -7,7 +7,7 @@ use directapi\components\Enum;
 
 class RelevantKeywordsModeEnum extends Enum
 {
-    const MINIMUM = 'MINIMUM';
-    const OPTIMAL = 'OPTIMAL';
-    const MAXIMUM = 'MAXIMUM';
+    public const MINIMUM = 'MINIMUM';
+    public const OPTIMAL = 'OPTIMAL';
+    public const MAXIMUM = 'MAXIMUM';
 }

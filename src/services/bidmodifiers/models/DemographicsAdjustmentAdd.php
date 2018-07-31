@@ -33,7 +33,7 @@ class DemographicsAdjustmentAdd extends Model implements ICallbackValidation
      * @Assert\Callback()
      * @param ExecutionContextInterface $context
      */
-    public function isValid(ExecutionContextInterface $context)
+    public function isValid(ExecutionContextInterface $context): void
     {
         if (!$this->Gender && !$this->Age) {
             $context->buildViolation('Необходимо указать одно из значений: Gender, Age')

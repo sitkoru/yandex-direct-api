@@ -25,7 +25,7 @@ class ReportSelectionCriteria
      */
     private $Filters = [];
 
-    public function addFilter(ReportFilterItem $filter)
+    public function addFilter(ReportFilterItem $filter): void
     {
         $this->Filters[] = $filter;
     }
@@ -33,7 +33,7 @@ class ReportSelectionCriteria
     /**
      * @return ReportFilterItem[]
      */
-    public function getFilters()
+    public function getFilters(): array
     {
         return $this->Filters;
     }

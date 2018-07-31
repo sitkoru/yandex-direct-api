@@ -18,10 +18,11 @@ class AdGroupsService extends BaseService
     /**
      * @param AdGroupAddItem[] $AdGroups
      * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      *
      * @return ActionResult[]
      */
-    public function add(array $AdGroups)
+    public function add(array $AdGroups): array
     {
         $params = [
             'AdGroups' => $AdGroups
@@ -30,9 +31,15 @@ class AdGroupsService extends BaseService
     }
 
     /**
-     * @inheritdoc
+     * @param $SelectionCriteria
+     * @return array|ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function delete($SelectionCriteria)
+    public function delete(IdsCriteria $SelectionCriteria): array
     {
         return parent::doDelete($SelectionCriteria);
     }
@@ -45,13 +52,14 @@ class AdGroupsService extends BaseService
      *
      * @return AdGroupGetItem[]
      * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function get(
         AdGroupsSelectionCriteria $SelectionCriteria,
         array $FieldNames,
         array $MobileAppAdGroupFieldNames = [],
         LimitOffset $Page = null
-    ) {
+    ): array {
         $params = [
             'SelectionCriteria' => $SelectionCriteria,
             'FieldNames'        => $FieldNames,
@@ -69,10 +77,11 @@ class AdGroupsService extends BaseService
     /**
      * @param AdGroupUpdateItem[] $AdGroups
      * @throws \Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      *
      * @return ActionResult[]
      */
-    public function update(array $AdGroups)
+    public function update(array $AdGroups): array
     {
         $params = [
             'AdGroups' => $AdGroups
@@ -80,18 +89,19 @@ class AdGroupsService extends BaseService
         return parent::doUpdate($params);
     }
 
-    protected function getName()
-    {
-        return 'adgroups';
-    }
-
     /**
      * @param AdGroupGetItem[] $entities
      * @return AdGroupUpdateItem[]
+     * @throws \JsonMapper_Exception
      */
-    public function toUpdateEntities(array $entities)
+    public function toUpdateEntities(array $entities): array
     {
         return $this->convertClass($entities, AdGroupUpdateItem::class);
 
+    }
+
+    protected function getName(): string
+    {
+        return 'adgroups';
     }
 }

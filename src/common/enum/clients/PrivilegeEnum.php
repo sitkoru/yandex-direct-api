@@ -7,7 +7,7 @@ use directapi\components\Enum;
 
 class PrivilegeEnum extends Enum
 {
-    const EDIT_CAMPAIGNS = 'EDIT_CAMPAIGNS';
-    const IMPORT_XLS = 'IMPORT_XLS';
-    const TRANSFER_MONEY = 'TRANSFER_MONEY';
+    public const EDIT_CAMPAIGNS = 'EDIT_CAMPAIGNS';
+    public const IMPORT_XLS = 'IMPORT_XLS';
+    public const TRANSFER_MONEY = 'TRANSFER_MONEY';
 }

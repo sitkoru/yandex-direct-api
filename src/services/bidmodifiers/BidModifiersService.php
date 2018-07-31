@@ -25,8 +25,13 @@ class BidModifiersService extends BaseService
      * @param BidModifierAddItem[] $BidModifiers
      *
      * @return MultiIdsActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function add(array $BidModifiers)
+    public function add(array $BidModifiers): array
     {
         $params = [
             'BidModifiers' => $BidModifiers
@@ -35,9 +40,15 @@ class BidModifiersService extends BaseService
     }
 
     /**
-     * @inheritdoc
+     * @param $SelectionCriteria
+     * @return array|ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function delete($SelectionCriteria)
+    public function delete(IdsCriteria $SelectionCriteria): array
     {
         return parent::doDelete($SelectionCriteria);
     }
@@ -51,6 +62,11 @@ class BidModifiersService extends BaseService
      * @param LimitOffset|null                  $Page
      *
      * @return BidModifierGetItem[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
     public function get(
         BidModifiersSelectionCriteria $SelectionCriteria,
@@ -59,7 +75,7 @@ class BidModifiersService extends BaseService
         array $DemographicsAdjustmentFieldNames = [],
         array $RetargetingAdjustmentFieldNames = [],
         LimitOffset $Page = null
-    ) {
+    ): array {
         $params = [
             'SelectionCriteria' => $SelectionCriteria,
             'FieldNames'        => $FieldNames,
@@ -83,8 +99,13 @@ class BidModifiersService extends BaseService
      * @param BidModifierSetItem[] $BidModifiers
      *
      * @return ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function set(array $BidModifiers)
+    public function set(array $BidModifiers): array
     {
         $params = [
             'BidModifiers' => $BidModifiers
@@ -97,8 +118,13 @@ class BidModifiersService extends BaseService
      * @param BidModifierToggleItem[] $BidModifierToggleItems
      *
      * @return ToggleResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function toggle(array $BidModifierToggleItems)
+    public function toggle(array $BidModifierToggleItems): array
     {
         $params = [
             'BidModifierToggleItems' => $BidModifierToggleItems
@@ -107,13 +133,18 @@ class BidModifiersService extends BaseService
         return $this->mapArray($result->SetResults, ToggleResult::class);
     }
 
-    protected function getName()
-    {
-        return 'bidmodifiers';
-    }
-
-    public function toUpdateEntities(array $entities)
+    /**
+     * @param array $entities
+     * @return array
+     * @throws \ErrorException
+     */
+    public function toUpdateEntities(array $entities): array
     {
         throw new \ErrorException('Not implemented');
+    }
+
+    protected function getName(): string
+    {
+        return 'bidmodifiers';
     }
 }

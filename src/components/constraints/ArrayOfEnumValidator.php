@@ -16,10 +16,10 @@ class ArrayOfEnumValidator extends ConstraintValidator
      * @param mixed                   $array      The value that should be validated
      * @param ContainsEnum|Constraint $constraint The constraint for the validation
      */
-    public function validate($array, Constraint $constraint)
+    public function validate($array, Constraint $constraint): void
     {
-        if ($array) {
-            if (!is_array($array)) {
+        if ($array !== null) {
+            if (!\is_array($array)) {
                 $this->context->buildViolation('Должно быть массивом')
                     ->addViolation();
             } else {
@@ -30,11 +30,11 @@ class ArrayOfEnumValidator extends ConstraintValidator
 
                 $badValues = [];
                 foreach ($array as $i => $v) {
-                    if (!call_user_func($type . '::check', [$v])) {
-                        $badValues[] = $i . " => " . $v;
+                    if (\call_user_func($type . '::check', [$v]) === false) {
+                        $badValues[] = $i . ' => ' . $v;
                     }
                 }
-                if ($badValues) {
+                if (\count($badValues) > 0) {
                     $this->context->buildViolation($constraint->message)
                         ->setParameter('{{ type }}', $constraint->type)
                         ->setParameter('{{ value }}', implode(', ', $badValues))

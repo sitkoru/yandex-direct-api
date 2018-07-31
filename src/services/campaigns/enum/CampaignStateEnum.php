@@ -6,11 +6,11 @@ use directapi\components\Enum;
 
 class CampaignStateEnum extends Enum
 {
-    const CONVERTED = 'CONVERTED';
-    const ARCHIVED = 'ARCHIVED';
-    const SUSPENDED = 'SUSPENDED';
-    const ENDED = 'ENDED';
-    const ON = 'ON';
-    const OFF = 'OFF';
-    const UNKNOWN = 'UNKNOWN';
+    public const CONVERTED = 'CONVERTED';
+    public const ARCHIVED = 'ARCHIVED';
+    public const SUSPENDED = 'SUSPENDED';
+    public const ENDED = 'ENDED';
+    public const ON = 'ON';
+    public const OFF = 'OFF';
+    public const UNKNOWN = 'UNKNOWN';
 }

@@ -6,11 +6,11 @@ use directapi\components\Enum;
 
 class AdImageFieldEnum extends Enum
 {
-    const AD_IMAGE_HASH = 'AdImageHash';
-    const ORIGINAL_URL = 'OriginalUrl';
-    const PREVIEW_URL = 'PreviewUrl';
-    const NAME = 'Name';
-    const TYPE = 'Type';
-    const SUBTYPE = 'Subtype';
-    const ASSOCIATED = 'Associated';
+    public const AD_IMAGE_HASH = 'AdImageHash';
+    public const ORIGINAL_URL = 'OriginalUrl';
+    public const PREVIEW_URL = 'PreviewUrl';
+    public const NAME = 'Name';
+    public const TYPE = 'Type';
+    public const SUBTYPE = 'Subtype';
+    public const ASSOCIATED = 'Associated';
 }

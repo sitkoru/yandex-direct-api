@@ -35,22 +35,25 @@ class DirectApiResponse
      */
     public $isSuccess = true;
 
+    /**
+     * @return mixed|object
+     */
     public function getData()
     {
         return json_decode($this->body);
     }
 
-    public function setHeaders($headers)
+    public function setHeaders(array $headers): void
     {
         $this->headers = $headers;
         $this->parseUnitsHeader();
     }
 
-    private function parseUnitsHeader()
+    private function parseUnitsHeader(): void
     {
         $regex = '/(\d+)\/(\d+)\/(\d+)/';
         if (array_key_exists('Units', $this->headers) && preg_match($regex, $this->headers['Units'][0], $matches)) {
-            list(, $cost, $last, $limit) = $matches;
+            [, $cost, $last, $limit] = $matches;
             $this->units = $last;
             $this->lastCallCost = $cost;
             $this->unitsLimit = $limit;

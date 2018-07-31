@@ -6,7 +6,7 @@ use directapi\common\criterias\LimitOffset;
 use directapi\components\interfaces\ICriteria;
 use directapi\services\adimages\criterias\AdImageIdsCriteria;
 use directapi\services\adimages\criterias\AdImageSelectionCriteria;
-use directapi\services\adimages\enum\AdImagesFieldEnum;
+use directapi\services\adimages\enum\AdImageFieldEnum;
 use directapi\services\adimages\models\AdImageActionResult;
 use directapi\services\adimages\models\AdImageAddItem;
 use directapi\services\adimages\models\AdImageGetItem;
@@ -16,11 +16,14 @@ class AdImagesService extends BaseService
 {
     /**
      * @param AdImageAddItem[] $AdImages
-     * @throws \Exception
-     *
      * @return AdImageActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function add(array $AdImages)
+    public function add(array $AdImages): array
     {
         $params = [
             'AdImages' => $AdImages
@@ -31,21 +34,31 @@ class AdImagesService extends BaseService
     /**
      * @param AdImageIdsCriteria | ICriteria $SelectionCriteria
      * @return AdImageActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function delete($SelectionCriteria)
+    public function delete($SelectionCriteria): array
     {
         return parent::doDelete($SelectionCriteria, AdImageActionResult::class);
     }
 
     /**
      * @param AdImageSelectionCriteria $SelectionCriteria
-     * @param AdImagesFieldEnum[]       $FieldNames
-     * @param LimitOffset               $Page
+     * @param AdImageFieldEnum[]       $FieldNames
+     * @param LimitOffset              $Page
      *
      * @return AdImageGetItem[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
 
-    public function get(AdImageSelectionCriteria $SelectionCriteria = null, array $FieldNames, LimitOffset $Page = null)
+    public function get(AdImageSelectionCriteria $SelectionCriteria, array $FieldNames, LimitOffset $Page = null): array
     {
         $params = [
             'SelectionCriteria' => $SelectionCriteria,
@@ -58,13 +71,18 @@ class AdImagesService extends BaseService
         return parent::doGet($params, 'IdImage', AdImageGetItem::class);
     }
 
-    protected function getName()
-    {
-        return 'adimages';
-    }
-
-    public function toUpdateEntities(array $entities)
+    /**
+     * @param array $entities
+     * @return array
+     * @throws \ErrorException
+     */
+    public function toUpdateEntities(array $entities): array
     {
         throw new \ErrorException('Not implemented');
+    }
+
+    protected function getName(): string
+    {
+        return 'adimages';
     }
 }

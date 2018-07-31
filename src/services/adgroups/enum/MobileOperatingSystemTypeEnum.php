@@ -7,7 +7,7 @@ use directapi\components\Enum;
 
 class MobileOperatingSystemTypeEnum extends Enum
 {
-    const IOS = 'IOS';
-    const ANDROID = 'ANDROID';
-    const OS_TYPE_UNKNOWN = 'OS_TYPE_UNKNOWN';
+    public const IOS = 'IOS';
+    public const ANDROID = 'ANDROID';
+    public const OS_TYPE_UNKNOWN = 'OS_TYPE_UNKNOWN';
 }

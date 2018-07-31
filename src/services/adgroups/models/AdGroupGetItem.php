@@ -47,7 +47,7 @@ class AdGroupGetItem extends Model
      */
     public $MobileAppAdGroup;
 
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->Name;
     }

@@ -15,55 +15,18 @@ use directapi\services\reports\models\Report;
 use directapi\services\reports\models\ReportDefinition;
 use directapi\services\reports\models\ReportRow;
 use GuzzleHttp\Exception\BadResponseException;
+use Psr\Http\Message\RequestInterface;
 
 class ReportsService extends BaseService
 {
-    const REPORTS_API_URL = 'https://api.direct.yandex.com/json/v5/reports';
+    public const REPORTS_API_URL = 'https://api.direct.yandex.com/json/v5/reports';
 
     /**
-     * @param $body
-     * @return Report
+     * @param array $entities
+     * @return array
+     * @throws \ErrorException
      */
-    private function parseReportResponse($body)
-    {
-        $bodyRows = explode(PHP_EOL, $body);
-        $firstRow = trim(array_shift($bodyRows), '"');
-        $secondRow = array_shift($bodyRows);
-        preg_match('/(.*)\s\(([0-9\-]+) - ([0-9\-]+)\)/', $firstRow, $matches);
-        $reportName = 'n/a';
-        $dateStart = 'n/a';
-        $dateEnd = 'n/a';
-        if ($matches) {
-            list($reportName, $dateStart, $dateEnd) = $matches;
-        }
-        $names = explode("\t", trim($secondRow, '"'));
-        $report = new Report($reportName, $dateStart, $dateEnd, $names);
-        $mapper = $this->service->getMapper();
-        foreach ($bodyRows as $rowLine) {
-
-            $columns = explode("\t", trim($rowLine, '"'));
-            if (count($columns) !== count($names)) {
-                continue;
-            }
-            $rowData = new \stdClass();
-            foreach ($columns as $k => $column) {
-                $columnName = $names[$k];
-                $rowData->$columnName = $column;
-            }
-
-            $row = new ReportRow();
-            $mapper->map($rowData, $row);
-            $report->addRow($row);
-        }
-        return $report;
-    }
-
-    protected function getName()
-    {
-        return 'reports';
-    }
-
-    public function toUpdateEntities(array $entities)
+    public function toUpdateEntities(array $entities): array
     {
         throw new \ErrorException('Not implemented');
     }
@@ -73,48 +36,18 @@ class ReportsService extends BaseService
      * @param ReportProcessingModeEnum|string $mode
      * @param string                          $returnMoneyInMicros
      * @return Report
-     * @throws \directapi\services\reports\exceptions\ReportUnknownResponseCodeException
-     * @throws \directapi\services\reports\exceptions\ReportServerErrorException
-     * @throws \directapi\services\reports\exceptions\ReportRequestTimeoutException
-     * @throws \directapi\services\reports\exceptions\ReportBadRequestException
-     * @throws \InvalidArgumentException
-     * @throws \RuntimeException
+     * @throws DirectApiException
+     * @throws ReportParserException
+     * @throws ReportUnknownResponseCodeException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \JsonMapper_Exception
      */
     public function getReport(
         ReportDefinition $reportDefinition,
         $mode = ReportProcessingModeEnum::AUTO,
         $returnMoneyInMicros = 'false'
-    ) {
-        return $this->getReportResponse($this->getRequesJson($reportDefinition), $mode, $returnMoneyInMicros);
-    }
-
-    public function getRequesJson(ReportDefinition $reportDefinition)
-    {
-        $jsonRequest = ["params" => $reportDefinition];
-        return json_encode($jsonRequest);
-    }
-
-    private function badResponseExceptionAnswer($ex)
-    {
-        $code = $ex->getCode();
-        $errorBody = $ex->getResponse()->getBody()->getContents();
-
-        try {
-            list($requestId, $errorCode, $errorMessage, $errorDetail) = $this->parseApiError($errorBody);
-            switch ($code) {
-                case 400:
-                    throw new ReportBadRequestException($requestId, $errorCode, $errorMessage, $errorDetail);
-                    break;
-                case 500:
-                    throw new ReportServerErrorException($requestId, $errorCode, $errorMessage, $errorDetail);
-                    break;
-                case 502:
-                    throw new ReportRequestTimeoutException($requestId, $errorCode, $errorMessage, $errorDetail);
-                    break;
-            }
-        } catch (\Throwable $e) {
-            throw new ReportParserException(0, $code, $e->getMessage(), $errorBody);
-        }
+    ): Report {
+        return $this->getReportResponse($this->getRequestJson($reportDefinition), $mode, $returnMoneyInMicros);
     }
 
     /**
@@ -122,15 +55,13 @@ class ReportsService extends BaseService
      * @param ReportProcessingModeEnum $mode
      * @param string                   $returnMoneyInMicros
      * @return Report
-     * @throws \directapi\services\reports\exceptions\ReportUnknownResponseCodeException
-     * @throws \directapi\services\reports\exceptions\ReportRequestTimeoutException
-     * @throws \directapi\services\reports\exceptions\ReportServerErrorException
-     * @throws \directapi\services\reports\exceptions\ReportBadRequestException
-     * @throws \RuntimeException
-     * @throws \InvalidArgumentException
+     * @throws DirectApiException
      * @throws ReportParserException
+     * @throws ReportUnknownResponseCodeException
+     * @throws \JsonMapper_Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getReportResponse($payload, $mode, $returnMoneyInMicros)
+    public function getReportResponse($payload, $mode, $returnMoneyInMicros): Report
     {
         $request = $this->service->getRequest(self::REPORTS_API_URL)
             ->withAddedHeader('processingMode', $mode)
@@ -176,7 +107,7 @@ class ReportsService extends BaseService
                 throw new ReportUnknownResponseCodeException($code);
             }
         }
-        
+
         $this->service->logger->debug('Report done. Parse');
         $body = $result->getBody()->getContents();
         return $this->parseReportResponse($body);
@@ -187,10 +118,11 @@ class ReportsService extends BaseService
      * @param $request
      * @return \Psr\Http\Message\ResponseInterface
      * @throws DirectApiException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    private function getResult($attemptNumber, $request)
+    private function getResult(int $attemptNumber, RequestInterface $request): \Psr\Http\Message\ResponseInterface
     {
-        while ($attemptNumber < 100) {
+        if ($attemptNumber < 100) {
             $result = $this->service->doRequest($request);
             if ($result === null) {
                 sleep(1);
@@ -201,7 +133,38 @@ class ReportsService extends BaseService
         throw new DirectApiException('Не удалось получить отчёт после 100 попыток');
     }
 
-    private function parseApiError($errorString)
+    /**
+     * @param BadResponseException $ex
+     * @throws ReportParserException
+     */
+    private function badResponseExceptionAnswer(BadResponseException $ex): void
+    {
+        $code = $ex->getCode();
+        $response = $ex->getResponse();
+        if ($response === null) {
+            return;
+        }
+        $errorBody = $response->getBody()->getContents();
+
+        try {
+            [$requestId, $errorCode, $errorMessage, $errorDetail] = $this->parseApiError($errorBody);
+            switch ($code) {
+                case 400:
+                    throw new ReportBadRequestException($requestId, $errorCode, $errorMessage, $errorDetail);
+                    break;
+                case 500:
+                    throw new ReportServerErrorException($requestId, $errorCode, $errorMessage, $errorDetail);
+                    break;
+                case 502:
+                    throw new ReportRequestTimeoutException($requestId, $errorCode, $errorMessage, $errorDetail);
+                    break;
+            }
+        } catch (\Throwable $e) {
+            throw new ReportParserException(0, $code, $e->getMessage(), $errorBody);
+        }
+    }
+
+    private function parseApiError(string $errorString): array
     {
         $errorJson = json_decode($errorString);
         $requestId = (string)$errorJson->request_id;
@@ -210,5 +173,55 @@ class ReportsService extends BaseService
         $errorDetail = (string)$errorJson->error_detail;
 
         return [$requestId, $errorCode, $errorMessage, $errorDetail];
+    }
+
+    /**
+     * @param $body
+     * @return Report
+     * @throws \JsonMapper_Exception
+     */
+    private function parseReportResponse(string $body): Report
+    {
+        $bodyRows = explode(PHP_EOL, $body);
+        $firstRow = trim(array_shift($bodyRows), '"');
+        $secondRow = array_shift($bodyRows);
+        preg_match('/(.*)\s\(([0-9\-]+) - ([0-9\-]+)\)/', $firstRow, $matches);
+        $reportName = 'n/a';
+        $dateStart = 'n/a';
+        $dateEnd = 'n/a';
+        if ($matches) {
+            [$reportName, $dateStart, $dateEnd] = $matches;
+        }
+        $names = explode("\t", trim($secondRow, '"'));
+        $report = new Report($reportName, $dateStart, $dateEnd, $names);
+        $mapper = $this->service->getMapper();
+        foreach ($bodyRows as $rowLine) {
+
+            $columns = explode("\t", trim($rowLine, '"'));
+            if (\count($columns) !== \count($names)) {
+                continue;
+            }
+            $rowData = new \stdClass();
+            foreach ($columns as $k => $column) {
+                $columnName = $names[$k];
+                $rowData->$columnName = $column;
+            }
+
+            $row = new ReportRow();
+            $mapper->map($rowData, $row);
+            $report->addRow($row);
+        }
+        return $report;
+    }
+
+    public function getRequestJson(ReportDefinition $reportDefinition): string
+    {
+        $jsonRequest = ['params' => $reportDefinition];
+        return json_encode($jsonRequest);
+    }
+
+    protected function getName(): string
+    {
+        return 'reports';
     }
 }

@@ -10,6 +10,13 @@ use Symfony\Component\Validator\Constraint;
  */
 class ArrayOfEnum extends Constraint
 {
+    /**
+     * @var string
+     */
     public $message = 'Должно быть массивом перечисления {{ type }}. Неверные элементы: {{ value }}';
+
+    /**
+     * @var string
+     */
     public $type;
 }

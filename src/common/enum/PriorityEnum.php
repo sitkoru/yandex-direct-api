@@ -1,4 +1,5 @@
 <?php
+
 namespace directapi\common\enum;
 
 
@@ -6,7 +7,7 @@ use directapi\components\Enum;
 
 class PriorityEnum extends Enum
 {
-    const LOW = 'LOW';
-    const NORMAL = 'NORMAL';
-    const HIGH = 'HIGH';
+    public const LOW = 'LOW';
+    public const NORMAL = 'NORMAL';
+    public const HIGH = 'HIGH';
 }

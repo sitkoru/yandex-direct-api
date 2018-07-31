@@ -1,4 +1,5 @@
 <?php
+
 namespace directapi\services\campaigns\models;
 
 use directapi\components\Model;

@@ -6,5 +6,5 @@ use directapi\components\Enum;
 
 class MobileAdjustmentFieldEnum extends Enum
 {
-    const BID_MODIFIER = 'BidModifier';
+    public const BID_MODIFIER = 'BidModifier';
 }

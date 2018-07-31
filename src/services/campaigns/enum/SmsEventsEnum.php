@@ -7,9 +7,9 @@ use directapi\components\Enum;
 
 class SmsEventsEnum extends Enum
 {
-    const MONITORING = 'MONITORING';
-    const MODERATION = 'MODERATION';
-    const MONEY_IN = 'MONEY_IN';
-    const MONEY_OUT = 'MONEY_OUT';
-    const FINISHED = 'FINISHED';
+    public const MONITORING = 'MONITORING';
+    public const MODERATION = 'MODERATION';
+    public const MONEY_IN = 'MONEY_IN';
+    public const MONEY_OUT = 'MONEY_OUT';
+    public const FINISHED = 'FINISHED';
 }

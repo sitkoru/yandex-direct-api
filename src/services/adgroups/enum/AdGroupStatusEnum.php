@@ -7,9 +7,9 @@ use directapi\components\Enum;
 
 class AdGroupStatusEnum extends Enum
 {
-    const DRAFT = 'DRAFT';
-    const MODERATION = 'MODERATION';
-    const PREACCEPTED = 'PREACCEPTED';
-    const ACCEPTED = 'ACCEPTED';
-    const REJECTED = 'REJECTED';
+    public const DRAFT = 'DRAFT';
+    public const MODERATION = 'MODERATION';
+    public const PREACCEPTED = 'PREACCEPTED';
+    public const ACCEPTED = 'ACCEPTED';
+    public const REJECTED = 'REJECTED';
 }

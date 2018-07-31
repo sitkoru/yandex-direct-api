@@ -4,8 +4,8 @@ namespace directapi\services\ads\models;
 
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 class AdAddItem extends Model implements ICallbackValidation
 {
@@ -54,7 +54,7 @@ class AdAddItem extends Model implements ICallbackValidation
      * @Assert\Callback()
      * @param ExecutionContextInterface $context
      */
-    public function isValid(ExecutionContextInterface $context)
+    public function isValid(ExecutionContextInterface $context): void
     {
         if (!$this->TextAd && !$this->MobileAppAd) {
             $context->buildViolation('Необходимо указать TextAd либо MobileAppAd')

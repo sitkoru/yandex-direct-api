@@ -23,9 +23,17 @@ class AgencyClientsService extends BaseService
      * @param ClientFieldEnum[]              $FieldNames
      * @param LimitOffset|null               $Page
      * @return ClientGetItem[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function get(AgencyClientsSelectionCriteria $SelectionCriteria, array $FieldNames, LimitOffset $Page = null)
-    {
+    public function get(
+        AgencyClientsSelectionCriteria $SelectionCriteria,
+        array $FieldNames,
+        LimitOffset $Page = null
+    ): array {
         $params = [
             'SelectionCriteria' => $SelectionCriteria,
             'FieldNames'        => $FieldNames
@@ -38,13 +46,18 @@ class AgencyClientsService extends BaseService
         return parent::doGet($params, 'Clients', ClientGetItem::class);
     }
 
-    protected function getName()
-    {
-        return 'agencyclients';
-    }
-
-    public function toUpdateEntities(array $entities)
+    /**
+     * @param array $entities
+     * @return array
+     * @throws \ErrorException
+     */
+    public function toUpdateEntities(array $entities): array
     {
         throw new \ErrorException('Not implemented');
+    }
+
+    protected function getName(): string
+    {
+        return 'agencyclients';
     }
 }

@@ -6,8 +6,8 @@ use directapi\components\Enum;
 
 class MobileAppFeatureEnum extends Enum
 {
-    const PRICE = 'PRICE';
-    const ICON = 'ICON';
-    const CUSTOMER_RATING = 'CUSTOMER_RATING';
-    const RATINGS = 'RATINGS';
+    public const PRICE = 'PRICE';
+    public const ICON = 'ICON';
+    public const CUSTOMER_RATING = 'CUSTOMER_RATING';
+    public const RATINGS = 'RATINGS';
 }

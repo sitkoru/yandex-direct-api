@@ -5,6 +5,6 @@ namespace directapi\services\keywordbids\enum;
 
 class ServingStatusEnum
 {
-    const ELIGIBLE = 'ELIGIBLE';
-    const RARELY_SERVED = 'RARELY_SERVED';
+    public const ELIGIBLE = 'ELIGIBLE';
+    public const RARELY_SERVED = 'RARELY_SERVED';
 }

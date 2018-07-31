@@ -6,6 +6,6 @@ use directapi\components\Enum;
 
 class SitelinksSetFieldEnum extends Enum
 {
-    const ID = 'Id';
-    const SITE_LINKS = 'Sitelinks';
+    public const ID = 'Id';
+    public const SITE_LINKS = 'Sitelinks';
 }

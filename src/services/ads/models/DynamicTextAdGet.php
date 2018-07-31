@@ -47,7 +47,7 @@ class DynamicTextAdGet extends Model
      */
     public $AdExtensions;
 
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->Text;
     }

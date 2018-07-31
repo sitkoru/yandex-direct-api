@@ -1,4 +1,5 @@
 <?php
+
 namespace directapi\services\campaigns\criterias;
 
 use directapi\components\constraints as DirectApiAssert;

@@ -7,6 +7,6 @@ use directapi\components\Enum;
 
 class BidModifierLevelEnum extends Enum
 {
-    const CAMPAIGN = 'CAMPAIGN';
-    const AD_GROUP = 'AD_GROUP';
+    public const CAMPAIGN = 'CAMPAIGN';
+    public const AD_GROUP = 'AD_GROUP';
 }

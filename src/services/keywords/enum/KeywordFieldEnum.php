@@ -6,16 +6,16 @@ use directapi\components\Enum;
 
 class KeywordFieldEnum extends Enum
 {
-    const ID = 'Id';
-    const KEYWORD = 'Keyword';
-    const STATE = 'State';
-    const STATUS = 'Status';
-    const AD_GROUP_ID = 'AdGroupId';
-    const CAMPAIGN_ID = 'CampaignId';
-    const BID = 'Bid';
-    const CONTEXT_BID = 'ContextBid';
-    const STRATEGY_PRIORITY = 'StrategyPriority';
-    const USER_PARAM_1 = 'UserParam1';
-    const USER_PARAM_2 = 'UserParam2';
-    const PRODUCTIVITY = 'Productivity';
+    public const ID = 'Id';
+    public const KEYWORD = 'Keyword';
+    public const STATE = 'State';
+    public const STATUS = 'Status';
+    public const AD_GROUP_ID = 'AdGroupId';
+    public const CAMPAIGN_ID = 'CampaignId';
+    public const BID = 'Bid';
+    public const CONTEXT_BID = 'ContextBid';
+    public const STRATEGY_PRIORITY = 'StrategyPriority';
+    public const USER_PARAM_1 = 'UserParam1';
+    public const USER_PARAM_2 = 'UserParam2';
+    public const PRODUCTIVITY = 'Productivity';
 }

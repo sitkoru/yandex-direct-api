@@ -9,10 +9,9 @@ use directapi\DirectApiService;
 
 abstract class BaseService
 {
-    abstract protected function getName();
-
-    protected $sendClientLogin = true;
-
+    /**
+     * @var array
+     */
     private static $unitsCostTable = [
         'adgroups'     => [
             'add'    => [20, 20],
@@ -82,7 +81,9 @@ abstract class BaseService
             'get'    => [15, 1],
         ],
     ];
-
+    /**
+     * @var array
+     */
     private static $objectLimits = [
         'adgroups'     => [
             'add'    => 1000,
@@ -129,20 +130,33 @@ abstract class BaseService
             'get' => 10000,
         ],
     ];
+    /**
+     * @var bool
+     */
+    protected $sendClientLogin = true;
+    /**
+     * @var \directapi\DirectApiService
+     */
+    protected $service;
+
+    public function __construct(DirectApiService $service)
+    {
+        $this->service = $service;
+    }
 
     /**
      * @param $method
      * @param $objectsCount
      * @return float|int
      */
-    public function count($method, $objectsCount)
+    public function count(string $method, int $objectsCount)
     {
         $cost = 0;
         $name = static::getName();
         if ($objectsCount > 0 && array_key_exists($name, self::$unitsCostTable)) {
             $servicesCost = self::$unitsCostTable[$name];
             if (array_key_exists($method, $servicesCost)) {
-                list($callCost, $objectCost) = $servicesCost[$method];
+                [$callCost, $objectCost] = $servicesCost[$method];
                 $calls = 1;
                 if (isset(self::$objectLimits[$name][$method])) {
                     $calls = ceil($objectsCount / self::$objectLimits[$name][$method]);
@@ -156,44 +170,68 @@ abstract class BaseService
         return $cost;
     }
 
-    /**
-     * @var \directapi\DirectApiService
-     */
-    protected $service;
+    abstract protected function getName(): string;
 
-    public function __construct(DirectApiService $service)
-    {
-        $this->service = $service;
-    }
-
-    protected function call($method, $params)
-    {
-        return $this->service->call(static::getName(), $method, $params, $this->sendClientLogin);
-    }
+    abstract public function toUpdateEntities(array $entities): array;
 
     /**
-     * @param array $params
+     * @param array  $params
      * @param string $class
      * @return ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    protected function doAdd($params, $class = ActionResult::class)
+    protected function doAdd(array $params, string $class = ActionResult::class): array
     {
         $response = $this->call('add', $params);
         return $this->mapArray($response->AddResults, $class);
     }
 
     /**
-     * @param array $params
+     * @param $method
+     * @param $params
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
+     */
+    protected function call(string $method, array $params)
+    {
+        return $this->service->call(static::getName(), $method, $params, $this->sendClientLogin);
+    }
+
+    /**
+     * @param $data
+     * @param $class
+     * @return array
+     */
+    protected function mapArray(array $data, string $class): array
+    {
+        return $this->service->getMapper()->mapArray($data, [], $class);
+    }
+
+    /**
+     * @param array  $params
      * @param string $paramName
      * @param string $class
      * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    protected function doGet(array $params, $paramName, $class)
+    protected function doGet(array $params, string $paramName, string $class): array
     {
-        $result = [];
+        $result = [[]];
         while ($response = $this->call('get', $params)) {
-            if (property_exists($response, $paramName) && $response->$paramName) {
-                $result = array_merge($result, $this->mapArray($response->$paramName, $class));
+            if ($response->$paramName && $response->$paramName) {
+                $result[] = $this->mapArray($response->$paramName, $class);
             }
             if (property_exists($response, 'limitedBy')) {
                 $params['Offset'] = $response->limitedBy;
@@ -201,14 +239,19 @@ abstract class BaseService
                 break;
             }
         }
-        return $result;
+        return array_merge(...$result);
     }
 
     /**
      * @param array $params
      * @return ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    protected function doUpdate($params)
+    protected function doUpdate($params): array
     {
         $response = $this->call('update', $params);
         return $this->mapArray($response->UpdateResults, ActionResult::class);
@@ -216,10 +259,15 @@ abstract class BaseService
 
     /**
      * @param ICriteria $SelectionCriteria
-     * @param string $class
+     * @param string    $class
      * @return ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    protected function doDelete($SelectionCriteria, $class = ActionResult::class)
+    protected function doDelete($SelectionCriteria, $class = ActionResult::class): array
     {
         $params = [
             'SelectionCriteria' => $SelectionCriteria
@@ -232,8 +280,13 @@ abstract class BaseService
      * @param IdsCriteria $SelectionCriteria
      *
      * @return ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    protected function suspend(IdsCriteria $SelectionCriteria)
+    protected function suspend(IdsCriteria $SelectionCriteria): array
     {
         $params = [
             'SelectionCriteria' => $SelectionCriteria
@@ -246,8 +299,13 @@ abstract class BaseService
      * @param IdsCriteria $SelectionCriteria
      *
      * @return ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    protected function resume(IdsCriteria $SelectionCriteria)
+    protected function resume(IdsCriteria $SelectionCriteria): array
     {
         $params = [
             'SelectionCriteria' => $SelectionCriteria
@@ -260,8 +318,13 @@ abstract class BaseService
      * @param IdsCriteria $SelectionCriteria
      *
      * @return ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    protected function archive(IdsCriteria $SelectionCriteria)
+    protected function archive(IdsCriteria $SelectionCriteria): array
     {
         $params = [
             'SelectionCriteria' => $SelectionCriteria
@@ -274,8 +337,13 @@ abstract class BaseService
      * @param IdsCriteria $SelectionCriteria
      *
      * @return ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    protected function unarchive(IdsCriteria $SelectionCriteria)
+    protected function unarchive(IdsCriteria $SelectionCriteria): array
     {
         $params = [
             'SelectionCriteria' => $SelectionCriteria
@@ -285,29 +353,23 @@ abstract class BaseService
     }
 
     /**
-     * @param $data
-     * @param $class
-     * @return object
+     * @param object $data
+     * @param        $class
+     * @return mixed
      * @throws \JsonMapper_Exception
      */
-    protected function map($data, $class)
+    protected function map($data, string $class)
     {
         return $this->service->getMapper()->map($data, new $class());
     }
 
     /**
-     * @param $data
-     * @param $class
+     * @param array  $entities
+     * @param string $class
      * @return array
+     * @throws \JsonMapper_Exception
      */
-    protected function mapArray($data, $class)
-    {
-        return $this->service->getMapper()->mapArray($data, [], $class);
-    }
-
-    abstract public function toUpdateEntities(array $entities);
-
-    protected function convertClass(array $entities, $class)
+    protected function convertClass(array $entities, string $class): array
     {
         $converted = [];
         foreach ($entities as $entity) {

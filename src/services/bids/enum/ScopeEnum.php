@@ -7,6 +7,6 @@ use directapi\components\Enum;
 
 class ScopeEnum extends Enum
 {
-    const SEARCH = 'SEARCH';
-    const NETWORK = 'NETWORK';
+    public const SEARCH = 'SEARCH';
+    public const NETWORK = 'NETWORK';
 }

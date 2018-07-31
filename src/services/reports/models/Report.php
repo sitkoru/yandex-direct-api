@@ -30,7 +30,7 @@ class Report
      */
     public $rows = [];
 
-    public function __construct($reportName, $dateFrom, $dateTo, $fieldNames)
+    public function __construct(string $reportName, string $dateFrom, string $dateTo, array $fieldNames)
     {
         $this->reportName = $reportName;
         $this->dateFrom = $dateFrom;
@@ -38,7 +38,7 @@ class Report
         $this->fieldNames = $fieldNames;
     }
 
-    public function addRow(ReportRow $row)
+    public function addRow(ReportRow $row): void
     {
         $this->rows[] = $row;
     }

@@ -7,7 +7,7 @@ use directapi\components\Enum;
 
 class RoleEnum extends Enum
 {
-    const CHIEF = 'CHIEF';
-    const DELEGATE = 'DELEGATE';
-    const UNKNOWN = 'UNKNOWN';
+    public const CHIEF = 'CHIEF';
+    public const DELEGATE = 'DELEGATE';
+    public const UNKNOWN = 'UNKNOWN';
 }

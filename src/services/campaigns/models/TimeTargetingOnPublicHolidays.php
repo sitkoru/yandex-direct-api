@@ -48,15 +48,16 @@ class TimeTargetingOnPublicHolidays extends Model implements ICallbackValidation
     /**
      * @Assert\Callback()
      * @param ExecutionContextInterface $context
+     * @throws \directapi\exceptions\EnumException
      */
-    public function isValid(ExecutionContextInterface $context)
+    public function isValid(ExecutionContextInterface $context): void
     {
-        if ($this->SuspendOnHolidays == new YesNoEnum(YesNoEnum::NO) && $this->StartHour === null) {
+        if ($this->StartHour === null && $this->SuspendOnHolidays === new YesNoEnum(YesNoEnum::NO)) {
             $context->buildViolation('При SuspendOnHolidays=NO должен быть указан параметр StartHour')
                 ->atPath('StartHour')
                 ->addViolation();
         }
-        if ($this->SuspendOnHolidays == new YesNoEnum(YesNoEnum::NO) && $this->EndHour === null) {
+        if ($this->EndHour === null && $this->SuspendOnHolidays === new YesNoEnum(YesNoEnum::NO)) {
             $context->buildViolation('При SuspendOnHolidays=NO должен быть указан параметр EndHour')
                 ->atPath('EndHour')
                 ->addViolation();

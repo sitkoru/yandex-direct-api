@@ -17,7 +17,7 @@ class AdExtensionAdGetItem extends Model
      */
     public $Type;
 
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return "Расширение {$this->AdExtensionId}";
     }

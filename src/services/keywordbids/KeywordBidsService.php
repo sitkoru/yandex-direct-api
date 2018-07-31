@@ -22,9 +22,19 @@ class KeywordBidsService extends BaseService
      * @param string[]                     $NetworkFieldNames
      * @param LimitOffset                  $Page
      * @return KeywordBidGetItem[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function get(KeywordBidsSelectionCriteria $SelectionCriteria, array $FieldNames, array $SearchFieldNames = [], array $NetworkFieldNames = [], LimitOffset $Page = null)
-    {
+    public function get(
+        KeywordBidsSelectionCriteria $SelectionCriteria,
+        array $FieldNames,
+        array $SearchFieldNames = [],
+        array $NetworkFieldNames = [],
+        LimitOffset $Page = null
+    ): array {
         $params = [
             'SelectionCriteria' => $SelectionCriteria,
             'FieldNames'        => $FieldNames
@@ -45,8 +55,13 @@ class KeywordBidsService extends BaseService
      * @param KeywordBidSetItem[] $Bids
      *
      * @return KeywordBidActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function set(array $Bids)
+    public function set(array $Bids): array
     {
         $params = [
             'KeywordBids' => $Bids
@@ -59,8 +74,13 @@ class KeywordBidsService extends BaseService
      * @param KeywordBidSetAutoItem[] $Bids
      *
      * @return KeywordBidActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function setAuto(array $Bids)
+    public function setAuto(array $Bids): array
     {
         $params = [
             'KeywordBids' => $Bids
@@ -69,17 +89,18 @@ class KeywordBidsService extends BaseService
         return $this->mapArray($result->SetAutoResults, KeywordBidActionResult::class);
     }
 
-    protected function getName()
-    {
-        return 'keywordbids';
-    }
-
     /**
      * @param array $entities
+     * @return array
      * @throws \ErrorException
      */
-    public function toUpdateEntities(array $entities)
+    public function toUpdateEntities(array $entities): array
     {
         throw new \ErrorException('Not implemented');
+    }
+
+    protected function getName(): string
+    {
+        return 'keywordbids';
     }
 }

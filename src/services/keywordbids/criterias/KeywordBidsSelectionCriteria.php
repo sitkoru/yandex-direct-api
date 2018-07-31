@@ -44,7 +44,7 @@ class KeywordBidsSelectionCriteria extends Model implements ICallbackValidation
      * @Assert\Callback()
      * @param ExecutionContextInterface $context
      */
-    public function isValid(ExecutionContextInterface $context)
+    public function isValid(ExecutionContextInterface $context): void
     {
         if (!$this->CampaignIds && !$this->AdGroupIds && !$this->KeywordIds) {
             $context->buildViolation('Должно быть указано одно из следующих значений: CampaignIds, AdGroupIds, KeywordIds')

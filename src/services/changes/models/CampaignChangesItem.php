@@ -12,7 +12,7 @@ class CampaignChangesItem extends Model
     public $CampaignId;
 
     /**
-     * @var \directapi\services\chanes\enum\CampaignChangesInEnum[]
+     * @var \directapi\services\changes\enum\CampaignChangesInEnum[]
      */
     public $ChangesIn;
 }

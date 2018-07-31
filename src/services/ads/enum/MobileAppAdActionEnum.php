@@ -6,5 +6,5 @@ use directapi\components\Enum;
 
 class MobileAppAdActionEnum extends Enum
 {
-    const DOWNLOAD = 'DOWNLOAD';
+    public const DOWNLOAD = 'DOWNLOAD';
 }

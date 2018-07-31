@@ -7,7 +7,7 @@ use directapi\components\Enum;
 
 class AppAvailabilityStatusEnum extends Enum
 {
-    const AVAILABLE = 'AVAILABLE';
-    const NOT_AVAILABLE = 'NOT_AVAILABLE';
-    const UNPROCESSED = 'UNPROCESSED';
+    public const AVAILABLE = 'AVAILABLE';
+    public const NOT_AVAILABLE = 'NOT_AVAILABLE';
+    public const UNPROCESSED = 'UNPROCESSED';
 }

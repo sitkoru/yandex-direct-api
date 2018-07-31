@@ -7,6 +7,6 @@ use directapi\components\Enum;
 
 class TextImageAdFieldEnum extends Enum
 {
-    const AD_IMAGE_HASH = 'AdImageHash';
-    const HREF = 'Href';
+    public const AD_IMAGE_HASH = 'AdImageHash';
+    public const HREF = 'Href';
 }

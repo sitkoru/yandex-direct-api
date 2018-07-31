@@ -3,6 +3,7 @@
 namespace directapi\services\changes;
 
 
+use directapi\exceptions\DirectApiException;
 use directapi\services\BaseService;
 use directapi\services\changes\enum\FieldNamesEnum;
 use directapi\services\changes\models\CheckCampaignsResponse;
@@ -15,8 +16,14 @@ class ChangesService extends BaseService
      * @param string $Timestamp
      *
      * @return CheckDictionariesResponse
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \JsonMapper_Exception
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function checkDictionaries($Timestamp)
+    public function checkDictionaries($Timestamp): CheckDictionariesResponse
     {
         $params = [
             'Timestamp' => $Timestamp
@@ -29,8 +36,14 @@ class ChangesService extends BaseService
      * @param string $Timestamp
      *
      * @return CheckCampaignsResponse
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \JsonMapper_Exception
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function checkCampaigns($Timestamp)
+    public function checkCampaigns($Timestamp): CheckCampaignsResponse
     {
         $params = [
             'Timestamp' => $Timestamp
@@ -46,15 +59,21 @@ class ChangesService extends BaseService
      * @param FieldNamesEnum[] $FieldNames
      * @param string           $Timestamp
      * @return CheckResponse
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \JsonMapper_Exception
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      * @throws \Exception
      */
     public function check(
-        array $CampaignIds = [],
-        array  $AdGroupIds = [],
-        array  $AdIds = [],
-        array  $FieldNames,
+        array $CampaignIds,
+        array $AdGroupIds,
+        array $AdIds,
+        array $FieldNames,
         $Timestamp
-    ) {
+    ): CheckResponse {
         $params = [
         ];
         if ($CampaignIds) {
@@ -64,7 +83,7 @@ class ChangesService extends BaseService
         } elseif ($AdIds) {
             $params['AdIds'] = $AdIds;
         } else {
-            throw new \Exception('Должен быть указан один из параметров - CampaignIds, AdGroupIds, AdIds');
+            throw new DirectApiException('Должен быть указан один из параметров - CampaignIds, AdGroupIds, AdIds');
         }
         $params['FieldNames'] = $FieldNames;
         $params['Timestamp'] = $Timestamp;
@@ -72,13 +91,18 @@ class ChangesService extends BaseService
         return $this->map($result, CheckResponse::class);
     }
 
-    protected function getName()
-    {
-        return 'changes';
-    }
-
-    public function toUpdateEntities(array $entities)
+    /**
+     * @param array $entities
+     * @return array
+     * @throws \ErrorException
+     */
+    public function toUpdateEntities(array $entities): array
     {
         throw new \ErrorException('Not implemented');
+    }
+
+    protected function getName(): string
+    {
+        return 'changes';
     }
 }

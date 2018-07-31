@@ -7,6 +7,6 @@ use directapi\components\Enum;
 
 class TextAdBuilderAdFieldEnum extends Enum
 {
-    const CREATIVE = 'Creative';
-    const HREF = 'Href';
+    public const CREATIVE = 'Creative';
+    public const HREF = 'Href';
 }

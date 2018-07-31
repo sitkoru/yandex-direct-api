@@ -43,9 +43,9 @@ class AdGroupsSelectionCriteria extends Model implements ICallbackValidation
      * @Assert\Callback()
      * @param ExecutionContextInterface $context
      */
-    public function isValid(ExecutionContextInterface $context)
+    public function isValid(ExecutionContextInterface $context): void
     {
-        if ($this->Ids == [] && $this->CampaignIds == []) {
+        if ($this->Ids === [] && $this->CampaignIds === []) {
             $context->buildViolation('Должны быть указаны CampaignIds или Ids')
                 ->atPath('CampaignIds')
                 ->addViolation();

@@ -7,5 +7,5 @@ use directapi\components\Enum;
 
 class AdExtensionTypeEnum extends Enum
 {
-    const CALLOUT = 'CALLOUT';
+    public const CALLOUT = 'CALLOUT';
 }

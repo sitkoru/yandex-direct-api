@@ -7,6 +7,6 @@ use directapi\components\Enum;
 
 class AdExtensionStateSelectionEnum extends Enum
 {
-    const ON = 'ON';
-    const DELETED = 'DELETED';
+    public const ON = 'ON';
+    public const DELETED = 'DELETED';
 }

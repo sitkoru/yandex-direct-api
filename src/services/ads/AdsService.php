@@ -25,8 +25,13 @@ class AdsService extends BaseService
      * @param AdAddItem[] $Ads
      *
      * @return ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function add(array $Ads)
+    public function add(array $Ads): array
     {
         $params = [
             'Ads' => $Ads
@@ -37,15 +42,21 @@ class AdsService extends BaseService
     /**
      * @inheritdoc
      */
-    public function archive(IdsCriteria $SelectionCriteria)
+    public function archive(IdsCriteria $SelectionCriteria): array
     {
         return parent::archive($SelectionCriteria);
     }
 
     /**
-     * @inheritdoc
+     * @param $SelectionCriteria
+     * @return array|ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function delete($SelectionCriteria)
+    public function delete(IdsCriteria $SelectionCriteria): array
     {
         return parent::doDelete($SelectionCriteria);
     }
@@ -63,6 +74,11 @@ class AdsService extends BaseService
      * @param MobileAppAdBuilderAdFieldEnum[] $MobileAppAdBuilderAdFieldNames
      * @param LimitOffset                     $Page
      * @return models\AdGetItem[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
     public function get(
         AdsSelectionCriteria $SelectionCriteria,
@@ -75,7 +91,7 @@ class AdsService extends BaseService
         array $TextAdBuilderAdFieldNames = [],
         array $MobileAppAdBuilderAdFieldNames = [],
         LimitOffset $Page = null
-    ) {
+    ): array {
         $params = [
             'SelectionCriteria' => $SelectionCriteria,
             'FieldNames'        => $FieldNames
@@ -120,8 +136,13 @@ class AdsService extends BaseService
      * @param IdsCriteria $SelectionCriteria
      *
      * @return ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function moderate(IdsCriteria $SelectionCriteria)
+    public function moderate(IdsCriteria $SelectionCriteria): array
     {
         $params = [
             'SelectionCriteria' => $SelectionCriteria
@@ -133,7 +154,7 @@ class AdsService extends BaseService
     /**
      * @inheritdoc
      */
-    public function resume(IdsCriteria $SelectionCriteria)
+    public function resume(IdsCriteria $SelectionCriteria): array
     {
         return parent::resume($SelectionCriteria);
     }
@@ -141,7 +162,7 @@ class AdsService extends BaseService
     /**
      * @inheritdoc
      */
-    public function suspend(IdsCriteria $SelectionCriteria)
+    public function suspend(IdsCriteria $SelectionCriteria): array
     {
         return parent::suspend($SelectionCriteria);
     }
@@ -149,7 +170,7 @@ class AdsService extends BaseService
     /**
      * @inheritdoc
      */
-    public function unarchive(IdsCriteria $SelectionCriteria)
+    public function unarchive(IdsCriteria $SelectionCriteria): array
     {
         return parent::unarchive($SelectionCriteria);
     }
@@ -158,8 +179,13 @@ class AdsService extends BaseService
      * @param AdUpdateItem[] $Ads
      *
      * @return ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function update(array $Ads)
+    public function update(array $Ads): array
     {
         $params = [
             'Ads' => $Ads
@@ -167,18 +193,19 @@ class AdsService extends BaseService
         return parent::doUpdate($params);
     }
 
-    protected function getName()
-    {
-        return 'ads';
-    }
-
     /**
      * @param AdGetItem[] $entities
      * @return AdUpdateItem[]
+     * @throws \JsonMapper_Exception
      */
-    public function toUpdateEntities(array $entities)
+    public function toUpdateEntities(array $entities): array
     {
         return $this->convertClass($entities, AdUpdateItem::class);
 
+    }
+
+    protected function getName(): string
+    {
+        return 'ads';
     }
 }

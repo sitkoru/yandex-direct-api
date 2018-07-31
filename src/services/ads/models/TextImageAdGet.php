@@ -17,7 +17,7 @@ class TextImageAdGet extends Model
      */
     public $AdImageHash;
 
-    public function getDescription()
+    public function getDescription(): ?string
     {
         $text = $this->Href ?: $this->AdImageHash;
         return "Граф. объявление {$text}";

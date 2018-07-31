@@ -41,7 +41,7 @@ class MobileAppAdGroupGet extends Model
      */
     public $AppAvailabilityStatus;
 
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->StoreUrl;
     }

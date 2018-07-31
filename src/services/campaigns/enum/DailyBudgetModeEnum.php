@@ -7,6 +7,6 @@ use directapi\components\Enum;
 
 class DailyBudgetModeEnum extends Enum
 {
-    const DISTRIBUTED = 'DISTRIBUTED';
-    const STANDARD = 'STANDARD';
+    public const DISTRIBUTED = 'DISTRIBUTED';
+    public const STANDARD = 'STANDARD';
 }

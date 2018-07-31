@@ -10,6 +10,13 @@ use Symfony\Component\Validator\Constraint;
  */
 class ArrayOf extends Constraint
 {
+    /**
+     * @var string
+     */
     public $message = 'Должно быть массивом элементов класса {{ type }}. Неверные элементы: {{ value }}';
+
+    /**
+     * @var string
+     */
     public $type;
 }

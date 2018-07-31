@@ -103,7 +103,7 @@ class CampaignAddItem extends Model implements ICallbackValidation
      * @Assert\Callback()
      * @param ExecutionContextInterface $context
      */
-    public function isValid(ExecutionContextInterface $context)
+    public function isValid(ExecutionContextInterface $context): void
     {
         if (!$this->TextCampaign && !$this->MobileAppCampaign) {
             $context->buildViolation('Необходимо указать либо TextCampaignItem, либо MobileAppCampaignItem')

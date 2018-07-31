@@ -37,7 +37,7 @@ class RetargetingListGetItem extends Model
      */
     public $Scope;
 
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return "RT: {$this->Name}";
     }

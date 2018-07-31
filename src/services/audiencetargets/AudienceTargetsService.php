@@ -3,8 +3,6 @@
 
 namespace directapi\services\audiencetargets;
 
-
-use common\exceptions\NotImplementedException;
 use directapi\common\criterias\IdsCriteria;
 use directapi\common\criterias\LimitOffset;
 use directapi\common\results\ActionResult;
@@ -20,18 +18,24 @@ class AudienceTargetsService extends BaseService
 
     /**
      * @param array $entities
-     * @throws NotImplementedException
+     * @return array
+     * @throws \ErrorException
      */
-    public function toUpdateEntities(array $entities)
+    public function toUpdateEntities(array $entities): array
     {
-        throw new NotImplementedException();
+        throw new \ErrorException('Not implemented');
     }
 
     /**
      * @param AudienceTargetAddItem[] $AudienceTargets
      * @return ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function add(array $AudienceTargets)
+    public function add(array $AudienceTargets): array
     {
         $params = [
             'AudienceTargets' => $AudienceTargets
@@ -40,17 +44,29 @@ class AudienceTargetsService extends BaseService
     }
 
     /**
-     * @inheritdoc
+     * @param $SelectionCriteria
+     * @return array|ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function delete($SelectionCriteria)
+    public function delete(IdsCriteria $SelectionCriteria): array
     {
         return parent::doDelete($SelectionCriteria);
     }
 
     /**
-     * @inheritdoc
+     * @param IdsCriteria $SelectionCriteria
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function resume(IdsCriteria $SelectionCriteria)
+    public function resume(IdsCriteria $SelectionCriteria): array
     {
         return parent::resume($SelectionCriteria);
     }
@@ -58,7 +74,7 @@ class AudienceTargetsService extends BaseService
     /**
      * @inheritdoc
      */
-    public function suspend(IdsCriteria $SelectionCriteria)
+    public function suspend(IdsCriteria $SelectionCriteria): array
     {
         return parent::suspend($SelectionCriteria);
     }
@@ -69,12 +85,17 @@ class AudienceTargetsService extends BaseService
      * @param AudienceTargetFieldEnum[]       $FieldNames
      * @param LimitOffset                     $Page
      * @return AudienceTargetGetItem[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
     public function get(
         AudienceTargetSelectionCriteria $SelectionCriteria,
         array $FieldNames,
         LimitOffset $Page = null
-    ) {
+    ): array {
         $params = [
             'SelectionCriteria' => $SelectionCriteria,
             'FieldNames'        => $FieldNames
@@ -90,8 +111,13 @@ class AudienceTargetsService extends BaseService
     /**
      * @param AudienceTargetSetBidsItem[] $Bids
      * @return ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function setBids(array $Bids)
+    public function setBids(array $Bids): array
     {
         $params = [
             'Bids' => $Bids
@@ -100,7 +126,7 @@ class AudienceTargetsService extends BaseService
         return $this->mapArray($result->SetBidsResults, ActionResult::class);
     }
 
-    protected function getName()
+    protected function getName(): string
     {
         return 'audiencetargets';
     }

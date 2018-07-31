@@ -7,7 +7,7 @@ use directapi\components\Enum;
 
 class StatusEnum extends Enum
 {
-    const ACCEPTED = 'ACCEPTED';
-    const MODERATION = 'MODERATION';
-    const REJECTED = 'REJECTED';
+    public const ACCEPTED = 'ACCEPTED';
+    public const MODERATION = 'MODERATION';
+    public const REJECTED = 'REJECTED';
 }

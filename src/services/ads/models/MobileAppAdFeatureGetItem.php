@@ -22,7 +22,7 @@ class MobileAppAdFeatureGetItem extends Model
      */
     public $IsAvailable;
 
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return "Дополнение {$this->Feature}";
     }

@@ -6,10 +6,10 @@ use directapi\components\Enum;
 
 class AdImageTypeEnum extends Enum
 {
-    const REGULAR = 'REGULAR';
-    const WIDE = 'WIDE';
-    const FIXED_IMAGE = 'FIXED_IMAGE';
-    const SMALL = 'SMALL';
-    const UNFIT = 'UNFIT';
+    public const REGULAR = 'REGULAR';
+    public const WIDE = 'WIDE';
+    public const FIXED_IMAGE = 'FIXED_IMAGE';
+    public const SMALL = 'SMALL';
+    public const UNFIT = 'UNFIT';
 
 }

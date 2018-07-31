@@ -6,6 +6,6 @@ use directapi\components\Enum;
 
 class CampaignFundsEnum extends Enum
 {
-    const CAMPAIGN_FUNDS = 'CAMPAIGN_FUNDS';
-    const SHARED_ACCOUNT_FUNDS = 'SHARED_ACCOUNT_FUNDS';
+    public const CAMPAIGN_FUNDS = 'CAMPAIGN_FUNDS';
+    public const SHARED_ACCOUNT_FUNDS = 'SHARED_ACCOUNT_FUNDS';
 }

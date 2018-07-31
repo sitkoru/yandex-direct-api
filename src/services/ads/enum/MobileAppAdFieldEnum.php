@@ -6,11 +6,11 @@ use directapi\components\Enum;
 
 class MobileAppAdFieldEnum extends Enum
 {
-    const TITLE = 'Title';
-    const TEXT = 'Text';
-    const FEATURES = 'Features';
-    const TRACKING_URL = 'TrackingUrl';
-    const ACTION = 'Action';
-    const AD_IMAGE_HASH = 'AdImageHash';
-    const AD_IMAGE_MODERATION = 'AdImageModeration';
+    public const TITLE = 'Title';
+    public const TEXT = 'Text';
+    public const FEATURES = 'Features';
+    public const TRACKING_URL = 'TrackingUrl';
+    public const ACTION = 'Action';
+    public const AD_IMAGE_HASH = 'AdImageHash';
+    public const AD_IMAGE_MODERATION = 'AdImageModeration';
 }

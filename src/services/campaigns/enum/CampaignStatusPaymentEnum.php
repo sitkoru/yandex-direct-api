@@ -6,6 +6,6 @@ use directapi\components\Enum;
 
 class CampaignStatusPaymentEnum extends Enum
 {
-    const DISALLOWED = 'DISALLOWED';
-    const ALLOWED = 'ALLOWED';
+    public const DISALLOWED = 'DISALLOWED';
+    public const ALLOWED = 'ALLOWED';
 }

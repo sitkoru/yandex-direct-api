@@ -2,11 +2,11 @@
 
 namespace directapi\services\ads\models;
 
+use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use directapi\components\constraints as DirectApiAssert;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 abstract class TextAd extends Model implements ICallbackValidation
 {
@@ -78,9 +78,9 @@ abstract class TextAd extends Model implements ICallbackValidation
      * @Assert\Callback()
      * @param ExecutionContextInterface $context
      */
-    public function isValid(ExecutionContextInterface $context)
+    public function isValid(ExecutionContextInterface $context): void
     {
-        if (stripos($this->Title, '#') !== false) {
+        if (strpos($this->Title, '#') !== false) {
             if (mb_strlen($this->Title) > 35) {
                 $context->buildViolation('Заголовок объявления слишком велик')
                     ->atPath('Title')

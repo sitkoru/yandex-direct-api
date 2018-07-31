@@ -17,7 +17,7 @@ class MobileAppImageAdGet extends Model
      */
     public $AdImageHash;
 
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return "Граф. объявление: {$this->AdImageHash}";
     }

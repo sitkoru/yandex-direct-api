@@ -3,6 +3,7 @@
 namespace directapi\services\adimages\models;
 
 use directapi\components\Model;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class AdImageGetItem extends Model
 {
@@ -44,7 +45,7 @@ class AdImageGetItem extends Model
      */
     public $PreviewUrl;
 
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->Name;
     }

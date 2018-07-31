@@ -10,7 +10,7 @@ class RequestValidationException extends DirectApiException
         parent::__construct($this->getErrorsAsString($errors), 1, null);
     }
 
-    private function getErrorsAsString($errors)
+    private function getErrorsAsString(array $errors): string
     {
         $text = '';
         foreach ($errors as $key => $error) {
@@ -19,9 +19,14 @@ class RequestValidationException extends DirectApiException
         return $text;
     }
 
-    private function getValue(&$text, $key, $error)
+    /**
+     * @param string       $text
+     * @param string       $key
+     * @param string|array $error
+     */
+    private function getValue(string &$text, string $key, $error): void
     {
-        if (is_array($error)) {
+        if (\is_array($error)) {
             foreach ($error as $errorKey => $value) {
                 $fullKey = $key . '.' . $errorKey;
                 $this->getValue($text, $fullKey, $value);

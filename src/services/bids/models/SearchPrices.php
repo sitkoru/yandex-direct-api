@@ -1,4 +1,5 @@
 <?php
+
 namespace directapi\services\bids\models;
 
 use directapi\components\Model;

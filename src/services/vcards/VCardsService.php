@@ -17,8 +17,13 @@ class VCardsService extends BaseService
      * @param VCardAddItem[] $VCards
      *
      * @return ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function add(array $VCards)
+    public function add(array $VCards): array
     {
         $params = [
             'VCards' => $VCards
@@ -27,9 +32,15 @@ class VCardsService extends BaseService
     }
 
     /**
-     * @inheritdoc
+     * @param $SelectionCriteria
+     * @return array|ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function delete($SelectionCriteria)
+    public function delete(IdsCriteria $SelectionCriteria): array
     {
         return parent::doDelete($SelectionCriteria);
     }
@@ -40,8 +51,13 @@ class VCardsService extends BaseService
      * @param LimitOffset      $Page
      *
      * @return VCardGetItem[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function get(IdsCriteria $SelectionCriteria, array $FieldNames, LimitOffset $Page = null)
+    public function get(IdsCriteria $SelectionCriteria, array $FieldNames, LimitOffset $Page = null): array
     {
         $params = [
             'SelectionCriteria' => $SelectionCriteria,
@@ -54,13 +70,18 @@ class VCardsService extends BaseService
         return parent::doGet($params, 'VCards', VCardGetItem::class);
     }
 
-    protected function getName()
-    {
-        return 'vcards';
-    }
-
-    public function toUpdateEntities(array $entities)
+    /**
+     * @param array $entities
+     * @return array
+     * @throws \ErrorException
+     */
+    public function toUpdateEntities(array $entities): array
     {
         throw new \ErrorException('Not implemented');
+    }
+
+    protected function getName(): string
+    {
+        return 'vcards';
     }
 }

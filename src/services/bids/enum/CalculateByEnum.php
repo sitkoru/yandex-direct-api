@@ -6,6 +6,6 @@ use directapi\components\Enum;
 
 class CalculateByEnum extends Enum
 {
-    const VALUE = 'VALUE';
-    const DIFF = 'DIFF';
+    public const VALUE = 'VALUE';
+    public const DIFF = 'DIFF';
 }

@@ -7,6 +7,6 @@ use directapi\components\Enum;
 
 class DeviceTypeEnum extends Enum
 {
-    const DEVICE_TYPE_MOBILE = 'DEVICE_TYPE_MOBILE';
-    const DEVICE_TYPE_TABLET = 'DEVICE_TYPE_TABLET';
+    public const DEVICE_TYPE_MOBILE = 'DEVICE_TYPE_MOBILE';
+    public const DEVICE_TYPE_TABLET = 'DEVICE_TYPE_TABLET';
 }

@@ -24,14 +24,14 @@ class SitelinksSetAddItem extends Model implements ICallbackValidation
      * @Assert\Callback()
      * @param ExecutionContextInterface $context
      */
-    public function isValid(ExecutionContextInterface $context)
+    public function isValid(ExecutionContextInterface $context): void
     {
         $length = 0;
         foreach ($this->Sitelinks as $link) {
             $length += mb_strlen($link->Title);
         }
         if ($length > 66) {
-            $context->buildViolation("Суммарная длина текстов всех быстрых ссылок в наборе — не более 66 символов")->atPath('Sitelink')->addViolation();
+            $context->buildViolation('Суммарная длина текстов всех быстрых ссылок в наборе — не более 66 символов')->atPath('Sitelink')->addViolation();
         }
     }
 }

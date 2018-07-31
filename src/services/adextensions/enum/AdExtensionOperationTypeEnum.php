@@ -7,7 +7,7 @@ use directapi\components\Enum;
 
 class AdExtensionOperationTypeEnum extends Enum
 {
-    const ADD = 'ADD';
-    const SET = 'SET';
-    const REMOVE = 'REMOVE';
+    public const ADD = 'ADD';
+    public const SET = 'SET';
+    public const REMOVE = 'REMOVE';
 }

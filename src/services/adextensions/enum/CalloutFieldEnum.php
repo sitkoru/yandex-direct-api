@@ -7,5 +7,5 @@ use directapi\components\Enum;
 
 class CalloutFieldEnum extends Enum
 {
-    const CALLOUT_TEXT = 'CalloutText';
+    public const CALLOUT_TEXT = 'CalloutText';
 }

@@ -7,5 +7,5 @@ use directapi\DirectApiResponse;
 
 interface IQueryLogger
 {
-    public function logRequest(DirectApiRequest $request, DirectApiResponse $response);
+    public function logRequest(DirectApiRequest $request, DirectApiResponse $response): void;
 }

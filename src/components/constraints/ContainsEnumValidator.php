@@ -15,14 +15,14 @@ class ContainsEnumValidator extends ConstraintValidator
      * @param mixed                   $array      The value that should be validated
      * @param ContainsEnum|Constraint $constraint The constraint for the validation
      */
-    public function validate($array, Constraint $constraint)
+    public function validate($array, Constraint $constraint): void
     {
-        if ($array) {
+        if (\is_array($array)) {
             $type = $constraint->type;
             $values = $type::getValues();
             $badValues = [];
             foreach ($array as $v) {
-                if (!in_array($v, $values)) {
+                if (!\in_array($v, $values, true)) {
                     $badValues[] = $v;
                 }
             }

@@ -12,8 +12,13 @@ class ClientsService extends BaseService
     /**
      * @param ClientFieldEnum[] $FieldNames
      * @return ClientGetItem[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function get(array $FieldNames)
+    public function get(array $FieldNames): array
     {
         $params = [
             'FieldNames' => $FieldNames
@@ -22,13 +27,18 @@ class ClientsService extends BaseService
         return parent::doGet($params, 'Clients', ClientGetItem::class);
     }
 
-    protected function getName()
-    {
-        return 'clients';
-    }
-
-    public function toUpdateEntities(array $entities)
+    /**
+     * @param array $entities
+     * @return array
+     * @throws \ErrorException
+     */
+    public function toUpdateEntities(array $entities): array
     {
         throw new \ErrorException('Not implemented');
+    }
+
+    protected function getName(): string
+    {
+        return 'clients';
     }
 }

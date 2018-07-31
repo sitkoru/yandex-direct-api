@@ -19,8 +19,13 @@ class KeywordsService extends BaseService
      * @param KeywordAddItem[] $Keywords
      *
      * @return ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function add(array $Keywords)
+    public function add(array $Keywords): array
     {
         $params = [
             'Keywords' => $Keywords
@@ -29,9 +34,15 @@ class KeywordsService extends BaseService
     }
 
     /**
-     * @inheritdoc
+     * @param $SelectionCriteria
+     * @return array|ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function delete($SelectionCriteria)
+    public function delete(IdsCriteria $SelectionCriteria): array
     {
         return parent::doDelete($SelectionCriteria);
     }
@@ -42,9 +53,17 @@ class KeywordsService extends BaseService
      * @param LimitOffset|null          $Page
      *
      * @return KeywordGetItem[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function get(KeywordsSelectionCriteria $SelectionCriteria, array $FieldNames, LimitOffset $Page = null)
-    {
+    public function get(
+        KeywordsSelectionCriteria $SelectionCriteria,
+        array $FieldNames,
+        LimitOffset $Page = null
+    ): array {
         $params = [
             'SelectionCriteria' => $SelectionCriteria,
             'FieldNames'        => $FieldNames
@@ -57,9 +76,15 @@ class KeywordsService extends BaseService
     }
 
     /**
-     * @inheritdoc
+     * @param IdsCriteria $SelectionCriteria
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function resume(IdsCriteria $SelectionCriteria)
+    public function resume(IdsCriteria $SelectionCriteria): array
     {
         return parent::resume($SelectionCriteria);
     }
@@ -67,7 +92,7 @@ class KeywordsService extends BaseService
     /**
      * @inheritdoc
      */
-    public function suspend(IdsCriteria $SelectionCriteria)
+    public function suspend(IdsCriteria $SelectionCriteria): array
     {
         return parent::suspend($SelectionCriteria);
     }
@@ -76,8 +101,13 @@ class KeywordsService extends BaseService
      * @param KeywordUpdateItem[] $Keywords
      *
      * @return ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function update(array $Keywords)
+    public function update(array $Keywords): array
     {
         $params = [
             'Keywords' => $Keywords
@@ -85,18 +115,19 @@ class KeywordsService extends BaseService
         return parent::doUpdate($params);
     }
 
-    protected function getName()
-    {
-        return 'keywords';
-    }
-
     /**
      * @param KeywordGetItem[] $entities
      * @return KeywordUpdateItem[]
+     * @throws \JsonMapper_Exception
      */
-    public function toUpdateEntities(array $entities)
+    public function toUpdateEntities(array $entities): array
     {
         return $this->convertClass($entities, KeywordUpdateItem::class);
 
+    }
+
+    protected function getName(): string
+    {
+        return 'keywords';
     }
 }

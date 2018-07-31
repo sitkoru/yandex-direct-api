@@ -126,7 +126,7 @@ class CampaignGetItem extends Model
      */
     public $MobileAppCampaign;
 
-    public function getDescription()
+    public function getDescription(): ?string
     {
         return $this->Name;
     }

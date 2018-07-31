@@ -32,114 +32,121 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validation;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class DirectApiService
 {
-    const ERROR_CODE_CONCURRENT_LIMIT = 506;
-    const ERROR_CODE_NOT_ENOUGH_UNITS = 152;
-    const ERROR_CODE_NOT_EXIST_DIRECT_ACCOUNT = 513;
-
-    private $token;
-    private $clientLogin;
-    private $apiUrl = 'https://api.direct.yandex.com/json/v5/';
-
+    public const ERROR_CODE_CONCURRENT_LIMIT = 506;
+    public const ERROR_CODE_NOT_ENOUGH_UNITS = 152;
+    public const ERROR_CODE_NOT_EXIST_DIRECT_ACCOUNT = 513;
+    /**
+     * @var int
+     */
     public $units = 0;
+    /**
+     * @var int
+     */
     public $lastCallCost = 0;
+    /**
+     * @var int
+     */
     public $unitsLimit = 0;
-
-    /**
-     * @var AdGroupsService
-     */
-    private $adGroupsService;
-
-    /**
-     * @var AdImagesService
-     */
-    private $adImagesService;
-
-    /**
-     * @var AdsService
-     */
-    private $adsService;
-
-    /**
-     * @var BidModifiersService
-     */
-    private $bidModifiersService;
-
-    /**
-     * @var BidsService
-     */
-    private $bidsService;
-
-    /**
-     * @var KeywordBidsService
-     */
-    private $keywordBidsService;
-
-    /**
-     * @var CampaignsService
-     */
-    private $campaignsService;
-
-    /**
-     * @var ChangesService
-     */
-    private $changesService;
-
-    /**
-     * @var KeywordsService
-     */
-    private $keywordsService;
-
-    /**
-     * @var SitelinksService
-     */
-    private $sitelinksService;
-
-    /**
-     * @var VCardsService
-     */
-    private $vcardsService;
-
-    /**
-     * @var ClientsService
-     */
-    private $clientsService;
-
-    /**
-     * @var AgencyClientsService
-     */
-    private $agencyClientsService;
-
-    /**
-     * @var ReportsService
-     */
-    private $reportsService;
-
-    /**
-     * @var AdExtensionsService
-     */
-    private $adExtensionsService;
-
-    /**
-     * @var RetargetingListsService
-     */
-    private $retargetingListsService;
-
-    /**
-     * @var AudienceTargetsService
-     */
-    private $audienceTargetsService;
-
     /**
      * @var DirectApiLogger
      */
     public $logger;
+    /**
+     * @var string
+     */
+    private $token;
+    /**
+     * @var string
+     */
+    private $clientLogin;
+    /**
+     * @var string
+     */
+    private $apiUrl = 'https://api.direct.yandex.com/json/v5/';
+    /**
+     * @var AdGroupsService
+     */
+    private $adGroupsService;
+    /**
+     * @var AdImagesService
+     */
+    private $adImagesService;
+    /**
+     * @var AdsService
+     */
+    private $adsService;
+    /**
+     * @var BidModifiersService
+     */
+    private $bidModifiersService;
+    /**
+     * @var BidsService
+     */
+    private $bidsService;
+    /**
+     * @var KeywordBidsService
+     */
+    private $keywordBidsService;
+    /**
+     * @var CampaignsService
+     */
+    private $campaignsService;
+    /**
+     * @var ChangesService
+     */
+    private $changesService;
+    /**
+     * @var KeywordsService
+     */
+    private $keywordsService;
+    /**
+     * @var SitelinksService
+     */
+    private $sitelinksService;
+    /**
+     * @var VCardsService
+     */
+    private $vcardsService;
+    /**
+     * @var ClientsService
+     */
+    private $clientsService;
+    /**
+     * @var AgencyClientsService
+     */
+    private $agencyClientsService;
+    /**
+     * @var ReportsService
+     */
+    private $reportsService;
+    /**
+     * @var AdExtensionsService
+     */
+    private $adExtensionsService;
+    /**
+     * @var RetargetingListsService
+     */
+    private $retargetingListsService;
+    /**
+     * @var AudienceTargetsService
+     */
+    private $audienceTargetsService;
+    /**
+     * @var ValidatorInterface
+     */
+    private $validator;
+    /**
+     * @var \JsonMapper
+     */
+    private $mapper;
 
     public function __construct(
-        $token,
-        $clientLogin,
+        string $token,
+        string $clientLogin,
         ?IQueryLogger $queryLogger = null,
         ?LoggerInterface $logger = null
     ) {
@@ -151,7 +158,7 @@ class DirectApiService
     /**
      * @return AdGroupsService
      */
-    public function getAdGroupsService()
+    public function getAdGroupsService(): AdGroupsService
     {
         if (!$this->adGroupsService) {
             $this->adGroupsService = new AdGroupsService($this);
@@ -162,7 +169,7 @@ class DirectApiService
     /**
      * @return AdImagesService
      */
-    public function getAdImagesService()
+    public function getAdImagesService(): AdImagesService
     {
         if (!$this->adImagesService) {
             $this->adImagesService = new AdImagesService($this);
@@ -173,7 +180,7 @@ class DirectApiService
     /**
      * @return AdsService
      */
-    public function getAdsService()
+    public function getAdsService(): AdsService
     {
         if (!$this->adsService) {
             $this->adsService = new AdsService($this);
@@ -184,7 +191,7 @@ class DirectApiService
     /**
      * @return BidModifiersService
      */
-    public function getBidModifiersService()
+    public function getBidModifiersService(): BidModifiersService
     {
         if (!$this->bidModifiersService) {
             $this->bidModifiersService = new BidModifiersService($this);
@@ -195,7 +202,7 @@ class DirectApiService
     /**
      * @return BidsService
      */
-    public function getBidsService()
+    public function getBidsService(): BidsService
     {
         if (!$this->bidsService) {
             $this->bidsService = new BidsService($this);
@@ -206,7 +213,7 @@ class DirectApiService
     /**
      * @return KeywordBidsService
      */
-    public function getKeywordBidsService()
+    public function getKeywordBidsService(): KeywordBidsService
     {
         if (!$this->keywordBidsService) {
             $this->keywordBidsService = new KeywordBidsService($this);
@@ -217,7 +224,7 @@ class DirectApiService
     /**
      * @return CampaignsService
      */
-    public function getCampaignsService()
+    public function getCampaignsService(): CampaignsService
     {
         if (!$this->campaignsService) {
             $this->campaignsService = new CampaignsService($this);
@@ -228,7 +235,7 @@ class DirectApiService
     /**
      * @return ChangesService
      */
-    public function getChangesService()
+    public function getChangesService(): ChangesService
     {
         if (!$this->changesService) {
             $this->changesService = new ChangesService($this);
@@ -239,7 +246,7 @@ class DirectApiService
     /**
      * @return KeywordsService
      */
-    public function getKeywordsService()
+    public function getKeywordsService(): KeywordsService
     {
         if (!$this->keywordsService) {
             $this->keywordsService = new KeywordsService($this);
@@ -250,7 +257,7 @@ class DirectApiService
     /**
      * @return SitelinksService
      */
-    public function getSitelinksService()
+    public function getSitelinksService(): SitelinksService
     {
         if (!$this->sitelinksService) {
             $this->sitelinksService = new SitelinksService($this);
@@ -262,7 +269,7 @@ class DirectApiService
     /**
      * @return VCardsService
      */
-    public function getVCardsService()
+    public function getVCardsService(): VCardsService
     {
         if (!$this->vcardsService) {
             $this->vcardsService = new VCardsService($this);
@@ -273,7 +280,7 @@ class DirectApiService
     /**
      * @return ClientsService
      */
-    public function getClientsService()
+    public function getClientsService(): ClientsService
     {
         if (!$this->clientsService) {
             $this->clientsService = new ClientsService($this);
@@ -284,7 +291,7 @@ class DirectApiService
     /**
      * @return AgencyClientsService
      */
-    public function getAgencyClientsService()
+    public function getAgencyClientsService(): AgencyClientsService
     {
         if (!$this->agencyClientsService) {
             $this->agencyClientsService = new AgencyClientsService($this);
@@ -292,11 +299,10 @@ class DirectApiService
         return $this->agencyClientsService;
     }
 
-
     /**
      * @return ReportsService
      */
-    public function getReportsService()
+    public function getReportsService(): ReportsService
     {
         if (!$this->reportsService) {
             $this->reportsService = new ReportsService($this);
@@ -307,7 +313,7 @@ class DirectApiService
     /**
      * @return AdExtensionsService
      */
-    public function getAdExtensionsService()
+    public function getAdExtensionsService(): AdExtensionsService
     {
         if (!$this->adExtensionsService) {
             $this->adExtensionsService = new AdExtensionsService($this);
@@ -318,7 +324,7 @@ class DirectApiService
     /**
      * @return RetargetingListsService
      */
-    public function getRetargetingListsService()
+    public function getRetargetingListsService(): RetargetingListsService
     {
         if (!$this->retargetingListsService) {
             $this->retargetingListsService = new RetargetingListsService($this);
@@ -329,7 +335,7 @@ class DirectApiService
     /**
      * @return AudienceTargetsService
      */
-    public function getAudienceTargetsService()
+    public function getAudienceTargetsService(): AudienceTargetsService
     {
         if (!$this->audienceTargetsService) {
             $this->audienceTargetsService = new AudienceTargetsService($this);
@@ -343,7 +349,11 @@ class DirectApiService
      * @param array  $params
      * @param bool   $sendClientLogin
      * @return mixed
+     * @throws DirectAccountNotExistException
+     * @throws DirectApiException
+     * @throws DirectApiNotEnoughUnitsException
      * @throws RequestValidationException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function call($serviceName, $method, array $params = [], $sendClientLogin = true)
     {
@@ -369,28 +379,15 @@ class DirectApiService
         return $data->getData()->result;
     }
 
-    private $validator;
-
     /**
-     * @return \Symfony\Component\Validator\Validator\ValidatorInterface
+     * @param array|object $params
+     * @param array        $errors
      */
-    private function getValidator()
+    public function validate($params, array &$errors): void
     {
-        if (!$this->validator) {
-
-            $this->validator = Validation::createValidatorBuilder()
-                ->enableAnnotationMapping()
-                ->getValidator();
-
-        }
-        return $this->validator;
-    }
-
-    public function validate($params, &$errors)
-    {
-        if (is_array($params) || is_object($params)) {
+        if (\is_array($params) || \is_object($params)) {
             foreach ($params as $key => $value) {
-                if (!is_array($value) && !is_object($value)) {
+                if (!\is_array($value) && !\is_object($value)) {
                     continue;
                 }
                 $result = $this->getValidator()->validate($value, null, true);
@@ -409,84 +406,19 @@ class DirectApiService
         }
     }
 
-    private function getClient()
-    {
-        return new Client();
-    }
-
     /**
-     * @param        $url
-     * @param string $method
-     * @param bool   $sendClientLogin
-     * @return RequestInterface
+     * @return ValidatorInterface
      */
-    public function getRequest($url, $method = 'POST', $sendClientLogin = true)
+    private function getValidator(): ValidatorInterface
     {
-        return new Request($method, $url, $this->getRequestHeaders($sendClientLogin));
-    }
+        if (!$this->validator) {
 
-    private function getRequestHeaders($sendClientLogin)
-    {
-        $headers = [
-            'Content-Type'    => 'application/json; charset=utf-8',
-            'Authorization'   => 'Bearer ' . $this->token,
-            'Accept-Language' => 'ru',
-        ];
-        if ($this->clientLogin && $sendClientLogin) {
-            $headers['Client-Login'] = $this->clientLogin;
+            $this->validator = Validation::createValidatorBuilder()
+                ->enableAnnotationMapping()
+                ->getValidator();
+
         }
-        return $headers;
-    }
-
-    /**
-     * @param RequestInterface $request
-     * @param int              $try
-     * @param int              $maxTry
-     * @return \Psr\Http\Message\ResponseInterface
-     * @throws DirectApiException
-     */
-    public function doRequest(RequestInterface $request, int $try = 0, int $maxTry = 5)
-    {
-        try {
-            $response = $this->getClient()->send($request);
-        } catch (ConnectException $exception) {
-            $try++;
-            if ($try < $maxTry) {
-                $response = $this->doRequest($request, $try);
-            } else {
-                throw new DirectApiException('Ошибка при подключении к яндексу: ' . $exception->getMessage() . ' Code: ' . $exception->getCode());
-            }
-        } catch (RequestException $exception) {
-            $response = $exception->getResponse();
-            if ($response) {
-                $response = $response->getBody()->getContents();
-            } else {
-                $response = "";
-            }
-            throw new DirectApiException('Ошибка при отправке запроса к яндексу: ' . $exception->getMessage() . '. Response: ' . $response . ' Code: ' . $exception->getCode(),
-                0, null, $response);
-        } catch (\Throwable $exception) {
-            throw new DirectApiException('Ошибка при запросе к яндексу' . $exception->getMessage() . ' Code: ' . $exception->getCode());
-        }
-        return $response;
-    }
-
-    /**
-     * @var \JsonMapper
-     */
-    private $mapper;
-
-    /**
-     * @return \JsonMapper
-     */
-    public function getMapper()
-    {
-        if (!$this->mapper) {
-            $this->mapper = new \JsonMapper();
-            $this->mapper->bStrictNullTypes = false;
-        }
-
-        return $this->mapper;
+        return $this->validator;
     }
 
     /**
@@ -497,8 +429,9 @@ class DirectApiService
      * @throws \InvalidArgumentException
      * @throws DirectApiException
      * @throws DirectApiNotEnoughUnitsException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getResponse(DirectApiRequest $request)
+    public function getResponse(DirectApiRequest $request): DirectApiResponse
     {
         $this->lastCallCost = null;
         $httpRequest = $this->getRequest($this->apiUrl . $request->service, 'POST', $request->sendClientLogin);
@@ -540,12 +473,91 @@ class DirectApiService
                 $data->error->error_code);
         }
         $response->isSuccess = true;
-        if (!is_object($data)) {
+        if (!\is_object($data)) {
             $this->logger->logRequest($request, $response);
             throw new DirectApiException('Ошибка при получении данных кампании (' . $request->service . ', ' . $request->method . ')' . var_export($request->params,
                     true));
         }
         $this->logger->logRequest($request, $response);
         return $response;
+    }
+
+    /**
+     * @param        $url
+     * @param string $method
+     * @param bool   $sendClientLogin
+     * @return RequestInterface
+     */
+    public function getRequest(string $url, string $method = 'POST', bool $sendClientLogin = true): RequestInterface
+    {
+        return new Request($method, $url, $this->getRequestHeaders($sendClientLogin));
+    }
+
+    private function getRequestHeaders(bool $sendClientLogin): array
+    {
+        $headers = [
+            'Content-Type'    => 'application/json; charset=utf-8',
+            'Authorization'   => 'Bearer ' . $this->token,
+            'Accept-Language' => 'ru',
+        ];
+        if ($this->clientLogin && $sendClientLogin) {
+            $headers['Client-Login'] = $this->clientLogin;
+        }
+        return $headers;
+    }
+
+    /**
+     * @param RequestInterface $request
+     * @param int              $try
+     * @param int              $maxTry
+     * @return \Psr\Http\Message\ResponseInterface
+     * @throws DirectApiException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function doRequest(
+        RequestInterface $request,
+        int $try = 0,
+        int $maxTry = 5
+    ): \Psr\Http\Message\ResponseInterface {
+        try {
+            $response = $this->getClient()->send($request);
+        } catch (ConnectException $exception) {
+            $try++;
+            if ($try < $maxTry) {
+                $response = $this->doRequest($request, $try);
+            } else {
+                throw new DirectApiException('Ошибка при подключении к яндексу: ' . $exception->getMessage() . ' Code: ' . $exception->getCode());
+            }
+        } catch (RequestException $exception) {
+            $response = $exception->getResponse();
+            if ($response) {
+                $response = $response->getBody()->getContents();
+            } else {
+                $response = '';
+            }
+            throw new DirectApiException('Ошибка при отправке запроса к яндексу: ' . $exception->getMessage() . '. Response: ' . $response . ' Code: ' . $exception->getCode(),
+                0, null, $response);
+        } catch (\Throwable $exception) {
+            throw new DirectApiException('Ошибка при запросе к яндексу' . $exception->getMessage() . ' Code: ' . $exception->getCode());
+        }
+        return $response;
+    }
+
+    private function getClient(): Client
+    {
+        return new Client();
+    }
+
+    /**
+     * @return \JsonMapper
+     */
+    public function getMapper(): \JsonMapper
+    {
+        if (!$this->mapper) {
+            $this->mapper = new \JsonMapper();
+            $this->mapper->bStrictNullTypes = false;
+        }
+
+        return $this->mapper;
     }
 }

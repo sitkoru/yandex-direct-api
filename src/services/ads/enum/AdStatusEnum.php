@@ -6,6 +6,6 @@ use directapi\common\enum\StatusEnum;
 
 class AdStatusEnum extends StatusEnum
 {
-    const DRAFT = 'DRAFT';
-    const PREACCEPTED = 'PREACCEPTED';
+    public const DRAFT = 'DRAFT';
+    public const PREACCEPTED = 'PREACCEPTED';
 }

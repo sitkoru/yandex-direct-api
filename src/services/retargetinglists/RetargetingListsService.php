@@ -2,7 +2,7 @@
 
 namespace directapi\services\retargetinglists;
 
-use common\exceptions\NotImplementedException;
+use directapi\common\criterias\IdsCriteria;
 use directapi\common\criterias\LimitOffset;
 use directapi\common\results\ActionResult;
 use directapi\services\BaseService;
@@ -17,18 +17,24 @@ class RetargetingListsService extends BaseService
 
     /**
      * @param array $entities
-     * @throws NotImplementedException
+     * @return array
+     * @throws \ErrorException
      */
-    public function toUpdateEntities(array $entities)
+    public function toUpdateEntities(array $entities): array
     {
-        throw new NotImplementedException('This function not implemented');
+        throw new \ErrorException('This function not implemented');
     }
 
     /**
      * @param RetargetingListAddItem[] $RetargetingLists
      * @return ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function add(array $RetargetingLists)
+    public function add(array $RetargetingLists): array
     {
         $params = [
             'RetargetingLists' => $RetargetingLists
@@ -37,9 +43,15 @@ class RetargetingListsService extends BaseService
     }
 
     /**
-     * @inheritdoc
+     * @param $SelectionCriteria
+     * @return array|ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function delete($SelectionCriteria)
+    public function delete(IdsCriteria $SelectionCriteria): array
     {
         return parent::doDelete($SelectionCriteria);
     }
@@ -48,8 +60,13 @@ class RetargetingListsService extends BaseService
      * @param RetargetingListUpdateItem[] $RetargetingLists
      *
      * @return ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function update(array $RetargetingLists)
+    public function update(array $RetargetingLists): array
     {
         $params = [
             'RetargetingLists' => $RetargetingLists
@@ -60,15 +77,20 @@ class RetargetingListsService extends BaseService
     /**
      * @param RetargetingListSelectionCriteria $SelectionCriteria
      *
-     * @param RetargetingListFieldEnum[]        $FieldNames
-     * @param LimitOffset                   $Page
+     * @param RetargetingListFieldEnum[]       $FieldNames
+     * @param LimitOffset                      $Page
      * @return RetargetingListGetItem[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
     public function get(
         RetargetingListSelectionCriteria $SelectionCriteria,
         array $FieldNames,
         LimitOffset $Page = null
-    ) {
+    ): array {
         $params = [
             'SelectionCriteria' => $SelectionCriteria,
             'FieldNames'        => $FieldNames
@@ -81,7 +103,7 @@ class RetargetingListsService extends BaseService
         return parent::doGet($params, 'RetargetingLists', RetargetingListGetItem::class);
     }
 
-    protected function getName()
+    protected function getName(): string
     {
         return 'retargetinglists';
     }

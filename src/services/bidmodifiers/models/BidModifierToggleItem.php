@@ -39,7 +39,7 @@ class BidModifierToggleItem extends Model implements ICallbackValidation
      * @Assert\Callback()
      * @param ExecutionContextInterface $context
      */
-    public function isValid(ExecutionContextInterface $context)
+    public function isValid(ExecutionContextInterface $context): void
     {
         if (!$this->CampaignId && !$this->AdGroupId) {
             $context->buildViolation('Необходимо указать CampaignId либо AdGroupId')

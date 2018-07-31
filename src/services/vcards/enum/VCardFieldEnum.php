@@ -7,22 +7,22 @@ use directapi\components\Enum;
 
 class VCardFieldEnum extends Enum
 {
-    const ID = 'Id';
-    const COUNTRY = 'Country';
-    const CITY = 'City';
-    const STREET = 'Street';
-    const HOUSE = 'House';
-    const BUILDING = 'Building';
-    const APARTMENT = 'Apartment';
-    const COMPANY_NAME = 'CompanyName';
-    const EXTRA_MESSAGE = 'ExtraMessage';
-    const CONTACT_PERSON = 'ContactPerson';
-    const CONTACT_EMAIL = 'ContactEmail';
-    const METRO_STATION_ID = 'MetroStationId';
-    const CAMPAIGN_ID = 'CampaignId';
-    const OGRN = 'Ogrn';
-    const WORK_TIME = 'WorkTime';
-    const INSTANT_MESSENGER = 'InstantMessenger';
-    const PHONE = 'Phone';
-    const POINT_ON_MAP = 'PointOnMap';
+    public const ID = 'Id';
+    public const COUNTRY = 'Country';
+    public const CITY = 'City';
+    public const STREET = 'Street';
+    public const HOUSE = 'House';
+    public const BUILDING = 'Building';
+    public const APARTMENT = 'Apartment';
+    public const COMPANY_NAME = 'CompanyName';
+    public const EXTRA_MESSAGE = 'ExtraMessage';
+    public const CONTACT_PERSON = 'ContactPerson';
+    public const CONTACT_EMAIL = 'ContactEmail';
+    public const METRO_STATION_ID = 'MetroStationId';
+    public const CAMPAIGN_ID = 'CampaignId';
+    public const OGRN = 'Ogrn';
+    public const WORK_TIME = 'WorkTime';
+    public const INSTANT_MESSENGER = 'InstantMessenger';
+    public const PHONE = 'Phone';
+    public const POINT_ON_MAP = 'PointOnMap';
 }

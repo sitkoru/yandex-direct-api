@@ -17,14 +17,22 @@ use directapi\services\campaigns\models\CampaignUpdateItem;
 
 class CampaignsService extends BaseService
 {
+    /**
+     * @var string
+     */
     public static $name = 'Campaigns';
 
     /**
      * @param CampaignAddItem[] $Campaigns
      *
      * @return ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function add(array $Campaigns)
+    public function add(array $Campaigns): array
     {
         $params = [
             'Campaigns' => $Campaigns
@@ -35,15 +43,21 @@ class CampaignsService extends BaseService
     /**
      * @inheritdoc
      */
-    public function archive(IdsCriteria $SelectionCriteria)
+    public function archive(IdsCriteria $SelectionCriteria): array
     {
         return parent::archive($SelectionCriteria);
     }
 
     /**
-     * @inheritdoc
+     * @param $SelectionCriteria
+     * @return array|ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function delete($SelectionCriteria)
+    public function delete(IdsCriteria $SelectionCriteria): array
     {
         return parent::doDelete($SelectionCriteria);
     }
@@ -56,6 +70,11 @@ class CampaignsService extends BaseService
      * @param LimitOffset|null             $Page
      *
      * @return CampaignGetItem[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
     public function get(
         CampaignsSelectionCriteria $SelectionCriteria,
@@ -63,7 +82,7 @@ class CampaignsService extends BaseService
         array $TextCampaignFieldNames = [],
         array $MobileAppCampaignFieldNames = [],
         LimitOffset $Page = null
-    ) {
+    ): array {
         $params = [
             'SelectionCriteria' => $SelectionCriteria,
             'FieldNames'        => $FieldNames,
@@ -81,25 +100,43 @@ class CampaignsService extends BaseService
     }
 
     /**
-     * @inheritdoc
+     * @param IdsCriteria $SelectionCriteria
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function resume(IdsCriteria $SelectionCriteria)
+    public function resume(IdsCriteria $SelectionCriteria): array
     {
         return parent::resume($SelectionCriteria);
     }
 
     /**
-     * @inheritdoc
+     * @param IdsCriteria $SelectionCriteria
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function suspend(IdsCriteria $SelectionCriteria)
+    public function suspend(IdsCriteria $SelectionCriteria): array
     {
         return parent::suspend($SelectionCriteria);
     }
 
     /**
-     * @inheritdoc
+     * @param IdsCriteria $SelectionCriteria
+     * @return array
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function unarchive(IdsCriteria $SelectionCriteria)
+    public function unarchive(IdsCriteria $SelectionCriteria): array
     {
         return parent::unarchive($SelectionCriteria);
     }
@@ -108,8 +145,13 @@ class CampaignsService extends BaseService
      * @param CampaignUpdateItem[] $Campaigns
      *
      * @return ActionResult[]
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \directapi\exceptions\DirectAccountNotExistException
+     * @throws \directapi\exceptions\DirectApiException
+     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
+     * @throws \directapi\exceptions\RequestValidationException
      */
-    public function update($Campaigns)
+    public function update($Campaigns): array
     {
         $params = [
             'Campaigns' => $Campaigns
@@ -117,16 +159,12 @@ class CampaignsService extends BaseService
         return parent::doUpdate($params);
     }
 
-    protected function getName()
-    {
-        return 'campaigns';
-    }
-
     /**
      * @param CampaignGetItem[] $entities
      * @return CampaignUpdateItem[]
+     * @throws \JsonMapper_Exception
      */
-    public function toUpdateEntities(array $entities)
+    public function toUpdateEntities(array $entities): array
     {
         /**
          * @var CampaignUpdateItem[] $converted
@@ -143,5 +181,10 @@ class CampaignsService extends BaseService
             }
         }
         return $converted;
+    }
+
+    protected function getName(): string
+    {
+        return 'campaigns';
     }
 }

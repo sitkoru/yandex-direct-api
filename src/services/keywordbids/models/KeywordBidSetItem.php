@@ -2,7 +2,6 @@
 
 namespace directapi\services\keywordbids\models;
 
-use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -44,7 +43,7 @@ class KeywordBidSetItem extends Model implements ICallbackValidation
      * @Assert\Callback()
      * @param ExecutionContextInterface $context
      */
-    public function isValid(ExecutionContextInterface $context)
+    public function isValid(ExecutionContextInterface $context): void
     {
         if (!$this->CampaignId && !$this->AdGroupId && !$this->KeywordId) {
             $context->buildViolation('Должно быть указано одно из следующих значений: CampaignId, AdGroupId, KeywordId')

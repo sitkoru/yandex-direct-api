@@ -6,6 +6,6 @@ use directapi\components\Enum;
 
 class GenderEnum extends Enum
 {
-    const GENDER_MALE = 'GENDER_MALE';
-    const GENDER_FEMALE = 'GENDER_FEMALE';
+    public const GENDER_MALE = 'GENDER_MALE';
+    public const GENDER_FEMALE = 'GENDER_FEMALE';
 }

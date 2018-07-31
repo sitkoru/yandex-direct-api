@@ -20,17 +20,6 @@ class ReportDefinition
      * @var ReportFieldsEnum[] Имена полей (столбцов), которые будут присутствовать в отчете.
      */
     public $FieldNames = [];
-
-    /**
-     * @var ReportPage Ограничение на количество строк в отчете. Если не задано, используется ограничение 1 000 000.
-     */
-    private $Page;
-
-    /**
-     * @var ReportOrderBy[]
-     */
-    private $Order = [];
-
     /**
      * @var string Название отчета. Выводится в первой строке отчета.
      * В режиме офлайн название отчета должно быть уникальным для рекламодателя.
@@ -38,33 +27,36 @@ class ReportDefinition
      * выдается ошибка.
      */
     public $ReportName;
-
     /**
      * @var ReportTypesEnum Тип отчета
      */
     public $ReportType;
-
     /**
      * @var ReportDateRangeTypeEnum Период, за который формируется отчет
      */
     public $DateRangeType;
-
     /**
      * @var ReportFormatsEnum Формат отчета. В настоящее время поддерживается только значение TSV.
      */
     public $Format;
-
     /**
      * @var YesNoEnum Включать ли НДС в денежные суммы в отчете.
      * Если рекламодатель работает в у. е. Директа, допускается только значение YES.
      */
     public $IncludeVAT;
-
     /**
-     * Учитывать ли скидку для денежных сумм в отчете.
+     * @var YesNoEnum Учитывать ли скидку для денежных сумм в отчете.
      * Если рекламодатель работает в у. е. Директа, допускается только значение NO.
      */
     public $IncludeDiscount;
+    /**
+     * @var ReportPage Ограничение на количество строк в отчете. Если не задано, используется ограничение 1 000 000.
+     */
+    private $Page;
+    /**
+     * @var ReportOrderBy[]
+     */
+    private $Order = [];
 
     /**
      * ReportDefinition constructor.
@@ -97,7 +89,7 @@ class ReportDefinition
         $this->IncludeDiscount = $includeDiscount;
     }
 
-    public function addOrderBy(ReportOrderBy $orderBy)
+    public function addOrderBy(ReportOrderBy $orderBy): void
     {
         $this->Order[] = $orderBy;
     }
@@ -105,21 +97,21 @@ class ReportDefinition
     /**
      * @return ReportOrderBy[]
      */
-    public function getOrderBy()
+    public function getOrderBy(): array
     {
         return $this->Order;
-    }
-
-    public function setPage(ReportPage $page)
-    {
-        $this->Page = $page;
     }
 
     /**
      * @return ReportPage
      */
-    public function getPage()
+    public function getPage(): ReportPage
     {
         return $this->Page;
+    }
+
+    public function setPage(ReportPage $page): void
+    {
+        $this->Page = $page;
     }
 }

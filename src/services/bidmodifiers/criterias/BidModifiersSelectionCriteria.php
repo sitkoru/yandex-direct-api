@@ -57,7 +57,7 @@ class BidModifiersSelectionCriteria extends Model implements ICallbackValidation
      * @Assert\Callback()
      * @param ExecutionContextInterface $context
      */
-    public function isValid(ExecutionContextInterface $context)
+    public function isValid(ExecutionContextInterface $context): void
     {
         if (!$this->CampaignIds && !$this->AdGroupIds && !$this->Ids) {
             $context->buildViolation('Необходимо указать одно из значений: CampaignIds, AdGroupId, Ids')

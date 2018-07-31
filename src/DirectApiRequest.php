@@ -19,9 +19,12 @@ class DirectApiRequest
      */
     public $params;
 
+    /**
+     * @var bool
+     */
     public $sendClientLogin = true;
 
-    public function getPayload()
+    public function getPayload(): array
     {
         $payload = [
             'method' => $this->method,
