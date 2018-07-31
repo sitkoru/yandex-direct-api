@@ -137,8 +137,12 @@ class DirectApiService
      */
     public $logger;
 
-    public function __construct($token, $clientLogin, ?IQueryLogger $queryLogger = null, ?LoggerInterface $logger = null)
-    {
+    public function __construct(
+        $token,
+        $clientLogin,
+        ?IQueryLogger $queryLogger = null,
+        ?LoggerInterface $logger = null
+    ) {
         $this->token = $token;
         $this->clientLogin = $clientLogin;
         $this->logger = new DirectApiLogger($queryLogger, $logger);
@@ -343,6 +347,8 @@ class DirectApiService
      */
     public function call($serviceName, $method, array $params = [], $sendClientLogin = true)
     {
+        $jsonParams = json_encode($params);
+        $this->logger->debug("Call method {$method} of service {$serviceName}. Params: {$jsonParams}");
         $request = new DirectApiRequest();
         $request->service = $serviceName;
         $request->method = $method;
@@ -359,6 +365,7 @@ class DirectApiService
 
 
         $data = $this->getResponse($request);
+        $this->logger->debug('Call succeeded');
         return $data->getData()->result;
     }
 
@@ -456,7 +463,8 @@ class DirectApiService
             } else {
                 $response = "";
             }
-            throw new DirectApiException('Ошибка при отправке запроса к яндексу: ' . $exception->getMessage() . '. Response: ' . $response . ' Code: ' . $exception->getCode(), 0, null, $response);
+            throw new DirectApiException('Ошибка при отправке запроса к яндексу: ' . $exception->getMessage() . '. Response: ' . $response . ' Code: ' . $exception->getCode(),
+                0, null, $response);
         } catch (\Throwable $exception) {
             throw new DirectApiException('Ошибка при запросе к яндексу' . $exception->getMessage() . ' Code: ' . $exception->getCode());
         }
@@ -514,6 +522,7 @@ class DirectApiService
             $response->isSuccess = false;
             if ((int)$data->error->error_code === self::ERROR_CODE_CONCURRENT_LIMIT) //concurrent limit
             {
+                $this->logger->debug('Concurrent limit error. Sleep and try again.');
                 usleep(100);
                 $this->logger->logRequest($request, $response);
                 return $this->getResponse($request);
@@ -538,6 +547,5 @@ class DirectApiService
         }
         $this->logger->logRequest($request, $response);
         return $response;
-
     }
 }
