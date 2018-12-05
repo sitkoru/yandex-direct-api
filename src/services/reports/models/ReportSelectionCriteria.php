@@ -3,7 +3,7 @@
 namespace directapi\services\reports\models;
 
 
-class ReportSelectionCriteria
+class ReportSelectionCriteria implements \JsonSerializable
 {
     /**
      * Параметры DateFrom и DateTo обязательны при значении CUSTOM_DATE параметра DateRangeType
@@ -36,5 +36,21 @@ class ReportSelectionCriteria
     public function getFilters(): array
     {
         return $this->Filters;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return [
+            'DateFrom' => $this->DateFrom,
+            'DateTo' => $this->DateTo,
+            'Filter' => $this->Filters
+        ];
     }
 }
