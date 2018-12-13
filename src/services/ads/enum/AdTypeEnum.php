@@ -10,4 +10,5 @@ class AdTypeEnum extends Enum
     public const MOBILE_APP_AD = 'MOBILE_APP_AD';
     public const DYNAMIC_TEXT_AD = 'DYNAMIC_TEXT_AD';
     public const IMAGE_AD = 'IMAGE_AD';
+    public const CPM_BANNER_AD = 'CPM_BANNER_AD';
 }
