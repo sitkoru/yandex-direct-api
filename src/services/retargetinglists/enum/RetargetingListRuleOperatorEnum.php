@@ -11,4 +11,5 @@ class RetargetingListRuleOperatorEnum extends Enum
     public const ANY = 'ANY';
     public const NONE = 'NONE';
     public const FOR_TARGETS_AND_ADJUSTMENTS = 'FOR_TARGETS_AND_ADJUSTMENTS';
+    public const FOR_TARGETS_ONLY = 'FOR_TARGETS_ONLY';
 }
