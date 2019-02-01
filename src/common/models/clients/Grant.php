@@ -13,7 +13,7 @@ class Grant extends Model
     public $Privilege;
 
     /**
-     * @var \directapi\components\Model
+     * @var \directapi\common\enum\YesNoEnum
      */
     public $Value;
 
