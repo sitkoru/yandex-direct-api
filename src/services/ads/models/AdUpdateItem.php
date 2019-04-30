@@ -59,15 +59,38 @@ class AdUpdateItem extends Model implements ICallbackValidation
     public $MobileAppAdBuilderAd;
 
     /**
+     * @var CpcVideoAdBuilderAdUpdate
+     */
+    public $CpcVideoAdBuilderAd;
+
+    /**
+     * @var CpmBannerAdBuilderAdUpdate
+     */
+    public $CpmBannerAdBuilderAd;
+
+    /**
      * @Assert\Callback()
      * @param ExecutionContextInterface $context
      */
     public function isValid(ExecutionContextInterface $context): void
     {
-        if (!$this->TextAd && !$this->MobileAppAd) {
-            $context->buildViolation('Необходимо указать TextAd либо MobileAppAd')
+        if (!$this->TextAd &&
+            !$this->MobileAppAd &&
+            !$this->DynamicTextAd &&
+            !$this->TextImageAd &&
+            !$this->CpcVideoAdBuilderAd &&
+            !$this->CpmBannerAdBuilderAd &&
+            !$this->MobileAppImageAd &&
+            !$this->MobileAppAdBuilderAd) {
+            $context->buildViolation('Пустое объявление')
                 ->atPath('TextAd')
                 ->atPath('MobileAppAd')
+                ->atPath('DynamicTextAd')
+                ->atPath('TextImageAd')
+                ->atPath('CpcVideoAdBuilderAd')
+                ->atPath('CpmBannerAdBuilderAd')
+                ->atPath('MobileAppImageAd')
+                ->atPath('MobileAppAdBuilderAd')
                 ->addViolation();
         }
     }

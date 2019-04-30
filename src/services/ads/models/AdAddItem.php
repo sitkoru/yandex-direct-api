@@ -45,6 +45,16 @@ class AdAddItem extends Model implements ICallbackValidation
     public $MobileAppAdBuilderAd;
 
     /**
+     * @var CpcVideoAdBuilderAdAdd
+     */
+    public $CpcVideoAdBuilderAd;
+
+    /**
+     * @var CpmBannerAdBuilderAdAdd
+     */
+    public $CpmBannerAdBuilderAd;
+
+    /**
      * @var int
      * @Assert\NotBlank()
      */
@@ -56,10 +66,23 @@ class AdAddItem extends Model implements ICallbackValidation
      */
     public function isValid(ExecutionContextInterface $context): void
     {
-        if (!$this->TextAd && !$this->MobileAppAd) {
-            $context->buildViolation('Необходимо указать TextAd либо MobileAppAd')
+        if (!$this->TextAd &&
+            !$this->MobileAppAd &&
+            !$this->DynamicTextAd &&
+            !$this->TextImageAd &&
+            !$this->CpcVideoAdBuilderAd &&
+            !$this->CpmBannerAdBuilderAd &&
+            !$this->MobileAppImageAd &&
+            !$this->MobileAppAdBuilderAd) {
+            $context->buildViolation('Пустое объявление')
                 ->atPath('TextAd')
                 ->atPath('MobileAppAd')
+                ->atPath('DynamicTextAd')
+                ->atPath('TextImageAd')
+                ->atPath('CpcVideoAdBuilderAd')
+                ->atPath('CpmBannerAdBuilderAd')
+                ->atPath('MobileAppImageAd')
+                ->atPath('MobileAppAdBuilderAd')
                 ->addViolation();
         }
     }
