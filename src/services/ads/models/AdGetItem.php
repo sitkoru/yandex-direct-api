@@ -92,6 +92,15 @@ class AdGetItem extends Model
      */
     public $MobileAppAdBuilderAd;
 
+    /**
+     * @var CpcVideoAdBuilderAdGet
+     */
+    public $CpcVideoAdBuilderAd;
+
+    /**
+     * @var CpmBannerAdBuilderAdGet
+     */
+    public $CpmBannerAdBuilderAd;
 
     /**
      * @var int
