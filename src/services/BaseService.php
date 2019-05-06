@@ -9,6 +9,13 @@ use directapi\DirectApiService;
 
 abstract class BaseService
 {
+    public const API_URL = 'https://api.direct.yandex.com/json/v5/';
+    public const API_SANDBOX_URL = 'https://api-sandbox.direct.yandex.com/json/v5/';
+
+    /**
+     * @var bool
+     */
+    public $useSandbox = false;
     /**
      * @var array
      */
@@ -139,9 +146,23 @@ abstract class BaseService
      */
     protected $service;
 
-    public function __construct(DirectApiService $service)
+    public function __construct(DirectApiService $service, $useSandbox = false)
     {
+        $this->useSandbox = $useSandbox;
         $this->service = $service;
+    }
+
+    /**
+     * @param $useSandbox
+     * @return string
+     */
+    public static function getApiUrl($useSandbox): string
+    {
+        if ($useSandbox) {
+            return BaseService::API_SANDBOX_URL;
+        } else {
+            return BaseService::API_URL;
+        }
     }
 
     /**

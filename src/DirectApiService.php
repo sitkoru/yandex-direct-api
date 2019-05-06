@@ -13,6 +13,7 @@ use directapi\services\adimages\AdImagesService;
 use directapi\services\ads\AdsService;
 use directapi\services\agencyclients\AgencyClientsService;
 use directapi\services\audiencetargets\AudienceTargetsService;
+use directapi\services\BaseService;
 use directapi\services\bidmodifiers\BidModifiersService;
 use directapi\services\bids\BidsService;
 use directapi\services\campaigns\CampaignsService;
@@ -63,10 +64,6 @@ class DirectApiService
      * @var string
      */
     private $clientLogin;
-    /**
-     * @var string
-     */
-    private $apiUrl = 'https://api.direct.yandex.com/json/v5/';
     /**
      * @var AdGroupsService
      */
@@ -143,16 +140,22 @@ class DirectApiService
      * @var \JsonMapper
      */
     private $mapper;
+    /**
+     * @var bool
+     */
+    private $useSandbox = false;
 
     public function __construct(
         string $token,
         ?string $clientLogin = null,
         ?IQueryLogger $queryLogger = null,
-        ?LoggerInterface $logger = null
+        ?LoggerInterface $logger = null,
+        $useSandbox = false
     ) {
         $this->token = $token;
         $this->clientLogin = $clientLogin;
         $this->logger = new DirectApiLogger($queryLogger, $logger);
+        $this->useSandbox = $useSandbox;
     }
 
     /**
@@ -305,7 +308,7 @@ class DirectApiService
     public function getReportsService(): ReportsService
     {
         if (!$this->reportsService) {
-            $this->reportsService = new ReportsService($this);
+            $this->reportsService = new ReportsService($this, $this->useSandbox);
         }
         return $this->reportsService;
     }
@@ -434,7 +437,7 @@ class DirectApiService
     public function getResponse(DirectApiRequest $request): DirectApiResponse
     {
         $this->lastCallCost = null;
-        $httpRequest = $this->getRequest($this->apiUrl . $request->service, 'POST', $request->sendClientLogin);
+        $httpRequest = $this->getRequest(BaseService::getApiUrl($this->useSandbox) . $request->service, 'POST', $request->sendClientLogin);
 
         $payload = json_encode($request->getPayload(), JSON_UNESCAPED_UNICODE);
         $payload = preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', $payload);

@@ -3,6 +3,7 @@
 namespace directapi\services\reports;
 
 
+use directapi\DirectApiService;
 use directapi\exceptions\DirectApiException;
 use directapi\services\BaseService;
 use directapi\services\reports\enum\ReportProcessingModeEnum;
@@ -19,7 +20,7 @@ use Psr\Http\Message\RequestInterface;
 
 class ReportsService extends BaseService
 {
-    public const REPORTS_API_URL = 'https://api.direct.yandex.com/json/v5/reports';
+    public const REPORTS_API_URL = 'reports';
 
     /**
      * @param array $entities
@@ -63,7 +64,7 @@ class ReportsService extends BaseService
      */
     public function getReportResponse($payload, $mode, $returnMoneyInMicros): Report
     {
-        $request = $this->service->getRequest(self::REPORTS_API_URL)
+        $request = $this->service->getRequest(BaseService::getApiUrl($this->useSandbox) . self::REPORTS_API_URL)
             ->withAddedHeader('processingMode', $mode)
             ->withAddedHeader('returnMoneyInMicros', $returnMoneyInMicros)
             ->withBody(\GuzzleHttp\Psr7\stream_for($payload));
