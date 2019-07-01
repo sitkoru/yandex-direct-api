@@ -1,5 +1,5 @@
 {
-  "name": "sitkoru/yandex-direct-api",
+  "name": "kmetb/yandex-direct-api",
   "description": "Client for Yandex.Direct API v5",
   "minimum-stability": "stable",
   "license": "MIT",
