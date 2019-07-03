@@ -90,6 +90,7 @@ class AdsService extends BaseService
         array $MobileAppImageAdFieldNames = [],
         array $TextAdBuilderAdFieldNames = [],
         array $MobileAppAdBuilderAdFieldNames = [],
+        array $TextAdPriceExtensionFieldNames = [],
         LimitOffset $Page = null
     ): array {
         $params = [
@@ -123,6 +124,10 @@ class AdsService extends BaseService
 
         if ($MobileAppAdBuilderAdFieldNames) {
             $params['MobileAppAdBuilderAdFieldNames'] = $MobileAppAdBuilderAdFieldNames;
+        }
+
+        if ($TextAdPriceExtensionFieldNames) {
+          $params['TextAdPriceExtensionFieldNames'] = $TextAdPriceExtensionFieldNames;
         }
 
         if ($Page) {

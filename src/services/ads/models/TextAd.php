@@ -70,6 +70,11 @@ abstract class TextAd extends Model implements ICallbackValidation
     public $VideoExtension;
 
     /**
+     * @var \directapi\services\adextensions\models\PriceExtensionAddItem
+     */
+    public $PriceExtension;
+
+    /**
      * @var int[]
      */
     public $AdExtensionIds;

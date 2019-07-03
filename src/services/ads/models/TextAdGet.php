@@ -87,6 +87,11 @@ class TextAdGet extends Model
      */
     public $VideoExtension;
 
+    /**
+     * @var \directapi\services\adextensions\models\PriceExtensionGetItem
+     */
+    public $PriceExtension;
+
     public function getDescription(): ?string
     {
         return $this->Title;
