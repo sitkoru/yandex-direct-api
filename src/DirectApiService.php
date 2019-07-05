@@ -25,6 +25,7 @@ use directapi\services\reports\ReportsService;
 use directapi\services\retargetinglists\RetargetingListsService;
 use directapi\services\sitelinks\SitelinksService;
 use directapi\services\vcards\VCardsService;
+use directapi\services\dictionaries\DictionariesService;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\RequestException;
@@ -132,6 +133,10 @@ class DirectApiService
      * @var AudienceTargetsService
      */
     private $audienceTargetsService;
+    /**
+     * @var DictionariesService
+     */
+    private $dictionariesService;
     /**
      * @var ValidatorInterface
      */
@@ -344,6 +349,17 @@ class DirectApiService
             $this->audienceTargetsService = new AudienceTargetsService($this);
         }
         return $this->audienceTargetsService;
+    }
+
+    /**
+     * @return \directapi\services\dictionaries\DictionariesService
+     */
+    public function getDictionariesServiceService(): DictionariesService
+    {
+      if (!$this->dictionariesService) {
+        $this->dictionariesService = new DictionariesService($this);
+      }
+      return $this->dictionariesService;
     }
 
     /**

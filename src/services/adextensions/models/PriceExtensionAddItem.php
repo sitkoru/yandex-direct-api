@@ -22,7 +22,7 @@ class PriceExtensionAddItem extends Model
     public $PriceQualifier;
 
     /**
-     * @var \directapi\services\adextensions\enum\AdPriceCurrencyEnum
+     * @var \directapi\common\enum\CurrencyEnum
      */
     public $PriceCurrency;
 }

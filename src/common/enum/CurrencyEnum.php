@@ -8,6 +8,7 @@ use directapi\components\Enum;
 class CurrencyEnum extends Enum
 {
     public const CURRENCY_RUB = 'RUB';
+    public const CURRENCY_BYN = 'BYN';
     public const CURRENCY_CHF = 'CHF';
     public const CURRENCY_EUR = 'EUR';
     public const CURRENCY_KZT = 'KZT';
