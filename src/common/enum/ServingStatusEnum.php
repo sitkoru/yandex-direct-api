@@ -1,6 +1,6 @@
 <?php
 
-namespace directapi\services\keywordbids\enum;
+namespace directapi\common\enum;
 
 
 class ServingStatusEnum

@@ -36,8 +36,46 @@ class AdGroupAddItem extends Model
     public $NegativeKeywords;
 
     /**
+     * @var \directapi\common\containers\ArrayOfInteger
+     * @Assert\Valid()
+     */
+    public $NegativeKeywordSharedSetIds;
+
+    /**
+     * @var string
+     * @Assert\Length(
+     *      max = 1024
+     * )
+     */
+    public $TrackingParams;
+
+    /**
      * @var MobileAppAdGroupAdd
      * @Assert\Valid()
      */
     public $MobileAppAdGroup;
+
+    /**
+     * @var DynamicTextAdGroupAdd
+     * @Assert\Valid()
+     */
+    public $DynamicTextAdGroup;
+
+    /**
+     * @var CpmBannerKeywordsAdGroupAdd
+     * @Assert\Valid()
+     */
+    public $CpmBannerKeywordsAdGroup;
+
+    /**
+     * @var CpmBannerUserProfileAdGroupAdd
+     * @Assert\Valid()
+     */
+    public $CpmBannerUserProfileAdGroup;
+
+    /**
+     * @var CpmVideoAdGroupAdd
+     */
+    public $CpmVideoAdGroup;
+
 }

@@ -35,8 +35,26 @@ class AdGroupUpdateItem extends Model
     public $NegativeKeywords;
 
     /**
+     * @var \directapi\common\containers\ArrayOfInteger
+     */
+    public $NegativeKeywordSharedSetIds;
+
+    /**
+     * @var string
+     * @Assert\Length(
+     *      max = 1024
+     * )
+     */
+    public $TrackingParams;
+
+    /**
      * @var MobileAppAdGroupUpdate
      * @Assert\Valid()
      */
     public $MobileAppAdGroup;
+
+    /**
+     * @var DynamicTextAdGroupUpdate
+     */
+    public $DynamicTextAdGroup;
 }
