@@ -103,6 +103,11 @@ class AdGetItem extends Model
     public $CpmBannerAdBuilderAd;
 
     /**
+     * @var CpmVideoAdBuilderAdGet
+     */
+    public $CpmVideoAdBuilderAd;
+
+    /**
      * @var int
      */
     public $LimitedBy;

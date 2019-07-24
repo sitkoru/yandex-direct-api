@@ -69,6 +69,11 @@ class AdUpdateItem extends Model implements ICallbackValidation
     public $CpmBannerAdBuilderAd;
 
     /**
+     * @var CpmVideoAdBuilderAdUpdate
+     */
+    public $CpmVideoAdBuilderAd;
+
+    /**
      * @Assert\Callback()
      * @param ExecutionContextInterface $context
      */
