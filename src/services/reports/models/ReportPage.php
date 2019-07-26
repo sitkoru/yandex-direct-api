@@ -8,7 +8,7 @@ class ReportPage
     /**
      * @var int Максимальное количество строк в отчете.
      */
-    public $limit;
+    public $Limit;
 
     /**
      * ReportPage constructor.
@@ -16,6 +16,6 @@ class ReportPage
      */
     public function __construct($limit)
     {
-        $this->limit = $limit;
+        $this->Limit = $limit;
     }
 }
