@@ -12,18 +12,18 @@
   "require": {
     "php": ">=7.1.0",
     "ext-json": "*",
-    "symfony/validator": "~3.2.2",
-    "doctrine/annotations": "~1.6.0",
+    "symfony/validator": "~4.3.4",
+    "doctrine/annotations": "~1.7.0",
     "doctrine/cache": "~1.8.0",
-    "netresearch/jsonmapper": "~1.4.0",
+    "netresearch/jsonmapper": "~1.6.0",
     "guzzlehttp/guzzle": "^6.3.2",
-    "psr/log": "^1.0"
+    "psr/log": "^1.1.0"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
-    "phpstan/phpstan": "^0.10.3",
-    "phpstan/phpstan-strict-rules": "^0.10.0",
-    "thecodingmachine/phpstan-strict-rules": "^0.10.3",
+    "phpstan/phpstan": "^0.11.15",
+    "phpstan/phpstan-strict-rules": "^0.11.1",
+    "thecodingmachine/phpstan-strict-rules": "^0.11.2",
     "phpunit/phpunit": "^7.3"
   },
   "autoload": {
