@@ -146,7 +146,7 @@ abstract class BaseService
      */
     protected $service;
 
-    public function __construct(DirectApiService $service, $useSandbox = false)
+    public function __construct(DirectApiService $service, bool $useSandbox = false)
     {
         $this->useSandbox = $useSandbox;
         $this->service = $service;
@@ -156,7 +156,7 @@ abstract class BaseService
      * @param $useSandbox
      * @return string
      */
-    public static function getApiUrl($useSandbox): string
+    public static function getApiUrl(bool $useSandbox): string
     {
         if ($useSandbox) {
             return BaseService::API_SANDBOX_URL;

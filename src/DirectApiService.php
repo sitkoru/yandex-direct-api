@@ -150,7 +150,7 @@ class DirectApiService
         ?string $clientLogin = null,
         ?IQueryLogger $queryLogger = null,
         ?LoggerInterface $logger = null,
-        $useSandbox = false
+        bool $useSandbox = false
     ) {
         $this->token = $token;
         $this->clientLogin = $clientLogin;
