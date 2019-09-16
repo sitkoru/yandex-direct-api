@@ -27,13 +27,22 @@ use directapi\services\sitelinks\SitelinksService;
 use directapi\services\vcards\VCardsService;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
+use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
+use InvalidArgumentException;
+use JsonMapper;
 use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Log\LoggerInterface;
+use RuntimeException;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Throwable;
+use function GuzzleHttp\Psr7\stream_for;
+use function is_array;
+use function is_object;
 
 class DirectApiService
 {
@@ -137,7 +146,7 @@ class DirectApiService
      */
     private $validator;
     /**
-     * @var \JsonMapper
+     * @var JsonMapper
      */
     private $mapper;
     /**
@@ -151,7 +160,8 @@ class DirectApiService
         ?IQueryLogger $queryLogger = null,
         ?LoggerInterface $logger = null,
         bool $useSandbox = false
-    ) {
+    )
+    {
         $this->token = $token;
         $this->clientLogin = $clientLogin;
         $this->logger = new DirectApiLogger($queryLogger, $logger);
@@ -356,7 +366,7 @@ class DirectApiService
      * @throws DirectApiException
      * @throws DirectApiNotEnoughUnitsException
      * @throws RequestValidationException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function call($serviceName, $method, array $params = [], $sendClientLogin = true)
     {
@@ -388,9 +398,9 @@ class DirectApiService
      */
     public function validate($params, array &$errors): void
     {
-        if (\is_array($params) || \is_object($params)) {
+        if (is_array($params) || is_object($params)) {
             foreach ($params as $key => $value) {
-                if (!\is_array($value) && !\is_object($value)) {
+                if (!is_array($value) && !is_object($value)) {
                     continue;
                 }
                 $result = $this->getValidator()->validate($value, null, true);
@@ -427,12 +437,12 @@ class DirectApiService
     /**
      * @param DirectApiRequest $request
      * @return DirectApiResponse
-     * @throws \directapi\exceptions\DirectAccountNotExistException
-     * @throws \RuntimeException
-     * @throws \InvalidArgumentException
+     * @throws DirectAccountNotExistException
+     * @throws RuntimeException
+     * @throws InvalidArgumentException
      * @throws DirectApiException
      * @throws DirectApiNotEnoughUnitsException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function getResponse(DirectApiRequest $request): DirectApiResponse
     {
@@ -442,7 +452,7 @@ class DirectApiService
         $payload = json_encode($request->getPayload(), JSON_UNESCAPED_UNICODE);
         $payload = preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', $payload);
 
-        $httpResponse = $this->doRequest($httpRequest->withBody(\GuzzleHttp\Psr7\stream_for($payload)));
+        $httpResponse = $this->doRequest($httpRequest->withBody(stream_for($payload)));
         $response = new DirectApiResponse();
 
         $response->setHeaders($httpResponse->getHeaders());
@@ -476,7 +486,7 @@ class DirectApiService
                 $data->error->error_code);
         }
         $response->isSuccess = true;
-        if (!\is_object($data)) {
+        if (!is_object($data)) {
             $this->logger->logRequest($request, $response);
             throw new DirectApiException('Ошибка при получении данных кампании (' . $request->service . ', ' . $request->method . ')' . var_export($request->params,
                     true));
@@ -513,15 +523,16 @@ class DirectApiService
      * @param RequestInterface $request
      * @param int              $try
      * @param int              $maxTry
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return ResponseInterface
      * @throws DirectApiException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function doRequest(
         RequestInterface $request,
         int $try = 0,
         int $maxTry = 5
-    ): \Psr\Http\Message\ResponseInterface {
+    ): ResponseInterface
+    {
         try {
             $response = $this->getClient()->send($request);
         } catch (ConnectException $exception) {
@@ -540,7 +551,7 @@ class DirectApiService
             }
             throw new DirectApiException('Ошибка при отправке запроса к яндексу: ' . $exception->getMessage() . '. Response: ' . $response . ' Code: ' . $exception->getCode(),
                 0, null, $response);
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
             throw new DirectApiException('Ошибка при запросе к яндексу' . $exception->getMessage() . ' Code: ' . $exception->getCode());
         }
         return $response;
@@ -552,12 +563,12 @@ class DirectApiService
     }
 
     /**
-     * @return \JsonMapper
+     * @return JsonMapper
      */
-    public function getMapper(): \JsonMapper
+    public function getMapper(): JsonMapper
     {
         if (!$this->mapper) {
-            $this->mapper = new \JsonMapper();
+            $this->mapper = new JsonMapper();
             $this->mapper->bStrictNullTypes = false;
         }
 
