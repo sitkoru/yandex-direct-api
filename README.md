@@ -1,6 +1,6 @@
 # PHP-обёртка над API Яндекс.Директ v5
 
-Набор классов для удобной работы с [API Яндекс.Директ](https://tech.yandex.ru/direct/doc/dg/concepts/about-docpage/). 
+Набор классов для удобной работы с [API Яндекс.Директ](https://yandex.ru/dev/direct/). 
 
 [![Latest Stable Version](https://poser.pugx.org/sitkoru/yandex-direct-api/v/stable)](https://packagist.org/packages/sitkoru/yandex-direct-api) [![Total Downloads](https://poser.pugx.org/sitkoru/yandex-direct-api/downloads)](https://packagist.org/packages/sitkoru/yandex-direct-api) [![License](https://poser.pugx.org/sitkoru/yandex-direct-api/license)](https://packagist.org/packages/sitkoru/yandex-direct-api)
 
