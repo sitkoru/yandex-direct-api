@@ -9,5 +9,7 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - name: Run php info
-      run: php -i
+    - name: Install packages
+      run: composer install
+    - name: phpstan
+      run: bash phpstan.sh
