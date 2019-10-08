@@ -1,5 +1,7 @@
 parameters:
     bootstrap: %rootDir%/../../../phpstan-bootstrap.php
+    ignoreErrors:
+          - '#Variable property access on .*#'
 services:
   -
     class: TheCodingMachine\PHPStan\Rules\Exceptions\EmptyExceptionRule

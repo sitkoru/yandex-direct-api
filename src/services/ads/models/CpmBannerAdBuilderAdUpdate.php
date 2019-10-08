@@ -12,6 +12,7 @@ class CpmBannerAdBuilderAdUpdate extends Model
      * @var AdBuilderAdAddItem
      */
     public $Creative;
+
     /**
      * @var string
      */
@@ -21,4 +22,9 @@ class CpmBannerAdBuilderAdUpdate extends Model
      * @var \directapi\common\containers\ArrayOfString
      */
     public $TrackingPixels;
+
+    /**
+     * @var int
+     */
+    public $TurboPageId;
 }

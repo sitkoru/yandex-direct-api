@@ -55,6 +55,11 @@ class AdAddItem extends Model implements ICallbackValidation
     public $CpmBannerAdBuilderAd;
 
     /**
+     * @var CpmVideoAdBuilderAdAdd
+     */
+    public $CpmVideoAdBuilderAd;
+
+    /**
      * @var int
      * @Assert\NotBlank()
      */

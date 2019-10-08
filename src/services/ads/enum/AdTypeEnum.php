@@ -12,4 +12,5 @@ class AdTypeEnum extends Enum
     public const IMAGE_AD = 'IMAGE_AD';
     public const CPM_BANNER_AD = 'CPM_BANNER_AD';
     public const CPC_VIDEO_AD = 'CPC_VIDEO_AD';
+    public const CPM_VIDEO_AD = 'CPM_VIDEO_AD';
 }

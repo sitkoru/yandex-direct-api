@@ -18,7 +18,17 @@ class CpmBannerAdBuilderAdGet extends Model
     public $Href;
 
     /**
-     * @var \directapi\common\containers\ArrayOfString
+     * @var TrackingPixelGetArray
      */
     public $TrackingPixels;
+
+    /**
+     * @var int
+     */
+    public $TurboPageId;
+
+    /**
+     * @var \directapi\common\models\ExtensionModeration
+     */
+    public $TurboPageModeration;
 }
