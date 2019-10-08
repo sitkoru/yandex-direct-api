@@ -8,8 +8,9 @@ use directapi\services\reports\enum\ReportDateRangeTypeEnum;
 use directapi\services\reports\enum\ReportFieldsEnum;
 use directapi\services\reports\enum\ReportFormatsEnum;
 use directapi\services\reports\enum\ReportTypesEnum;
+use JsonSerializable;
 
-class ReportDefinition
+class ReportDefinition implements JsonSerializable
 {
     /**
      * @var ReportSelectionCriteria Критерии отбора данных для отчета
@@ -52,11 +53,11 @@ class ReportDefinition
     /**
      * @var ReportPage Ограничение на количество строк в отчете. Если не задано, используется ограничение 1 000 000.
      */
-    private $Page;
+    private $page;
     /**
      * @var ReportOrderBy[]
      */
-    private $Order = [];
+    private $orderBy = [];
 
     /**
      * ReportDefinition constructor.
@@ -78,7 +79,8 @@ class ReportDefinition
         $format,
         $includeVAT,
         $includeDiscount
-    ) {
+    )
+    {
         $this->SelectionCriteria = $selectionCriteria;
         $this->FieldNames = $fieldNames;
         $this->ReportName = $reportName;
@@ -91,7 +93,7 @@ class ReportDefinition
 
     public function addOrderBy(ReportOrderBy $orderBy): void
     {
-        $this->Order[] = $orderBy;
+        $this->orderBy[] = $orderBy;
     }
 
     /**
@@ -99,7 +101,7 @@ class ReportDefinition
      */
     public function getOrderBy(): array
     {
-        return $this->Order;
+        return $this->orderBy;
     }
 
     /**
@@ -107,11 +109,39 @@ class ReportDefinition
      */
     public function getPage(): ReportPage
     {
-        return $this->Page;
+        return $this->page;
     }
 
     public function setPage(ReportPage $page): void
     {
-        $this->Page = $page;
+        $this->page = $page;
+    }
+
+    /**
+     * Specify data which should be serialized to JSON
+     * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        $data = [
+            'SelectionCriteria' => $this->SelectionCriteria,
+            'FieldNames'        => $this->FieldNames,
+            'ReportName'        => $this->ReportName,
+            'ReportType'        => $this->ReportType,
+            'DateRangeType'     => $this->DateRangeType,
+            'Format'            => $this->Format,
+            'IncludeVAT'        => $this->IncludeVAT,
+            'IncludeDiscount'   => $this->IncludeDiscount
+        ];
+        if ($this->page) {
+            $data['Page'] = $this->page;
+        }
+        if ($this->orderBy) {
+            $data['OrderBy'] = $this->orderBy;
+        }
+        return $data;
     }
 }

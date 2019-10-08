@@ -4,7 +4,6 @@ namespace directapi\services\keywordbids\models;
 
 use directapi\common\enum\PriorityEnum;
 use directapi\components\Model;
-use directapi\services\keywordbids\enum\ServingStatusEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class KeywordBidGetItem extends Model
@@ -25,7 +24,7 @@ class KeywordBidGetItem extends Model
     public $KeywordId;
 
     /**
-     * @var ServingStatusEnum
+     * @var \directapi\common\enum\ServingStatusEnum
      */
     public $ServingStatus;
 

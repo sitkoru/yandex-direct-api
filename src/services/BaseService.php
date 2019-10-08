@@ -6,6 +6,12 @@ use directapi\common\criterias\IdsCriteria;
 use directapi\common\results\ActionResult;
 use directapi\components\interfaces\ICriteria;
 use directapi\DirectApiService;
+use directapi\exceptions\DirectAccountNotExistException;
+use directapi\exceptions\DirectApiException;
+use directapi\exceptions\DirectApiNotEnoughUnitsException;
+use directapi\exceptions\RequestValidationException;
+use GuzzleHttp\Exception\GuzzleException;
+use JsonMapper_Exception;
 
 abstract class BaseService
 {
@@ -142,11 +148,11 @@ abstract class BaseService
      */
     protected $sendClientLogin = true;
     /**
-     * @var \directapi\DirectApiService
+     * @var DirectApiService
      */
     protected $service;
 
-    public function __construct(DirectApiService $service, $useSandbox = false)
+    public function __construct(DirectApiService $service, bool $useSandbox = false)
     {
         $this->useSandbox = $useSandbox;
         $this->service = $service;
@@ -156,7 +162,7 @@ abstract class BaseService
      * @param $useSandbox
      * @return string
      */
-    public static function getApiUrl($useSandbox): string
+    public static function getApiUrl(bool $useSandbox): string
     {
         if ($useSandbox) {
             return BaseService::API_SANDBOX_URL;
@@ -199,11 +205,12 @@ abstract class BaseService
      * @param array  $params
      * @param string $class
      * @return ActionResult[]
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \directapi\exceptions\DirectAccountNotExistException
-     * @throws \directapi\exceptions\DirectApiException
-     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
-     * @throws \directapi\exceptions\RequestValidationException
+     * @throws GuzzleException
+     * @throws DirectAccountNotExistException
+     * @throws DirectApiException
+     * @throws DirectApiNotEnoughUnitsException
+     * @throws RequestValidationException
+     * @throws JsonMapper_Exception
      */
     protected function doAdd(array $params, string $class = ActionResult::class): array
     {
@@ -215,11 +222,11 @@ abstract class BaseService
      * @param $method
      * @param $params
      * @return mixed
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \directapi\exceptions\DirectAccountNotExistException
-     * @throws \directapi\exceptions\DirectApiException
-     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
-     * @throws \directapi\exceptions\RequestValidationException
+     * @throws GuzzleException
+     * @throws DirectAccountNotExistException
+     * @throws DirectApiException
+     * @throws DirectApiNotEnoughUnitsException
+     * @throws RequestValidationException
      */
     protected function call(string $method, array $params)
     {
@@ -227,9 +234,10 @@ abstract class BaseService
     }
 
     /**
-     * @param $data
-     * @param $class
+     * @param array  $data
+     * @param string $class
      * @return array
+     * @throws JsonMapper_Exception
      */
     protected function mapArray(array $data, string $class): array
     {
@@ -241,11 +249,12 @@ abstract class BaseService
      * @param string $paramName
      * @param string $class
      * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \directapi\exceptions\DirectAccountNotExistException
-     * @throws \directapi\exceptions\DirectApiException
-     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
-     * @throws \directapi\exceptions\RequestValidationException
+     * @throws GuzzleException
+     * @throws DirectAccountNotExistException
+     * @throws DirectApiException
+     * @throws DirectApiNotEnoughUnitsException
+     * @throws RequestValidationException
+     * @throws JsonMapper_Exception
      */
     protected function doGet(array $params, string $paramName, string $class): array
     {
@@ -266,11 +275,12 @@ abstract class BaseService
     /**
      * @param array $params
      * @return ActionResult[]
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \directapi\exceptions\DirectAccountNotExistException
-     * @throws \directapi\exceptions\DirectApiException
-     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
-     * @throws \directapi\exceptions\RequestValidationException
+     * @throws GuzzleException
+     * @throws DirectAccountNotExistException
+     * @throws DirectApiException
+     * @throws DirectApiNotEnoughUnitsException
+     * @throws RequestValidationException
+     * @throws JsonMapper_Exception
      */
     protected function doUpdate($params): array
     {
@@ -282,11 +292,12 @@ abstract class BaseService
      * @param ICriteria $SelectionCriteria
      * @param string    $class
      * @return ActionResult[]
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \directapi\exceptions\DirectAccountNotExistException
-     * @throws \directapi\exceptions\DirectApiException
-     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
-     * @throws \directapi\exceptions\RequestValidationException
+     * @throws GuzzleException
+     * @throws DirectAccountNotExistException
+     * @throws DirectApiException
+     * @throws DirectApiNotEnoughUnitsException
+     * @throws RequestValidationException
+     * @throws JsonMapper_Exception
      */
     protected function doDelete($SelectionCriteria, $class = ActionResult::class): array
     {
@@ -301,11 +312,12 @@ abstract class BaseService
      * @param IdsCriteria $SelectionCriteria
      *
      * @return ActionResult[]
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \directapi\exceptions\DirectAccountNotExistException
-     * @throws \directapi\exceptions\DirectApiException
-     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
-     * @throws \directapi\exceptions\RequestValidationException
+     * @throws GuzzleException
+     * @throws DirectAccountNotExistException
+     * @throws DirectApiException
+     * @throws DirectApiNotEnoughUnitsException
+     * @throws RequestValidationException
+     * @throws JsonMapper_Exception
      */
     protected function suspend(IdsCriteria $SelectionCriteria): array
     {
@@ -320,11 +332,12 @@ abstract class BaseService
      * @param IdsCriteria $SelectionCriteria
      *
      * @return ActionResult[]
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \directapi\exceptions\DirectAccountNotExistException
-     * @throws \directapi\exceptions\DirectApiException
-     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
-     * @throws \directapi\exceptions\RequestValidationException
+     * @throws GuzzleException
+     * @throws DirectAccountNotExistException
+     * @throws DirectApiException
+     * @throws DirectApiNotEnoughUnitsException
+     * @throws RequestValidationException
+     * @throws JsonMapper_Exception
      */
     protected function resume(IdsCriteria $SelectionCriteria): array
     {
@@ -339,11 +352,12 @@ abstract class BaseService
      * @param IdsCriteria $SelectionCriteria
      *
      * @return ActionResult[]
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \directapi\exceptions\DirectAccountNotExistException
-     * @throws \directapi\exceptions\DirectApiException
-     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
-     * @throws \directapi\exceptions\RequestValidationException
+     * @throws GuzzleException
+     * @throws DirectAccountNotExistException
+     * @throws DirectApiException
+     * @throws DirectApiNotEnoughUnitsException
+     * @throws RequestValidationException
+     * @throws JsonMapper_Exception
      */
     protected function archive(IdsCriteria $SelectionCriteria): array
     {
@@ -358,11 +372,12 @@ abstract class BaseService
      * @param IdsCriteria $SelectionCriteria
      *
      * @return ActionResult[]
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \directapi\exceptions\DirectAccountNotExistException
-     * @throws \directapi\exceptions\DirectApiException
-     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
-     * @throws \directapi\exceptions\RequestValidationException
+     * @throws GuzzleException
+     * @throws DirectAccountNotExistException
+     * @throws DirectApiException
+     * @throws DirectApiNotEnoughUnitsException
+     * @throws RequestValidationException
+     * @throws JsonMapper_Exception
      */
     protected function unarchive(IdsCriteria $SelectionCriteria): array
     {
@@ -377,7 +392,7 @@ abstract class BaseService
      * @param object $data
      * @param        $class
      * @return mixed
-     * @throws \JsonMapper_Exception
+     * @throws JsonMapper_Exception
      */
     protected function map($data, string $class)
     {
@@ -388,7 +403,7 @@ abstract class BaseService
      * @param array  $entities
      * @param string $class
      * @return array
-     * @throws \JsonMapper_Exception
+     * @throws JsonMapper_Exception
      */
     protected function convertClass(array $entities, string $class): array
     {

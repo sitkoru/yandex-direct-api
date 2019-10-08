@@ -33,9 +33,24 @@ class AdGroupGetItem extends Model
     public $NegativeKeywords;
 
     /**
+     * @var \directapi\common\containers\ArrayOfInteger
+     */
+    public $NegativeKeywordSharedSetIds;
+
+    /**
+     * @var string
+     */
+    public $TrackingParams;
+
+    /**
      * @var \directapi\services\adgroups\enum\AdGroupStatusEnum
      */
     public $Status;
+
+    /**
+     * @var \directapi\common\enum\ServingStatusEnum
+     */
+    public $ServingStatus;
 
     /**
      * @var \directapi\services\adgroups\enum\AdGroupTypesEnum
@@ -43,9 +58,24 @@ class AdGroupGetItem extends Model
     public $Type;
 
     /**
+     * @var \directapi\services\adgroups\enum\AdGroupSubtypesEnum
+     */
+    public $Subtype;
+
+    /**
      * @var MobileAppAdGroupGet
      */
     public $MobileAppAdGroup;
+
+    /**
+     * @var DynamicTextAdGroupGet
+     */
+    public $DynamicTextAdGroup;
+
+    /**
+     * @var DynamicTextFeedAdGroupGet
+     */
+    public $DynamicTextFeedAdGroup;
 
     public function getDescription(): ?string
     {

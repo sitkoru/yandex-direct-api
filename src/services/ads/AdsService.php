@@ -7,12 +7,16 @@ use directapi\common\criterias\LimitOffset;
 use directapi\common\results\ActionResult;
 use directapi\services\ads\criterias\AdsSelectionCriteria;
 use directapi\services\ads\enum\AdFieldEnum;
+use directapi\services\ads\enum\CpcVideoAdBuilderAdFieldEnum;
+use directapi\services\ads\enum\CpmBannerAdBuilderAdFieldEnum;
+use directapi\services\ads\enum\CpmVideoAdBuilderAdFieldEnum;
 use directapi\services\ads\enum\DynamicTextAdFieldEnum;
 use directapi\services\ads\enum\MobileAppAdBuilderAdFieldEnum;
 use directapi\services\ads\enum\MobileAppAdFieldEnum;
 use directapi\services\ads\enum\MobileAppImageAdFieldEnum;
 use directapi\services\ads\enum\TextAdBuilderAdFieldEnum;
 use directapi\services\ads\enum\TextAdFieldEnum;
+use directapi\services\ads\enum\TextAdPriceExtensionFieldEnum;
 use directapi\services\ads\enum\TextImageAdFieldEnum;
 use directapi\services\ads\models\AdAddItem;
 use directapi\services\ads\models\AdGetItem;
@@ -66,12 +70,16 @@ class AdsService extends BaseService
      *
      * @param AdFieldEnum[]                   $FieldNames
      * @param TextAdFieldEnum[]               $TextAdFieldNames
+     * @param TextAdPriceExtensionFieldEnum[] $TextAdPriceExtensionFieldNames
      * @param MobileAppAdFieldEnum[]          $MobileAppAdFieldNames
      * @param DynamicTextAdFieldEnum[]        $DynamicTextAdFieldNames
      * @param TextImageAdFieldEnum[]          $TextImageAdFieldNames
      * @param MobileAppImageAdFieldEnum[]     $MobileAppImageAdFieldNames
      * @param TextAdBuilderAdFieldEnum[]      $TextAdBuilderAdFieldNames
      * @param MobileAppAdBuilderAdFieldEnum[] $MobileAppAdBuilderAdFieldNames
+     * @param CpcVideoAdBuilderAdFieldEnum[]  $CpcVideoAdBuilderAdFieldNames
+     * @param CpmBannerAdBuilderAdFieldEnum[] $CpmBannerAdBuilderAdFieldNames
+     * @param CpmVideoAdBuilderAdFieldEnum[]  $CpmVideoAdBuilderAdFieldNames
      * @param LimitOffset                     $Page
      * @return models\AdGetItem[]
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -84,14 +92,19 @@ class AdsService extends BaseService
         AdsSelectionCriteria $SelectionCriteria,
         array $FieldNames,
         array $TextAdFieldNames = [],
+        array $TextAdPriceExtensionFieldNames = [],
         array $MobileAppAdFieldNames = [],
         array $DynamicTextAdFieldNames = [],
         array $TextImageAdFieldNames = [],
         array $MobileAppImageAdFieldNames = [],
         array $TextAdBuilderAdFieldNames = [],
         array $MobileAppAdBuilderAdFieldNames = [],
+        array $CpcVideoAdBuilderAdFieldNames = [],
+        array $CpmBannerAdBuilderAdFieldNames = [],
+        array $CpmVideoAdBuilderAdFieldNames = [],
         LimitOffset $Page = null
-    ): array {
+    ): array
+    {
         $params = [
             'SelectionCriteria' => $SelectionCriteria,
             'FieldNames'        => $FieldNames
@@ -99,6 +112,10 @@ class AdsService extends BaseService
 
         if ($TextAdFieldNames) {
             $params['TextAdFieldNames'] = $TextAdFieldNames;
+        }
+
+        if ($TextAdPriceExtensionFieldNames) {
+            $params['TextAdPriceExtensionFieldNames'] = $TextAdPriceExtensionFieldNames;
         }
 
         if ($MobileAppAdFieldNames) {
@@ -123,6 +140,18 @@ class AdsService extends BaseService
 
         if ($MobileAppAdBuilderAdFieldNames) {
             $params['MobileAppAdBuilderAdFieldNames'] = $MobileAppAdBuilderAdFieldNames;
+        }
+
+        if ($CpcVideoAdBuilderAdFieldNames) {
+            $params['CpcVideoAdBuilderAdFieldNames'] = $CpcVideoAdBuilderAdFieldNames;
+        }
+
+        if ($CpmBannerAdBuilderAdFieldNames) {
+            $params['CpmBannerAdBuilderAdFieldNames'] = $CpmBannerAdBuilderAdFieldNames;
+        }
+
+        if ($CpmVideoAdBuilderAdFieldNames) {
+            $params['CpmVideoAdBuilderAdFieldNames'] = $CpmVideoAdBuilderAdFieldNames;
         }
 
         if ($Page) {

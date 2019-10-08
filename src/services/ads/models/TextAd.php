@@ -45,7 +45,7 @@ abstract class TextAd extends Model implements ICallbackValidation
     public $AgeLabel;
 
     /**
-     * @var int
+     * @var int|null
      */
     public $VCardId;
 

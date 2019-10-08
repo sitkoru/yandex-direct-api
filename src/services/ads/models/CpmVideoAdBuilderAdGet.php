@@ -6,19 +6,20 @@ namespace directapi\services\ads\models;
 
 use directapi\components\Model;
 
-class CpmBannerAdBuilderAdAdd extends Model
+class CpmVideoAdBuilderAdGet extends Model
 {
     /**
-     * @var AdBuilderAdAddItem
+     * @var AdBuilderAdGetItem
      */
     public $Creative;
+
     /**
      * @var string
      */
     public $Href;
 
     /**
-     * @var \directapi\common\containers\ArrayOfString
+     * @var TrackingPixelGetArray
      */
     public $TrackingPixels;
 
@@ -26,4 +27,9 @@ class CpmBannerAdBuilderAdAdd extends Model
      * @var int
      */
     public $TurboPageId;
+
+    /**
+     * @var \directapi\common\models\ExtensionModeration
+     */
+    public $TurboPageModeration;
 }
