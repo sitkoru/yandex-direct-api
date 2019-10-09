@@ -92,13 +92,13 @@ class AdsService extends BaseService
         AdsSelectionCriteria $SelectionCriteria,
         array $FieldNames,
         array $TextAdFieldNames = [],
-        array $TextAdPriceExtensionFieldNames = [],
         array $MobileAppAdFieldNames = [],
         array $DynamicTextAdFieldNames = [],
         array $TextImageAdFieldNames = [],
         array $MobileAppImageAdFieldNames = [],
         array $TextAdBuilderAdFieldNames = [],
         array $MobileAppAdBuilderAdFieldNames = [],
+        array $TextAdPriceExtensionFieldNames = [],
         array $CpcVideoAdBuilderAdFieldNames = [],
         array $CpmBannerAdBuilderAdFieldNames = [],
         array $CpmVideoAdBuilderAdFieldNames = [],
@@ -112,10 +112,6 @@ class AdsService extends BaseService
 
         if ($TextAdFieldNames) {
             $params['TextAdFieldNames'] = $TextAdFieldNames;
-        }
-
-        if ($TextAdPriceExtensionFieldNames) {
-            $params['TextAdPriceExtensionFieldNames'] = $TextAdPriceExtensionFieldNames;
         }
 
         if ($MobileAppAdFieldNames) {
@@ -140,6 +136,10 @@ class AdsService extends BaseService
 
         if ($MobileAppAdBuilderAdFieldNames) {
             $params['MobileAppAdBuilderAdFieldNames'] = $MobileAppAdBuilderAdFieldNames;
+        }
+
+        if ($TextAdPriceExtensionFieldNames) {
+          $params['TextAdPriceExtensionFieldNames'] = $TextAdPriceExtensionFieldNames;
         }
 
         if ($CpcVideoAdBuilderAdFieldNames) {
