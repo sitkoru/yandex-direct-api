@@ -2,20 +2,15 @@
 
 namespace directapi\services\dictionaries;
 
+use directapi\exceptions\DirectAccountNotExistException;
+use directapi\exceptions\DirectApiException;
+use directapi\exceptions\DirectApiNotEnoughUnitsException;
+use directapi\exceptions\RequestValidationException;
 use directapi\services\BaseService;
 use directapi\services\dictionaries\enum\DictionariesFieldEnum;
-use directapi\services\dictionaries\models\DictionaryGetItem;
-use directapi\services\dictionaries\models\MetroStationItemGet;
-use directapi\services\dictionaries\models\GeoRegionItemGet;
-use directapi\services\dictionaries\models\TimeZoneItemGet;
-use directapi\services\dictionaries\models\ConstantItemGet;
-use directapi\services\dictionaries\models\AdCategoryItemGet;
-use directapi\services\dictionaries\models\OperationSystemVersionItemGet;
-use directapi\services\dictionaries\models\SupplySidePlatformItemGet;
-use directapi\services\dictionaries\models\InterestItemGet;
-use directapi\services\dictionaries\models\AudienceCriteriaTypeItemGet;
-use directapi\services\dictionaries\models\AudienceDemographicProfileItemGet;
-use directapi\services\dictionaries\models\AudienceInterestItemGet;
+use ErrorException;
+use GuzzleHttp\Exception\GuzzleException;
+use JsonMapper_Exception;
 
 class DictionariesService extends BaseService
 {
@@ -23,14 +18,15 @@ class DictionariesService extends BaseService
      * @param DictionariesFieldEnum $DictionaryName
      *
      * @return array
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \directapi\exceptions\DirectAccountNotExistException
-     * @throws \directapi\exceptions\DirectApiException
-     * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
-     * @throws \directapi\exceptions\RequestValidationException
-     * @throws \JsonMapper_Exception
+     * @throws GuzzleException
+     * @throws DirectAccountNotExistException
+     * @throws DirectApiException
+     * @throws DirectApiNotEnoughUnitsException
+     * @throws RequestValidationException
+     * @throws JsonMapper_Exception
      */
-    public function get(DictionariesFieldEnum $DictionaryName): array {
+    public function get(DictionariesFieldEnum $DictionaryName): array
+    {
         $params = [
             'DictionaryNames' => array($DictionaryName),
         ];
@@ -43,11 +39,11 @@ class DictionariesService extends BaseService
     /**
      * @param array $entities
      * @return array
-     * @throws \ErrorException
+     * @throws ErrorException
      */
     public function toUpdateEntities(array $entities): array
     {
-      throw new \ErrorException('Not implemented');
+        throw new ErrorException('Not implemented');
     }
 
     protected function getName(): string
