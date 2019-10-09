@@ -3,8 +3,7 @@
 namespace directapi\services\dictionaries;
 
 use directapi\services\BaseService;
-use directapi\components\Model;
-use directapi\services\dictionaries\models\CurrenciesItemGet;
+use directapi\services\dictionaries\enum\DictionariesFieldEnum;
 use directapi\services\dictionaries\models\DictionaryGetItem;
 use directapi\services\dictionaries\models\MetroStationItemGet;
 use directapi\services\dictionaries\models\GeoRegionItemGet;
@@ -21,16 +20,17 @@ use directapi\services\dictionaries\models\AudienceInterestItemGet;
 class DictionariesService extends BaseService
 {
     /**
-     * @param DictionariesFieldEnum[] $DictionaryNames
+     * @param DictionariesFieldEnum $DictionaryName
      *
-     * @return models\CurrencyItemGet[]
+     * @return array
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
      * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
      * @throws \directapi\exceptions\RequestValidationException
+     * @throws \JsonMapper_Exception
      */
-    public function get($DictionaryName): array {
+    public function get(DictionariesFieldEnum $DictionaryName): array {
         $params = [
             'DictionaryNames' => array($DictionaryName),
         ];
