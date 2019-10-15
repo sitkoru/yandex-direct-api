@@ -34,4 +34,11 @@ class TextCampaignItem extends Model
      * @Assert\Type(type="directapi\services\campaigns\models\TextCampaignStrategy")
      */
     public $BiddingStrategy;
+
+    /**
+     * @var PriorityGoals
+     * @Assert\Valid()
+     * @Assert\Type(type="directapi\services\campaigns\models\PriorityGoals")
+     */
+    public $PriorityGoals;
 }
