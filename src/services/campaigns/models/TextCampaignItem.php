@@ -36,9 +36,9 @@ class TextCampaignItem extends Model
     public $BiddingStrategy;
 
     /**
-     * @var PriorityGoals
+     * @var PriorityGoalsArray
      * @Assert\Valid()
-     * @Assert\Type(type="directapi\services\campaigns\models\PriorityGoals")
+     * @Assert\Type(type="directapi\services\campaigns\models\PriorityGoalsArray")
      */
     public $PriorityGoals;
 }
