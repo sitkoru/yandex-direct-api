@@ -7,7 +7,7 @@ use directapi\components\Model;
 class DemographicsAdjustmentGet extends Model
 {
     /**
-     * @var \directapi\common\enum\YesNoEnum
+     * @var \directapi\services\bidmodifiers\enum\GenderEnum
      */
     public $Gender;
 
@@ -22,7 +22,7 @@ class DemographicsAdjustmentGet extends Model
     public $BidModifier;
 
     /**
-     * @var \directapi\services\bidmodifiers\enum\GenderEnum
+     * @var \directapi\common\enum\YesNoEnum
      */
     public $Enabled;
 }
