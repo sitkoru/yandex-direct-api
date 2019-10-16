@@ -10,4 +10,5 @@ class TextCampaignFieldEnum extends Enum
     public const RELEVANT_KEYWORDS = 'RelevantKeywords';
     public const SETTINGS = 'Settings';
     public const BIDDING_STRATEGY = 'BiddingStrategy';
+    public const PRIORITY_GOALS = 'PriorityGoals';
 }
