@@ -22,7 +22,7 @@ class DictionariesService extends BaseService
    * @throws RequestValidationException
    * @throws JsonMapper_Exception
    */
-  public function get(DictionariesFieldEnum $DictionaryName): array
+  public function get($DictionaryName): array
   {
     $params = [
       'DictionaryNames' => array($DictionaryName),
