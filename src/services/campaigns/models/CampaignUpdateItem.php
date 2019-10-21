@@ -87,9 +87,9 @@ class CampaignUpdateItem extends Model
     public $Notification;
 
     /**
-     * @var TextCampaignItem
+     * @var TextCampaignUpdateItem
      * @Assert\Valid()
-     * @Assert\Type(type="directapi\services\campaigns\models\TextCampaignItem")
+     * @Assert\Type(type="directapi\services\campaigns\models\TextCampaignUpdateItem")
      */
     public $TextCampaign;
 
