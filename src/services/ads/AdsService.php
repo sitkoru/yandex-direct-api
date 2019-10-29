@@ -70,13 +70,13 @@ class AdsService extends BaseService
      *
      * @param AdFieldEnum[]                   $FieldNames
      * @param TextAdFieldEnum[]               $TextAdFieldNames
-     * @param TextAdPriceExtensionFieldEnum[] $TextAdPriceExtensionFieldNames
      * @param MobileAppAdFieldEnum[]          $MobileAppAdFieldNames
      * @param DynamicTextAdFieldEnum[]        $DynamicTextAdFieldNames
      * @param TextImageAdFieldEnum[]          $TextImageAdFieldNames
      * @param MobileAppImageAdFieldEnum[]     $MobileAppImageAdFieldNames
      * @param TextAdBuilderAdFieldEnum[]      $TextAdBuilderAdFieldNames
      * @param MobileAppAdBuilderAdFieldEnum[] $MobileAppAdBuilderAdFieldNames
+     * @param TextAdPriceExtensionFieldEnum[] $TextAdPriceExtensionFieldNames
      * @param CpcVideoAdBuilderAdFieldEnum[]  $CpcVideoAdBuilderAdFieldNames
      * @param CpmBannerAdBuilderAdFieldEnum[] $CpmBannerAdBuilderAdFieldNames
      * @param CpmVideoAdBuilderAdFieldEnum[]  $CpmVideoAdBuilderAdFieldNames
