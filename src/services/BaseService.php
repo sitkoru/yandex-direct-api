@@ -9,6 +9,7 @@ use directapi\DirectApiService;
 use directapi\exceptions\DirectAccountNotExistException;
 use directapi\exceptions\DirectApiException;
 use directapi\exceptions\DirectApiNotEnoughUnitsException;
+use directapi\exceptions\LoginIsUsedAlreadyException;
 use directapi\exceptions\RequestValidationException;
 use GuzzleHttp\Exception\GuzzleException;
 use JsonMapper_Exception;
@@ -219,14 +220,15 @@ abstract class BaseService
     }
 
     /**
-     * @param $method
-     * @param $params
+     * @param string $method
+     * @param array $params
      * @return mixed
-     * @throws GuzzleException
      * @throws DirectAccountNotExistException
      * @throws DirectApiException
      * @throws DirectApiNotEnoughUnitsException
+     * @throws GuzzleException
      * @throws RequestValidationException
+     * @throws LoginIsUsedAlreadyException
      */
     protected function call(string $method, array $params)
     {
