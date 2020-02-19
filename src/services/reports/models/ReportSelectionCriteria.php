@@ -47,10 +47,14 @@ class ReportSelectionCriteria implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        return [
-            'DateFrom' => $this->DateFrom,
-            'DateTo' => $this->DateTo,
-            'Filter' => $this->Filters
-        ];
+        $params = ['Filter' => $this->Filters];
+        if ($this->DateFrom !== null) {
+            $params['DateFrom'] = $this->DateFrom;
+        }
+        if ($this->DateTo !== null) {
+            $params['DateTo'] = $this->DateTo;
+        }
+
+        return $params;
     }
 }

@@ -183,7 +183,7 @@ class ReportsService extends BaseService
      */
     private function parseReportResponse(string $body): Report
     {
-        $bodyRows = explode(PHP_EOL, $body);
+        $bodyRows = explode("\n", $body);
         $firstRow = trim(array_shift($bodyRows), '"');
         $secondRow = array_shift($bodyRows);
         preg_match('/(.*)\s\(([0-9\-]+) - ([0-9\-]+)\)/', $firstRow, $matches);
