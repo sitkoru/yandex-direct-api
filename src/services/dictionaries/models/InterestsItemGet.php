@@ -4,7 +4,6 @@ namespace directapi\services\dictionaries\models;
 
 
 use directapi\components\Model;
-use directapi\common\enum\YesNoEnum;
 
 class InterestsItemGet extends Model
 {
@@ -24,7 +23,7 @@ class InterestsItemGet extends Model
     public $Name;
 
     /**
-     * @var YesNoEnum[]
+     * @var \directapi\common\enum\YesNoEnum[]
      */
     public $IsTargetable;
 
