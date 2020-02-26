@@ -27,7 +27,7 @@ class AdGroupsServiceTest extends TestCase
     {
         $adGroup = new AdGroupAddItem();
         $adGroup->Name = 'Test';
-        $adGroup->CampaignId = CAMPAIGH_ID;
+        $adGroup->CampaignId = DIRECT_CAMPAIGN_ID;
         $adGroup->RegionIds = [1];
         $result = $this->adGroupsService->add([$adGroup]);
         $this->assertNotEmpty($result);
@@ -40,8 +40,8 @@ class AdGroupsServiceTest extends TestCase
     public function testDelete()
     {
         $deleteGroup = new IdsCriteria();
-        $deleteGroup->Ids = [GROUPId];
-        $deleteResult = $this->adGroupsService->doDelete($deleteGroup);
+        $deleteGroup->Ids = [DIRECT_GROUP_ID];
+        $deleteResult = $this->adGroupsService->delete($deleteGroup);
         $this->assertEmpty($deleteResult);
 
         var_dump($deleteResult);
@@ -50,7 +50,7 @@ class AdGroupsServiceTest extends TestCase
     public function testGet()
     {
         $SelectionCriteria = new AdGroupsSelectionCriteria;
-        $SelectionCriteria->Ids = [GROUPId];
+        $SelectionCriteria->Ids = [DIRECT_GROUP_ID];
         $response = $this->adGroupsService->get($SelectionCriteria, AdGroupFieldEnum::getValues());
         $this->assertNotEmpty($response);
 
@@ -60,7 +60,7 @@ class AdGroupsServiceTest extends TestCase
     public function testUpdate()
     {
         $updateGroup = new AdGroupUpdateItem();
-        $updateGroup->Id = GROUPId;
+        $updateGroup->Id = DIRECT_GROUP_ID;
         $updateGroup->Name = 'CHANGED';
         $updateGroup->RegionIds = [1];
         $response = $this->adGroupsService->update([$updateGroup]);

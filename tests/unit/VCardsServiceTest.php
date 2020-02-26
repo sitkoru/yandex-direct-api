@@ -28,7 +28,7 @@ class VCardsServiceTest extends TestCase
         $phone->CountryCode = '+7';
 
         $vCard = new VCardAddItem();
-        $vCard->CampaignId = CAMPAIGH_ID;
+        $vCard->CampaignId = DIRECT_CAMPAIGN_ID;
         $vCard->Country = 'Russia';
         $vCard->City = 'Moscow';
         $vCard->CompanyName = 'Some Company NAME';

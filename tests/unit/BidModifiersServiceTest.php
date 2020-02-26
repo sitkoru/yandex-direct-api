@@ -21,7 +21,7 @@ class BidModifiersServiceTest extends TestCase
 
     public function testAdd(){
         $bitModifiers = new BidModifierAddItem();
-        $bitModifiers->CampaignId = GROUPId;
+        $bitModifiers->CampaignId = DIRECT_GROUP_ID;
 
         $result = $this->BidModifiersService->add([$bitModifiers]);
 

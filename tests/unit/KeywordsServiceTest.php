@@ -23,7 +23,7 @@ class KeywordsServiceTest extends TestCase
 
     public function testAdd(){
         $keyword = new KeywordAddItem();
-        $keyword->AdGroupId = GROUPId;
+        $keyword->AdGroupId = DIRECT_GROUP_ID;
         $keyword->Keyword = 'somelalall';
         $result = $this->KeywordsService->add([$keyword]);
         $this->assertNotEmpty($result);
@@ -35,8 +35,8 @@ class KeywordsServiceTest extends TestCase
 
     public function testDelete(){
         $deleteKeyword = new IdsCriteria();
-        $deleteKeyword->Ids = [YDUpdateKeywordId];
-        $deleteResult = $this->KeywordsService->doDelete($deleteKeyword);
+        $deleteKeyword->Ids = [DIRECT_UPDATE_KEYWORD_ID];
+        $deleteResult = $this->KeywordsService->delete($deleteKeyword);
         $this->assertNotEmpty($deleteResult);
 
         var_dump($deleteResult);
@@ -44,7 +44,7 @@ class KeywordsServiceTest extends TestCase
 
     public function testGet(){
         $SelectionCriteria = new KeywordsSelectionCriteria;
-        $SelectionCriteria->Ids = [YDUpdateKeywordId];
+        $SelectionCriteria->Ids = [DIRECT_UPDATE_KEYWORD_ID];
         $response = $this->KeywordsService->get($SelectionCriteria,KeywordFieldEnum::getValues());
         $this->assertEmpty($response);
         var_dump($response);
@@ -53,7 +53,7 @@ class KeywordsServiceTest extends TestCase
     //Возобновляет показы по ранее остановленным ключевым фразам.
     public function testResume(){
         $SelectionCriteria = new IdsCriteria();
-        $SelectionCriteria->Ids = [YDUpdateKeywordId];
+        $SelectionCriteria->Ids = [DIRECT_UPDATE_KEYWORD_ID];
         $response = $this->KeywordsService->resume($SelectionCriteria);
         $this->assertNotEmpty($response);
         var_dump($response);
@@ -62,7 +62,7 @@ class KeywordsServiceTest extends TestCase
     //Останавливает показы по ключевым фразам.
     public function testSuspend(){
         $SelectionCriteria = new IdsCriteria();
-        $SelectionCriteria->Ids = [YDUpdateKeywordId];
+        $SelectionCriteria->Ids = [DIRECT_UPDATE_KEYWORD_ID];
         $response = $this->KeywordsService->suspend($SelectionCriteria);
         $this->assertNotEmpty($response);
         var_dump($response);
@@ -70,7 +70,7 @@ class KeywordsServiceTest extends TestCase
 
     public function testUpdate(){
         $updateKeyword = new KeywordUpdateItem();
-        $updateKeyword->Id = YDUpdateKeywordId;
+        $updateKeyword->Id = DIRECT_UPDATE_KEYWORD_ID;
         $updateKeyword->Keyword='newlalalaa';
         $response = $this->KeywordsService->update([$updateKeyword]);
         $this->assertNotEmpty($response);

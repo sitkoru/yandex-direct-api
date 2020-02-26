@@ -27,7 +27,7 @@ class AdsServiceTest extends TestCase
         $textAd->Mobile = 'NO';
 
         $ad = new AdAddItem();
-        $ad->AdGroupId = GROUPId;
+        $ad->AdGroupId = DIRECT_GROUP_ID;
         $ad->TextAd = $textAd;
 
         $result = $this->adsService->add([$ad]);

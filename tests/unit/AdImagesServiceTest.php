@@ -32,7 +32,7 @@ class AdImagesServiceTest extends TestCase
     public function testGet()
     {
         $selectionCriteria = new AdImageSelectionCriteria();
-        $selectionCriteria->AdImageHashes = [YDAdImageHash];
+        $selectionCriteria->AdImageHashes = [DIRECT_AD_IMAGE_HASH];
         $response = $this->adImagesService->get($selectionCriteria, AdImageFieldEnum::getValues());
 
         if (isset($response)) {
