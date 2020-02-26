@@ -6,6 +6,7 @@ use directapi\components\interfaces\IQueryLogger;
 use directapi\exceptions\DirectAccountNotExistException;
 use directapi\exceptions\DirectApiException;
 use directapi\exceptions\DirectApiNotEnoughUnitsException;
+use directapi\exceptions\LoginIsUsedAlreadyException;
 use directapi\exceptions\RequestValidationException;
 use directapi\services\adextensions\AdExtensionsService;
 use directapi\services\adgroups\AdGroupsService;
@@ -50,6 +51,7 @@ class DirectApiService
     public const ERROR_CODE_CONCURRENT_LIMIT = 506;
     public const ERROR_CODE_NOT_ENOUGH_UNITS = 152;
     public const ERROR_CODE_NOT_EXIST_DIRECT_ACCOUNT = 513;
+    public const ERROR_CODE_LOGIN_IS_USED_ALREADY = 5200;
     /**
      * @var int
      */
@@ -381,8 +383,9 @@ class DirectApiService
      * @throws DirectAccountNotExistException
      * @throws DirectApiException
      * @throws DirectApiNotEnoughUnitsException
-     * @throws RequestValidationException
      * @throws GuzzleException
+     * @throws LoginIsUsedAlreadyException
+     * @throws RequestValidationException
      */
     public function call($serviceName, $method, array $params = [], $sendClientLogin = true)
     {
@@ -454,11 +457,10 @@ class DirectApiService
      * @param DirectApiRequest $request
      * @return DirectApiResponse
      * @throws DirectAccountNotExistException
-     * @throws RuntimeException
-     * @throws InvalidArgumentException
      * @throws DirectApiException
      * @throws DirectApiNotEnoughUnitsException
      * @throws GuzzleException
+     * @throws LoginIsUsedAlreadyException
      */
     public function getResponse(DirectApiRequest $request): DirectApiResponse
     {
@@ -496,6 +498,10 @@ class DirectApiService
             }
             if ((int)$data->error->error_code === self::ERROR_CODE_NOT_ENOUGH_UNITS) {
                 throw new DirectApiNotEnoughUnitsException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
+                    $data->error->error_code);
+            }
+            if ((int)$data->error->error_code === self::ERROR_CODE_LOGIN_IS_USED_ALREADY) {
+                throw new LoginIsUsedAlreadyException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
                     $data->error->error_code);
             }
             throw new DirectApiException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
