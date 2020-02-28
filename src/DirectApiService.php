@@ -162,7 +162,7 @@ class DirectApiService
     private $useSandbox = false;
 
     public function __construct(
-        string $token,
+        string $token = null,
         ?string $clientLogin = null,
         ?IQueryLogger $queryLogger = null,
         ?LoggerInterface $logger = null,
@@ -389,6 +389,10 @@ class DirectApiService
      */
     public function call($serviceName, $method, array $params = [], $sendClientLogin = true)
     {
+        if(is_null($this->token)){
+            throw new DirectApiException("Не указан ключ API.");
+        }
+
         $jsonParams = json_encode($params);
         $this->logger->debug("Call method {$method} of service {$serviceName}. Params: {$jsonParams}");
         $request = new DirectApiRequest();
@@ -595,5 +599,37 @@ class DirectApiService
         }
 
         return $this->mapper;
+    }
+
+    /**
+     * @param string $token
+     */
+    public function setToken(string $token): void
+    {
+        $this->token = $token;
+    }
+
+    /**
+     * @param string $clientLogin
+     */
+    public function setClientLogin(string $clientLogin): void
+    {
+        $this->clientLogin = $clientLogin;
+    }
+
+    /**
+     * @param bool $useSandbox
+     */
+    public function setUseSandbox(bool $useSandbox): void
+    {
+        $this->useSandbox = $useSandbox;
+    }
+
+    /**
+     * @param DirectApiLogger $logger
+     */
+    public function setLogger(DirectApiLogger $logger): void
+    {
+        $this->logger = $logger;
     }
 }
