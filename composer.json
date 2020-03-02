@@ -12,9 +12,9 @@
   "require": {
     "php": ">=7.1.0",
     "ext-json": "*",
-    "symfony/validator": "~4.3.4",
-    "doctrine/annotations": "~1.7.0",
-    "doctrine/cache": "~1.8.0",
+    "symfony/validator": "^4.3 || ^5.0",
+    "doctrine/annotations": "^1.7",
+    "doctrine/cache": "^1.8",
     "netresearch/jsonmapper": "~1.6.0",
     "guzzlehttp/guzzle": "^6.3.2",
     "psr/log": "^1.1.0"
