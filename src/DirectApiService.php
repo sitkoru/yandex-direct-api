@@ -162,7 +162,7 @@ class DirectApiService
     private $useSandbox = false;
 
     public function __construct(
-        string $token = null,
+        ?string $token = null,
         ?string $clientLogin = null,
         ?IQueryLogger $queryLogger = null,
         ?LoggerInterface $logger = null,
