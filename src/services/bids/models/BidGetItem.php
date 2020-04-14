@@ -64,5 +64,5 @@ class BidGetItem extends Model
     /**
      * @var AuctionBidItem
      */
-    public $AuctionBids;
+    public $AuctionBids[];
 }
