@@ -127,6 +127,21 @@ class ReportRow
     public $CriteriaType;
 
     /**
+     * @var string Название или текст условия показа, заданного рекламодателем
+     */
+    public $Criterion;
+
+    /**
+     * @var string Идентификатор условия показа, заданного рекламодателем
+     */
+    public $CriterionId;
+
+    /**
+     * @var string Тип условия показа, заданного рекламодателем
+     */
+    public $CriterionType;
+
+    /**
      * @var float CTR, в процентах
      */
     public $Ctr;
