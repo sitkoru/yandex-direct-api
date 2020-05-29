@@ -9,5 +9,6 @@ class RoleEnum extends Enum
 {
     public const CHIEF = 'CHIEF';
     public const DELEGATE = 'DELEGATE';
+    public const LIMITED = 'LIMITED';
     public const UNKNOWN = 'UNKNOWN';
 }
