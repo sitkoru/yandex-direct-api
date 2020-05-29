@@ -2,6 +2,7 @@
 
 namespace directapi\common\enum;
 
+use directapi\components\Enum;
 
 class ServingStatusEnum extends Enum
 {
