@@ -19,7 +19,7 @@ class TextImageAdGet extends Model
 
     public function getDescription(): ?string
     {
-        $text = $this->Href ?: $this->AdImageHash;
+        $text = $this->Href !== null ? $this->Href : $this->AdImageHash;
         return "Граф. объявление {$text}";
     }
 }

@@ -7,12 +7,12 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Docker login
-      run: docker login docker.pkg.github.com -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-    - name: Docker pull
-      run: docker pull docker.pkg.github.com/sitkoru/php7-ci/php7-ci:latest
-    - name: Install packages
-      run: docker run -v $(pwd):/app -w /app docker.pkg.github.com/sitkoru/php7-ci/php7-ci composer install
-    - name: phpstan
-      run: docker run -v $(pwd):/app -w /app docker.pkg.github.com/sitkoru/php7-ci/php7-ci bash phpstan.sh
+      - uses: actions/checkout@v2
+      - name: Docker login
+        run: docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+      - name: Docker pull
+        run: docker pull docker.pkg.github.com/sitkoru/php7-ci/php7-ci:latest
+      - name: Install packages
+        run: docker run -v $(pwd):/app -w /app docker.pkg.github.com/sitkoru/php7-ci/php7-ci composer install
+      - name: phpstan
+        run: docker run -v $(pwd):/app -w /app docker.pkg.github.com/sitkoru/php7-ci/php7-ci bash phpstan.sh
