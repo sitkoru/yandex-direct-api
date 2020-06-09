@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 class TimeTargetingOnPublicHolidays extends Model implements ICallbackValidation
 {
     /**
-     * @var YesNoEnum
+     * @var \directapi\common\enum\YesNoEnum
      * @Assert\NotBlank()
      * @DirectApiAssert\IsEnum(type="directapi\common\enum\YesNoEnum")
      */

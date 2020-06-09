@@ -2,8 +2,6 @@
 
 namespace directapi\services\adimages\criterias;
 
-use directapi\common\enum\YesNoEnum;
-
 class AdImageSelectionCriteria
 {
     /**
@@ -12,7 +10,7 @@ class AdImageSelectionCriteria
     public $AdImageHashes;
 
     /**
-     * @var YesNoEnum
+     * @var \directapi\common\enum\YesNoEnum
      */
     public $Associated;
 }

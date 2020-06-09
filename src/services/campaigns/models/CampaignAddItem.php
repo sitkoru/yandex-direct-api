@@ -3,7 +3,6 @@
 namespace directapi\services\campaigns\models;
 
 use DateTime;
-use directapi\common\containers\ArrayOfString;
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
 use Exception;
@@ -53,21 +52,21 @@ class CampaignAddItem extends Model implements ICallbackValidation
     public $TimeZone = 'Europe/Moscow';
 
     /**
-     * @var ArrayOfString
+     * @var \directapi\common\containers\ArrayOfString
      * @Assert\Valid()
      * @Assert\Type(type="directapi\common\containers\ArrayOfString")
      */
     public $NegativeKeywords;
 
     /**
-     * @var ArrayOfString
+     * @var \directapi\common\containers\ArrayOfString
      * @Assert\Valid()
      * @Assert\Type(type="directapi\common\containers\ArrayOfString")
      */
     public $BlockedIps;
 
     /**
-     * @var ArrayOfString
+     * @var \directapi\common\containers\ArrayOfString
      * @Assert\Valid()
      * @Assert\Type(type="directapi\common\containers\ArrayOfString")
      */

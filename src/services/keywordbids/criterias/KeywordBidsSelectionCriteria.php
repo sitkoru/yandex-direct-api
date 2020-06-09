@@ -4,7 +4,6 @@ namespace directapi\services\keywordbids\criterias;
 
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
-use directapi\services\adgroups\enum\AdGroupStatusEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
@@ -35,7 +34,7 @@ class KeywordBidsSelectionCriteria extends Model implements ICallbackValidation
     public $CampaignIds;
 
     /**
-     * @var AdGroupStatusEnum[]
+     * @var \directapi\services\adgroups\enum\AdGroupStatusEnum[]
      */
     public $ServingStatuses;
 

@@ -2,7 +2,6 @@
 
 namespace directapi\services\agencyclients\models;
 
-use directapi\common\enum\YesNoEnum;
 use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -16,7 +15,7 @@ class EmailSubscriptionItem extends Model
     public $Option;
 
     /**
-     * @var YesNoEnum
+     * @var \directapi\common\enum\YesNoEnum
      * @Assert\NotBlank()
      * @Assert\Type(type="directapi\common\enum\YesNoEnum")
      */
