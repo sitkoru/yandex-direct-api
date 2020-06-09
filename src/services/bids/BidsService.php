@@ -2,7 +2,6 @@
 
 namespace directapi\services\bids;
 
-
 use directapi\common\results\ActionResult;
 use directapi\services\BaseService;
 use directapi\services\bids\criterias\BidsSelectionCriteria;
@@ -19,6 +18,7 @@ class BidsService extends BaseService
      * @param BidFieldEnum[]        $FieldNames
      *
      * @return BidGetItem[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -38,6 +38,7 @@ class BidsService extends BaseService
      * @param BidSetItem[] $Bids
      *
      * @return BidActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -57,6 +58,7 @@ class BidsService extends BaseService
      * @param BidSetAutoItem[] $Bids
      *
      * @return BidActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -74,7 +76,9 @@ class BidsService extends BaseService
 
     /**
      * @param array $entities
+     *
      * @return array
+     *
      * @throws \ErrorException
      */
     public function toUpdateEntities(array $entities): array

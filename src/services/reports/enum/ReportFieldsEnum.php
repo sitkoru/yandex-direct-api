@@ -2,7 +2,6 @@
 
 namespace directapi\services\reports\enum;
 
-
 use directapi\components\Enum;
 
 class ReportFieldsEnum extends Enum

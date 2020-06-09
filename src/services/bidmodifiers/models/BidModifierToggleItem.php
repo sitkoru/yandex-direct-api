@@ -2,7 +2,6 @@
 
 namespace directapi\services\bidmodifiers\models;
 
-
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
@@ -37,6 +36,7 @@ class BidModifierToggleItem extends Model implements ICallbackValidation
 
     /**
      * @Assert\Callback()
+     *
      * @param ExecutionContextInterface $context
      */
     public function isValid(ExecutionContextInterface $context): void

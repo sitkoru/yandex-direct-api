@@ -2,7 +2,6 @@
 
 namespace directapi\services\changes\enum;
 
-
 class FieldNamesEnum
 {
     public const CAMPAIGN_IDS = 'CampaignIds';

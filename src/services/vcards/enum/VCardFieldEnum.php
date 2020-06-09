@@ -2,7 +2,6 @@
 
 namespace directapi\services\vcards\enum;
 
-
 use directapi\components\Enum;
 
 class VCardFieldEnum extends Enum

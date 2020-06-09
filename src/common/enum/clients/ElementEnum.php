@@ -2,7 +2,6 @@
 
 namespace directapi\common\enum\clients;
 
-
 use directapi\components\Enum;
 
 class ElementEnum extends Enum
@@ -19,5 +18,4 @@ class ElementEnum extends Enum
     public const API_POINTS = 'API_POINTS';
     public const GENERAL_DOMAIN_BLACKLIST_SIZE = 'GENERAL_DOMAIN_BLACKLIST_SIZE';
     public const VIDEO_DOMAIN_BLACKLIST_SIZE = 'VIDEO_DOMAIN_BLACKLIST_SIZE';
-
 }

@@ -14,10 +14,11 @@ use directapi\services\retargetinglists\models\RetargetingListUpdateItem;
 
 class RetargetingListsService extends BaseService
 {
-
     /**
      * @param array $entities
+     *
      * @return array
+     *
      * @throws \ErrorException
      */
     public function toUpdateEntities(array $entities): array
@@ -27,7 +28,9 @@ class RetargetingListsService extends BaseService
 
     /**
      * @param RetargetingListAddItem[] $RetargetingLists
+     *
      * @return ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -44,7 +47,9 @@ class RetargetingListsService extends BaseService
 
     /**
      * @param $SelectionCriteria
+     *
      * @return array|ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -60,6 +65,7 @@ class RetargetingListsService extends BaseService
      * @param RetargetingListUpdateItem[] $RetargetingLists
      *
      * @return ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -76,10 +82,11 @@ class RetargetingListsService extends BaseService
 
     /**
      * @param RetargetingListSelectionCriteria $SelectionCriteria
-     *
      * @param RetargetingListFieldEnum[]       $FieldNames
      * @param LimitOffset                      $Page
+     *
      * @return RetargetingListGetItem[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException

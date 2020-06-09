@@ -69,6 +69,7 @@ class TextCampaignNetworkStrategy extends Model implements ICallbackValidation
 
     /**
      * @Assert\Callback()
+     *
      * @param ExecutionContextInterface $context
      */
     public function isValid(ExecutionContextInterface $context): void

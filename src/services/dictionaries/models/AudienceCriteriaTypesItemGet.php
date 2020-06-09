@@ -2,7 +2,6 @@
 
 namespace directapi\services\dictionaries\models;
 
-
 use directapi\components\Model;
 use directapi\services\dictionaries\enum\CanSelectEnum;
 

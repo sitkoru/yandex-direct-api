@@ -2,7 +2,6 @@
 
 namespace directapi\services\keywords\models;
 
-
 use directapi\components\Model;
 
 class Productivity extends Model

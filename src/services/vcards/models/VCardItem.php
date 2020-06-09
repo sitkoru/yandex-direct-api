@@ -136,5 +136,4 @@ class VCardItem extends Model
      * )
      */
     public $ContactPerson;
-
 }

@@ -2,15 +2,14 @@
 
 namespace directapi\services\bids\models;
 
-
 use directapi\components\Model;
 
 class AuctionBidItem extends Model
 {
     /**
      * @var string Позиция показа: Pmn, где
-     * m — номер блока (1 — спецразмещение, 2 — блок гарантированных показов);
-     * n — номер позиции в рамках блока.
+     *             m — номер блока (1 — спецразмещение, 2 — блок гарантированных показов);
+     *             n — номер позиции в рамках блока.
      */
     public $Position;
 

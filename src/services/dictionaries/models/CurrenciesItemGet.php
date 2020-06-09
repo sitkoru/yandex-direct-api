@@ -2,7 +2,6 @@
 
 namespace directapi\services\dictionaries\models;
 
-
 use directapi\components\Model;
 use directapi\services\dictionaries\models\CurrencyPropertyItemGet;
 
@@ -17,5 +16,4 @@ class CurrenciesItemGet extends Model
      * @var CurrencyPropertyItemGet[]
      */
     public $Properties;
-
 }

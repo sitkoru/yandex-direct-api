@@ -57,4 +57,10 @@ class AdGroupUpdateItem extends Model
      * @var DynamicTextAdGroupUpdate
      */
     public $DynamicTextAdGroup;
+
+    /**
+     * @var SmartAdGroup
+     * @Assert\Valid()
+     */
+    public $SmartAdGroup;
 }

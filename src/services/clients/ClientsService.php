@@ -2,7 +2,6 @@
 
 namespace directapi\services\clients;
 
-
 use directapi\common\enum\clients\ClientFieldEnum;
 use directapi\common\models\clients\ClientGetItem;
 use directapi\services\BaseService;
@@ -11,7 +10,9 @@ class ClientsService extends BaseService
 {
     /**
      * @param ClientFieldEnum[] $FieldNames
+     *
      * @return ClientGetItem[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -29,7 +30,9 @@ class ClientsService extends BaseService
 
     /**
      * @param array $entities
+     *
      * @return array
+     *
      * @throws \ErrorException
      */
     public function toUpdateEntities(array $entities): array

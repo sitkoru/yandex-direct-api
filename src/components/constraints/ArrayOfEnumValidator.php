@@ -2,14 +2,12 @@
 
 namespace directapi\components\constraints;
 
-
 use directapi\components\Enum;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 class ArrayOfEnumValidator extends ConstraintValidator
 {
-
     /**
      * Checks if the passed value is valid.
      *

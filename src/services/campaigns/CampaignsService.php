@@ -8,7 +8,10 @@ use directapi\common\results\ActionResult;
 use directapi\services\BaseService;
 use directapi\services\campaigns\criterias\CampaignsSelectionCriteria;
 use directapi\services\campaigns\enum\CampaignFieldEnum;
+use directapi\services\campaigns\enum\CpmBannerCampaignFieldEnum;
+use directapi\services\campaigns\enum\DynamicCampaignFieldEnum;
 use directapi\services\campaigns\enum\MobileAppCampaignFieldEnum;
+use directapi\services\campaigns\enum\SmartCampaignFieldEnum;
 use directapi\services\campaigns\enum\TextCampaignFieldEnum;
 use directapi\services\campaigns\enum\TextCampaignSettingsEnum;
 use directapi\services\campaigns\models\CampaignAddItem;
@@ -26,6 +29,7 @@ class CampaignsService extends BaseService
      * @param CampaignAddItem[] $Campaigns
      *
      * @return ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -50,7 +54,9 @@ class CampaignsService extends BaseService
 
     /**
      * @param $SelectionCriteria
+     *
      * @return array|ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -67,9 +73,13 @@ class CampaignsService extends BaseService
      * @param CampaignFieldEnum[]          $FieldNames
      * @param TextCampaignFieldEnum[]      $TextCampaignFieldNames
      * @param MobileAppCampaignFieldEnum[] $MobileAppCampaignFieldNames
+     * @param DynamicCampaignFieldEnum[]   $DynamicTextCampaignFieldNames
+     * @param CpmBannerCampaignFieldEnum[] $CpmBannerCampaignFieldNames
+     * @param SmartCampaignFieldEnum[]     $SmartCampaignFieldNames
      * @param LimitOffset|null             $Page
      *
      * @return CampaignGetItem[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -81,6 +91,9 @@ class CampaignsService extends BaseService
         array $FieldNames,
         array $TextCampaignFieldNames = [],
         array $MobileAppCampaignFieldNames = [],
+        array $DynamicTextCampaignFieldNames = [],
+        array $CpmBannerCampaignFieldNames = [],
+        array $SmartCampaignFieldNames = [],
         LimitOffset $Page = null
     ): array {
         $params = [
@@ -93,6 +106,15 @@ class CampaignsService extends BaseService
         if ($MobileAppCampaignFieldNames) {
             $params['MobileAppCampaignFieldNames'] = $MobileAppCampaignFieldNames;
         }
+        if ($DynamicTextCampaignFieldNames) {
+            $params['DynamicTextCampaignFieldNames'] = $DynamicTextCampaignFieldNames;
+        }
+        if ($CpmBannerCampaignFieldNames) {
+            $params['CpmBannerCampaignFieldNames'] = $CpmBannerCampaignFieldNames;
+        }
+        if ($SmartCampaignFieldNames) {
+            $params['SmartCampaignFieldNames'] = $SmartCampaignFieldNames;
+        }
         if ($Page) {
             $params['Page'] = $Page;
         }
@@ -101,7 +123,9 @@ class CampaignsService extends BaseService
 
     /**
      * @param IdsCriteria $SelectionCriteria
+     *
      * @return array
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -115,7 +139,9 @@ class CampaignsService extends BaseService
 
     /**
      * @param IdsCriteria $SelectionCriteria
+     *
      * @return array
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -129,7 +155,9 @@ class CampaignsService extends BaseService
 
     /**
      * @param IdsCriteria $SelectionCriteria
+     *
      * @return array
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -145,6 +173,7 @@ class CampaignsService extends BaseService
      * @param CampaignUpdateItem[] $Campaigns
      *
      * @return ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -161,7 +190,9 @@ class CampaignsService extends BaseService
 
     /**
      * @param CampaignGetItem[] $entities
+     *
      * @return CampaignUpdateItem[]
+     *
      * @throws \JsonMapper_Exception
      */
     public function toUpdateEntities(array $entities): array

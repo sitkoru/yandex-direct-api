@@ -2,7 +2,6 @@
 
 namespace directapi\services\adextensions\criterias;
 
-
 use directapi\components\Model;
 
 class AdExtensionsSelectionCriteria extends Model

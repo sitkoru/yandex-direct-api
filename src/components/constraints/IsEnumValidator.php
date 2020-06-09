@@ -2,13 +2,11 @@
 
 namespace directapi\components\constraints;
 
-
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 class IsEnumValidator extends ConstraintValidator
 {
-
     /**
      * Checks if the passed value is valid.
      *

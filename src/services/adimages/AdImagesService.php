@@ -16,7 +16,9 @@ class AdImagesService extends BaseService
 {
     /**
      * @param AdImageAddItem[] $AdImages
+     *
      * @return AdImageActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -33,7 +35,9 @@ class AdImagesService extends BaseService
 
     /**
      * @param AdImageIdsCriteria | ICriteria $SelectionCriteria
+     *
      * @return AdImageActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -51,13 +55,13 @@ class AdImagesService extends BaseService
      * @param LimitOffset              $Page
      *
      * @return AdImageGetItem[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
      * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
      * @throws \directapi\exceptions\RequestValidationException
      */
-
     public function get(AdImageSelectionCriteria $SelectionCriteria, array $FieldNames, LimitOffset $Page = null): array
     {
         $params = [
@@ -73,7 +77,9 @@ class AdImagesService extends BaseService
 
     /**
      * @param array $entities
+     *
      * @return array
+     *
      * @throws \ErrorException
      */
     public function toUpdateEntities(array $entities): array

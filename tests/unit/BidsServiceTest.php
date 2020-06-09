@@ -14,15 +14,15 @@ class BidsServiceTest extends TestCase
         $this->BidsService = $directApiService->getBidsService();
     }
 
-    public function testGet(){
-
+    public function testGet()
+    {
     }
 
-    public function testSet(){
-
+    public function testSet()
+    {
     }
 
-    public function testSetAuto(){
-
+    public function testSetAuto()
+    {
     }
 }

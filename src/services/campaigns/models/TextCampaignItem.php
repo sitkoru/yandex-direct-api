@@ -4,6 +4,7 @@ namespace directapi\services\campaigns\models;
 
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\Model;
+use directapi\services\campaigns\enum\AttributionModelEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class TextCampaignItem extends Model
@@ -41,4 +42,11 @@ class TextCampaignItem extends Model
      * @Assert\Type(type="directapi\services\campaigns\models\PriorityGoalsArray")
      */
     public $PriorityGoals;
+
+    /**
+     * @var AttributionModelEnum
+     * @Assert\Valid()
+     * @Assert\Type(type="directapi\services\campaigns\enum\AttributionModelEnum")
+     */
+    public $AttributionModel;
 }

@@ -2,7 +2,6 @@
 
 namespace directapi\services\keywordbids\enum;
 
-
 use directapi\components\Enum;
 
 class KeywordBidFieldEnum extends Enum

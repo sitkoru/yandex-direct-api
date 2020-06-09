@@ -3,7 +3,6 @@
 
 namespace directapi\services\adgroups\enum;
 
-
 use directapi\components\Enum;
 
 class AdGroupSubtypesEnum extends Enum

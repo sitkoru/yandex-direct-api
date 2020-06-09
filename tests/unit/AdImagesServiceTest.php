@@ -2,7 +2,6 @@
 
 namespace directapi\tests\unit;
 
-
 use directapi\common\containers\Base64Binary;
 use directapi\DirectApiService;
 use directapi\services\adimages\criterias\AdImageIdsCriteria;
@@ -19,6 +18,7 @@ class AdImagesServiceTest extends TestCase
      * @var \directapi\services\adimages\AdImagesService
      */
     private $adImagesService;
+
     private $adsService;
 
     public function __construct($name = null, array $data = [], $dataName = '')
@@ -40,7 +40,6 @@ class AdImagesServiceTest extends TestCase
                 $this->assertInstanceOf(AdImageGetItem::class, $adImage);
                 $this->assertNotEmpty($adImage->AdImageHash);
             }
-
         }
     }
 
@@ -75,7 +74,7 @@ class AdImagesServiceTest extends TestCase
 
         $this->assertNotEmpty($result);
         /** @var AdImageActionResult[] $result */
-        if(isset($result)){
+        if (isset($result)) {
             foreach ($result as $actionResult) {
                 $this->assertEmpty($actionResult->Errors, 'Action result has errors: ' . json_encode($actionResult->Errors));
                 $this->assertEmpty($actionResult->Warnings, 'Action result has warnings: ' . json_encode($actionResult->Warnings));

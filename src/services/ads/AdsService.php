@@ -14,6 +14,7 @@ use directapi\services\ads\enum\DynamicTextAdFieldEnum;
 use directapi\services\ads\enum\MobileAppAdBuilderAdFieldEnum;
 use directapi\services\ads\enum\MobileAppAdFieldEnum;
 use directapi\services\ads\enum\MobileAppImageAdFieldEnum;
+use directapi\services\ads\enum\SmartAdBuilderAdFieldEnum;
 use directapi\services\ads\enum\TextAdBuilderAdFieldEnum;
 use directapi\services\ads\enum\TextAdFieldEnum;
 use directapi\services\ads\enum\TextAdPriceExtensionFieldEnum;
@@ -29,6 +30,7 @@ class AdsService extends BaseService
      * @param AdAddItem[] $Ads
      *
      * @return ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -53,7 +55,9 @@ class AdsService extends BaseService
 
     /**
      * @param $SelectionCriteria
+     *
      * @return array|ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -67,7 +71,6 @@ class AdsService extends BaseService
 
     /**
      * @param AdsSelectionCriteria            $SelectionCriteria
-     *
      * @param AdFieldEnum[]                   $FieldNames
      * @param TextAdFieldEnum[]               $TextAdFieldNames
      * @param TextAdPriceExtensionFieldEnum[] $TextAdPriceExtensionFieldNames
@@ -80,8 +83,11 @@ class AdsService extends BaseService
      * @param CpcVideoAdBuilderAdFieldEnum[]  $CpcVideoAdBuilderAdFieldNames
      * @param CpmBannerAdBuilderAdFieldEnum[] $CpmBannerAdBuilderAdFieldNames
      * @param CpmVideoAdBuilderAdFieldEnum[]  $CpmVideoAdBuilderAdFieldNames
+     * @param SmartAdBuilderAdFieldEnum[]     $SmartAdBuilderAdFieldNames
      * @param LimitOffset                     $Page
+     *
      * @return models\AdGetItem[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -102,9 +108,9 @@ class AdsService extends BaseService
         array $CpcVideoAdBuilderAdFieldNames = [],
         array $CpmBannerAdBuilderAdFieldNames = [],
         array $CpmVideoAdBuilderAdFieldNames = [],
+        array $SmartAdBuilderAdFieldNames = [],
         LimitOffset $Page = null
-    ): array
-    {
+    ): array {
         $params = [
             'SelectionCriteria' => $SelectionCriteria,
             'FieldNames'        => $FieldNames
@@ -139,7 +145,7 @@ class AdsService extends BaseService
         }
 
         if ($TextAdPriceExtensionFieldNames) {
-          $params['TextAdPriceExtensionFieldNames'] = $TextAdPriceExtensionFieldNames;
+            $params['TextAdPriceExtensionFieldNames'] = $TextAdPriceExtensionFieldNames;
         }
 
         if ($CpcVideoAdBuilderAdFieldNames) {
@@ -154,6 +160,10 @@ class AdsService extends BaseService
             $params['CpmVideoAdBuilderAdFieldNames'] = $CpmVideoAdBuilderAdFieldNames;
         }
 
+        if ($SmartAdBuilderAdFieldNames) {
+            $params['SmartAdBuilderAdFieldNames'] = $SmartAdBuilderAdFieldNames;
+        }
+
         if ($Page) {
             $params['Page'] = $Page;
         }
@@ -165,6 +175,7 @@ class AdsService extends BaseService
      * @param IdsCriteria $SelectionCriteria
      *
      * @return ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -208,6 +219,7 @@ class AdsService extends BaseService
      * @param AdUpdateItem[] $Ads
      *
      * @return ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -224,13 +236,14 @@ class AdsService extends BaseService
 
     /**
      * @param AdGetItem[] $entities
+     *
      * @return AdUpdateItem[]
+     *
      * @throws \JsonMapper_Exception
      */
     public function toUpdateEntities(array $entities): array
     {
         return $this->convertClass($entities, AdUpdateItem::class);
-
     }
 
     protected function getName(): string

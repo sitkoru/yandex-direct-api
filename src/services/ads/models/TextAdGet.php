@@ -41,7 +41,6 @@ class TextAdGet extends Model
      */
     public $DisplayUrlPathModeration;
 
-
     /**
      * @var \directapi\common\enum\YesNoEnum
      */
@@ -96,5 +95,4 @@ class TextAdGet extends Model
     {
         return $this->Title;
     }
-
 }

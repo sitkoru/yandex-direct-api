@@ -2,9 +2,11 @@
 
 namespace directapi\services\campaigns\models;
 
-
+use DateTime;
+use directapi\common\containers\ArrayOfString;
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
+use Exception;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
@@ -51,21 +53,21 @@ class CampaignAddItem extends Model implements ICallbackValidation
     public $TimeZone = 'Europe/Moscow';
 
     /**
-     * @var \directapi\common\containers\ArrayOfString
+     * @var ArrayOfString
      * @Assert\Valid()
      * @Assert\Type(type="directapi\common\containers\ArrayOfString")
      */
     public $NegativeKeywords;
 
     /**
-     * @var \directapi\common\containers\ArrayOfString
+     * @var ArrayOfString
      * @Assert\Valid()
      * @Assert\Type(type="directapi\common\containers\ArrayOfString")
      */
     public $BlockedIps;
 
     /**
-     * @var \directapi\common\containers\ArrayOfString
+     * @var ArrayOfString
      * @Assert\Valid()
      * @Assert\Type(type="directapi\common\containers\ArrayOfString")
      */
@@ -100,8 +102,32 @@ class CampaignAddItem extends Model implements ICallbackValidation
     public $MobileAppCampaign;
 
     /**
+     * @var DynamicTextCampaignItem
+     * @Assert\Valid()
+     * @Assert\Type(type="directapi\services\campaigns\models\DynamicTextCampaignItem")
+     */
+    public $DynamicTextCampaign;
+
+    /**
+     * @var CpmBannerCampaignItem
+     * @Assert\Valid()
+     * @Assert\Type(type="directapi\services\campaigns\models\CpmBannerCampaignItem")
+     */
+    public $CpmBannerCampaign;
+
+    /**
+     * @var SmartCampaignItem
+     * @Assert\Valid()
+     * @Assert\Type(type="directapi\services\campaigns\models\SmartCampaignItem")
+     */
+    public $SmartCampaign;
+
+    /**
      * @Assert\Callback()
+     *
      * @param ExecutionContextInterface $context
+     *
+     * @throws Exception
      */
     public function isValid(ExecutionContextInterface $context): void
     {
@@ -118,7 +144,7 @@ class CampaignAddItem extends Model implements ICallbackValidation
                 ->addViolation();
         }
         if ($this->StartDate) {
-            $dateTime = new \DateTime($this->StartDate);
+            $dateTime = new DateTime($this->StartDate);
             $todayTime = mktime(0, 0, 0, date('m'), date('d'), date('Y'));
             if ($dateTime->getTimestamp() < $todayTime) {
                 $context->buildViolation('Дата старта кампании не может быть меньше текущей даты')

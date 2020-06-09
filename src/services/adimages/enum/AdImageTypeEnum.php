@@ -11,5 +11,4 @@ class AdImageTypeEnum extends Enum
     public const FIXED_IMAGE = 'FIXED_IMAGE';
     public const SMALL = 'SMALL';
     public const UNFIT = 'UNFIT';
-
 }

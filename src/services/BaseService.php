@@ -23,6 +23,7 @@ abstract class BaseService
      * @var bool
      */
     public $useSandbox = false;
+
     /**
      * @var array
      */
@@ -95,6 +96,7 @@ abstract class BaseService
             'get'    => [15, 1],
         ],
     ];
+
     /**
      * @var array
      */
@@ -144,10 +146,12 @@ abstract class BaseService
             'get' => 10000,
         ],
     ];
+
     /**
      * @var bool
      */
     protected $sendClientLogin = true;
+
     /**
      * @var DirectApiService
      */
@@ -161,6 +165,7 @@ abstract class BaseService
 
     /**
      * @param $useSandbox
+     *
      * @return string
      */
     public static function getApiUrl(bool $useSandbox): string
@@ -175,6 +180,7 @@ abstract class BaseService
     /**
      * @param $method
      * @param $objectsCount
+     *
      * @return float|int
      */
     public function count(string $method, int $objectsCount)
@@ -205,7 +211,9 @@ abstract class BaseService
     /**
      * @param array  $params
      * @param string $class
+     *
      * @return ActionResult[]
+     *
      * @throws GuzzleException
      * @throws DirectAccountNotExistException
      * @throws DirectApiException
@@ -221,8 +229,10 @@ abstract class BaseService
 
     /**
      * @param string $method
-     * @param array $params
+     * @param array  $params
+     *
      * @return mixed
+     *
      * @throws DirectAccountNotExistException
      * @throws DirectApiException
      * @throws DirectApiNotEnoughUnitsException
@@ -238,7 +248,9 @@ abstract class BaseService
     /**
      * @param array  $data
      * @param string $class
+     *
      * @return array
+     *
      * @throws JsonMapper_Exception
      */
     protected function mapArray(array $data, string $class): array
@@ -250,7 +262,9 @@ abstract class BaseService
      * @param array  $params
      * @param string $paramName
      * @param string $class
+     *
      * @return array
+     *
      * @throws GuzzleException
      * @throws DirectAccountNotExistException
      * @throws DirectApiException
@@ -276,7 +290,9 @@ abstract class BaseService
 
     /**
      * @param array $params
+     *
      * @return ActionResult[]
+     *
      * @throws GuzzleException
      * @throws DirectAccountNotExistException
      * @throws DirectApiException
@@ -293,7 +309,9 @@ abstract class BaseService
     /**
      * @param ICriteria $SelectionCriteria
      * @param string    $class
+     *
      * @return ActionResult[]
+     *
      * @throws GuzzleException
      * @throws DirectAccountNotExistException
      * @throws DirectApiException
@@ -314,6 +332,7 @@ abstract class BaseService
      * @param IdsCriteria $SelectionCriteria
      *
      * @return ActionResult[]
+     *
      * @throws GuzzleException
      * @throws DirectAccountNotExistException
      * @throws DirectApiException
@@ -334,6 +353,7 @@ abstract class BaseService
      * @param IdsCriteria $SelectionCriteria
      *
      * @return ActionResult[]
+     *
      * @throws GuzzleException
      * @throws DirectAccountNotExistException
      * @throws DirectApiException
@@ -354,6 +374,7 @@ abstract class BaseService
      * @param IdsCriteria $SelectionCriteria
      *
      * @return ActionResult[]
+     *
      * @throws GuzzleException
      * @throws DirectAccountNotExistException
      * @throws DirectApiException
@@ -374,6 +395,7 @@ abstract class BaseService
      * @param IdsCriteria $SelectionCriteria
      *
      * @return ActionResult[]
+     *
      * @throws GuzzleException
      * @throws DirectAccountNotExistException
      * @throws DirectApiException
@@ -393,7 +415,9 @@ abstract class BaseService
     /**
      * @param object $data
      * @param        $class
+     *
      * @return mixed
+     *
      * @throws JsonMapper_Exception
      */
     protected function map($data, string $class)
@@ -404,7 +428,9 @@ abstract class BaseService
     /**
      * @param array  $entities
      * @param string $class
+     *
      * @return array
+     *
      * @throws JsonMapper_Exception
      */
     protected function convertClass(array $entities, string $class): array

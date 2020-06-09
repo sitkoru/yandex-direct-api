@@ -2,7 +2,6 @@
 
 namespace directapi\services\changes\models;
 
-
 use directapi\components\Model;
 
 class CheckDictionariesResponse extends Model

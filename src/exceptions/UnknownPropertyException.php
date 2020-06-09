@@ -2,7 +2,6 @@
 
 namespace directapi\exceptions;
 
-
 class UnknownPropertyException extends \Exception
 {
     /**

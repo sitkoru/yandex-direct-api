@@ -2,7 +2,6 @@
 
 namespace directapi\services\ads\models;
 
-
 use directapi\components\constraints as DirectApiAssert;
 
 class TextAdAdd extends TextAd
@@ -12,5 +11,4 @@ class TextAdAdd extends TextAd
      * @DirectApiAssert\IsEnum(type="directapi\common\enum\YesNoEnum")
      */
     public $Mobile;
-
 }

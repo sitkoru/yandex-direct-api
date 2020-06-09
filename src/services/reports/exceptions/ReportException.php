@@ -2,7 +2,6 @@
 
 namespace directapi\services\reports\exceptions;
 
-
 abstract class ReportException extends \ErrorException
 {
     /**
@@ -30,9 +29,10 @@ abstract class ReportException extends \ErrorException
         string $requestId,
         int $errorCode,
         string $errorMessage,
-        string $errorDetail
+        string $errorDetail,
+        \Exception $previous = null
     ) {
-        parent::__construct($message);
+        parent::__construct($message, 0, 1, __FILE__, __LINE__, $previous);
         $this->requestId = $requestId;
         $this->errorCode = $errorCode;
         $this->errorMessage = $errorMessage;

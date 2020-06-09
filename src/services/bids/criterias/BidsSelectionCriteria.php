@@ -2,7 +2,6 @@
 
 namespace directapi\services\bids\criterias;
 
-
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -36,6 +35,7 @@ class BidsSelectionCriteria extends Model implements ICallbackValidation
 
     /**
      * @Assert\Callback()
+     *
      * @param ExecutionContextInterface $context
      */
     public function isValid(ExecutionContextInterface $context): void

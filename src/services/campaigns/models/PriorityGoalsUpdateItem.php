@@ -11,5 +11,4 @@ class PriorityGoalsUpdateItem extends PriorityGoalsItem
      * @var string
      */
     public $Operation = 'SET';
-
 }

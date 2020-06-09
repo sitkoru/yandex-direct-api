@@ -2,7 +2,6 @@
 
 namespace directapi\services\campaigns\enum;
 
-
 use directapi\components\Enum;
 
 class TextCampaignSettingsEnum extends Enum

@@ -3,7 +3,6 @@
 
 namespace directapi\services\ads\models;
 
-
 use directapi\components\Model;
 
 class CpmBannerAdBuilderAdGet extends Model
@@ -12,6 +11,7 @@ class CpmBannerAdBuilderAdGet extends Model
      * @var AdBuilderAdAddItem
      */
     public $Creative;
+
     /**
      * @var string
      */

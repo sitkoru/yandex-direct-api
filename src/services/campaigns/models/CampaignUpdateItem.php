@@ -2,7 +2,7 @@
 
 namespace directapi\services\campaigns\models;
 
-
+use directapi\common\containers\ArrayOfString;
 use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -52,21 +52,21 @@ class CampaignUpdateItem extends Model
     public $TimeZone;
 
     /**
-     * @var \directapi\common\containers\ArrayOfString
+     * @var ArrayOfString
      * @Assert\Valid()
      * @Assert\Type(type="directapi\common\containers\ArrayOfString")
      */
     public $NegativeKeywords;
 
     /**
-     * @var \directapi\common\containers\ArrayOfString
+     * @var ArrayOfString
      * @Assert\Valid()
      * @Assert\Type(type="directapi\common\containers\ArrayOfString")
      */
     public $BlockedIps;
 
     /**
-     * @var \directapi\common\containers\ArrayOfString
+     * @var ArrayOfString
      * @Assert\Valid()
      * @Assert\Type(type="directapi\common\containers\ArrayOfString")
      */
@@ -99,4 +99,25 @@ class CampaignUpdateItem extends Model
      * @Assert\Type(type="directapi\services\campaigns\models\MobileAppCampaignItem")
      */
     public $MobileAppCampaign;
+
+    /**
+     * @var DynamicTextCampaignItem
+     * @Assert\Valid()
+     * @Assert\Type(type="directapi\services\campaigns\models\DynamicTextCampaignItem")
+     */
+    public $DynamicTextCampaign;
+
+    /**
+     * @var CpmBannerCampaignItem
+     * @Assert\Valid()
+     * @Assert\Type(type="directapi\services\campaigns\models\CpmBannerCampaignItem")
+     */
+    public $CpmBannerCampaign;
+
+    /**
+     * @var SmartCampaignItem
+     * @Assert\Valid()
+     * @Assert\Type(type="directapi\services\campaigns\models\SmartCampaignItem")
+     */
+    public $SmartCampaign;
 }

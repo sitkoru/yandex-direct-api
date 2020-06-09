@@ -2,7 +2,6 @@
 
 namespace directapi\services\agencyclients\criterias;
 
-
 use directapi\components\Model;
 
 class AgencyClientsSelectionCriteria extends Model

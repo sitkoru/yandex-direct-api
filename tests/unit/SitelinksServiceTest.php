@@ -16,17 +16,13 @@ class SitelinksServiceTest extends TestCase
 
     public function testAdd()
     {
-
     }
 
     public function testDelete()
     {
-
     }
 
     public function testGet()
     {
-
     }
-
 }

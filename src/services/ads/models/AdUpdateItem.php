@@ -45,7 +45,6 @@ class AdUpdateItem extends Model implements ICallbackValidation
      */
     public $MobileAppImageAd;
 
-
     /**
      * @var TextAdBuilderAdUpdate
      * @Assert\Valid()
@@ -74,7 +73,13 @@ class AdUpdateItem extends Model implements ICallbackValidation
     public $CpmVideoAdBuilderAd;
 
     /**
+     * @var SmartAdBuilderAdUpdate
+     */
+    public $SmartAdBuilderAd;
+
+    /**
      * @Assert\Callback()
+     *
      * @param ExecutionContextInterface $context
      */
     public function isValid(ExecutionContextInterface $context): void
@@ -86,7 +91,8 @@ class AdUpdateItem extends Model implements ICallbackValidation
             !$this->CpcVideoAdBuilderAd &&
             !$this->CpmBannerAdBuilderAd &&
             !$this->MobileAppImageAd &&
-            !$this->MobileAppAdBuilderAd) {
+            !$this->MobileAppAdBuilderAd &&
+            !$this->SmartAdBuilderAd) {
             $context->buildViolation('Пустое объявление')
                 ->atPath('TextAd')
                 ->atPath('MobileAppAd')
@@ -96,6 +102,7 @@ class AdUpdateItem extends Model implements ICallbackValidation
                 ->atPath('CpmBannerAdBuilderAd')
                 ->atPath('MobileAppImageAd')
                 ->atPath('MobileAppAdBuilderAd')
+                ->atPath('SmartAdBuilderAd')
                 ->addViolation();
         }
     }

@@ -2,7 +2,6 @@
 
 namespace directapi\services\bidmodifiers;
 
-
 use directapi\common\criterias\IdsCriteria;
 use directapi\common\criterias\LimitOffset;
 use directapi\common\results\ActionResult;
@@ -12,7 +11,10 @@ use directapi\services\bidmodifiers\criterias\BidModifiersSelectionCriteria;
 use directapi\services\bidmodifiers\enum\BidModifierFieldEnum;
 use directapi\services\bidmodifiers\enum\DemographicsAdjustmentFieldEnum;
 use directapi\services\bidmodifiers\enum\MobileAdjustmentFieldEnum;
+use directapi\services\bidmodifiers\enum\RegionalAdjustmentFieldEnum;
 use directapi\services\bidmodifiers\enum\RetargetingAdjustmentFieldEnum;
+use directapi\services\bidmodifiers\enum\SmartAdjustmentFieldEnum;
+use directapi\services\bidmodifiers\enum\VideoAdjustmentFieldEnum;
 use directapi\services\bidmodifiers\models\BidModifierAddItem;
 use directapi\services\bidmodifiers\models\BidModifierGetItem;
 use directapi\services\bidmodifiers\models\BidModifierSetItem;
@@ -25,6 +27,7 @@ class BidModifiersService extends BaseService
      * @param BidModifierAddItem[] $BidModifiers
      *
      * @return MultiIdsActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -41,7 +44,9 @@ class BidModifiersService extends BaseService
 
     /**
      * @param $SelectionCriteria
+     *
      * @return array|ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -59,9 +64,13 @@ class BidModifiersService extends BaseService
      * @param MobileAdjustmentFieldEnum[]       $MobileAdjustmentFieldNames
      * @param DemographicsAdjustmentFieldEnum[] $DemographicsAdjustmentFieldNames
      * @param RetargetingAdjustmentFieldEnum[]  $RetargetingAdjustmentFieldNames
+     * @param RegionalAdjustmentFieldEnum[]     $RegionalAdjustmentFieldNames
+     * @param VideoAdjustmentFieldEnum[]        $VideoAdjustmentFieldNames
+     * @param SmartAdjustmentFieldEnum[]        $SmartAdAdjustmentFieldNames
      * @param LimitOffset|null                  $Page
      *
      * @return BidModifierGetItem[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -74,6 +83,9 @@ class BidModifiersService extends BaseService
         array $MobileAdjustmentFieldNames = [],
         array $DemographicsAdjustmentFieldNames = [],
         array $RetargetingAdjustmentFieldNames = [],
+        array $RegionalAdjustmentFieldNames = [],
+        array $VideoAdjustmentFieldNames = [],
+        array $SmartAdAdjustmentFieldNames = [],
         LimitOffset $Page = null
     ): array {
         $params = [
@@ -89,6 +101,15 @@ class BidModifiersService extends BaseService
         if ($RetargetingAdjustmentFieldNames) {
             $params['RetargetingAdjustmentFieldNames'] = $RetargetingAdjustmentFieldNames;
         }
+        if ($RegionalAdjustmentFieldNames) {
+            $params['RegionalAdjustmentFieldNames'] = $RegionalAdjustmentFieldNames;
+        }
+        if ($VideoAdjustmentFieldNames) {
+            $params['VideoAdjustmentFieldNames'] = $VideoAdjustmentFieldNames;
+        }
+        if ($SmartAdAdjustmentFieldNames) {
+            $params['SmartAdAdjustmentFieldNames'] = $SmartAdAdjustmentFieldNames;
+        }
         if ($Page) {
             $params['Page'] = $Page;
         }
@@ -99,6 +120,7 @@ class BidModifiersService extends BaseService
      * @param BidModifierSetItem[] $BidModifiers
      *
      * @return ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -118,6 +140,7 @@ class BidModifiersService extends BaseService
      * @param BidModifierToggleItem[] $BidModifierToggleItems
      *
      * @return ToggleResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -135,7 +158,9 @@ class BidModifiersService extends BaseService
 
     /**
      * @param array $entities
+     *
      * @return array
+     *
      * @throws \ErrorException
      */
     public function toUpdateEntities(array $entities): array

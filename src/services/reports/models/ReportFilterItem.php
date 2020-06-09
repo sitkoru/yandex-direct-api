@@ -9,8 +9,8 @@ class ReportFilterItem
 {
     /**
      * @var ReportFilterFieldsEnum Имя поля, которое используется для отбора строк.
-     * Каждое поле можно использовать только в одном критерии:
-     * несколько критериев с одним и тем же полем не допускается.
+     *                             Каждое поле можно использовать только в одном критерии:
+     *                             несколько критериев с одним и тем же полем не допускается.
      */
     public $Field;
 
@@ -21,13 +21,14 @@ class ReportFilterItem
 
     /**
      * @var string[] Значения, используемые для отбора строк.
-     * Все денежные значения следует указывать в виде целых чисел:
-     * сумм в валюте, умноженных на 1 000 000 (независимо от наличия заголовка returnMoneyInMicros: false).
+     *               Все денежные значения следует указывать в виде целых чисел:
+     *               сумм в валюте, умноженных на 1 000 000 (независимо от наличия заголовка returnMoneyInMicros: false).
      */
     public $Values;
 
     /**
      * ReportFilterItem constructor.
+     *
      * @param ReportFilterFieldsEnum|string    $field
      * @param ReportFilterOperatorsEnum|string $operator
      * @param string[]                         $values

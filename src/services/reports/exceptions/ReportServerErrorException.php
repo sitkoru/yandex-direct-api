@@ -2,7 +2,6 @@
 
 namespace directapi\services\reports\exceptions;
 
-
 class ReportServerErrorException extends ReportException
 {
     public function __construct(string $requestId, int $errorCode, string $errorMessage, string $errorDetail)

@@ -126,6 +126,21 @@ class CampaignGetItem extends Model
      */
     public $MobileAppCampaign;
 
+    /**
+     * @var DynamicTextCampaignItem
+     */
+    public $DynamicTextCampaign;
+
+    /**
+     * @var CpmBannerCampaignItem
+     */
+    public $CpmBannerCampaign;
+
+    /**
+     * @var SmartCampaignItem
+     */
+    public $SmartCampaign;
+
     public function getDescription(): ?string
     {
         return $this->Name;

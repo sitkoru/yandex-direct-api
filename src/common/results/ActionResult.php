@@ -2,7 +2,6 @@
 
 namespace directapi\common\results;
 
-
 class ActionResult
 {
     /**

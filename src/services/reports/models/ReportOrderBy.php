@@ -2,7 +2,6 @@
 
 namespace directapi\services\reports\models;
 
-
 use directapi\services\reports\enum\ReportOrderByFieldsEnum;
 
 class ReportOrderBy
@@ -14,15 +13,16 @@ class ReportOrderBy
 
     /**
      * @var string
-     * Направление сортировки:
-     *  ASCENDING — по возрастанию;
-     *  DESCENDING — по убыванию.
-     * Если не задано, выполняется сортировка по возрастанию.
+     *             Направление сортировки:
+     *             ASCENDING — по возрастанию;
+     *             DESCENDING — по убыванию.
+     *             Если не задано, выполняется сортировка по возрастанию.
      */
     public $sortOrder;
 
     /**
      * ReportOrderBy constructor.
+     *
      * @param ReportOrderByFieldsEnum $field
      * @param string                  $sortOrder
      */

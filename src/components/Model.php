@@ -8,7 +8,9 @@ class Model
 {
     /**
      * Model constructor.
+     *
      * @param array $config
+     *
      * @throws UnknownPropertyException
      */
     public function __construct(array $config = [])

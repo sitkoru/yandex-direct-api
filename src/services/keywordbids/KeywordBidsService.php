@@ -2,7 +2,6 @@
 
 namespace directapi\services\keywordbids;
 
-
 use directapi\common\criterias\LimitOffset;
 use directapi\services\BaseService;
 use directapi\services\keywordbids\criterias\KeywordBidsSelectionCriteria;
@@ -17,11 +16,12 @@ class KeywordBidsService extends BaseService
     /**
      * @param KeywordBidsSelectionCriteria $SelectionCriteria
      * @param KeywordBidFieldEnum[]        $FieldNames
-     *
      * @param string[]                     $SearchFieldNames
      * @param string[]                     $NetworkFieldNames
      * @param LimitOffset                  $Page
+     *
      * @return KeywordBidGetItem[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -55,6 +55,7 @@ class KeywordBidsService extends BaseService
      * @param KeywordBidSetItem[] $Bids
      *
      * @return KeywordBidActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -74,6 +75,7 @@ class KeywordBidsService extends BaseService
      * @param KeywordBidSetAutoItem[] $Bids
      *
      * @return KeywordBidActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -91,7 +93,9 @@ class KeywordBidsService extends BaseService
 
     /**
      * @param array $entities
+     *
      * @return array
+     *
      * @throws \ErrorException
      */
     public function toUpdateEntities(array $entities): array

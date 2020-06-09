@@ -3,7 +3,6 @@
 
 namespace directapi\services\adgroups\models;
 
-
 use directapi\components\Model;
 
 class DynamicTextAdGroupGet extends Model

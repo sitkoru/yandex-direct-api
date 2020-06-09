@@ -29,7 +29,7 @@ class TextCampaignSearchStrategy extends Model implements ICallbackValidation
      * @var StrategyMaximumConversionRateAdd
      * @Assert\Valid()
      * @Assert\Type(type="directapi\services\campaigns\models\strategies\StrategyMaximumConversionRateAdd")
-     * */
+     */
     public $WbMaximumConversionRate;
 
     /**
@@ -62,6 +62,7 @@ class TextCampaignSearchStrategy extends Model implements ICallbackValidation
 
     /**
      * @Assert\Callback()
+     *
      * @param ExecutionContextInterface $context
      */
     public function isValid(ExecutionContextInterface $context): void
@@ -95,6 +96,5 @@ class TextCampaignSearchStrategy extends Model implements ICallbackValidation
             $context->buildViolation('Свойство WeeklyClickPackage должно быть указано, если BiddingStrategyType=WEEKLY_CLICK_PACKAGE')
                 ->atPath('WeeklyClickPackage')->addViolation();
         }
-
     }
 }

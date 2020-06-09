@@ -2,7 +2,6 @@
 
 namespace directapi\services\dictionaries\models;
 
-
 use directapi\components\Model;
 
 class OperationSystemVersionsItemGet extends Model
@@ -16,5 +15,4 @@ class OperationSystemVersionsItemGet extends Model
      * @var string
      */
     public $OsVersion;
-
 }

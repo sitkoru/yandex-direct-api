@@ -2,7 +2,6 @@
 
 namespace directapi\services\ads\models;
 
-
 use directapi\components\Model;
 
 class AdGetItem extends Model
@@ -108,6 +107,11 @@ class AdGetItem extends Model
     public $CpmVideoAdBuilderAd;
 
     /**
+     * @var SmartAdBuilderAdGet
+     */
+    public $SmartAdBuilderAd;
+
+    /**
      * @var int
      */
     public $LimitedBy;
@@ -140,6 +144,10 @@ class AdGetItem extends Model
 
         if ($this->MobileAppAdBuilderAd) {
             return $this->MobileAppAdBuilderAd->getDescription();
+        }
+
+        if ($this->SmartAdBuilderAd) {
+            return $this->SmartAdBuilderAd->getDescription();
         }
 
         return null;

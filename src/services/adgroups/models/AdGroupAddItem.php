@@ -2,7 +2,6 @@
 
 namespace directapi\services\adgroups\models;
 
-
 use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -78,4 +77,9 @@ class AdGroupAddItem extends Model
      */
     public $CpmVideoAdGroup;
 
+    /**
+     * @var SmartAdGroup
+     * @Assert\Valid()
+     */
+    public $SmartAdGroup;
 }

@@ -3,7 +3,6 @@
 
 namespace directapi\services\adgroups\models;
 
-
 use directapi\components\Model;
 
 class DynamicTextFeedAdGroupGet extends Model

@@ -2,7 +2,6 @@
 
 namespace directapi\services\keywordbids\criterias;
 
-
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
 use directapi\services\adgroups\enum\AdGroupStatusEnum;
@@ -42,6 +41,7 @@ class KeywordBidsSelectionCriteria extends Model implements ICallbackValidation
 
     /**
      * @Assert\Callback()
+     *
      * @param ExecutionContextInterface $context
      */
     public function isValid(ExecutionContextInterface $context): void

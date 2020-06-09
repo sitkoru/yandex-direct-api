@@ -52,6 +52,7 @@ class MobileAppCampaignNetworkStrategyAdd extends Model implements ICallbackVali
 
     /**
      * @Assert\Callback()
+     *
      * @param ExecutionContextInterface $context
      */
     public function isValid(ExecutionContextInterface $context): void
@@ -81,5 +82,4 @@ class MobileAppCampaignNetworkStrategyAdd extends Model implements ICallbackVali
                 ->atPath('WeeklyClickPackage')->addViolation();
         }
     }
-
 }

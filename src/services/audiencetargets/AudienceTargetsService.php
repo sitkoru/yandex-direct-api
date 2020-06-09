@@ -15,10 +15,11 @@ use directapi\services\BaseService;
 
 class AudienceTargetsService extends BaseService
 {
-
     /**
      * @param array $entities
+     *
      * @return array
+     *
      * @throws \ErrorException
      */
     public function toUpdateEntities(array $entities): array
@@ -28,7 +29,9 @@ class AudienceTargetsService extends BaseService
 
     /**
      * @param AudienceTargetAddItem[] $AudienceTargets
+     *
      * @return ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -45,7 +48,9 @@ class AudienceTargetsService extends BaseService
 
     /**
      * @param $SelectionCriteria
+     *
      * @return array|ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -59,7 +64,9 @@ class AudienceTargetsService extends BaseService
 
     /**
      * @param IdsCriteria $SelectionCriteria
+     *
      * @return array
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -81,10 +88,11 @@ class AudienceTargetsService extends BaseService
 
     /**
      * @param AudienceTargetSelectionCriteria $SelectionCriteria
-     *
      * @param AudienceTargetFieldEnum[]       $FieldNames
      * @param LimitOffset                     $Page
+     *
      * @return AudienceTargetGetItem[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -110,7 +118,9 @@ class AudienceTargetsService extends BaseService
 
     /**
      * @param AudienceTargetSetBidsItem[] $Bids
+     *
      * @return ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException

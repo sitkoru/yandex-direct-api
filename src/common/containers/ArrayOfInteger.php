@@ -2,7 +2,6 @@
 
 namespace directapi\common\containers;
 
-
 class ArrayOfInteger
 {
     /**

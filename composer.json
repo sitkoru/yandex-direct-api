@@ -15,16 +15,20 @@
     "symfony/validator": "^4.3 || ^5.0",
     "doctrine/annotations": "^1.7",
     "doctrine/cache": "^1.8",
-    "netresearch/jsonmapper": "~1.6.0",
+    "netresearch/jsonmapper": "^2.1.0",
     "guzzlehttp/guzzle": "^6.3.2",
     "psr/log": "^1.1.0"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
-    "phpstan/phpstan": "^0.11.15",
-    "phpstan/phpstan-strict-rules": "^0.11.1",
-    "thecodingmachine/phpstan-strict-rules": "^0.11.2",
-    "phpunit/phpunit": "^7.3"
+    "phpstan/phpstan": "^0.12.27",
+    "phpstan/phpstan-strict-rules": "^0.12.2",
+    "thecodingmachine/phpstan-strict-rules": "^0.12.0",
+    "phpunit/phpunit": "^7.3",
+    "phpstan/phpstan-symfony": "^0.12.6",
+    "phpstan/extension-installer": "^1.0",
+    "phpstan/phpstan-doctrine": "^0.12.14",
+    "friendsofphp/php-cs-fixer": "^2.16"
   },
   "autoload": {
     "psr-4": {

@@ -40,41 +40,33 @@ class AdsServiceTest extends TestCase
 
     public function testArchive()
     {
-
     }
 
     public function testDelete()
     {
-
     }
 
     public function testGet()
     {
-
     }
 
     public function testModerate()
     {
-
     }
 
     public function testResume()
     {
-
     }
 
     public function testSuspend()
     {
-
     }
 
     public function testUnarchive()
     {
-
     }
 
     public function testUpdate()
     {
-
     }
 }

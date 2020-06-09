@@ -2,7 +2,6 @@
 
 namespace directapi\services\changes\enum;
 
-
 use directapi\components\Enum;
 
 class CampaignChangesInEnum extends Enum

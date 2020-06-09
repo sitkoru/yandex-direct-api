@@ -2,7 +2,6 @@
 
 namespace directapi\services\changes\models;
 
-
 use directapi\components\Model;
 
 class CampaignStatItem extends Model

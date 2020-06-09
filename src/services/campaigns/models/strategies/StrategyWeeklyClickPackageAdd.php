@@ -17,9 +17,9 @@ class StrategyWeeklyClickPackageAdd extends Model
      * @var int
      */
     public $AverageCpc;
+
     /**
      * @var int
      */
-
     public $BidCeiling;
 }

@@ -2,7 +2,6 @@
 
 namespace directapi\services\campaigns\enum;
 
-
 use directapi\components\Enum;
 
 class TextCampaignSearchStrategyTypeEnum extends Enum
@@ -19,4 +18,5 @@ class TextCampaignSearchStrategyTypeEnum extends Enum
     public const AVERAGE_ROI = 'AVERAGE_ROI';
     public const WEEKLY_CLICK_PACKAGE = 'WEEKLY_CLICK_PACKAGE';
     public const SERVING_OFF = 'SERVING_OFF';
+    public const PAY_FOR_CONVERSION = 'PAY_FOR_CONVERSION';
 }

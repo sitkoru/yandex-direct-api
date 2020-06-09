@@ -6,7 +6,6 @@ use directapi\components\Model;
 
 class PriorityGoalsArray extends Model
 {
-
     /**
      * @var PriorityGoalsItem[]
      */

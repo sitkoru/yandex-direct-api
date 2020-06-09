@@ -2,7 +2,6 @@
 
 namespace directapi\services\dictionaries\models;
 
-
 use directapi\components\Model;
 
 class AdCategoriesItemGet extends Model
@@ -21,5 +20,4 @@ class AdCategoriesItemGet extends Model
      * @var string
      */
     public $Message;
-
 }

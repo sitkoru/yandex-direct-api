@@ -2,7 +2,6 @@
 
 namespace directapi\services\adextensions;
 
-
 use directapi\common\criterias\IdsCriteria;
 use directapi\common\criterias\LimitOffset;
 use directapi\common\results\ActionResult;
@@ -15,22 +14,23 @@ use directapi\services\BaseService;
 
 class AdExtensionsService extends BaseService
 {
-
     /**
      * @param array $entities
+     *
      * @return array
+     *
      * @throws \ErrorException
      */
     public function toUpdateEntities(array $entities): array
     {
         throw new \ErrorException('Not implemented');
-
     }
 
     /**
      * @param AdExtensionAddItem[] $AdExtensions
      *
      * @return ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -47,7 +47,9 @@ class AdExtensionsService extends BaseService
 
     /**
      * @param $SelectionCriteria
+     *
      * @return array
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -61,11 +63,12 @@ class AdExtensionsService extends BaseService
 
     /**
      * @param AdExtensionsSelectionCriteria $SelectionCriteria
-     *
      * @param AdExtensionFieldEnum[]        $FieldNames
      * @param CalloutFieldEnum[]            $CalloutFieldNames
      * @param LimitOffset                   $Page
+     *
      * @return AdExtensionGetItem[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException

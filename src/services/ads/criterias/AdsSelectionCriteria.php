@@ -2,7 +2,6 @@
 
 namespace directapi\services\ads\criterias;
 
-
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -17,6 +16,7 @@ class AdsSelectionCriteria extends Model
      * )
      */
     public $Ids;
+
     /**
      * @var int[]
      * @Assert\Count(
@@ -25,6 +25,7 @@ class AdsSelectionCriteria extends Model
      * )
      */
     public $AdGroupIds;
+
     /**
      * @var int[]
      * @Assert\Count(

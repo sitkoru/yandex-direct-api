@@ -2,7 +2,6 @@
 
 namespace directapi\services\bids\models;
 
-
 use directapi\components\Model;
 
 class ContextCoverage extends Model

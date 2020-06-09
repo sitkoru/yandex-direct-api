@@ -2,7 +2,6 @@
 
 namespace directapi\services\keywordbids\models;
 
-
 use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -15,6 +14,7 @@ class NetworkItem extends Model
 
     /**
      * @Assert\Valid()
+     *
      * @var CoverageItem
      */
     public $Coverage;
