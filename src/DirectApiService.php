@@ -20,19 +20,22 @@ use directapi\services\bids\BidsService;
 use directapi\services\campaigns\CampaignsService;
 use directapi\services\changes\ChangesService;
 use directapi\services\clients\ClientsService;
+use directapi\services\dictionaries\DictionariesService;
 use directapi\services\keywordbids\KeywordBidsService;
 use directapi\services\keywords\KeywordsService;
 use directapi\services\reports\ReportsService;
 use directapi\services\retargetinglists\RetargetingListsService;
 use directapi\services\sitelinks\SitelinksService;
 use directapi\services\vcards\VCardsService;
-use directapi\services\dictionaries\DictionariesService;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
+use function GuzzleHttp\Psr7\stream_for;
 use InvalidArgumentException;
+use function is_array;
+use function is_object;
 use JsonMapper;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -42,9 +45,6 @@ use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Throwable;
-use function GuzzleHttp\Psr7\stream_for;
-use function is_array;
-use function is_object;
 
 class DirectApiService
 {
@@ -52,110 +52,137 @@ class DirectApiService
     public const ERROR_CODE_NOT_ENOUGH_UNITS = 152;
     public const ERROR_CODE_NOT_EXIST_DIRECT_ACCOUNT = 513;
     public const ERROR_CODE_LOGIN_IS_USED_ALREADY = 5200;
+
     /**
      * @var int
      */
     public $units = 0;
+
     /**
      * @var int
      */
     public $lastCallCost = 0;
+
     /**
      * @var int
      */
     public $unitsLimit = 0;
+
     /**
      * @var DirectApiLogger
      */
     public $logger;
+
     /**
      * @var string
      */
     private $token;
+
     /**
      * @var string
      */
     private $clientLogin;
+
     /**
      * @var AdGroupsService
      */
     private $adGroupsService;
+
     /**
      * @var AdImagesService
      */
     private $adImagesService;
+
     /**
      * @var AdsService
      */
     private $adsService;
+
     /**
      * @var BidModifiersService
      */
     private $bidModifiersService;
+
     /**
      * @var BidsService
      */
     private $bidsService;
+
     /**
      * @var KeywordBidsService
      */
     private $keywordBidsService;
+
     /**
      * @var CampaignsService
      */
     private $campaignsService;
+
     /**
      * @var ChangesService
      */
     private $changesService;
+
     /**
      * @var KeywordsService
      */
     private $keywordsService;
+
     /**
      * @var SitelinksService
      */
     private $sitelinksService;
+
     /**
      * @var VCardsService
      */
     private $vcardsService;
+
     /**
      * @var ClientsService
      */
     private $clientsService;
+
     /**
      * @var AgencyClientsService
      */
     private $agencyClientsService;
+
     /**
      * @var ReportsService
      */
     private $reportsService;
+
     /**
      * @var AdExtensionsService
      */
     private $adExtensionsService;
+
     /**
      * @var RetargetingListsService
      */
     private $retargetingListsService;
+
     /**
      * @var AudienceTargetsService
      */
     private $audienceTargetsService;
+
     /**
      * @var DictionariesService
      */
     private $dictionariesService;
+
     /**
      * @var ValidatorInterface
      */
     private $validator;
+
     /**
      * @var JsonMapper
      */
     private $mapper;
+
     /**
      * @var bool
      */
@@ -167,8 +194,7 @@ class DirectApiService
         ?IQueryLogger $queryLogger = null,
         ?LoggerInterface $logger = null,
         bool $useSandbox = false
-    )
-    {
+    ) {
         $this->token = $token;
         $this->clientLogin = $clientLogin;
         $this->logger = new DirectApiLogger($queryLogger, $logger);
@@ -283,7 +309,6 @@ class DirectApiService
             $this->sitelinksService = new SitelinksService($this);
         }
         return $this->sitelinksService;
-
     }
 
     /**
@@ -368,10 +393,10 @@ class DirectApiService
      */
     public function getDictionariesServiceService(): DictionariesService
     {
-      if (!$this->dictionariesService) {
-        $this->dictionariesService = new DictionariesService($this);
-      }
-      return $this->dictionariesService;
+        if (!$this->dictionariesService) {
+            $this->dictionariesService = new DictionariesService($this);
+        }
+        return $this->dictionariesService;
     }
 
     /**
@@ -379,7 +404,9 @@ class DirectApiService
      * @param string $method
      * @param array  $params
      * @param bool   $sendClientLogin
+     *
      * @return mixed
+     *
      * @throws DirectAccountNotExistException
      * @throws DirectApiException
      * @throws DirectApiNotEnoughUnitsException
@@ -389,7 +416,7 @@ class DirectApiService
      */
     public function call($serviceName, $method, array $params = [], $sendClientLogin = true)
     {
-        if(is_null($this->token)){
+        if (is_null($this->token)) {
             throw new DirectApiException("Не указан ключ API.");
         }
 
@@ -448,18 +475,18 @@ class DirectApiService
     private function getValidator(): ValidatorInterface
     {
         if (!$this->validator) {
-
             $this->validator = Validation::createValidatorBuilder()
                 ->enableAnnotationMapping()
                 ->getValidator();
-
         }
         return $this->validator;
     }
 
     /**
      * @param DirectApiRequest $request
+     *
      * @return DirectApiResponse
+     *
      * @throws DirectAccountNotExistException
      * @throws DirectApiException
      * @throws DirectApiNotEnoughUnitsException
@@ -469,7 +496,11 @@ class DirectApiService
     public function getResponse(DirectApiRequest $request): DirectApiResponse
     {
         $this->lastCallCost = null;
-        $httpRequest = $this->getRequest(BaseService::getApiUrl($this->useSandbox) . $request->service, 'POST', $request->sendClientLogin);
+        $httpRequest = $this->getRequest(
+            BaseService::getApiUrl($this->useSandbox) . $request->service,
+            'POST',
+            $request->sendClientLogin
+        );
 
         $payload = json_encode($request->getPayload(), JSON_UNESCAPED_UNICODE);
         $payload = preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', $payload);
@@ -488,8 +519,7 @@ class DirectApiService
 
         if (isset($data->error)) {
             $response->isSuccess = false;
-            if ((int)$data->error->error_code === self::ERROR_CODE_CONCURRENT_LIMIT) //concurrent limit
-            {
+            if ((int)$data->error->error_code === self::ERROR_CODE_CONCURRENT_LIMIT) { //concurrent limit
                 $this->logger->debug('Concurrent limit error. Sleep and try again.');
                 usleep(100);
                 $this->logger->logRequest($request, $response);
@@ -497,25 +527,35 @@ class DirectApiService
             }
             $this->logger->logRequest($request, $response);
             if ((int)$data->error->error_code === self::ERROR_CODE_NOT_EXIST_DIRECT_ACCOUNT) {
-                throw new DirectAccountNotExistException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
-                    $data->error->error_code);
+                throw new DirectAccountNotExistException(
+                    $data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
+                    $data->error->error_code
+                );
             }
             if ((int)$data->error->error_code === self::ERROR_CODE_NOT_ENOUGH_UNITS) {
-                throw new DirectApiNotEnoughUnitsException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
-                    $data->error->error_code);
+                throw new DirectApiNotEnoughUnitsException(
+                    $data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
+                    $data->error->error_code
+                );
             }
             if ((int)$data->error->error_code === self::ERROR_CODE_LOGIN_IS_USED_ALREADY) {
-                throw new LoginIsUsedAlreadyException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
-                    $data->error->error_code);
+                throw new LoginIsUsedAlreadyException(
+                    $data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
+                    $data->error->error_code
+                );
             }
-            throw new DirectApiException($data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
-                $data->error->error_code);
+            throw new DirectApiException(
+                $data->error->error_string . ' ' . $data->error->error_detail . ' (' . $request->service . ', ' . $request->method . ')',
+                $data->error->error_code
+            );
         }
         $response->isSuccess = true;
         if (!is_object($data)) {
             $this->logger->logRequest($request, $response);
-            throw new DirectApiException('Ошибка при получении данных кампании (' . $request->service . ', ' . $request->method . ')' . var_export($request->params,
-                    true));
+            throw new DirectApiException('Ошибка при получении данных кампании (' . $request->service . ', ' . $request->method . ')' . var_export(
+                $request->params,
+                true
+            ));
         }
         $this->logger->logRequest($request, $response);
         return $response;
@@ -525,6 +565,7 @@ class DirectApiService
      * @param        $url
      * @param string $method
      * @param bool   $sendClientLogin
+     *
      * @return RequestInterface
      */
     public function getRequest(string $url, string $method = 'POST', bool $sendClientLogin = true): RequestInterface
@@ -549,7 +590,9 @@ class DirectApiService
      * @param RequestInterface $request
      * @param int              $try
      * @param int              $maxTry
+     *
      * @return ResponseInterface
+     *
      * @throws DirectApiException
      * @throws GuzzleException
      */
@@ -557,8 +600,7 @@ class DirectApiService
         RequestInterface $request,
         int $try = 0,
         int $maxTry = 5
-    ): ResponseInterface
-    {
+    ): ResponseInterface {
         try {
             $response = $this->getClient()->send($request);
         } catch (ConnectException $exception) {
@@ -566,7 +608,11 @@ class DirectApiService
             if ($try < $maxTry) {
                 $response = $this->doRequest($request, $try);
             } else {
-                throw new DirectApiException('Ошибка при подключении к яндексу: ' . $exception->getMessage() . ' Code: ' . $exception->getCode());
+                throw new DirectApiException(
+                    'Ошибка при подключении к яндексу: ' . $exception->getMessage() . ' Code: ' . $exception->getCode(),
+                    $exception->getCode(),
+                    $exception
+                );
             }
         } catch (RequestException $exception) {
             $response = $exception->getResponse();
@@ -575,10 +621,18 @@ class DirectApiService
             } else {
                 $response = '';
             }
-            throw new DirectApiException('Ошибка при отправке запроса к яндексу: ' . $exception->getMessage() . '. Response: ' . $response . ' Code: ' . $exception->getCode(),
-                0, null, $response);
+            throw new DirectApiException(
+                'Ошибка при отправке запроса к яндексу: ' . $exception->getMessage() . '. Response: ' . $response . ' Code: ' . $exception->getCode(),
+                $exception->getCode(),
+                $exception,
+                $response
+            );
         } catch (Throwable $exception) {
-            throw new DirectApiException('Ошибка при запросе к яндексу' . $exception->getMessage() . ' Code: ' . $exception->getCode());
+            throw new DirectApiException(
+                'Ошибка при запросе к яндексу' . $exception->getMessage() . ' Code: ' . $exception->getCode(),
+                $exception->getCode(),
+                $exception
+            );
         }
         return $response;
     }

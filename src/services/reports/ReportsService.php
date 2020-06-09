@@ -2,7 +2,6 @@
 
 namespace directapi\services\reports;
 
-
 use directapi\DirectApiService;
 use directapi\exceptions\DirectApiException;
 use directapi\services\BaseService;
@@ -24,7 +23,9 @@ class ReportsService extends BaseService
 
     /**
      * @param array $entities
+     *
      * @return array
+     *
      * @throws \ErrorException
      */
     public function toUpdateEntities(array $entities): array
@@ -36,7 +37,9 @@ class ReportsService extends BaseService
      * @param ReportDefinition                $reportDefinition
      * @param ReportProcessingModeEnum|string $mode
      * @param string                          $returnMoneyInMicros
+     *
      * @return Report
+     *
      * @throws DirectApiException
      * @throws ReportParserException
      * @throws ReportUnknownResponseCodeException
@@ -55,7 +58,9 @@ class ReportsService extends BaseService
      * @param string                   $payload
      * @param ReportProcessingModeEnum $mode
      * @param string                   $returnMoneyInMicros
+     *
      * @return Report
+     *
      * @throws DirectApiException
      * @throws ReportParserException
      * @throws ReportUnknownResponseCodeException
@@ -117,7 +122,9 @@ class ReportsService extends BaseService
     /**
      * @param $attemptNumber
      * @param $request
+     *
      * @return \Psr\Http\Message\ResponseInterface
+     *
      * @throws DirectApiException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -136,6 +143,7 @@ class ReportsService extends BaseService
 
     /**
      * @param BadResponseException $ex
+     *
      * @throws ReportParserException
      */
     private function badResponseExceptionAnswer(BadResponseException $ex): void
@@ -161,7 +169,7 @@ class ReportsService extends BaseService
                     break;
             }
         } catch (\Throwable $e) {
-            throw new ReportParserException(0, $code, $e->getMessage(), $errorBody);
+            throw new ReportParserException(0, $code, $e->getMessage(), $errorBody, $e);
         }
     }
 
@@ -178,7 +186,9 @@ class ReportsService extends BaseService
 
     /**
      * @param $body
+     *
      * @return Report
+     *
      * @throws \JsonMapper_Exception
      */
     private function parseReportResponse(string $body): Report
@@ -197,7 +207,6 @@ class ReportsService extends BaseService
         $report = new Report($reportName, $dateStart, $dateEnd, $names);
         $mapper = $this->service->getMapper();
         foreach ($bodyRows as $rowLine) {
-
             $columns = explode("\t", trim($rowLine, '"'));
             if (\count($columns) !== \count($names)) {
                 continue;
