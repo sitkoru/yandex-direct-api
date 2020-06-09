@@ -2,7 +2,6 @@
 
 namespace directapi\services\adgroups\models;
 
-
 use directapi\components\Model;
 
 class AdGroupGetItem extends Model
@@ -76,6 +75,11 @@ class AdGroupGetItem extends Model
      * @var DynamicTextFeedAdGroupGet
      */
     public $DynamicTextFeedAdGroup;
+
+    /**
+     * @var SmartAdGroup
+     */
+    public $SmartAdGroup;
 
     public function getDescription(): ?string
     {

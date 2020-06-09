@@ -2,7 +2,6 @@
 
 namespace directapi\services\adgroups\enum;
 
-
 use directapi\components\Enum;
 
 class AdGroupTypesEnum extends Enum
@@ -12,4 +11,5 @@ class AdGroupTypesEnum extends Enum
     public const DYNAMIC_TEXT_AD_GROUP = 'DYNAMIC_TEXT_AD_GROUP';
     public const CPM_BANNER_AD_GROUP = 'CPM_BANNER_AD_GROUP';
     public const CPM_VIDEO_AD_GROUP = 'CPM_VIDEO_AD_GROUP';
+    public const SMART_AD_GROUP = 'SMART_AD_GROUP';
 }
