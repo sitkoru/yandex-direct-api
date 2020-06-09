@@ -3,7 +3,6 @@
 namespace directapi\services\bidmodifiers\models;
 
 use directapi\components\Model;
-use directapi\services\bidmodifiers\enum\OperatingSystemTypeEnum;
 
 class MobileAdjustmentGet extends Model
 {
@@ -13,7 +12,7 @@ class MobileAdjustmentGet extends Model
     public $BidModifier;
 
     /**
-     * @var OperatingSystemTypeEnum
+     * @var \directapi\services\bidmodifiers\enum\OperatingSystemTypeEnum
      */
     public $OperatingSystemType;
 }

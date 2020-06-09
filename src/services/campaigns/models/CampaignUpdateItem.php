@@ -2,7 +2,6 @@
 
 namespace directapi\services\campaigns\models;
 
-use directapi\common\containers\ArrayOfString;
 use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -52,21 +51,21 @@ class CampaignUpdateItem extends Model
     public $TimeZone;
 
     /**
-     * @var ArrayOfString
+     * @var \directapi\common\containers\ArrayOfString
      * @Assert\Valid()
      * @Assert\Type(type="directapi\common\containers\ArrayOfString")
      */
     public $NegativeKeywords;
 
     /**
-     * @var ArrayOfString
+     * @var \directapi\common\containers\ArrayOfString
      * @Assert\Valid()
      * @Assert\Type(type="directapi\common\containers\ArrayOfString")
      */
     public $BlockedIps;
 
     /**
-     * @var ArrayOfString
+     * @var \directapi\common\containers\ArrayOfString
      * @Assert\Valid()
      * @Assert\Type(type="directapi\common\containers\ArrayOfString")
      */

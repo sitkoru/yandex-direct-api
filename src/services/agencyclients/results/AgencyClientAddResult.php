@@ -2,7 +2,6 @@
 
 namespace directapi\services\agencyclients\results;
 
-use directapi\common\results\ExceptionNotification;
 use directapi\components\Model;
 
 class AgencyClientAddResult extends Model
@@ -28,12 +27,12 @@ class AgencyClientAddResult extends Model
     public $ClientId;
 
     /**
-     * @var ExceptionNotification[]
+     * @var \directapi\common\results\ExceptionNotification[]
      */
     public $Warnings;
 
     /**
-     * @var ExceptionNotification[]
+     * @var \directapi\common\results\ExceptionNotification[]
      */
     public $Errors;
 }

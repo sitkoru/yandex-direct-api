@@ -10,7 +10,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class DynamicTextCampaignStrategy
 {
     /**
-     * @var DynamicTextCampaignSearchStrategy
+     * @var \directapi\services\campaigns\models\strategies\DynamicTextCampaignSearchStrategy
      * @Assert\NotBlank()
      * @Assert\Valid()
      * @Assert\Type(type="directapi\services\campaigns\models\strategies\DynamicTextCampaignSearchStrategy")
@@ -18,7 +18,7 @@ class DynamicTextCampaignStrategy
     public $Search;
 
     /**
-     * @var NotApplicableStrategy
+     * @var \directapi\services\campaigns\models\strategies\NotApplicableStrategy
      * @Assert\NotBlank()
      * @Assert\Valid()
      * @Assert\Type(type="directapi\services\campaigns\models\strategies\NotApplicableStrategy")

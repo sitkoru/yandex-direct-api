@@ -2,7 +2,6 @@
 
 namespace directapi\services\agencyclients\models;
 
-use directapi\common\enum\LangEnum;
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -10,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class NotificationAdd extends Model
 {
     /**
-     * @var LangEnum
+     * @var \directapi\common\enum\LangEnum
      * @Assert\NotBlank()
      * @Assert\Type(type="directapi\common\enum\LangEnum")
      */

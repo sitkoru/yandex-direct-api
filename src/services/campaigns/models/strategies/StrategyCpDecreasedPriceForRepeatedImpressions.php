@@ -3,7 +3,6 @@
 
 namespace directapi\services\campaigns\models\strategies;
 
-use directapi\common\enum\YesNoEnum;
 use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -34,7 +33,7 @@ class StrategyCpDecreasedPriceForRepeatedImpressions extends Model
     public $EndDate;
 
     /**
-     * @var YesNoEnum
+     * @var \directapi\common\enum\YesNoEnum
      * @Assert\NotBlank()
      */
     public $AutoContinue;

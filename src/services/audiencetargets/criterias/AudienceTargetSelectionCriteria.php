@@ -3,7 +3,6 @@
 namespace directapi\services\audiencetargets\criterias;
 
 use directapi\components\Model;
-use directapi\services\audiencetargets\enum\AudienceTargetStateEnum;
 
 class AudienceTargetSelectionCriteria extends Model
 {
@@ -33,7 +32,7 @@ class AudienceTargetSelectionCriteria extends Model
     public $InterestIds;
 
     /**
-     * @var AudienceTargetStateEnum[]
+     * @var \directapi\services\audiencetargets\enum\AudienceTargetStateEnum[]
      */
     public $States;
 }

@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 class SmartCampaignSearchStrategy extends Model implements ICallbackValidation
 {
     /**
-     * @var SmartCampaignSearchStrategyTypeEnum
+     * @var \directapi\services\campaigns\enum\SmartCampaignSearchStrategyTypeEnum
      * @Assert\NotBlank()
      * @DirectApiAssert\IsEnum(type="directapi\services\campaigns\enum\SmartCampaignSearchStrategyTypeEnum")
      */

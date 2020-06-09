@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 class CpmBannerCampaignNetworkStrategy extends Model implements ICallbackValidation
 {
     /**
-     * @var CpmBannerCampaignNetworkStrategyTypeEnum
+     * @var \directapi\services\campaigns\enum\CpmBannerCampaignNetworkStrategyTypeEnum
      * @Assert\NotBlank()
      * @DirectApiAssert\IsEnum(type="directapi\services\campaigns\enum\CpmBannerCampaignNetworkStrategyTypeEnum")
      */

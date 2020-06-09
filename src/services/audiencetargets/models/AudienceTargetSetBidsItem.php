@@ -2,7 +2,6 @@
 
 namespace directapi\services\audiencetargets\models;
 
-use directapi\common\enum\PriorityEnum;
 use directapi\components\Model;
 
 class AudienceTargetSetBidsItem extends Model
@@ -28,7 +27,7 @@ class AudienceTargetSetBidsItem extends Model
     public $ContextBid;
 
     /**
-     * @var PriorityEnum
+     * @var \directapi\common\enum\PriorityEnum
      */
     public $StrategyPriority;
 }

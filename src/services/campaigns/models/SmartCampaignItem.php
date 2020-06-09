@@ -5,7 +5,6 @@ namespace directapi\services\campaigns\models;
 
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\Model;
-use directapi\services\campaigns\enum\AttributionModelEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class SmartCampaignItem extends Model
@@ -17,7 +16,7 @@ class SmartCampaignItem extends Model
     public $CounterId;
 
     /**
-     * @var AttributionModelEnum
+     * @var \directapi\services\campaigns\enum\AttributionModelEnum
      * @Assert\Valid()
      * @Assert\Type(type="directapi\services\campaigns\enum\AttributionModelEnum")
      */

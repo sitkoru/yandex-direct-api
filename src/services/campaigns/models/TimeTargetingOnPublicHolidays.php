@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 class TimeTargetingOnPublicHolidays extends Model implements ICallbackValidation
 {
     /**
-     * @var \directapi\common\enum\YesNoEnum
+     * @var YesNoEnum
      * @Assert\NotBlank()
      * @DirectApiAssert\IsEnum(type="directapi\common\enum\YesNoEnum")
      */
@@ -50,7 +50,6 @@ class TimeTargetingOnPublicHolidays extends Model implements ICallbackValidation
      *
      * @param ExecutionContextInterface $context
      *
-     * @throws \directapi\exceptions\EnumException
      */
     public function isValid(ExecutionContextInterface $context): void
     {

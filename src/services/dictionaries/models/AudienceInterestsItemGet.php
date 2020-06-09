@@ -3,7 +3,6 @@
 namespace directapi\services\dictionaries\models;
 
 use directapi\components\Model;
-use directapi\services\dictionaries\enum\InterestTypeEnum;
 
 class AudienceInterestsItemGet extends Model
 {
@@ -33,7 +32,7 @@ class AudienceInterestsItemGet extends Model
     public $Description;
 
     /**
-     * @var InterestTypeEnum[]
+     * @var \directapi\services\dictionaries\enum\InterestTypeEnum[]
      */
     public $InterestType;
 }

@@ -3,7 +3,6 @@
 namespace directapi\services\bidmodifiers\models;
 
 use directapi\components\Model;
-use directapi\services\bidmodifiers\enum\OperatingSystemTypeEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class MobileAdjustmentAdd extends Model
@@ -19,7 +18,7 @@ class MobileAdjustmentAdd extends Model
     public $BidModifier;
 
     /**
-     * @var OperatingSystemTypeEnum
+     * @var \directapi\services\bidmodifiers\enum\OperatingSystemTypeEnum
      */
     public $OperatingSystemType;
 }

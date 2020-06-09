@@ -3,7 +3,6 @@
 namespace directapi\services\dictionaries\models;
 
 use directapi\components\Model;
-use directapi\services\dictionaries\enum\CanSelectEnum;
 
 class AudienceCriteriaTypesItemGet extends Model
 {
@@ -28,7 +27,7 @@ class AudienceCriteriaTypesItemGet extends Model
     public $Description;
 
     /**
-     * @var CanSelectEnum[]
+     * @var \directapi\services\dictionaries\enum\CanSelectEnum[]
      */
     public $CanSelect;
 }

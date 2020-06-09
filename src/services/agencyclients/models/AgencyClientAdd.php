@@ -2,7 +2,6 @@
 
 namespace directapi\services\agencyclients\models;
 
-use directapi\common\enum\CurrencyEnum;
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -28,7 +27,7 @@ class AgencyClientAdd extends Model
     public $LastName;
 
     /**
-     * @var CurrencyEnum
+     * @var \directapi\common\enum\CurrencyEnum
      * @Assert\NotBlank()
      * @Assert\Type(type="directapi\common\enum\CurrencyEnum")
      */
