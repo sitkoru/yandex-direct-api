@@ -62,7 +62,7 @@ class BidGetItem extends Model
     public $CurrentSearchPrice;
 
     /**
-     * @var AuctionBidItem
+     * @var AuctionBidItem[]
      */
     public $AuctionBids;
 }
