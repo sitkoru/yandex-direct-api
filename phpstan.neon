@@ -1,5 +1,6 @@
 parameters:
-    bootstrap: %rootDir%/../../../phpstan-bootstrap.php
+    bootstrapFiles:
+          - %rootDir%/../../../phpstan-bootstrap.php
     ignoreErrors:
           - '#Variable property access on .*#'
 services:
@@ -7,5 +8,3 @@ services:
     class: TheCodingMachine\PHPStan\Rules\Exceptions\EmptyExceptionRule
     tags:
       - phpstan.rules.rule
-includes:
-    - vendor/phpstan/phpstan-strict-rules/rules.neon

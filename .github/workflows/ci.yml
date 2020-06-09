@@ -16,3 +16,5 @@ jobs:
         run: docker run -v $(pwd):/app -w /app docker.pkg.github.com/sitkoru/php7-ci/php7-ci composer install
       - name: phpstan
         run: docker run -v $(pwd):/app -w /app docker.pkg.github.com/sitkoru/php7-ci/php7-ci bash phpstan.sh
+      - name: csfixer
+        run: docker run -v $(pwd):/app -w /app docker.pkg.github.com/sitkoru/php7-ci/php7-ci bash csfixer.sh --dry-run src tests
