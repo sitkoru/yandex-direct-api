@@ -13,9 +13,9 @@ use directapi\exceptions\DirectApiNotEnoughUnitsException;
 use directapi\exceptions\LoginIsUsedAlreadyException;
 use directapi\exceptions\RequestValidationException;
 use directapi\services\agencyclients\criterias\AgencyClientsSelectionCriteria;
+use directapi\services\agencyclients\models\AgencyClientAdd;
 use directapi\services\agencyclients\results\AgencyClientAddResult;
 use directapi\services\BaseService;
-use directapi\services\agencyclients\models\AgencyClientAdd;
 use GuzzleHttp\Exception\GuzzleException;
 use JsonMapper_Exception;
 
@@ -31,7 +31,9 @@ class AgencyClientsService extends BaseService
      * @param AgencyClientsSelectionCriteria $SelectionCriteria
      * @param ClientFieldEnum[]              $FieldNames
      * @param LimitOffset|null               $Page
+     *
      * @return ClientGetItem[]
+     *
      * @throws GuzzleException
      * @throws DirectAccountNotExistException
      * @throws DirectApiException
@@ -57,7 +59,9 @@ class AgencyClientsService extends BaseService
 
     /**
      * @param array $entities
+     *
      * @return array
+     *
      * @throws \ErrorException
      */
     public function toUpdateEntities(array $entities): array
@@ -67,7 +71,9 @@ class AgencyClientsService extends BaseService
 
     /**
      * @param AgencyClientAdd $agencyClientAdd
+     *
      * @return array|AgencyClientAddResult[]
+     *
      * @throws DirectAccountNotExistException
      * @throws DirectApiException
      * @throws DirectApiNotEnoughUnitsException
@@ -79,22 +85,24 @@ class AgencyClientsService extends BaseService
     public function add(AgencyClientAdd $agencyClientAdd)
     {
         $params = [
-            'Login' => $agencyClientAdd->Login,
-            'FirstName' => $agencyClientAdd->FirstName,
-            'LastName' => $agencyClientAdd->LastName,
-            'Currency' => $agencyClientAdd->Currency,
-            'Grants' => $agencyClientAdd->Grants,
+            'Login'        => $agencyClientAdd->Login,
+            'FirstName'    => $agencyClientAdd->FirstName,
+            'LastName'     => $agencyClientAdd->LastName,
+            'Currency'     => $agencyClientAdd->Currency,
+            'Grants'       => $agencyClientAdd->Grants,
             'Notification' => $agencyClientAdd->Notification,
-            'Settings' => $agencyClientAdd->Settings
+            'Settings'     => $agencyClientAdd->Settings
         ];
 
         return $this->doAdd($params, AgencyClientAddResult::class);
     }
 
     /**
-     * @param array $params
+     * @param array  $params
      * @param string $class
+     *
      * @return array
+     *
      * @throws GuzzleException
      * @throws JsonMapper_Exception
      * @throws DirectAccountNotExistException

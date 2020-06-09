@@ -2,7 +2,6 @@
 
 namespace directapi\components\constraints;
 
-
 use Symfony\Component\Validator\Constraint;
 
 /**

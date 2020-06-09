@@ -2,7 +2,6 @@
 
 namespace directapi\services\reports\models;
 
-
 class ReportPage
 {
     /**
@@ -12,6 +11,7 @@ class ReportPage
 
     /**
      * ReportPage constructor.
+     *
      * @param int $limit
      */
     public function __construct($limit)

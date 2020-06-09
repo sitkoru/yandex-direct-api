@@ -2,7 +2,6 @@
 
 namespace directapi\services\bidmodifiers\enum;
 
-
 use directapi\components\Enum;
 
 class RetargetingAdjustmentFieldEnum extends Enum

@@ -2,7 +2,6 @@
 
 namespace directapi\services\retargetinglists\models;
 
-
 use directapi\components\Model;
 
 class RetargetingListGetItem extends Model

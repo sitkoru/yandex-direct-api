@@ -18,6 +18,7 @@ class DictionariesService extends BaseService
      * @param DictionariesFieldEnum $DictionaryName
      *
      * @return array
+     *
      * @throws GuzzleException
      * @throws DirectAccountNotExistException
      * @throws DirectApiException
@@ -28,7 +29,7 @@ class DictionariesService extends BaseService
     public function get(DictionariesFieldEnum $DictionaryName): array
     {
         $params = [
-            'DictionaryNames' => array($DictionaryName),
+            'DictionaryNames' => [$DictionaryName],
         ];
 
         $class = "\directapi\services\dictionaries\models\\" . $DictionaryName . 'ItemGet';
@@ -38,7 +39,9 @@ class DictionariesService extends BaseService
 
     /**
      * @param array $entities
+     *
      * @return array
+     *
      * @throws ErrorException
      */
     public function toUpdateEntities(array $entities): array

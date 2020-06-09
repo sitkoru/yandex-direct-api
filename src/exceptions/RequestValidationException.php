@@ -2,7 +2,6 @@
 
 namespace directapi\exceptions;
 
-
 class RequestValidationException extends DirectApiException
 {
     public function __construct(array $errors)

@@ -2,7 +2,6 @@
 
 namespace directapi\services\reports\models;
 
-
 use directapi\common\enum\YesNoEnum;
 use directapi\services\reports\enum\ReportDateRangeTypeEnum;
 use directapi\services\reports\enum\ReportFieldsEnum;
@@ -21,39 +20,47 @@ class ReportDefinition implements JsonSerializable
      * @var ReportFieldsEnum[] Имена полей (столбцов), которые будут присутствовать в отчете.
      */
     public $FieldNames = [];
+
     /**
      * @var string Название отчета. Выводится в первой строке отчета.
-     * В режиме офлайн название отчета должно быть уникальным для рекламодателя.
-     * Если отчет с таким названием, но с отличающимися параметрами уже сформирован или находится в очереди,
-     * выдается ошибка.
+     *             В режиме офлайн название отчета должно быть уникальным для рекламодателя.
+     *             Если отчет с таким названием, но с отличающимися параметрами уже сформирован или находится в очереди,
+     *             выдается ошибка.
      */
     public $ReportName;
+
     /**
      * @var ReportTypesEnum Тип отчета
      */
     public $ReportType;
+
     /**
      * @var ReportDateRangeTypeEnum Период, за который формируется отчет
      */
     public $DateRangeType;
+
     /**
      * @var ReportFormatsEnum Формат отчета. В настоящее время поддерживается только значение TSV.
      */
     public $Format;
+
     /**
      * @var YesNoEnum Включать ли НДС в денежные суммы в отчете.
-     * Если рекламодатель работает в у. е. Директа, допускается только значение YES.
+     *                Если рекламодатель работает в у. е. Директа, допускается только значение YES.
      */
     public $IncludeVAT;
+
     /**
      * @var YesNoEnum Учитывать ли скидку для денежных сумм в отчете.
-     * Если рекламодатель работает в у. е. Директа, допускается только значение NO.
+     *                Если рекламодатель работает в у. е. Директа, допускается только значение NO.
      */
     public $IncludeDiscount;
+
     /**
      * @var ReportPage Ограничение на количество строк в отчете. Если не задано, используется ограничение 1 000 000.
      */
     private $page;
+
     /**
      * @var ReportOrderBy[]
      */
@@ -61,6 +68,7 @@ class ReportDefinition implements JsonSerializable
 
     /**
      * ReportDefinition constructor.
+     *
      * @param ReportSelectionCriteria        $selectionCriteria
      * @param array                          $fieldNames
      * @param string                         $reportName
@@ -79,8 +87,7 @@ class ReportDefinition implements JsonSerializable
         $format,
         $includeVAT,
         $includeDiscount
-    )
-    {
+    ) {
         $this->SelectionCriteria = $selectionCriteria;
         $this->FieldNames = $fieldNames;
         $this->ReportName = $reportName;
@@ -119,9 +126,12 @@ class ReportDefinition implements JsonSerializable
 
     /**
      * Specify data which should be serialized to JSON
+     *
      * @link https://php.net/manual/en/jsonserializable.jsonserialize.php
+     *
      * @return mixed data which can be serialized by <b>json_encode</b>,
-     * which is a value of any type other than a resource.
+     *               which is a value of any type other than a resource.
+     *
      * @since 5.4.0
      */
     public function jsonSerialize()

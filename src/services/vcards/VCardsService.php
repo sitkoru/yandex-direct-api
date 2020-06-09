@@ -2,7 +2,6 @@
 
 namespace directapi\services\vcards;
 
-
 use directapi\common\criterias\IdsCriteria;
 use directapi\common\criterias\LimitOffset;
 use directapi\common\results\ActionResult;
@@ -17,6 +16,7 @@ class VCardsService extends BaseService
      * @param VCardAddItem[] $VCards
      *
      * @return ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -33,7 +33,9 @@ class VCardsService extends BaseService
 
     /**
      * @param $SelectionCriteria
+     *
      * @return array|ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -51,6 +53,7 @@ class VCardsService extends BaseService
      * @param LimitOffset      $Page
      *
      * @return VCardGetItem[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -72,7 +75,9 @@ class VCardsService extends BaseService
 
     /**
      * @param array $entities
+     *
      * @return array
+     *
      * @throws \ErrorException
      */
     public function toUpdateEntities(array $entities): array

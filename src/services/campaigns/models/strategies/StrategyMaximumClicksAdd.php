@@ -12,6 +12,7 @@ class StrategyMaximumClicksAdd extends Model
      * @Assert\NotBlank()
      */
     public $WeeklySpendLimit;
+
     /**
      * @var int
      */

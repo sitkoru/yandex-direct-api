@@ -10,6 +10,7 @@ class ExtensionModeration extends Model
      * @var \directapi\common\enum\ModerationStatusEnum
      */
     public $Status;
+
     /**
      * @var string
      */

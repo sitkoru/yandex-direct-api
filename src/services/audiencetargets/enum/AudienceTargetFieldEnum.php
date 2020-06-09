@@ -2,7 +2,6 @@
 
 namespace directapi\services\audiencetargets\enum;
 
-
 use directapi\components\Enum;
 
 class AudienceTargetFieldEnum extends Enum

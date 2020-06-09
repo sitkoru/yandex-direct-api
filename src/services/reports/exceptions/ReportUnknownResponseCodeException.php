@@ -2,7 +2,6 @@
 
 namespace directapi\services\reports\exceptions;
 
-
 class ReportUnknownResponseCodeException extends \ErrorException
 {
     public function __construct(int $code)

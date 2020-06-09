@@ -2,7 +2,6 @@
 
 namespace directapi\services\campaigns\models;
 
-
 use directapi\components\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 

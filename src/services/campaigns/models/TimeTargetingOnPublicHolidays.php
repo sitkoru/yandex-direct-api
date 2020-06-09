@@ -47,7 +47,9 @@ class TimeTargetingOnPublicHolidays extends Model implements ICallbackValidation
 
     /**
      * @Assert\Callback()
+     *
      * @param ExecutionContextInterface $context
+     *
      * @throws \directapi\exceptions\EnumException
      */
     public function isValid(ExecutionContextInterface $context): void

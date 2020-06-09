@@ -2,7 +2,6 @@
 
 namespace directapi\services\adextensions\models;
 
-
 use directapi\components\Model;
 
 class AdExtensionAddItem extends Model

@@ -2,7 +2,6 @@
 
 namespace directapi\services\retargetinglists\enum;
 
-
 use directapi\components\Enum;
 
 class RetargetingListFieldEnum extends Enum

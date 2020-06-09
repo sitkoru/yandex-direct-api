@@ -2,7 +2,6 @@
 
 namespace directapi\services\bidmodifiers\models;
 
-
 use directapi\components\Model;
 use directapi\services\bidmodifiers\enum\OperatingSystemTypeEnum;
 

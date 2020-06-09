@@ -2,7 +2,6 @@
 
 namespace directapi\services\keywordbids\models;
 
-
 use directapi\components\Model;
 
 class AuctionKeywordBidItem extends Model

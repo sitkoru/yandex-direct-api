@@ -2,7 +2,6 @@
 
 namespace directapi\services\keywords;
 
-
 use directapi\common\criterias\IdsCriteria;
 use directapi\common\criterias\LimitOffset;
 use directapi\common\results\ActionResult;
@@ -19,6 +18,7 @@ class KeywordsService extends BaseService
      * @param KeywordAddItem[] $Keywords
      *
      * @return ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -35,7 +35,9 @@ class KeywordsService extends BaseService
 
     /**
      * @param $SelectionCriteria
+     *
      * @return array|ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -53,6 +55,7 @@ class KeywordsService extends BaseService
      * @param LimitOffset|null          $Page
      *
      * @return KeywordGetItem[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -77,7 +80,9 @@ class KeywordsService extends BaseService
 
     /**
      * @param IdsCriteria $SelectionCriteria
+     *
      * @return array
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -101,6 +106,7 @@ class KeywordsService extends BaseService
      * @param KeywordUpdateItem[] $Keywords
      *
      * @return ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -117,13 +123,14 @@ class KeywordsService extends BaseService
 
     /**
      * @param KeywordGetItem[] $entities
+     *
      * @return KeywordUpdateItem[]
+     *
      * @throws \JsonMapper_Exception
      */
     public function toUpdateEntities(array $entities): array
     {
         return $this->convertClass($entities, KeywordUpdateItem::class);
-
     }
 
     protected function getName(): string

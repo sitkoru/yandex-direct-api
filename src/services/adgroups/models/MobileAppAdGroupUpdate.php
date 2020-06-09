@@ -2,7 +2,6 @@
 
 namespace directapi\services\adgroups\models;
 
-
 use directapi\components\Model;
 
 class MobileAppAdGroupUpdate extends Model

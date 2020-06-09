@@ -2,7 +2,6 @@
 
 namespace directapi\services\adgroups\criterias;
 
-
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
@@ -41,6 +40,7 @@ class AdGroupsSelectionCriteria extends Model implements ICallbackValidation
 
     /**
      * @Assert\Callback()
+     *
      * @param ExecutionContextInterface $context
      */
     public function isValid(ExecutionContextInterface $context): void

@@ -3,7 +3,6 @@
 
 namespace directapi\services\ads\enum;
 
-
 use directapi\components\Enum;
 
 class CpmBannerAdBuilderAdFieldEnum extends Enum

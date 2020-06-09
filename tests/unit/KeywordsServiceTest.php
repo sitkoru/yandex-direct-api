@@ -15,13 +15,15 @@ use PHPUnit\Framework\TestCase;
  */
 class KeywordsServiceTest extends TestCase
 {
-    public function __construct($name = null, array $data = [], $dataName = ''){
+    public function __construct($name = null, array $data = [], $dataName = '')
+    {
         parent::__construct($name, $data, $dataName);
         $directApiService = new DirectApiService(DIRECT_UPDATE_ACCESS_TOKEN, DIRECT_UPDATE_LOGIN);
         $this->KeywordsService = $directApiService->getKeywordsService();
     }
 
-    public function testAdd(){
+    public function testAdd()
+    {
         $keyword = new KeywordAddItem();
         $keyword->AdGroupId = DIRECT_GROUP_ID;
         $keyword->Keyword = 'somelalall';
@@ -33,7 +35,8 @@ class KeywordsServiceTest extends TestCase
         }
     }
 
-    public function testDelete(){
+    public function testDelete()
+    {
         $deleteKeyword = new IdsCriteria();
         $deleteKeyword->Ids = [DIRECT_UPDATE_KEYWORD_ID];
         $deleteResult = $this->KeywordsService->delete($deleteKeyword);
@@ -42,16 +45,18 @@ class KeywordsServiceTest extends TestCase
         var_dump($deleteResult);
     }
 
-    public function testGet(){
+    public function testGet()
+    {
         $SelectionCriteria = new KeywordsSelectionCriteria;
         $SelectionCriteria->Ids = [DIRECT_UPDATE_KEYWORD_ID];
-        $response = $this->KeywordsService->get($SelectionCriteria,KeywordFieldEnum::getValues());
+        $response = $this->KeywordsService->get($SelectionCriteria, KeywordFieldEnum::getValues());
         $this->assertEmpty($response);
         var_dump($response);
     }
 
     //Возобновляет показы по ранее остановленным ключевым фразам.
-    public function testResume(){
+    public function testResume()
+    {
         $SelectionCriteria = new IdsCriteria();
         $SelectionCriteria->Ids = [DIRECT_UPDATE_KEYWORD_ID];
         $response = $this->KeywordsService->resume($SelectionCriteria);
@@ -60,7 +65,8 @@ class KeywordsServiceTest extends TestCase
     }
 
     //Останавливает показы по ключевым фразам.
-    public function testSuspend(){
+    public function testSuspend()
+    {
         $SelectionCriteria = new IdsCriteria();
         $SelectionCriteria->Ids = [DIRECT_UPDATE_KEYWORD_ID];
         $response = $this->KeywordsService->suspend($SelectionCriteria);
@@ -68,10 +74,11 @@ class KeywordsServiceTest extends TestCase
         var_dump($response);
     }
 
-    public function testUpdate(){
+    public function testUpdate()
+    {
         $updateKeyword = new KeywordUpdateItem();
         $updateKeyword->Id = DIRECT_UPDATE_KEYWORD_ID;
-        $updateKeyword->Keyword='newlalalaa';
+        $updateKeyword->Keyword = 'newlalalaa';
         $response = $this->KeywordsService->update([$updateKeyword]);
         $this->assertNotEmpty($response);
         var_dump($response);

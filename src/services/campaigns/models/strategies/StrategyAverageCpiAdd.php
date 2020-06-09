@@ -12,10 +12,12 @@ class StrategyAverageCpiAdd extends Model
      * @Assert\NotBlank()
      */
     public $AverageCpi;
+
     /**
      * @var int
      */
     public $WeeklySpendLimit;
+
     /**
      * @var int
      */

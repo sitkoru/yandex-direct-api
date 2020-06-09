@@ -2,7 +2,6 @@
 
 namespace directapi\services\campaigns\enum;
 
-
 use directapi\components\Enum;
 
 class SmsEventsEnum extends Enum

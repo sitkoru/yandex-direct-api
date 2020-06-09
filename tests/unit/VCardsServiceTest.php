@@ -48,11 +48,9 @@ class VCardsServiceTest extends TestCase
 
     public function testDelete()
     {
-
     }
 
     public function testGet()
     {
-
     }
 }

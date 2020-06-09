@@ -2,7 +2,6 @@
 
 namespace directapi\services\audiencetargets\criterias;
 
-
 use directapi\components\Model;
 use directapi\services\audiencetargets\enum\AudienceTargetStateEnum;
 

@@ -2,7 +2,6 @@
 
 namespace directapi\services\ads\models;
 
-
 class DynamicTextAdUpdate
 {
     /**

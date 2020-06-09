@@ -2,7 +2,6 @@
 
 namespace directapi\services\sitelinks;
 
-
 use directapi\common\criterias\IdsCriteria;
 use directapi\common\criterias\LimitOffset;
 use directapi\common\results\ActionResult;
@@ -17,6 +16,7 @@ class SitelinksService extends BaseService
      * @param SitelinksSetAddItem[] $SitelinksSets
      *
      * @return ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -33,7 +33,9 @@ class SitelinksService extends BaseService
 
     /**
      * @param $SelectionCriteria
+     *
      * @return array|ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -51,6 +53,7 @@ class SitelinksService extends BaseService
      * @param LimitOffset             $Page
      *
      * @return SitelinksSetGetItem[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -72,13 +75,14 @@ class SitelinksService extends BaseService
 
     /**
      * @param array $entities
+     *
      * @return array
+     *
      * @throws \ErrorException
      */
     public function toUpdateEntities(array $entities): array
     {
         throw new \ErrorException('Not implemented');
-
     }
 
     protected function getName(): string

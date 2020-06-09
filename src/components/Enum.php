@@ -2,7 +2,6 @@
 
 namespace directapi\components;
 
-
 use directapi\exceptions\EnumException;
 use JsonSerializable;
 use ReflectionClass;
@@ -13,6 +12,7 @@ abstract class Enum implements JsonSerializable
      * @var string
      */
     public static $prefix;
+
     /**
      * @var mixed
      */
@@ -20,7 +20,9 @@ abstract class Enum implements JsonSerializable
 
     /**
      * Enum constructor.
+     *
      * @param $type
+     *
      * @throws EnumException
      */
     final public function __construct(string $type)
@@ -41,7 +43,9 @@ abstract class Enum implements JsonSerializable
 
     /**
      * @param array $arr
+     *
      * @return bool
+     *
      * @throws \ReflectionException
      */
     final public static function check(array $arr): bool
@@ -57,6 +61,7 @@ abstract class Enum implements JsonSerializable
 
     /**
      * @return array
+     *
      * @throws \ReflectionException
      */
     final public static function getValues(): array
@@ -72,6 +77,7 @@ abstract class Enum implements JsonSerializable
 
     /**
      * @param mixed $value
+     *
      * @return bool
      */
     final public function compare($value): bool

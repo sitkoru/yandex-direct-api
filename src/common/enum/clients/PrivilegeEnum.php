@@ -2,7 +2,6 @@
 
 namespace directapi\common\enum\clients;
 
-
 use directapi\components\Enum;
 
 class PrivilegeEnum extends Enum

@@ -2,7 +2,6 @@
 
 namespace directapi\services\bidmodifiers;
 
-
 use directapi\common\criterias\IdsCriteria;
 use directapi\common\criterias\LimitOffset;
 use directapi\common\results\ActionResult;
@@ -25,6 +24,7 @@ class BidModifiersService extends BaseService
      * @param BidModifierAddItem[] $BidModifiers
      *
      * @return MultiIdsActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -41,7 +41,9 @@ class BidModifiersService extends BaseService
 
     /**
      * @param $SelectionCriteria
+     *
      * @return array|ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -62,6 +64,7 @@ class BidModifiersService extends BaseService
      * @param LimitOffset|null                  $Page
      *
      * @return BidModifierGetItem[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -99,6 +102,7 @@ class BidModifiersService extends BaseService
      * @param BidModifierSetItem[] $BidModifiers
      *
      * @return ActionResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -118,6 +122,7 @@ class BidModifiersService extends BaseService
      * @param BidModifierToggleItem[] $BidModifierToggleItems
      *
      * @return ToggleResult[]
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
@@ -135,7 +140,9 @@ class BidModifiersService extends BaseService
 
     /**
      * @param array $entities
+     *
      * @return array
+     *
      * @throws \ErrorException
      */
     public function toUpdateEntities(array $entities): array

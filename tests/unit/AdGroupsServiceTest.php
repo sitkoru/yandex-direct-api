@@ -2,7 +2,6 @@
 
 namespace directapi\tests\unit;
 
-
 use directapi\common\criterias\IdsCriteria;
 use directapi\DirectApiService;
 use directapi\services\adgroups\criterias\AdGroupsSelectionCriteria;

@@ -2,7 +2,6 @@
 
 namespace directapi;
 
-
 class DirectApiResponse
 {
     /**
@@ -61,5 +60,4 @@ class DirectApiResponse
             $this->lastCallCost = 20;
         }
     }
-
 }

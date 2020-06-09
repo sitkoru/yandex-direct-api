@@ -2,7 +2,6 @@
 
 namespace directapi\services\bids\enum;
 
-
 use directapi\components\Enum;
 
 class BidFieldEnum extends Enum

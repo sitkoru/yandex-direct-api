@@ -2,7 +2,6 @@
 
 namespace directapi\services\adextensions\enum;
 
-
 use directapi\components\Enum;
 
 class AdExtensionFieldEnum extends Enum

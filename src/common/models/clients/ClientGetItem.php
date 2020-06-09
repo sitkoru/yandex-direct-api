@@ -2,7 +2,6 @@
 
 namespace directapi\common\models\clients;
 
-
 use directapi\components\Model;
 
 class ClientGetItem extends Model

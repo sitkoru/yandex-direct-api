@@ -2,7 +2,6 @@
 
 namespace directapi\services\reports\models;
 
-
 use directapi\services\reports\enum\ReportFieldsEnum;
 
 class Report
@@ -16,10 +15,12 @@ class Report
      * @var string Дата начала
      */
     public $dateFrom;
+
     /**
      * @var string Дата окончания
      */
     public $dateTo;
+
     /**
      * @var ReportFieldsEnum[] Наименования полей (столбцов)
      */

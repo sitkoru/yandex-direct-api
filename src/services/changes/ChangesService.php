@@ -2,7 +2,6 @@
 
 namespace directapi\services\changes;
 
-
 use directapi\exceptions\DirectApiException;
 use directapi\services\BaseService;
 use directapi\services\changes\enum\FieldNamesEnum;
@@ -16,6 +15,7 @@ class ChangesService extends BaseService
      * @param string $Timestamp
      *
      * @return CheckDictionariesResponse
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \JsonMapper_Exception
      * @throws \directapi\exceptions\DirectAccountNotExistException
@@ -36,6 +36,7 @@ class ChangesService extends BaseService
      * @param string $Timestamp
      *
      * @return CheckCampaignsResponse
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \JsonMapper_Exception
      * @throws \directapi\exceptions\DirectAccountNotExistException
@@ -58,7 +59,9 @@ class ChangesService extends BaseService
      * @param int[]            $AdIds
      * @param FieldNamesEnum[] $FieldNames
      * @param string           $Timestamp
+     *
      * @return CheckResponse
+     *
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \JsonMapper_Exception
      * @throws \directapi\exceptions\DirectAccountNotExistException
@@ -93,7 +96,9 @@ class ChangesService extends BaseService
 
     /**
      * @param array $entities
+     *
      * @return array
+     *
      * @throws \ErrorException
      */
     public function toUpdateEntities(array $entities): array

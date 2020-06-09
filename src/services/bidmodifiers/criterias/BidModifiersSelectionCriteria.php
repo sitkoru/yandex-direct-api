@@ -2,7 +2,6 @@
 
 namespace directapi\services\bidmodifiers\criterias;
 
-
 use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
@@ -55,6 +54,7 @@ class BidModifiersSelectionCriteria extends Model implements ICallbackValidation
 
     /**
      * @Assert\Callback()
+     *
      * @param ExecutionContextInterface $context
      */
     public function isValid(ExecutionContextInterface $context): void
