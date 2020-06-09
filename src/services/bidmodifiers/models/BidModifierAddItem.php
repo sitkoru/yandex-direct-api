@@ -47,6 +47,28 @@ class BidModifierAddItem extends Model implements ICallbackValidation
     public $RetargetingAdjustments;
 
     /**
+     * @var RegionalAdjustmentAdd[]
+     * @DirectApiAssert\ArrayOf(type="directapi\services\bidmodifiers\models\RegionalAdjustmentAdd")
+     * @Assert\Valid()
+     * @Assert\Count(
+     *     max="100"
+     * )
+     */
+    public $RegionalAdjustments;
+
+    /**
+     * @var VideoAdjustmentAdd
+     * @Assert\Valid()
+     */
+    public $VideoAdjustment;
+
+    /**
+     * @var SmartAdAdjustmentAdd
+     * @Assert\Valid()
+     */
+    public $SmartAdAdjustment;
+
+    /**
      * @Assert\Callback()
      *
      * @param ExecutionContextInterface $context
@@ -59,11 +81,14 @@ class BidModifierAddItem extends Model implements ICallbackValidation
                 ->atPath('AdGroupId')
                 ->addViolation();
         }
-        if (!$this->MobileAdjustment && !$this->DemographicsAdjustments && !$this->RetargetingAdjustments) {
-            $context->buildViolation('Должно быть указано одно из следующих значений: MobileAdjustment, DemographicsAdjustments, RetargetingAdjustments')
+        if (!$this->MobileAdjustment && !$this->DemographicsAdjustments && !$this->RetargetingAdjustments && !$this->RegionalAdjustments && !$this->VideoAdjustment && !$this->SmartAdAdjustment) {
+            $context->buildViolation('Должно быть указано одно из следующих значений: MobileAdjustment, DemographicsAdjustments, RetargetingAdjustments, RegionalAdjustments, VideoAdjustment, SmartAdAdjustment')
                 ->atPath('MobileAdjustment')
                 ->atPath('DemographicsAdjustments')
                 ->atPath('RetargetingAdjustments')
+                ->atPath('RegionalAdjustments')
+                ->atPath('VideoAdjustment')
+                ->atPath('SmartAdAdjustment')
                 ->addViolation();
         }
     }

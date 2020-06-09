@@ -45,4 +45,19 @@ class BidModifierGetItem extends Model
      * @var RetargetingAdjustmentGet
      */
     public $RetargetingAdjustment;
+
+    /**
+     * @var RegionalAdjustmentGet
+     */
+    public $RegionalAdjustment;
+
+    /**
+     * @var VideoAdjustmentGet
+     */
+    public $VideoAdjustment;
+
+    /**
+     * @var SmartAdAdjustmentGet
+     */
+    public $SmartAdAdjustment;
 }

@@ -11,7 +11,10 @@ use directapi\services\bidmodifiers\criterias\BidModifiersSelectionCriteria;
 use directapi\services\bidmodifiers\enum\BidModifierFieldEnum;
 use directapi\services\bidmodifiers\enum\DemographicsAdjustmentFieldEnum;
 use directapi\services\bidmodifiers\enum\MobileAdjustmentFieldEnum;
+use directapi\services\bidmodifiers\enum\RegionalAdjustmentFieldEnum;
 use directapi\services\bidmodifiers\enum\RetargetingAdjustmentFieldEnum;
+use directapi\services\bidmodifiers\enum\SmartAdjustmentFieldEnum;
+use directapi\services\bidmodifiers\enum\VideoAdjustmentFieldEnum;
 use directapi\services\bidmodifiers\models\BidModifierAddItem;
 use directapi\services\bidmodifiers\models\BidModifierGetItem;
 use directapi\services\bidmodifiers\models\BidModifierSetItem;
@@ -61,6 +64,9 @@ class BidModifiersService extends BaseService
      * @param MobileAdjustmentFieldEnum[]       $MobileAdjustmentFieldNames
      * @param DemographicsAdjustmentFieldEnum[] $DemographicsAdjustmentFieldNames
      * @param RetargetingAdjustmentFieldEnum[]  $RetargetingAdjustmentFieldNames
+     * @param RegionalAdjustmentFieldEnum[]     $RegionalAdjustmentFieldNames
+     * @param VideoAdjustmentFieldEnum[]        $VideoAdjustmentFieldNames
+     * @param SmartAdjustmentFieldEnum[]        $SmartAdAdjustmentFieldNames
      * @param LimitOffset|null                  $Page
      *
      * @return BidModifierGetItem[]
@@ -77,6 +83,9 @@ class BidModifiersService extends BaseService
         array $MobileAdjustmentFieldNames = [],
         array $DemographicsAdjustmentFieldNames = [],
         array $RetargetingAdjustmentFieldNames = [],
+        array $RegionalAdjustmentFieldNames = [],
+        array $VideoAdjustmentFieldNames = [],
+        array $SmartAdAdjustmentFieldNames = [],
         LimitOffset $Page = null
     ): array {
         $params = [
@@ -91,6 +100,15 @@ class BidModifiersService extends BaseService
         }
         if ($RetargetingAdjustmentFieldNames) {
             $params['RetargetingAdjustmentFieldNames'] = $RetargetingAdjustmentFieldNames;
+        }
+        if ($RegionalAdjustmentFieldNames) {
+            $params['RegionalAdjustmentFieldNames'] = $RegionalAdjustmentFieldNames;
+        }
+        if ($VideoAdjustmentFieldNames) {
+            $params['VideoAdjustmentFieldNames'] = $VideoAdjustmentFieldNames;
+        }
+        if ($SmartAdAdjustmentFieldNames) {
+            $params['SmartAdAdjustmentFieldNames'] = $SmartAdAdjustmentFieldNames;
         }
         if ($Page) {
             $params['Page'] = $Page;
