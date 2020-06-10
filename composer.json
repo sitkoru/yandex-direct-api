@@ -24,7 +24,7 @@
     "phpstan/phpstan": "^0.12.27",
     "phpstan/phpstan-strict-rules": "^0.12.2",
     "thecodingmachine/phpstan-strict-rules": "^0.12.0",
-    "phpunit/phpunit": "^7.3",
+    "phpunit/phpunit": "^8.5",
     "phpstan/phpstan-symfony": "^0.12.6",
     "phpstan/extension-installer": "^1.0",
     "phpstan/phpstan-doctrine": "^0.12.14",
