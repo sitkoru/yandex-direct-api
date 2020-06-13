@@ -3,8 +3,9 @@
 namespace directapi\services\reports\models;
 
 use directapi\services\reports\enum\ReportOrderByFieldsEnum;
+use JsonSerializable;
 
-class ReportOrderBy
+class ReportOrderBy implements JsonSerializable
 {
     /**
      * @var ReportOrderByFieldsEnum Имя поля, которое используется для сортировки.
@@ -31,4 +32,14 @@ class ReportOrderBy
         $this->field = $field;
         $this->sortOrder = $sortOrder;
     }
+
+	public function jsonSerialize()
+	{
+		$params = [
+			'Field' => $this->field,
+			'SortOrder' => $this->sortOrder,
+		];
+
+		return $params;
+	}
 }
