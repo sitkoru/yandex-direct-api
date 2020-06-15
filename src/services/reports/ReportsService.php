@@ -201,7 +201,7 @@ class ReportsService extends BaseService
         $dateStart = 'n/a';
         $dateEnd = 'n/a';
         if ($matches) {
-            [$reportName, $dateStart, $dateEnd] = $matches;
+            [,$reportName, $dateStart, $dateEnd] = $matches;
         }
         $names = explode("\t", trim($secondRow, '"'));
         $report = new Report($reportName, $dateStart, $dateEnd, $names);
