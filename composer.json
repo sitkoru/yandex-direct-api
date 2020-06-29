@@ -16,7 +16,7 @@
     "doctrine/annotations": "^1.7",
     "doctrine/cache": "^1.8",
     "netresearch/jsonmapper": "^3.0.0",
-    "guzzlehttp/guzzle": "^7.0.1",
+    "guzzlehttp/guzzle": "^6.5.5",
     "psr/log": "^1.1.0"
   },
   "require-dev": {
