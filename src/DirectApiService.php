@@ -23,6 +23,7 @@ use directapi\services\clients\ClientsService;
 use directapi\services\dictionaries\DictionariesService;
 use directapi\services\keywordbids\KeywordBidsService;
 use directapi\services\keywords\KeywordsService;
+use directapi\services\keywordsResearch\KeywordsResearchService;
 use directapi\services\reports\ReportsService;
 use directapi\services\retargetinglists\RetargetingListsService;
 use directapi\services\sitelinks\SitelinksService;
@@ -127,6 +128,11 @@ class DirectApiService
      * @var KeywordsService
      */
     private $keywordsService;
+
+	/**
+	 * @var KeywordsResearchService
+	 */
+	private $keywordsResearchService;
 
     /**
      * @var SitelinksService
@@ -299,6 +305,17 @@ class DirectApiService
         }
         return $this->keywordsService;
     }
+
+	/**
+	 * @return KeywordsResearchService
+	 */
+	public function getKeywordsResearchService(): KeywordsResearchService
+	{
+		if (!$this->keywordsResearchService) {
+			$this->keywordsResearchService = new KeywordsResearchService($this);
+		}
+		return $this->keywordsResearchService;
+	}
 
     /**
      * @return SitelinksService
