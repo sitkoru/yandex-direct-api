@@ -31,7 +31,7 @@ class KeywordsResearchService extends BaseService
 		$params = [
 			'Keywords' => $DeduplicateRequestItems,
 		];
-		if (!empty($DeduplicateOperation))
+		if (is_array($DeduplicateOperation))
 		{
 			$params['Operation'] = $DeduplicateOperation;
 		}
