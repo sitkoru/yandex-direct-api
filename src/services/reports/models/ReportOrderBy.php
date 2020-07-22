@@ -33,13 +33,13 @@ class ReportOrderBy implements JsonSerializable
         $this->sortOrder = $sortOrder;
     }
 
-	public function jsonSerialize()
-	{
-		$params = [
-			'Field' => $this->field,
-			'SortOrder' => $this->sortOrder,
-		];
+    public function jsonSerialize()
+    {
+        $params = [
+            'Field'     => $this->field,
+            'SortOrder' => $this->sortOrder,
+        ];
 
-		return $params;
-	}
+        return $params;
+    }
 }

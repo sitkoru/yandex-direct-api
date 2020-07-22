@@ -210,6 +210,30 @@ class CampaignsService extends BaseService
                 }
                 $campaign->TextCampaign->Settings = array_values($campaign->TextCampaign->Settings);
             }
+            if ($campaign->CpmBannerCampaign && $campaign->CpmBannerCampaign->Settings) {
+                foreach ($campaign->CpmBannerCampaign->Settings as $i => $setting) {
+                    if (TextCampaignSettingsEnum::isGetOnly($setting->Option)) {
+                        unset($campaign->CpmBannerCampaign->Settings[$i]);
+                    }
+                }
+                $campaign->CpmBannerCampaign->Settings = array_values($campaign->CpmBannerCampaign->Settings);
+            }
+            if ($campaign->DynamicTextCampaign && $campaign->DynamicTextCampaign->Settings) {
+                foreach ($campaign->DynamicTextCampaign->Settings as $i => $setting) {
+                    if (TextCampaignSettingsEnum::isGetOnly($setting->Option)) {
+                        unset($campaign->DynamicTextCampaign->Settings[$i]);
+                    }
+                }
+                $campaign->DynamicTextCampaign->Settings = array_values($campaign->DynamicTextCampaign->Settings);
+            }
+            if ($campaign->SmartCampaign && $campaign->SmartCampaign->Settings) {
+                foreach ($campaign->SmartCampaign->Settings as $i => $setting) {
+                    if (TextCampaignSettingsEnum::isGetOnly($setting->Option)) {
+                        unset($campaign->SmartCampaign->Settings[$i]);
+                    }
+                }
+                $campaign->SmartCampaign->Settings = array_values($campaign->SmartCampaign->Settings);
+            }
         }
         return $converted;
     }
