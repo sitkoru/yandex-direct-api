@@ -6,8 +6,8 @@ use directapi\components\Model;
 
 class DeduplicateResponseAddItem extends Model
 {
-	/**
-	 * @var string
-	 */
-	public $Keyword;
+    /**
+     * @var string
+     */
+    public $Keyword;
 }

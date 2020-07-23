@@ -129,10 +129,10 @@ class DirectApiService
      */
     private $keywordsService;
 
-	/**
-	 * @var KeywordsResearchService
-	 */
-	private $keywordsResearchService;
+    /**
+     * @var KeywordsResearchService
+     */
+    private $keywordsResearchService;
 
     /**
      * @var SitelinksService
@@ -306,16 +306,16 @@ class DirectApiService
         return $this->keywordsService;
     }
 
-	/**
-	 * @return KeywordsResearchService
-	 */
-	public function getKeywordsResearchService(): KeywordsResearchService
-	{
-		if (!$this->keywordsResearchService) {
-			$this->keywordsResearchService = new KeywordsResearchService($this);
-		}
-		return $this->keywordsResearchService;
-	}
+    /**
+     * @return KeywordsResearchService
+     */
+    public function getKeywordsResearchService(): KeywordsResearchService
+    {
+        if (!$this->keywordsResearchService) {
+            $this->keywordsResearchService = new KeywordsResearchService($this);
+        }
+        return $this->keywordsResearchService;
+    }
 
     /**
      * @return SitelinksService

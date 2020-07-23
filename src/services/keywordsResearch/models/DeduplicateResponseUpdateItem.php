@@ -6,13 +6,13 @@ use directapi\components\Model;
 
 class DeduplicateResponseUpdateItem extends Model
 {
-	/**
-	 * @var int
-	 */
-	public $Id;
+    /**
+     * @var int
+     */
+    public $Id;
 
-	/**
-	 * @var string
-	 */
-	public $Keyword;
+    /**
+     * @var string
+     */
+    public $Keyword;
 }
