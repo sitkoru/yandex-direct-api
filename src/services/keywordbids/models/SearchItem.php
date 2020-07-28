@@ -2,7 +2,9 @@
 
 namespace directapi\services\keywordbids\models;
 
-class SearchItem
+use directapi\components\Model;
+
+class SearchItem extends Model
 {
     /**
      * Ставка на поиске, назначенная рекламодателем.
@@ -12,9 +14,9 @@ class SearchItem
     public $Bid;
 
     /**
-     * Массив ставок и списываемых цен на поиске, соответствующих различным объемам трафика.
+     *	Ставки и списываемые цены на поиске, соответствующие различным объемам трафика для данной фразы.
      *
-     * @var AuctionKeywordBidItem[]|null
+     * @var AuctionBidsItem|null
      */
     public $AuctionBids;
 }
