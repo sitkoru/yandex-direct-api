@@ -6,18 +6,18 @@ use directapi\components\Model;
 
 class DeduplicateRequestItem extends Model
 {
-	/**
-	 * @var int
-	 */
-	public $Id;
+    /**
+     * @var int
+     */
+    public $Id;
 
-	/**
-	 * @var string
-	 */
-	public $Keyword;
+    /**
+     * @var string
+     */
+    public $Keyword;
 
-	/**
-	 * @var int
-	 */
-	public $Weight;
+    /**
+     * @var int
+     */
+    public $Weight;
 }
