@@ -66,6 +66,16 @@ class KeywordGetItem extends Model
      */
     public $Productivity;
 
+    /**
+     * @var StatisticsItem
+     */
+    public $StatisticsSearch;
+
+    /**
+     * @var StatisticsItem
+     */
+    public $StatisticsNetwork;
+
     public function getDescription(): ?string
     {
         return $this->Keyword;
