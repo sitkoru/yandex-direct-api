@@ -40,10 +40,10 @@ class KeywordBidsService extends BaseService
             'FieldNames'        => $FieldNames
         ];
         if ($SearchFieldNames) {
-            $params['SearchFieldNames'] = $Page;
+            $params['SearchFieldNames'] = $SearchFieldNames;
         }
         if ($NetworkFieldNames) {
-            $params['NetworkFieldNames'] = $Page;
+            $params['NetworkFieldNames'] = $NetworkFieldNames;
         }
         if ($Page) {
             $params['Page'] = $Page;
