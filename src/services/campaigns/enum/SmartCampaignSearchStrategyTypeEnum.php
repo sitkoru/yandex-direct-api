@@ -6,12 +6,40 @@ use directapi\components\Enum;
 
 class SmartCampaignSearchStrategyTypeEnum extends Enum
 {
-    public const AVERAGE_CPC_PER_CAMP = 'AVERAGE_CPC_PER_CAMP';
+    /**
+     * «Оптимизация количества конверсий», CPC или CPA на всю кампанию
+     */
+    public const AVERAGE_CPA_PER_CAMPAIGN = 'AVERAGE_CPA_PER_CAMPAIGN';
+
+    /**
+     * «Оптимизация количества конверсий», CPC или CPA на каждый фильтр
+     */
     public const AVERAGE_CPC_PER_FILTER = 'AVERAGE_CPC_PER_FILTER';
-    public const AVERAGE_CPA_PER_CAMP = 'AVERAGE_CPA_PER_CAMP';
+
+    /**
+     * «Оптимизация количества кликов», CPC на всю кампанию
+     */
+    public const AVERAGE_CPC_PER_CAMPAIGN = 'AVERAGE_CPC_PER_CAMPAIGN';
+
+    /**
+     * «Оптимизация количества кликов», CPC на каждый фильтр
+     */
     public const AVERAGE_CPA_PER_FILTER = 'AVERAGE_CPA_PER_FILTER';
+
+    /**
+     * «Оптимизация рентабельности»
+     */
     public const AVERAGE_ROI = 'AVERAGE_ROI';
-    public const PAY_FOR_CONVERSION = 'PAY_FOR_CONVERSION';
+
+    /**
+     * «Оптимизация количества конверсий», оплата за конверсии (для кампаний с типом «Смарт-баннеры»)
+     */
+    public const PAY_FOR_CONVERSION_PER_CAMPAIGN = 'PAY_FOR_CONVERSION_PER_CAMPAIGN';
+
+    /**
+     * Показы отключены
+     */
     public const SERVING_OFF = 'SERVING_OFF';
+
     public const UNKNOWN = 'UNKNOWN';
 }
