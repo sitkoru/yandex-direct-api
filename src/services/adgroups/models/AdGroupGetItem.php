@@ -77,7 +77,7 @@ class AdGroupGetItem extends Model
     public $DynamicTextFeedAdGroup;
 
     /**
-     * @var SmartAdGroup
+     * @var SmartAdGroupGet
      */
     public $SmartAdGroup;
 
