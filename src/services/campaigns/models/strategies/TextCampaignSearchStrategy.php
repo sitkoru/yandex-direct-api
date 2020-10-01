@@ -54,6 +54,13 @@ class TextCampaignSearchStrategy extends Model implements ICallbackValidation
     public $AverageRoi;
 
     /**
+     * @var StrategyPayForConversion
+     * @Assert\Valid()
+     * @Assert\Type(type="directapi\services\campaigns\models\strategies\StrategyPayForConversion")
+     */
+    public $PayForConversion;
+
+    /**
      * @var StrategyWeeklyClickPackageAdd
      * @Assert\Valid()
      * @Assert\Type(type="directapi\services\campaigns\models\strategies\StrategyWeeklyClickPackageAdd")
@@ -90,6 +97,11 @@ class TextCampaignSearchStrategy extends Model implements ICallbackValidation
         if ($this->BiddingStrategyType === TextCampaignSearchStrategyTypeEnum::AVERAGE_ROI && !$this->AverageRoi) {
             $context->buildViolation('Свойство AverageRoi должно быть указано, если BiddingStrategyType=AVERAGE_ROI')
                 ->atPath('AverageRoi')->addViolation();
+        }
+
+        if ($this->BiddingStrategyType === TextCampaignSearchStrategyTypeEnum::PAY_FOR_CONVERSION && !$this->PayForConversion) {
+            $context->buildViolation('Свойство PayForConversion должно быть указано, если BiddingStrategyType=PAY_FOR_CONVERSION')
+                ->atPath('PayForConversion')->addViolation();
         }
 
         if ($this->BiddingStrategyType === TextCampaignSearchStrategyTypeEnum::WEEKLY_CLICK_PACKAGE && !$this->WeeklyClickPackage) {
