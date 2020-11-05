@@ -440,16 +440,16 @@
         },
         {
             "name": "netresearch/jsonmapper",
-            "version": "v3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cweiske/jsonmapper.git",
-                "reference": "923d59d40e6468851166ca27f2ed705fd6003146"
+                "reference": "ba09f0e456d4f00cef84e012da5715625594407c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cweiske/jsonmapper/zipball/923d59d40e6468851166ca27f2ed705fd6003146",
-                "reference": "923d59d40e6468851166ca27f2ed705fd6003146",
+                "url": "https://api.github.com/repos/cweiske/jsonmapper/zipball/ba09f0e456d4f00cef84e012da5715625594407c",
+                "reference": "ba09f0e456d4f00cef84e012da5715625594407c",
                 "shasum": ""
             },
             "require": {
@@ -482,7 +482,7 @@
                 }
             ],
             "description": "Map nested JSON structures onto PHP classes",
-            "time": "2020-08-15T07:37:48+00:00"
+            "time": "2020-11-02T19:19:54+00:00"
         },
         {
             "name": "psr/http-message",
