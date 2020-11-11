@@ -12,6 +12,8 @@ jobs:
     container: php:7.4-cli
     steps:
       - uses: actions/checkout@v2
+      - name: Install zip
+        run: docker-php-ext-install zip
       - name: Install composer
         run: php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && php composer-setup.php --install-dir=/usr/bin --filename=composer && php -r "unlink('composer-setup.php');"
       - name: Install packages
