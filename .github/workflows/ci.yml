@@ -21,4 +21,4 @@ jobs:
       - name: phpstan
         run: bash phpstan.sh
       - name: csfixer
-        run: csfixer.sh --dry-run src tests
+        run: bash csfixer.sh --dry-run src tests
