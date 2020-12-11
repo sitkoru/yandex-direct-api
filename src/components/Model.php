@@ -53,6 +53,7 @@ class Model implements JsonSerializable
      * Установить значение null для свойства. Дополнительно заносит свойство в список
      *
      * @param string $name
+	 *
      * @throws UnknownPropertyException
      */
     public function setNullProperty(string $name)
