@@ -78,7 +78,7 @@ class AdGroupAddItem extends Model
     public $CpmVideoAdGroup;
 
     /**
-     * @var SmartAdGroup
+     * @var SmartAdGroupGet
      * @Assert\Valid()
      */
     public $SmartAdGroup;

@@ -68,8 +68,8 @@ class SmartCampaignSearchStrategy extends Model implements ICallbackValidation
      */
     public function isValid(ExecutionContextInterface $context): void
     {
-        if ($this->BiddingStrategyType === SmartCampaignSearchStrategyTypeEnum::AVERAGE_CPA_PER_CAMP && !$this->AverageCpcPerCampaign) {
-            $context->buildViolation('Свойство AverageCpcPerCampaign должно быть указано, если BiddingStrategyType=AVERAGE_CPA_PER_CAMP')
+        if ($this->BiddingStrategyType === SmartCampaignSearchStrategyTypeEnum::AVERAGE_CPC_PER_CAMPAIGN && !$this->AverageCpcPerCampaign) {
+            $context->buildViolation('Свойство AverageCpcPerCampaign должно быть указано, если BiddingStrategyType=AVERAGE_CPC_PER_CAMPAIGN')
                 ->atPath('AverageCpcPerCampaign')->addViolation();
         }
 
@@ -78,8 +78,8 @@ class SmartCampaignSearchStrategy extends Model implements ICallbackValidation
                 ->atPath('AverageCpcPerFilter')->addViolation();
         }
 
-        if ($this->BiddingStrategyType === SmartCampaignSearchStrategyTypeEnum::AVERAGE_CPA_PER_CAMP && !$this->AverageCpaPerCampaign) {
-            $context->buildViolation('Свойство AverageCpaPerCampaign должно быть указано, если BiddingStrategyType=AVERAGE_CPA_PER_CAMP')
+        if ($this->BiddingStrategyType === SmartCampaignSearchStrategyTypeEnum::AVERAGE_CPA_PER_CAMPAIGN && !$this->AverageCpaPerCampaign) {
+            $context->buildViolation('Свойство AverageCpaPerCampaign должно быть указано, если BiddingStrategyType=AVERAGE_CPA_PER_CAMPAIGN')
                 ->atPath('AverageCpaPerCampaign')->addViolation();
         }
 
@@ -92,8 +92,8 @@ class SmartCampaignSearchStrategy extends Model implements ICallbackValidation
             $context->buildViolation('Свойство AverageRoi должно быть указано, если BiddingStrategyType=AVERAGE_ROI')
                 ->atPath('AverageRoi')->addViolation();
         }
-        if ($this->BiddingStrategyType === SmartCampaignSearchStrategyTypeEnum::PAY_FOR_CONVERSION && !$this->PayForConversionPerCampaign) {
-            $context->buildViolation('Свойство PayForConversionPerCampaign должно быть указано, если BiddingStrategyType=PAY_FOR_CONVERSION')
+        if ($this->BiddingStrategyType === SmartCampaignSearchStrategyTypeEnum::PAY_FOR_CONVERSION_PER_CAMPAIGN && !$this->PayForConversionPerCampaign) {
+            $context->buildViolation('Свойство PayForConversionPerCampaign должно быть указано, если BiddingStrategyType=PAY_FOR_CONVERSION_PER_CAMPAIGN')
                 ->atPath('PayForConversionPerCampaign')->addViolation();
         }
     }

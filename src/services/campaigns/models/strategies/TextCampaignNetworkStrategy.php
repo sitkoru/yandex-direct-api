@@ -6,6 +6,7 @@ use directapi\components\constraints as DirectApiAssert;
 use directapi\components\interfaces\ICallbackValidation;
 use directapi\components\Model;
 use directapi\services\campaigns\enum\TextCampaignNetworkStrategyTypeEnum;
+use directapi\services\campaigns\enum\TextCampaignSearchStrategyTypeEnum;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
@@ -61,6 +62,13 @@ class TextCampaignNetworkStrategy extends Model implements ICallbackValidation
     public $AverageRoi;
 
     /**
+     * @var StrategyPayForConversion
+     * @Assert\Valid()
+     * @Assert\Type(type="directapi\services\campaigns\models\strategies\StrategyPayForConversion")
+     */
+    public $PayForConversion;
+
+    /**
      * @var StrategyWeeklyClickPackageAdd
      * @Assert\Valid()
      * @Assert\Type(type="directapi\services\campaigns\models\strategies\StrategyWeeklyClickPackageAdd")
@@ -98,6 +106,12 @@ class TextCampaignNetworkStrategy extends Model implements ICallbackValidation
             $context->buildViolation('Свойство AverageRoi должно быть указано, если BiddingStrategyType=AVERAGE_ROI')
                 ->atPath('AverageRoi')->addViolation();
         }
+
+        if ($this->BiddingStrategyType === TextCampaignSearchStrategyTypeEnum::PAY_FOR_CONVERSION && !$this->PayForConversion) {
+            $context->buildViolation('Свойство PayForConversion должно быть указано, если BiddingStrategyType=PAY_FOR_CONVERSION')
+                ->atPath('PayForConversion')->addViolation();
+        }
+
 
         if ($this->BiddingStrategyType === TextCampaignNetworkStrategyTypeEnum::WEEKLY_CLICK_PACKAGE && !$this->WeeklyClickPackage) {
             $context->buildViolation('Свойство WeeklyClickPackage должно быть указано, если BiddingStrategyType=WEEKLY_CLICK_PACKAGE')
