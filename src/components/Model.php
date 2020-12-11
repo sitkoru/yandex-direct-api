@@ -76,7 +76,7 @@ class Model implements JsonSerializable
             if ($name == 'nullPropertiesMap') continue;
 
             $is_array = is_array($value);
-            if (($is_array && \count($value) != 0) || (!$is_array && $value !== null) || ($this->nullPropertiesMap[$name] ?? false)) {
+            if (($is_array && \count($value) !== 0) || (!$is_array && $value !== null) || ($this->nullPropertiesMap[$name] ?? false)) {
                 $result->$name = $value;
             }
         }
