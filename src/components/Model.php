@@ -74,7 +74,9 @@ class Model implements JsonSerializable
     {
         $result = new \stdClass();
         foreach ($this as $name => $value) {
-            if ($name == 'nullPropertiesMap') continue;
+            if ($name == 'nullPropertiesMap') {
+                continue;
+            }
 
             $is_array = is_array($value);
             if (($is_array && \count($value) !== 0) || (!$is_array && $value !== null) || ($this->nullPropertiesMap[$name] ?? false)) {
