@@ -61,7 +61,7 @@ class Model implements JsonSerializable
             throw new UnknownPropertyException('Свойство ' . $name . ' не существует в классе ' . static::class);
         }
 
-        if (in_array($name, static::$nillableProperties)) {
+        if (in_array($name, static::$nillableProperties, true)) {
             $this->$name = null;
             $this->nullPropertiesMap[$name] = true;
         } else {
@@ -76,7 +76,7 @@ class Model implements JsonSerializable
             if ($name == 'nullPropertiesMap') continue;
 
             $is_array = is_array($value);
-            if (($is_array && !empty($value)) || (!$is_array && $value !== null) || ($this->nullPropertiesMap[$name] ?? false)) {
+            if (($is_array && \count($value) != 0) || (!$is_array && $value !== null) || ($this->nullPropertiesMap[$name] ?? false)) {
                 $result->$name = $value;
             }
         }
