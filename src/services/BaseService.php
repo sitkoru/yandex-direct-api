@@ -279,8 +279,8 @@ abstract class BaseService
             if (property_exists($response, $paramName) && $response->$paramName !== null) {
                 $result[] = $this->mapArray($response->$paramName, $class);
             }
-            if (property_exists($response, 'limitedBy')) {
-                $params['Offset'] = $response->limitedBy;
+            if (property_exists($response, 'LimitedBy')) {
+                $params['Offset'] = $response->LimitedBy;
             } else {
                 break;
             }
