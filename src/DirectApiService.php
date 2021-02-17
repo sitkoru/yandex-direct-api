@@ -520,7 +520,6 @@ class DirectApiService
         );
 
         $payload = json_encode($request->getPayload(), JSON_UNESCAPED_UNICODE);
-        $payload = preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', $payload);
 
         $httpResponse = $this->doRequest($httpRequest->withBody(stream_for($payload)));
         $response = new DirectApiResponse();

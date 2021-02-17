@@ -7,6 +7,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class KeywordUpdateItem extends Model
 {
+    protected static $nillableProperties = [
+        'UserParam1',
+        'UserParam2',
+    ];
+
     /**
      * @var int
      * @Assert\NotBlank()
