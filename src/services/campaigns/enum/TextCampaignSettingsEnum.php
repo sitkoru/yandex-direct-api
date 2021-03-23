@@ -20,6 +20,7 @@ class TextCampaignSettingsEnum extends Enum
     public const DAILY_BUDGET_ALLOWED = 'DAILY_BUDGET_ALLOWED';
     public const ENABLE_BEHAVIORAL_TARGETING = 'ENABLE_BEHAVIORAL_TARGETING';
     public const ENABLE_AUTOFOCUS = 'ENABLE_AUTOFOCUS';
+    public const CAMPAIGN_EXACT_PHRASE_MATCHING_ENABLED = 'CAMPAIGN_EXACT_PHRASE_MATCHING_ENABLED';
 
     /**
      * @var array
