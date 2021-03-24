@@ -2151,16 +2151,16 @@
         },
         {
             "name": "phpstan/phpstan-doctrine",
-            "version": "0.12.30",
+            "version": "0.12.33",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan-doctrine.git",
-                "reference": "c4b910638ef416ad336aca596b4551a2db10b5f7"
+                "reference": "b76c21e7b85498399ba4a0147920ff413503e77a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan-doctrine/zipball/c4b910638ef416ad336aca596b4551a2db10b5f7",
-                "reference": "c4b910638ef416ad336aca596b4551a2db10b5f7",
+                "url": "https://api.github.com/repos/phpstan/phpstan-doctrine/zipball/b76c21e7b85498399ba4a0147920ff413503e77a",
+                "reference": "b76c21e7b85498399ba4a0147920ff413503e77a",
                 "shasum": ""
             },
             "require": {
@@ -2176,7 +2176,7 @@
             },
             "require-dev": {
                 "doctrine/annotations": "^1.11.0",
-                "doctrine/collections": "^1.0",
+                "doctrine/collections": "^1.6",
                 "doctrine/common": "^2.7 || ^3.0",
                 "doctrine/dbal": "^2.11.0",
                 "doctrine/mongodb-odm": "^1.3 || ^2.1",
@@ -2211,7 +2211,7 @@
                 "MIT"
             ],
             "description": "Doctrine extensions for PHPStan",
-            "time": "2021-01-18T13:00:10+00:00"
+            "time": "2021-03-07T12:28:23+00:00"
         },
         {
             "name": "phpstan/phpstan-strict-rules",
@@ -2763,12 +2763,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "11b8a607a59818bb21fc9ffb334f03032a6ce5dc"
+                "reference": "3dfe1d2b81a55b9c51dc87ce89f1ee2beaaf1093"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/11b8a607a59818bb21fc9ffb334f03032a6ce5dc",
-                "reference": "11b8a607a59818bb21fc9ffb334f03032a6ce5dc",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/3dfe1d2b81a55b9c51dc87ce89f1ee2beaaf1093",
+                "reference": "3dfe1d2b81a55b9c51dc87ce89f1ee2beaaf1093",
                 "shasum": ""
             },
             "conflict": {
@@ -3008,7 +3008,9 @@
                 "truckersmp/phpwhois": "<=4.3.1",
                 "twig/twig": "<1.38|>=2,<2.7",
                 "typo3/cms": ">=6.2,<6.2.30|>=7,<7.6.32|>=8,<8.7.38|>=9,<9.5.25|>=10,<10.4.14|>=11,<11.1.1",
-                "typo3/cms-core": ">=8,<8.7.38|>=9,<9.5.25|>=10,<10.4.14|>=11,<11.1.1",
+                "typo3/cms-backend": ">=7,<=7.6.50|>=8,<=8.7.39|>=9,<=9.5.24|>=10,<=10.4.13|>=11,<=11.1",
+                "typo3/cms-core": ">=6.2,<=6.2.56|>=7,<=7.6.50|>=8,<=8.7.39|>=9,<9.5.25|>=10,<10.4.14|>=11,<11.1.1",
+                "typo3/cms-form": ">=8,<=8.7.39|>=9,<=9.5.24|>=10,<=10.4.13|>=11,<=11.1",
                 "typo3/flow": ">=1,<1.0.4|>=1.1,<1.1.1|>=2,<2.0.1|>=2.3,<2.3.16|>=3,<3.0.10|>=3.1,<3.1.7|>=3.2,<3.2.7|>=3.3,<3.3.5",
                 "typo3/neos": ">=1.1,<1.1.3|>=1.2,<1.2.13|>=2,<2.0.4",
                 "typo3/phar-stream-wrapper": ">=1,<2.1.1|>=3,<3.1.1",
@@ -3083,7 +3085,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-03-19T20:02:32+00:00"
+            "time": "2021-03-23T02:23:40+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
