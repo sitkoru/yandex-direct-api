@@ -3,6 +3,7 @@
 namespace directapi\services;
 
 use directapi\common\criterias\IdsCriteria;
+use directapi\common\criterias\LimitOffset;
 use directapi\common\results\ActionResult;
 use directapi\components\interfaces\ICriteria;
 use directapi\DirectApiService;
@@ -280,7 +281,14 @@ abstract class BaseService
                 $result[] = $this->mapArray($response->$paramName, $class);
             }
             if (property_exists($response, 'LimitedBy')) {
-                $params['Offset'] = $response->LimitedBy;
+                $page = null;
+                if (array_key_exists('Page', $params) && $params['Page'] instanceof LimitOffset) {
+                    $page = $params['Page'];
+                } else {
+                    $page = new LimitOffset();
+                }
+                $page->Offset = $response->LimitedBy;
+                $params['Page'] = $page;
             } else {
                 break;
             }
