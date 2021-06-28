@@ -42,6 +42,11 @@ class TextCampaignNetworkStrategyTypeEnum extends Enum
     public const AVERAGE_ROI = 'AVERAGE_ROI';
 
     /**
+     * «Оптимизация доли рекламных расходов»
+     */
+    public const AVERAGE_CRR = 'AVERAGE_CRR';
+
+    /**
      * «Оптимизация конверсий», оплата за конверсии (для кампаний с типом «Текстово-графические объявления», «Динамические объявления»)
      */
     public const PAY_FOR_CONVERSION = 'PAY_FOR_CONVERSION';

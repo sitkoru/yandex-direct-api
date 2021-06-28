@@ -90,12 +90,16 @@ class TextCampaignNetworkStrategy extends Model implements ICallbackValidation
     public function isValid(ExecutionContextInterface $context): void
     {
         if ($this->BiddingStrategyType === TextCampaignNetworkStrategyTypeEnum::WB_MAXIMUM_CLICKS && !$this->WbMaximumClicks) {
-            $context->buildViolation('Свойство WbMaximumClicks должно быть указано, если BiddingStrategyType=WB_MAXIMUM_CLICKS')
+            $context->buildViolation(
+                'Свойство WbMaximumClicks должно быть указано, если BiddingStrategyType=WB_MAXIMUM_CLICKS'
+            )
                 ->atPath('WbMaximumClicks')->addViolation();
         }
 
         if ($this->BiddingStrategyType === TextCampaignNetworkStrategyTypeEnum::WB_MAXIMUM_CONVERSION_RATE && !$this->WbMaximumConversionRate) {
-            $context->buildViolation('Свойство WbMaximumConversionRate должно быть указано, если BiddingStrategyType=WB_MAXIMUM_CONVERSION_RATE')
+            $context->buildViolation(
+                'Свойство WbMaximumConversionRate должно быть указано, если BiddingStrategyType=WB_MAXIMUM_CONVERSION_RATE'
+            )
                 ->atPath('WbMaximumConversionRate')->addViolation();
         }
 
@@ -114,14 +118,23 @@ class TextCampaignNetworkStrategy extends Model implements ICallbackValidation
                 ->atPath('AverageRoi')->addViolation();
         }
 
+        if ($this->BiddingStrategyType === TextCampaignNetworkStrategyTypeEnum::AVERAGE_CRR && !$this->AverageCrr) {
+            $context->buildViolation('Свойство AverageCrr должно быть указано, если BiddingStrategyType=AVERAGE_CRR')
+                ->atPath('AverageRoi')->addViolation();
+        }
+
         if ($this->BiddingStrategyType === TextCampaignSearchStrategyTypeEnum::PAY_FOR_CONVERSION && !$this->PayForConversion) {
-            $context->buildViolation('Свойство PayForConversion должно быть указано, если BiddingStrategyType=PAY_FOR_CONVERSION')
+            $context->buildViolation(
+                'Свойство PayForConversion должно быть указано, если BiddingStrategyType=PAY_FOR_CONVERSION'
+            )
                 ->atPath('PayForConversion')->addViolation();
         }
 
 
         if ($this->BiddingStrategyType === TextCampaignNetworkStrategyTypeEnum::WEEKLY_CLICK_PACKAGE && !$this->WeeklyClickPackage) {
-            $context->buildViolation('Свойство WeeklyClickPackage должно быть указано, если BiddingStrategyType=WEEKLY_CLICK_PACKAGE')
+            $context->buildViolation(
+                'Свойство WeeklyClickPackage должно быть указано, если BiddingStrategyType=WEEKLY_CLICK_PACKAGE'
+            )
                 ->atPath('WeeklyClickPackage')->addViolation();
         }
     }
