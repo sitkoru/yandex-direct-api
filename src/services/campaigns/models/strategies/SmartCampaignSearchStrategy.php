@@ -55,6 +55,13 @@ class SmartCampaignSearchStrategy extends Model implements ICallbackValidation
     public $AverageRoi;
 
     /**
+     * @var StrategyAverageRoiAdd
+     * @Assert\Valid()
+     * @Assert\Type(type="directapi\services\campaigns\models\strategies\StrategyAverageCrrAdd")
+     */
+    public $AverageCrr;
+
+    /**
      * @var StrategyPayForConversion
      * @Assert\Valid()
      * @Assert\Type(type="directapi\services\campaigns\models\strategies\StrategyPayForConversion")
@@ -91,6 +98,10 @@ class SmartCampaignSearchStrategy extends Model implements ICallbackValidation
         if ($this->BiddingStrategyType === SmartCampaignSearchStrategyTypeEnum::AVERAGE_ROI && !$this->AverageRoi) {
             $context->buildViolation('Свойство AverageRoi должно быть указано, если BiddingStrategyType=AVERAGE_ROI')
                 ->atPath('AverageRoi')->addViolation();
+        }
+        if ($this->BiddingStrategyType === SmartCampaignSearchStrategyTypeEnum::AVERAGE_CRR && !$this->AverageCrr) {
+            $context->buildViolation('Свойство AverageCrr должно быть указано, если BiddingStrategyType=AVERAGE_CRR')
+                ->atPath('AverageCrr')->addViolation();
         }
         if ($this->BiddingStrategyType === SmartCampaignSearchStrategyTypeEnum::PAY_FOR_CONVERSION_PER_CAMPAIGN && !$this->PayForConversionPerCampaign) {
             $context->buildViolation('Свойство PayForConversionPerCampaign должно быть указано, если BiddingStrategyType=PAY_FOR_CONVERSION_PER_CAMPAIGN')

@@ -32,6 +32,11 @@ class SmartCampaignSearchStrategyTypeEnum extends Enum
     public const AVERAGE_ROI = 'AVERAGE_ROI';
 
     /**
+     * «Оптимизация доли рекламных расходов»
+     */
+    public const AVERAGE_CRR = 'AVERAGE_CRR';
+
+    /**
      * «Оптимизация количества конверсий», оплата за конверсии (для кампаний с типом «Смарт-баннеры»)
      */
     public const PAY_FOR_CONVERSION_PER_CAMPAIGN = 'PAY_FOR_CONVERSION_PER_CAMPAIGN';

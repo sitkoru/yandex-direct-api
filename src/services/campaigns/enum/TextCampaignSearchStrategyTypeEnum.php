@@ -16,6 +16,7 @@ class TextCampaignSearchStrategyTypeEnum extends Enum
     public const AVERAGE_CPC = 'AVERAGE_CPC';
     public const AVERAGE_CPA = 'AVERAGE_CPA';
     public const AVERAGE_ROI = 'AVERAGE_ROI';
+    public const AVERAGE_CRR = 'AVERAGE_CRR';
     public const WEEKLY_CLICK_PACKAGE = 'WEEKLY_CLICK_PACKAGE';
     public const SERVING_OFF = 'SERVING_OFF';
     public const PAY_FOR_CONVERSION = 'PAY_FOR_CONVERSION';

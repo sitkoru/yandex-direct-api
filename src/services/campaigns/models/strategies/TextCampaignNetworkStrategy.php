@@ -62,6 +62,13 @@ class TextCampaignNetworkStrategy extends Model implements ICallbackValidation
     public $AverageRoi;
 
     /**
+     * @var StrategyAverageRoiAdd
+     * @Assert\Valid()
+     * @Assert\Type(type="directapi\services\campaigns\models\strategies\StrategyAverageCrrAdd")
+     */
+    public $AverageCrr;
+
+    /**
      * @var StrategyPayForConversion
      * @Assert\Valid()
      * @Assert\Type(type="directapi\services\campaigns\models\strategies\StrategyPayForConversion")

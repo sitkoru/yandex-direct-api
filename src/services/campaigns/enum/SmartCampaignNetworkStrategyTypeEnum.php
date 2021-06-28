@@ -32,6 +32,11 @@ class SmartCampaignNetworkStrategyTypeEnum extends Enum
     public const AVERAGE_ROI = 'AVERAGE_ROI';
 
     /**
+     * «Оптимизация доли рекламных расходов»
+     */
+    public const AVERAGE_CRR = 'AVERAGE_CRR';
+
+    /**
      * Настройки показов в сетях в зависимости от настроек на поиске
      */
     public const NETWORK_DEFAULT = 'NETWORK_DEFAULT';
