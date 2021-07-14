@@ -14,7 +14,7 @@
     "ext-json": "*",
     "symfony/validator": "^4.3 || ^5.0",
     "doctrine/annotations": "^1.7",
-    "doctrine/cache": "^1.8",
+    "doctrine/cache": "^2.1",
     "netresearch/jsonmapper": "^3.0.0",
     "guzzlehttp/guzzle": "^6.5.5",
     "psr/log": "^1.1.0"
