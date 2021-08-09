@@ -55,6 +55,11 @@ class ReportRow
     public $AvgPageviews;
 
     /**
+     * @var float Средний объем трафика с позиций, на которых были показы объявления.
+     */
+    public $AvgTrafficVolume;
+
+    /**
      * @var float Доля отказов в общем количестве визитов, в процентах (по данным Яндекс.Метрики).
      */
     public $BounceRate;
