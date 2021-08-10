@@ -7,6 +7,11 @@ use directapi\components\Model;
 class RetargetingListGetItem extends Model
 {
     /**
+     * @var string
+     */
+    public $Type;
+
+    /**
      * @var int
      */
     public $Id;
