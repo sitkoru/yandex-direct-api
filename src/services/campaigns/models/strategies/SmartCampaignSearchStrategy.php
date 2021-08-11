@@ -55,7 +55,7 @@ class SmartCampaignSearchStrategy extends Model implements ICallbackValidation
     public $AverageRoi;
 
     /**
-     * @var StrategyAverageRoiAdd
+     * @var StrategyAverageCrrAdd
      * @Assert\Valid()
      * @Assert\Type(type="directapi\services\campaigns\models\strategies\StrategyAverageCrrAdd")
      */
