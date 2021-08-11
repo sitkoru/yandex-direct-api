@@ -65,6 +65,11 @@ class ReportFieldsEnum extends Enum
     public const AVG_PAGE_VIEWS = 'AvgPageviews';
 
     /**
+     * Средний объем трафика с позиций, на которых были показы объявления.
+     */
+    public const AVG_TRAFFIC_VOLUME = 'AvgTrafficVolume';
+
+    /**
      * Доля отказов в общем количестве визитов, в процентах (по данным Яндекс.Метрики).
      */
     public const BOUNCE_RATE = 'BounceRate';
