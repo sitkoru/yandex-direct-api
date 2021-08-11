@@ -19,6 +19,13 @@ class DynamicTextCampaignSearchStrategy extends Model implements ICallbackValida
     public $BiddingStrategyType;
 
     /**
+     * @var StrategyMaximumClicksAdd
+     * @Assert\Valid()
+     * @Assert\Type(type="directapi\services\campaigns\models\strategies\StrategyMaximumClicksAdd")
+     */
+    public $WbMaximumClicks;
+
+    /**
      * @var StrategyMaximumConversionRateAdd
      * @Assert\Valid()
      * @Assert\Type(type="directapi\services\campaigns\models\strategies\StrategyMaximumConversionRateAdd")
@@ -74,6 +81,11 @@ class DynamicTextCampaignSearchStrategy extends Model implements ICallbackValida
      */
     public function isValid(ExecutionContextInterface $context): void
     {
+        if ($this->BiddingStrategyType === TextCampaignSearchStrategyTypeEnum::WB_MAXIMUM_CLICKS && !$this->WbMaximumClicks) {
+            $context->buildViolation('Свойство WbMaximumClicks должно быть указано, если BiddingStrategyType=WB_MAXIMUM_CLICKS')
+                ->atPath('WbMaximumClicks')->addViolation();
+        }
+
         if ($this->BiddingStrategyType === TextCampaignSearchStrategyTypeEnum::WB_MAXIMUM_CONVERSION_RATE && !$this->WbMaximumConversionRate) {
             $context->buildViolation('Свойство WbMaximumConversionRate должно быть указано, если BiddingStrategyType=WB_MAXIMUM_CONVERSION_RATE')
                 ->atPath('WbMaximumConversionRate')->addViolation();
