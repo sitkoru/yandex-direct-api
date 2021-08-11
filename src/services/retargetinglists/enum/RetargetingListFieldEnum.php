@@ -6,6 +6,7 @@ use directapi\components\Enum;
 
 class RetargetingListFieldEnum extends Enum
 {
+    public const TYPE = 'Type';
     public const ID = 'Id';
     public const NAME = 'Name';
     public const DESCRIPTION = 'Description';
