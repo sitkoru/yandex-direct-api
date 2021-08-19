@@ -6,6 +6,8 @@ use directapi\common\criterias\LimitOffset;
 use directapi\services\BaseService;
 use directapi\services\keywordbids\criterias\KeywordBidsSelectionCriteria;
 use directapi\services\keywordbids\enum\KeywordBidFieldEnum;
+use directapi\services\keywordbids\enum\KeywordBidNetworkFieldEnum;
+use directapi\services\keywordbids\enum\KeywordBidSearchFieldEnum;
 use directapi\services\keywordbids\models\KeywordBidActionResult;
 use directapi\services\keywordbids\models\KeywordBidGetItem;
 use directapi\services\keywordbids\models\KeywordBidSetAutoItem;
@@ -14,15 +16,16 @@ use directapi\services\keywordbids\models\KeywordBidSetItem;
 class KeywordBidsService extends BaseService
 {
     /**
-     * @param KeywordBidsSelectionCriteria $SelectionCriteria
-     * @param KeywordBidFieldEnum[]        $FieldNames
-     * @param string[]                     $SearchFieldNames
-     * @param string[]                     $NetworkFieldNames
-     * @param LimitOffset                  $Page
+     * @param KeywordBidsSelectionCriteria                 $SelectionCriteria
+     * @param KeywordBidFieldEnum[]                        $FieldNames
+     * @param KeywordBidSearchFieldEnum[]                  $SearchFieldNames
+     * @param KeywordBidNetworkFieldEnum[]                 $NetworkFieldNames
+     * @param \directapi\common\criterias\LimitOffset|null $Page
      *
      * @return KeywordBidGetItem[]
      *
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \JsonMapper_Exception
      * @throws \directapi\exceptions\DirectAccountNotExistException
      * @throws \directapi\exceptions\DirectApiException
      * @throws \directapi\exceptions\DirectApiNotEnoughUnitsException
@@ -48,6 +51,7 @@ class KeywordBidsService extends BaseService
         if ($Page) {
             $params['Page'] = $Page;
         }
+
         return $this->doGet($params, 'KeywordBids', KeywordBidGetItem::class);
     }
 
@@ -68,6 +72,7 @@ class KeywordBidsService extends BaseService
             'KeywordBids' => $Bids
         ];
         $result = $this->call('set', $params);
+
         return $this->mapArray($result->SetResults, KeywordBidActionResult::class);
     }
 
@@ -88,6 +93,7 @@ class KeywordBidsService extends BaseService
             'KeywordBids' => $Bids
         ];
         $result = $this->call('setAuto', $params);
+
         return $this->mapArray($result->SetAutoResults, KeywordBidActionResult::class);
     }
 
