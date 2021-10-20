@@ -9,9 +9,13 @@ use directapi\services\BaseService;
 use directapi\services\campaigns\criterias\CampaignsSelectionCriteria;
 use directapi\services\campaigns\enum\CampaignFieldEnum;
 use directapi\services\campaigns\enum\CpmBannerCampaignFieldEnum;
+use directapi\services\campaigns\enum\CpmCampaignSettingsEnum;
 use directapi\services\campaigns\enum\DynamicCampaignFieldEnum;
+use directapi\services\campaigns\enum\DynamicCampaignSettingsEnum;
 use directapi\services\campaigns\enum\MobileAppCampaignFieldEnum;
+use directapi\services\campaigns\enum\MobileAppCampaignSettingsEnum;
 use directapi\services\campaigns\enum\SmartCampaignFieldEnum;
+use directapi\services\campaigns\enum\SmartCampaignSettingsEnum;
 use directapi\services\campaigns\enum\TextCampaignFieldEnum;
 use directapi\services\campaigns\enum\TextCampaignSettingsEnum;
 use directapi\services\campaigns\models\CampaignAddItem;
@@ -201,7 +205,7 @@ class CampaignsService extends BaseService
          * @var CampaignUpdateItem[] $converted
          */
         $converted = $this->convertClass($entities, CampaignUpdateItem::class);
-        foreach ($converted as &$campaign) {
+        foreach ($converted as $campaign) {
             if ($campaign->TextCampaign && $campaign->TextCampaign->Settings) {
                 foreach ($campaign->TextCampaign->Settings as $i => $setting) {
                     if (TextCampaignSettingsEnum::isGetOnly($setting->Option)) {
@@ -212,7 +216,7 @@ class CampaignsService extends BaseService
             }
             if ($campaign->CpmBannerCampaign && $campaign->CpmBannerCampaign->Settings) {
                 foreach ($campaign->CpmBannerCampaign->Settings as $i => $setting) {
-                    if (TextCampaignSettingsEnum::isGetOnly($setting->Option)) {
+                    if (CpmCampaignSettingsEnum::isGetOnly($setting->Option)) {
                         unset($campaign->CpmBannerCampaign->Settings[$i]);
                     }
                 }
@@ -220,7 +224,7 @@ class CampaignsService extends BaseService
             }
             if ($campaign->DynamicTextCampaign && $campaign->DynamicTextCampaign->Settings) {
                 foreach ($campaign->DynamicTextCampaign->Settings as $i => $setting) {
-                    if (TextCampaignSettingsEnum::isGetOnly($setting->Option)) {
+                    if (DynamicCampaignSettingsEnum::isGetOnly($setting->Option)) {
                         unset($campaign->DynamicTextCampaign->Settings[$i]);
                     }
                 }
@@ -228,11 +232,19 @@ class CampaignsService extends BaseService
             }
             if ($campaign->SmartCampaign && $campaign->SmartCampaign->Settings) {
                 foreach ($campaign->SmartCampaign->Settings as $i => $setting) {
-                    if (TextCampaignSettingsEnum::isGetOnly($setting->Option)) {
+                    if (SmartCampaignSettingsEnum::isGetOnly($setting->Option)) {
                         unset($campaign->SmartCampaign->Settings[$i]);
                     }
                 }
                 $campaign->SmartCampaign->Settings = array_values($campaign->SmartCampaign->Settings);
+            }
+            if ($campaign->MobileAppCampaign && $campaign->MobileAppCampaign->Settings) {
+                foreach ($campaign->MobileAppCampaign->Settings as $i => $setting) {
+                    if (MobileAppCampaignSettingsEnum::isGetOnly($setting->Option)) {
+                        unset($campaign->MobileAppCampaign->Settings[$i]);
+                    }
+                }
+                $campaign->MobileAppCampaign->Settings = array_values($campaign->MobileAppCampaign->Settings);
             }
         }
         return $converted;

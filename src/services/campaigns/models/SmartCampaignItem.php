@@ -30,9 +30,9 @@ class SmartCampaignItem extends Model
     public $BiddingStrategy;
 
     /**
-     * @var TextCampaignSetting[]
+     * @var SmartCampaignSetting[]
      * @Assert\Valid()
-     * @DirectApiAssert\ArrayOf(type="directapi\services\campaigns\models\TextCampaignSetting")
+     * @DirectApiAssert\ArrayOf(type="directapi\services\campaigns\models\SmartCampaignSetting")
      */
     public $Settings;
 

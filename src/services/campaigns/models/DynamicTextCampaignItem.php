@@ -17,9 +17,9 @@ class DynamicTextCampaignItem extends Model
     public $BiddingStrategy;
 
     /**
-     * @var TextCampaignSetting[]
+     * @var DynamicCampaignSetting[]
      * @Assert\Valid()
-     * @DirectApiAssert\ArrayOf(type="directapi\services\campaigns\models\TextCampaignSetting")
+     * @DirectApiAssert\ArrayOf(type="directapi\services\campaigns\models\DynamicCampaignSetting")
      */
     public $Settings;
 

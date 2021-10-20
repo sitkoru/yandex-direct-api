@@ -17,9 +17,9 @@ class CpmBannerCampaignItem extends Model
     public $BiddingStrategy;
 
     /**
-     * @var TextCampaignSetting[]
+     * @var CpmCampaignSetting[]
      * @Assert\Valid()
-     * @DirectApiAssert\ArrayOf(type="directapi\services\campaigns\models\TextCampaignSetting")
+     * @DirectApiAssert\ArrayOf(type="directapi\services\campaigns\models\CpmCampaignSetting")
      */
     public $Settings;
 
