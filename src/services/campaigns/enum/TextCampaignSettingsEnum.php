@@ -29,7 +29,8 @@ class TextCampaignSettingsEnum extends Enum
         self::SHARED_ACCOUNT_ENABLED,
         self::DAILY_BUDGET_ALLOWED,
         self::ENABLE_BEHAVIORAL_TARGETING,
-        self::ENABLE_AUTOFOCUS
+        self::ENABLE_AUTOFOCUS,
+        self::CAMPAIGN_EXACT_PHRASE_MATCHING_ENABLED
     ];
 
     public static function isGetOnly(TextCampaignSettingsEnum $value): bool
