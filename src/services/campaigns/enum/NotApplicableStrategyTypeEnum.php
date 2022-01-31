@@ -9,5 +9,4 @@ class NotApplicableStrategyTypeEnum extends Enum
 {
     public const SERVING_OFF = 'SERVING_OFF';
     public const UNKNOWN = 'UNKNOWN';
-    public const NETWORK_DEFAULT = 'NETWORK_DEFAULT';
 }

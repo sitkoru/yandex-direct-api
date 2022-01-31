@@ -37,11 +37,6 @@ class SmartCampaignNetworkStrategyTypeEnum extends Enum
     public const AVERAGE_CRR = 'AVERAGE_CRR';
 
     /**
-     * Настройки показов в сетях в зависимости от настроек на поиске
-     */
-    public const NETWORK_DEFAULT = 'NETWORK_DEFAULT';
-
-    /**
      * «Оптимизация количества конверсий», оплата за конверсии (для кампаний с типом «Смарт-баннеры»)
      */
     public const PAY_FOR_CONVERSION_PER_CAMPAIGN = 'PAY_FOR_CONVERSION_PER_CAMPAIGN';
