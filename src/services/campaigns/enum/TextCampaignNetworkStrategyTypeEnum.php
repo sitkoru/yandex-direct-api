@@ -7,6 +7,11 @@ use directapi\components\Enum;
 class TextCampaignNetworkStrategyTypeEnum extends Enum
 {
     /**
+     * Настройки показов в сетях в зависимости от настроек на поиске
+     */
+    public const NETWORK_DEFAULT = 'NETWORK_DEFAULT';
+
+    /**
      * «Ручное управление ставками с оптимизацией», включено раздельное управление ставками на поиске и в сетях
      */
     public const MAXIMUM_COVERAGE = 'MAXIMUM_COVERAGE';
