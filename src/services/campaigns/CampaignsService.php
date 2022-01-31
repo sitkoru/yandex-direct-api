@@ -208,6 +208,7 @@ class CampaignsService extends BaseService
         foreach ($converted as $campaign) {
             if ($campaign->TextCampaign && $campaign->TextCampaign->Settings) {
                 foreach ($campaign->TextCampaign->Settings as $i => $setting) {
+                    TextCampaignSettingsEnum::checkValue($setting->Option);
                     if (TextCampaignSettingsEnum::isGetOnly($setting->Option)) {
                         unset($campaign->TextCampaign->Settings[$i]);
                     }
@@ -240,6 +241,7 @@ class CampaignsService extends BaseService
             }
             if ($campaign->MobileAppCampaign && $campaign->MobileAppCampaign->Settings) {
                 foreach ($campaign->MobileAppCampaign->Settings as $i => $setting) {
+                    MobileAppCampaignSettingsEnum::checkValue($setting->Option);
                     if (MobileAppCampaignSettingsEnum::isGetOnly($setting->Option)) {
                         unset($campaign->MobileAppCampaign->Settings[$i]);
                     }
