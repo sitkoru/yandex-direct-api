@@ -15,4 +15,6 @@ class NotApplicableStrategy extends Model
      * @DirectApiAssert\IsEnum(type="directapi\services\campaigns\enum\NotApplicableStrategyTypeEnum")
      */
     public $BiddingStrategyType;
+
+
 }

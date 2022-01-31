@@ -33,4 +33,11 @@ class MobileAppCampaignSettingsEnum extends Enum
         }
         return false;
     }
+
+    public static function checkValue(MobileAppCampaignSettingsEnum $value)
+    {
+        if ($value == self::MAINTAIN_NETWORK_CPC) {
+            throw new \Exception(self::MAINTAIN_NETWORK_CPC . " is deprecated");
+        }
+    }
 }
