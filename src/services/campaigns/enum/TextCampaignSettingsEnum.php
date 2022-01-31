@@ -41,6 +41,9 @@ class TextCampaignSettingsEnum extends Enum
         return false;
     }
 
+    /**
+     * @throws \Exception
+     */
     public static function checkValue(TextCampaignSettingsEnum $value)
     {
         if ($value == self::MAINTAIN_NETWORK_CPC) {

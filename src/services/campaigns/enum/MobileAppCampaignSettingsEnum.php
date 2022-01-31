@@ -34,6 +34,9 @@ class MobileAppCampaignSettingsEnum extends Enum
         return false;
     }
 
+    /**
+     * @throws \Exception
+     */
     public static function checkValue(MobileAppCampaignSettingsEnum $value)
     {
         if ($value == self::MAINTAIN_NETWORK_CPC) {
