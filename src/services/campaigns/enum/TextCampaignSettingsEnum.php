@@ -3,6 +3,7 @@
 namespace directapi\services\campaigns\enum;
 
 use directapi\components\Enum;
+use directapi\exceptions\DirectApiException;
 
 class TextCampaignSettingsEnum extends Enum
 {
@@ -47,7 +48,7 @@ class TextCampaignSettingsEnum extends Enum
     public static function checkValue(TextCampaignSettingsEnum $value)
     {
         if ($value == self::MAINTAIN_NETWORK_CPC) {
-            throw new \Exception(self::MAINTAIN_NETWORK_CPC . " is deprecated");
+            throw new DirectApiException(self::MAINTAIN_NETWORK_CPC . " is deprecated");
         }
     }
 }

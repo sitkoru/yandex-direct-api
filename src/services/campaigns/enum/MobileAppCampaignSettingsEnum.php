@@ -3,6 +3,7 @@
 namespace directapi\services\campaigns\enum;
 
 use directapi\components\Enum;
+use directapi\exceptions\DirectApiException;
 
 class MobileAppCampaignSettingsEnum extends Enum
 {
@@ -40,7 +41,7 @@ class MobileAppCampaignSettingsEnum extends Enum
     public static function checkValue(MobileAppCampaignSettingsEnum $value)
     {
         if ($value == self::MAINTAIN_NETWORK_CPC) {
-            throw new \Exception(self::MAINTAIN_NETWORK_CPC . " is deprecated");
+            throw new DirectApiException(self::MAINTAIN_NETWORK_CPC . " is deprecated");
         }
     }
 }
