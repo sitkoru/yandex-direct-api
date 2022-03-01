@@ -11,5 +11,8 @@ class AttributionModelEnum extends Enum
     public const LC = "LC";
     public const LSC = "LSC";
     public const LYDC = "LYDC";
+    public const FCCD = "FCCD";
+    public const LCCD = "LCCD";
+    public const LSCCD = "LSCCD";
     public const LYDCCD = "LYDCCD";
 }
