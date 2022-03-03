@@ -1,4 +1,6 @@
 .idea
 vendor
+composer.lock
 tests/constants.php
+tests/.phpunit.result.cache
 .php_cs.cache
