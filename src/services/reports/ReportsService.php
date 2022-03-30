@@ -15,6 +15,7 @@ use directapi\services\reports\models\Report;
 use directapi\services\reports\models\ReportDefinition;
 use directapi\services\reports\models\ReportRow;
 use GuzzleHttp\Exception\BadResponseException;
+use GuzzleHttp\Psr7\Utils;
 use Psr\Http\Message\RequestInterface;
 
 class ReportsService extends BaseService
@@ -72,7 +73,7 @@ class ReportsService extends BaseService
         $request = $this->service->getRequest(BaseService::getApiUrl($this->useSandbox) . self::REPORTS_API_URL)
             ->withAddedHeader('processingMode', $mode)
             ->withAddedHeader('returnMoneyInMicros', $returnMoneyInMicros)
-            ->withBody(\GuzzleHttp\Psr7\stream_for($payload));
+            ->withBody(Utils::streamFor($payload));
 
         $code = 0;
         $result = null;

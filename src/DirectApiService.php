@@ -33,7 +33,7 @@ use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\Request;
-use function GuzzleHttp\Psr7\stream_for;
+use GuzzleHttp\Psr7\Utils;
 use InvalidArgumentException;
 use function is_array;
 use function is_object;
@@ -522,7 +522,7 @@ class DirectApiService
         $payload = json_encode($request->getPayload(), JSON_UNESCAPED_UNICODE);
         $payload = preg_replace('/,\s*"[^"]+":null|"[^"]+":null,?/', '', $payload);
 
-        $httpResponse = $this->doRequest($httpRequest->withBody(stream_for($payload)));
+        $httpResponse = $this->doRequest($httpRequest->withBody(Utils::streamFor($payload)));
         $response = new DirectApiResponse();
 
         $response->setHeaders($httpResponse->getHeaders());
