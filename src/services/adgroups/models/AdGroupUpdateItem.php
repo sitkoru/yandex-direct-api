@@ -7,6 +7,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class AdGroupUpdateItem extends Model
 {
+    protected static $nillableProperties = [
+        'NegativeKeywords',
+        'NegativeKeywordSharedSetIds',
+    ];
+
     /**
      * @var int
      * @Assert\NotBlank()

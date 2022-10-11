@@ -8,6 +8,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class SmartAdGroupUpdate extends Model
 {
+    protected static $nillableProperties = [
+        'AdTitleSource',
+        'AdBodySource',
+    ];
+
     /**
      * @var string
      */
