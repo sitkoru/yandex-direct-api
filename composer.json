@@ -15,7 +15,7 @@
     "symfony/validator": "^4.3 || ^5.0",
     "doctrine/annotations": "^1.7",
     "doctrine/cache": "^1.8 || ^2.2",
-    "netresearch/jsonmapper": "^3.0.0",
+    "netresearch/jsonmapper": "^4.1.0",
     "guzzlehttp/guzzle": "^6.5 || ^7.2",
     "psr/log": "^1.1.0 || ^2.0 || ^3.0"
   },
